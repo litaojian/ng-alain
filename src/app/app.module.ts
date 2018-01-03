@@ -8,9 +8,12 @@ import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
-import { RoutesModule } from './routes/routes.module';
+//import { RoutesModule } from './routes/routes.module';
+import { AdminModule } from './admin/admin.module';
 import { LayoutModule } from './layout/layout.module';
-import { StartupService } from './core/services/startup.service';
+//import { StartupService } from './core/services/startup.service';
+import { StartupService } from './admin/services/startup.service';
+
 import { DefaultInterceptor } from '@core/net/default.interceptor';
 import { AlainAuthModule, SimpleInterceptor } from '@delon/auth';
 
@@ -48,7 +51,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
         SharedModule.forRoot(),
         CoreModule,
         LayoutModule,
-        RoutesModule,
+        AdminModule,
         // mock
         ...MOCKMODULE,
         // auth
