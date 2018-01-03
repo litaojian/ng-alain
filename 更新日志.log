@@ -1,0 +1,9 @@
+初始化开发环境
+
+1. 使用git clone 克隆 https://github.com/litaojian/ng-alain 
+2. 执行cnpm i 安装angular依赖的环境包
+3. 拷贝已修改过的源码目录到src/app/admin
+4. 修改app.module.ts的源码,将 RoutesModule 改成AdminModule , StartupService 的目录改admin下面的
+5. 
+
+
