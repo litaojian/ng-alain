@@ -1,10 +1,11 @@
 import { SettingsService } from '@delon/theme';
 import { Component, OnDestroy, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd';
 import { SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN } from '@delon/auth';
 import { environment } from '@env/environment';
+import { MyDataService } from '../../services/my.data.service';
 
 @Component({
     selector: 'passport-login',
@@ -20,6 +21,8 @@ export class UserLoginComponent implements OnDestroy {
     loading = false;
 
     constructor(
+        private myDataService:MyDataService,
+        private activatedRoute: ActivatedRoute,    
         fb: FormBuilder,
         private router: Router,
         public msg: NzMessageService,
@@ -27,8 +30,8 @@ export class UserLoginComponent implements OnDestroy {
         private socialService: SocialService,
         @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService) {
         this.form = fb.group({
-            userName: [null, [Validators.required, Validators.minLength(5)]],
-            password: [null, Validators.required],
+            userName: ["user1", [Validators.required, Validators.minLength(5)]],
+            password: ["123456", Validators.required],
             mobile: [null, [Validators.required, Validators.pattern(/^1\d{10}$/)]],
             captcha: [null, [Validators.required]],
             remember: [true]
@@ -75,28 +78,67 @@ export class UserLoginComponent implements OnDestroy {
             this.captcha.markAsDirty();
             if (this.mobile.invalid || this.captcha.invalid) return;
         }
-        // mock http
-        this.loading = true;
-        setTimeout(() => {
-            this.loading = false;
-            if (this.type === 0) {
-                if (this.userName.value !== 'admin' || this.password.value !== '888888') {
-                    this.error = `账户或密码错误`;
-                    return;
-                }
-            }
 
-            this.tokenService.set({
-                token: '123456789',
-                name: this.userName.value,
-                email: `cipchk@qq.com`,
-                id: 10000,
-                time: +new Date
-            });
-            this.router.navigate(['/']);
-        }, 1000);
+        // login action
+        this.loading = true;        
+        this.doLoginAction();
+
+        // mock http
+        // this.loading = true;  
+
+        // mock http
+        // this.loading = true;
+        // setTimeout(() => {
+        //     this.loading = false;
+        //     if (this.type === 0) {
+        //         if (this.userName.value !== 'admin' || this.password.value !== '888888') {
+        //             this.error = `账户或密码错误`;
+        //             return;
+        //         }
+        //     }
+
+        //     this.tokenService.set({
+        //         token: '123456789',
+        //         name: this.userName.value,
+        //         email: `cipchk@qq.com`,
+        //         id: 10000,
+        //         time: +new Date
+        //     });
+        //     this.router.navigate(['/']);
+        // }, 1000);
+
     }
 
+    doLoginAction(){
+        let redirectUrl = this.activatedRoute.snapshot.queryParams['redirectUrl'];
+        if (redirectUrl == null){
+            redirectUrl = "/";
+        }
+        let params = {"loginId": this.userName.value, "password":this.password.value};
+        let message = "";
+        let options = {};
+        
+        
+        this.myDataService.doLoginAction(params)
+            .subscribe((result: any) => {
+                console.log("login result:" + JSON.stringify(result));
+
+                if (result == null){
+                    this.error  = "something is wrong.";
+                    return;
+                }                
+                let errmsg = result["errmsg"];
+                if (errmsg == null){
+                    errmsg = result["resultMsg"];
+                }
+                if (result["userToken"] != null && result["resultCode"] == 0){                    
+                    this.router.navigate([redirectUrl]);
+                }else{
+                    this.error = errmsg;
+                }               
+            });
+        
+    }
     // region: social
 
     open(type: string, openType: SocialOpenType = 'href') {
