@@ -4,6 +4,21 @@
 2. 执行cnpm i 安装angular依赖的环境包
 3. 拷贝已修改过的源码目录到src/app/admin
 4. 修改app.module.ts的源码,将 RoutesModule 改成AdminModule , StartupService 的目录改admin下面的
-5. 
+5. 修改package.json文件
+   增加代理服务器设置:    第18行  "start": "ng serve -o --proxy-config proxy.conf.json",
+   增加第三方包   
+        "jquery": "^3.2.1",
+        "jquery-sparkline": "^2.4.0",
+        "crypto-js": "^3.1.9-1"
+6. 修改.angular-cli.json 
+   在scripts段中的增加jquery等第三方功能包
+
+7. 修改 typings.d.ts, 增加jQuery的$标志符
+    declare var System: any;
+    declare var JQuery: any;
+    declare var jQuery: any;
+    declare var $: any;
+
+8. 在assets目录增加第三方css资源,如bootstrap, zTree, jSelect2
 
 
