@@ -16,3 +16,8 @@ declare var require: NodeRequire;
 declare var G2: any;
 declare var Slider: any;
 declare var Cloud: any;
+
+declare var System: any;
+declare var JQuery: any;
+declare var jQuery: any;
+declare var $: any;
