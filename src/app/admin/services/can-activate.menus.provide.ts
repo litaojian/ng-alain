@@ -5,7 +5,7 @@ import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { tap, map, mergeMap, catchError } from 'rxjs/operators';
 import { NzMessageService } from 'ng-zorro-antd';
 import { MenuService } from '@delon/theme';
-import { MyDataService } from 'app/admin/service/my.data.service';
+import { MyDataService } from './my.data.service';
 
 @Injectable()
 export class CanActivateMenusProvide implements CanActivate {

@@ -1,0 +1,27 @@
+{
+    "/remote/api": {
+        "target": "http://192.168.2.176:8082/demo",
+        "pathRewrite": { "": "" },
+        "secure": false
+    },
+
+    "/remote/api/service/vehicle": {
+        "target": "http://192.168.2.176:8081/work",
+        "pathRewrite": { "": "" },
+        "secure": false
+    },
+
+    "/cms/WebResourceManager/upload": {
+        "target": "http://localhost:8080/ZxFiles/cms/WebResourceManager/upload",
+        "secure": false
+    },
+
+    "/ZxFiles": {
+        "target": "http://localhost:8080/ZxFiles",
+        "secure": false,
+        "pathRewrite": { "^/ZxFiles": "" },
+        "changeOrigin": true
+    }
+
+
+}
