@@ -1,7 +1,7 @@
 {
     "app": {
-        "name": "Alain",
-        "description": "Ng-zorro admin panel front-end framework"
+        "name": "SaaS门户",
+        "description": "新版应用框架"
     },
     "user": {
         "name": "Admin",
@@ -340,30 +340,31 @@
             "link": "/logics",
             "icon": "icon-compass",
             "children": [{
-                "text": "ACL",
-                "link": "/logics/acl",
-                "translate": "acl"
-            },
-            {
-                "text": "Route Guard",
-                "link": "/logics/guard",
-                "translate": "guard",
-                "acl": "admin"
-            },
-            {
-                "text": "Down File",
-                "link": "/logics/downfile",
-                "translate": "downfile",
-                "shortcut": true
-            },
-            {
-                "text": "Xlsx",
-                "link": "/logics/xlsx"
-            },
-            {
-                "text": "Zip",
-                "link": "/logics/zip"
-            }]
+                    "text": "ACL",
+                    "link": "/logics/acl",
+                    "translate": "acl"
+                },
+                {
+                    "text": "Route Guard",
+                    "link": "/logics/guard",
+                    "translate": "guard",
+                    "acl": "admin"
+                },
+                {
+                    "text": "Down File",
+                    "link": "/logics/downfile",
+                    "translate": "downfile",
+                    "shortcut": true
+                },
+                {
+                    "text": "Xlsx",
+                    "link": "/logics/xlsx"
+                },
+                {
+                    "text": "Zip",
+                    "link": "/logics/zip"
+                }
+            ]
         }, {
             "text": "Report",
             "translate": "report",
@@ -430,15 +431,15 @@
                     "translate": "list",
                     "badge": 1,
                     "badge_dot": true
-                },{
+                }, {
                     "text": "Comment",
                     "link": "/extras/blog/comment",
                     "translate": "comment"
-                },{
+                }, {
                     "text": "Post",
                     "link": "/extras/blog/post",
                     "translate": "post"
-                },{
+                }, {
                     "text": "WebSite",
                     "externalLink": "//github.com/cipchk/ng-alain",
                     "target": "_blank",
