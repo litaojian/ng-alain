@@ -19,13 +19,16 @@
         "prefix": "app",
         "styles": [
             "styles.less"
-        ],
+        ],   
         "scripts": [
             "../node_modules/jquery/dist/jquery.js",
             "../node_modules/jquery-sparkline/jquery.sparkline.js",
             "../node_modules/@antv/g2/dist/g2.min.js",
             "../node_modules/@antv/data-set/dist/data-set.min.js",
-            "../node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js"
+            "../node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js",
+            "assets/lib/jquery/jquery.min.js",
+            "assets/lib/select2/select2.js",
+            "assets/lib/jedate/jquery.jedate.js"
         ],
         "environmentSource": "environments/environment.ts",
         "environments": {

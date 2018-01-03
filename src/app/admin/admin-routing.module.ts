@@ -27,7 +27,9 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
-            { path: 'dashboard/monitor', component: DashboardMonitorComponent, data: { translate: 'dashboard_monitor' } }
+            { path: 'dashboard/monitor', component: DashboardMonitorComponent, data: { translate: 'dashboard_monitor' } },
+            { path: 'trackSearch', loadChildren: '../admin/VehicleSearch/trackSearch.module#TrackModule'},
+            { path: 'regional', loadChildren: '../admin/VehicleArea/regional.module#RegionalModule'} 
         ]
     },
     // // 全屏布局

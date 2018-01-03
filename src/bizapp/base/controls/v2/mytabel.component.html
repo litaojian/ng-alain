@@ -1,0 +1,4 @@
+
+<nz-table #nzTable [nzScroll]="{ y: 440 }" id="searchList" [nzPageSize]="8" [nzPageIndex]="1" nzShowQuickJumper nzShowTotal [nzAjaxData]="data" [nzTotal]="datanums" (nzPageIndexChange)="indexChange($event)">
+            <ng-content select=".mytabel-body"></ng-content>
+</nz-table>
