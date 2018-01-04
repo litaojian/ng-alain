@@ -28,11 +28,11 @@ const routes: Routes = [
             { path: '', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
             { path: 'dashboard/monitor', component: DashboardMonitorComponent, data: { translate: 'dashboard_monitor' } },
-            { path: 'trackSearch', loadChildren: '../admin/VehicleSearch/trackSearch.module#TrackModule'},
-            { path: 'regional', loadChildren: '../admin/VehicleArea/regional.module#RegionalModule'} 
+            { path: 'trackSearch', loadChildren: '../vehicle/VehicleSearch/trackSearch.module#TrackModule'},
+            { path: 'regional', loadChildren: '../vehicle/VehicleArea/regional.module#RegionalModule'} 
         ]
     },
-    // // 全屏布局
+    // // 全屏布局y
     // {
     //     path: 'data-v',
     //     component: LayoutFullScreenComponent,

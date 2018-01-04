@@ -6,8 +6,8 @@ import { trackSearchComponent } from './trackSearch/trackSearch.component';
 import { globalSearchComponent } from './globalSearch/globalSearch.component';
 import { TrackSearchService } from './trackSearch.service';
 const routes: Routes = [
-    { path: 'list', component: trackSearchComponent },
-    { path: 'all', component: globalSearchComponent }
+    { path: 'list', component: trackSearchComponent,data: { title: '轨迹查询' } },
+    { path: 'all', component: globalSearchComponent}
 ];
 
 @NgModule({

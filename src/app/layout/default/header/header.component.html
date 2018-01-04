@@ -1,9 +1,9 @@
 <div class="logo">
     <a [routerLink]="['/']">
-        <img class="expanded" src="./assets/img/logo-full.svg" alt="{{settings.app.name}}" style="max-height:40px;" />
-        <img class="collapsed" src="./assets/img/logo.svg" alt="{{settings.app.name}}" style="max-height:30px;" />
+        <img class="expanded" src="./assets/img/logo.png" alt="{{settings.app.name}}"/>
+        <img class="collapsed" src="./assets/img/logo.png" alt="{{settings.app.name}}"/>
     </a>
-</div>
+</div> 
 <div class="top-nav-wrap">
     <ul class="top-nav">
         <!-- Menu -->
@@ -31,7 +31,7 @@
             </div>
         </li>
     </ul>
-    <header-search class="header-search" [toggleChange]="searchToggleStatus"></header-search>
+    <search-input class="header-search" [toggleChange]="searchToggleStatus"></search-input>
     <ul class="top-nav">
         <!-- Notify -->
         <li>
