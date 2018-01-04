@@ -31,13 +31,13 @@ export class HeaderUserComponent implements OnInit {
             this.settings.setUser(res);
         });
         // mock
-        const token = this.tokenService.get() || {
-            token: 'nothing',
-            name: 'Admin',
-            avatar: './assets/img/zorro.svg',
-            email: 'cipchk@qq.com'
-        };
-        this.tokenService.set(token);
+        // const token = this.tokenService.get() || {
+        //     token: 'nothing',
+        //     name: 'Admin',
+        //     avatar: './assets/img/zorro.svg',
+        //     email: 'cipchk@qq.com'
+        // };
+        // this.tokenService.set(token);
     }
 
     logout() {

@@ -28,7 +28,7 @@
             </div>
         </nz-tab>
         <nz-tab>
-            <ng-template #nzTabHeading>手机号登录</ng-template>
+            <ng-template #nzTabHeading>PKI登录</ng-template>
             <div nz-form-item>
                 <div nz-form-control [nzValidateStatus]="mobile">
                     <nz-input formControlName="mobile" [nzPlaceHolder]="'手机号'" [nzSize]="'large'">
@@ -79,14 +79,13 @@
 </form>
 <div class="other">
     其他登录方式
-    <nz-tooltip [nzTitle]="'in fact Auth0 via window'">
+    <nz-tooltip [nzTitle]="'警综'">
         <span nz-tooltip class="icon-alipay" (click)="open('auth0', 'window')"></span>
     </nz-tooltip>
-    <nz-tooltip [nzTitle]="'in fact Github via redirect'">
+    <nz-tooltip [nzTitle]="'品高'">
         <span nz-tooltip class="icon-taobao" (click)="open('github')"></span>
     </nz-tooltip>
-    <nz-tooltip [nzTitle]="'真的是微博'">
-        <span nz-tooltip class="icon-weibo" (click)="open('weibo', 'window')"></span>
-    </nz-tooltip>
+    <!--
     <a class="register" routerLink="/passport/register">注册账户</a>
+    -->
 </div>
