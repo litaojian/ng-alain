@@ -17,6 +17,7 @@
     ],
     "baseUrl": "src/",
     "paths": {
+        "@bizapp": [ "bizapp" ],      
         "@shared": [ "app/shared" ],
         "@shared/*": [ "app/shared/*" ],
         "@core": [ "app/core/" ],
