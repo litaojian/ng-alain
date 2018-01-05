@@ -10,6 +10,7 @@ import { MyDatePickerComponent }  from '../v2/mydatepicker.component';
 import { ModalComponent }  from '../v2/mymodal.component';
 import { PanelComponent }  from '../v2/mypanel.component';
 import { TabelComponent }  from '../v2/mytabel.component';
+import { HeaderSearchComponent }  from '../v2/searchInput.component';
 
 @NgModule({
     imports: [
@@ -19,10 +20,10 @@ import { TabelComponent }  from '../v2/mytabel.component';
         NgZorroAntdModule
     ],
     exports:[
-        MySelect2Component,MyDatePickerComponent,CounterComponent,MyLoadingComponent,ModalComponent,PanelComponent,TabelComponent
+        MySelect2Component,MyDatePickerComponent,CounterComponent,MyLoadingComponent,ModalComponent,PanelComponent,TabelComponent,HeaderSearchComponent
     ],
     declarations: [
-        MySelect2Component,MyDatePickerComponent,CounterComponent,MyLoadingComponent,ModalComponent,PanelComponent,TabelComponent
+        MySelect2Component,MyDatePickerComponent,CounterComponent,MyLoadingComponent,ModalComponent,PanelComponent,TabelComponent,HeaderSearchComponent
     ],
     providers: [],
 }) 

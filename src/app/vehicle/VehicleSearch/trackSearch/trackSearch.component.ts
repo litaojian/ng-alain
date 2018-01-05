@@ -71,14 +71,25 @@ export class trackSearchComponent {
         
         }
 
-  ngOnInit() {         
+  ngOnInit() {      
+          //接收传递的值
+          this.activeRoute.queryParams.subscribe(params => {
+            //   this.searchtest.hphm = params['hphm'];
+              if(params['hphm']!=undefined){
+                // this.searchtest.hphm = params['hphm'];
+                this.searchList();
+              }else{
+                // this.searchtest.hphm = '';
+              }
+            
+          }); 
            var newDate = new Date();
            var newDate1=(newDate.getTime()-3*24*3600*1000);
            var oneweekdate = new Date(newDate1);
            this.search.gcsj_gt=this.DatePipe.transform(oneweekdate,'y-MM-dd HH:mm:ss');
            this.search.gcsj_lte=this.DatePipe.transform(new Date(),'y-MM-dd HH:mm:ss');
-          this.seachCounty(this.search.xzqh);
-          this.seachKK(this.search.qx);
+           this.seachCounty(this.search.xzqh);
+           this.seachKK(this.search.qx);
     }
   isVisible = false;
   putOut = () => {
@@ -123,9 +134,10 @@ addMessage(){
 delete(num){
     this.list.splice(num,1);
 }
-searchList(num){
+searchList(){
         this.Url=true;
         this.loading=true;
+        // console.log(this.searchtest);
     //     this.TrackSearchService.getTrackSearch({}).then(data => {  
     //        this.expandForm=true; 
     //        this.ifMoreSearch=true;

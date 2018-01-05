@@ -17,6 +17,8 @@ export class TabelComponent implements OnInit, ControlValueAccessor{
     datanums:any;
     currentModal:any;
     @Input()
+    searchData:any;
+    @Input()
     Myurl:any;
     @Output() tableLists = new EventEmitter<any>();
     _onChange = (_: any) => { };
@@ -36,13 +38,13 @@ export class TabelComponent implements OnInit, ControlValueAccessor{
 	get ifUrl(): any {
 		return this._data;
 	}
-    @Input()
-    set searchData(v: any){
-        this._searchdata=v;
-    }
-    get searchData(): any {
-		return this._searchdata;
-	}
+    // @Input()
+    // set searchData(v: any){
+    //     this._searchdata=v;
+    // }
+    // get searchData(): any {
+	// 	return this._searchdata;
+	// }
     writeValue(value: any) {
        
     }
@@ -66,6 +68,8 @@ export class TabelComponent implements OnInit, ControlValueAccessor{
 	// }
     private getTabelList() {
          this._totalData=[];
+         this._searchdata=this.searchData;
+         console.log(this._searchdata);
 		 this.MyTabelService.getData(this._searchdata,this.Myurl).subscribe(data => {
                this.data=data.rows;
                this.datanums=data.total;

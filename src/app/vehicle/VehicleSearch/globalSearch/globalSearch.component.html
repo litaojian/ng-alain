@@ -1,76 +1,51 @@
-<div class="content__title">
-    <h1>
-        过车查询结果
-    </h1>
-</div>
+
 <!--列表数据显示部分 *ngIf="expandForm" [nzPageSize]="50"-->
-<nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" id="showType" *ngIf="expandForm">
+<nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" id="showType">
     <nz-tab>
         <ng-template #nzTabHeading>
           列表展示
         </ng-template>
-         <nz-table #nzTable [nzScroll]="{ y: 240 }" id="searchList">
-            <ng-template #nzFixedHeader>
-                <thead nz-thead>
-                <tr>
-                    <th nz-th [nzWidth]="'150px'"><span>过车时间</span></th>
-                    <th nz-th [nzWidth]="'350px'"><span>卡口名称</span></th>
-                    <th nz-th [nzWidth]="'100px'"><span>号牌号码</span></th>
-                    <th nz-th [nzWidth]="'100px'"><span>号牌种类</span></th>
-                    <th nz-th [nzWidth]="'150px'"><span>行驶方向</span></th>
-                    <th nz-th [nzWidth]="'100px'"><span>行驶速度</span></th>
-                    <th nz-th [nzWidth]="'100px'"><span>车辆类型</span></th>
-                </tr>
-                </thead>
-            </ng-template>
-            <tbody nz-tbody>
-                <tr nz-tbody-tr *ngFor="let data of datas" (click)="carDetail(title, content, footer,data.fxbh,800)">
-                    <td nz-td>{{data.gcsj}}</td>
-                    <td nz-td>{{data.kkmc}}</td>
-                    <td nz-td>{{data.hphm}}</td>
-                    <td nz-td>{{data.hpzlmc}}</td>
-                    <td nz-td style="text-align:left" title="{{data.fxbhmc}}">{{data.fxbhmc}}</td>
-                    <td nz-td>{{data.xssd}}</td>
-                    <td nz-td>{{data.cllx}}</td>
-               </tr>
-            </tbody>
-        </nz-table>
+        <my-table [Myurl]="'remote/api/rest/passrec'" [ifUrl]="Url" (tableLists)="getTabelList($event)" [searchData]="searchtest">
+                 <div class="mytabel-body">
+                      <div nz-row [nzGutter]="24" id="tabel_thead">
+                          <div nz-col [nzSpan]="4"><span>过车时间</span></div>
+                          <div nz-col [nzSpan]="5"><span>卡口名称</span></div>
+                          <div nz-col [nzSpan]="3"> <span>号牌号码</span> </div>
+                          <div nz-col [nzSpan]="3"><span>号牌种类</span></div>
+                          <div nz-col [nzSpan]="3"><span>行驶方向</span></div>
+                          <div nz-col [nzSpan]="3"><span>行驶速度</span></div>
+                          <div nz-col [nzSpan]="3"><span>车辆类型</span></div>
+                      </div>
+                       <div nz-row [nzGutter]="24" id="tabel_body" *ngFor="let data of data" (click)="carDetailMore(title, content, footer,800,data.fxbh)">
+                          <div nz-col [nzSpan]="4"><span>{{data.gcsj}}</span></div>
+                          <div nz-col [nzSpan]="5"><span>{{data.kkmc}}</span></div>
+                          <div nz-col [nzSpan]="3"><span>{{data.hphm}}</span> </div>
+                          <div nz-col [nzSpan]="3"><span>{{data.hpzlmc}}</span></div>
+                          <div nz-col [nzSpan]="3"><span>{{data.xsfx}}</span></div>
+                          <div nz-col [nzSpan]="3"><span>{{data.xssd}}</span></div>
+                          <div nz-col [nzSpan]="3"><span>{{data.cllx}}</span></div>
+                      </div>
+                 </div>
+        </my-table>
     </nz-tab>
-    <nz-tab>
+     <nz-tab>
         <ng-template #nzTabHeading>
           图表展示
         </ng-template>
-        <nz-list [nzLoading]="loading" [nzDataSource]="datas"
-         [nzGrid]="{gutter: 24, lg: 6, md: 8, sm: 12, xs: 24 }" [nzBordered]="false">
-            <ng-template #item let-item>
-                <nz-list-item>
-                    <nz-card nzHoverable id="ant-avatar-lg">
-                        <ng-template #cover><nz-avatar [nzSrc]="item.tp1" [nzSize]="'large'" [nzShape]="'square'"></nz-avatar></ng-template>
-                        <nz-card-meta
-                            [nzTitle]="nzTitle"
-                            [nzDescription]="item.hpzlmc">
-                            <ng-template #nzTitle><a (click)="msg.success('标题：' + item.id);">{{item.hphm}}</a></ng-template>
-                        </nz-card-meta>
-                        <div class="card-item-content">
-                            <span class="text-grey">{{item.gcsj}}</span>
-                            <avatar-list size="mini">
-                                <avatar-list-item *ngFor="let m of item.members"
-                                                    [src]="m.avatar"
-                                                    [tips]="m.name"></avatar-list-item>
-                            </avatar-list>
-                        </div>
-                    </nz-card>
-                </nz-list-item> 
-            </ng-template>
-        </nz-list>
+        <div nz-row [nzGutter]="24" class="showCarPhoto">
+              <div nz-col [nzSpan]="6" *ngFor="let item of data">
+                  <img src="{{item.tp1}}" alt="" style="width:250px;height:120px;margin-left:5px">
+                  <dl>
+                          <dt></dt>
+                          <dd>{{item.hphm}}  {{item.hpzlmc}}</dd>
+                          <dd>{{item.gcsj}}</dd>
+                      
+                 </dl>
+              </div>
+        </div>
     </nz-tab>
 </nz-tabset>
  <my-loading *ngIf="loading"></my-loading>
- <div nz-col [nzSpan]="24" class="mb-md" [class.text-center]="true" *ngIf="datas.length<=0">
-        暂无数据
-</div>
-<nz-pagination *ngIf="expandForm" [nzPageIndex]="search._page" [nzTotal]="datanums" nzShowQuickJumper [nzPageSize]="search._limit" nzShowTotal (nzPageIndexChange)="getSearchData($event)"></nz-pagination>
-<!--<my-pagination url="remote/api/rest/passrec" (initRows)="successData($event)" searchData="{{searchOption}}"></my-pagination>-->
 <!--显示详情-->
 <nz-modal [nzContent]="modalContent">
     <ng-template #title>
@@ -86,7 +61,6 @@
                         <img src="{{dataOne.tp1}}" alt="">
                     </ng-template>
                 </nz-popover>
-                <!--<img src="http://i2.hexunimg.cn/2015-11-09/180426542.jpg" alt="" style="width:150px" nz-popover>-->
             </div>
             <div nz-col [nzSpan]="8" style="text-align:center">
                <nz-popover>
@@ -176,35 +150,34 @@
     </ng-template>
     <ng-template #footer>
       <div>
-        <!--<button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk($event)" [nzLoading]="isConfirmLoading">
-          提 交
-        </button>-->
       </div>
     </ng-template>
 </nz-modal>
 <!--导出数据-->
- <nz-modal [nzVisible]="isVisible" [nzTitle]="'导出数据'" [nzContent]="modalContent" [nzOkText]="'导出'" (nzOnCancel)="handleCancel()">
-      <ng-template #modalContent>
-          <div nz-col [nzSpan]="24" class="mb-md">
+<my-modal [isModal]="isModalShow_put" (initRows)=hasChange($event)>
+      <div class="myModal-title">
+          <span>导出数据</span>
+      </div>
+      <div class="myModal-content">
+           <div nz-col [nzSpan]="24" class="mb-md">
                 <div nz-form-item class="d-flex" style="margin-bottom:0px">
-                    <div nz-form-label><label for="dcnr">导出内容</label></div>
+                    <div nz-form-label><label for="dcnr">导出内容：</label></div>
                     <div nz-form-control class="flex-1">
                           <my-select2 name="dcnr" [(ngModel)]="putout.dcnr" [data]="dcList" [fieldKey]="{text:'dmsm1',value:'dmz'}"></my-select2>
                     </div>
                 </div>
-        </div>
+         </div>
         <div nz-col [nzSpan]="24" class="mb-md">
                 <div nz-form-item class="d-flex" style="margin-bottom:0px">
-                    <div nz-form-label><label for="dcsl">导出数量</label></div>
+                    <div nz-form-label><label for="dcsl">导出数量：</label></div>
                     <div nz-form-control class="flex-1">
                          <nz-input [(ngModel)]="putout.dcsl" [nzPlaceHolder]="'导出数量'" name="dcsl"></nz-input>
                     </div>
                 </div>
             </div>
         <p>1.导出数据最多只能导出2000条； 2.导出图片</p>
-      </ng-template>
- </nz-modal>
-  <!--<ng-template #pagination>
-            <nz-pagination [nzTotal]="6" [nzPageSize]="5" [nzSize]="'large'" (nzPageIndexChange)="pageSearchData($event)"></nz-pagination>
-   </ng-template>-->
-<!--</nz-card>-->
+      </div>
+       <div class="myModal-footer">
+          <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'">导出</button>
+      </div>
+</my-modal>

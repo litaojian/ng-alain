@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
-
+import { AppBaseModule } from '../../bizapp/base/controls/v2/my-base.module';
 import { LayoutDefaultComponent } from './default/default.component';
 import { LayoutFullScreenComponent } from './fullscreen/fullscreen.component';
 import { HeaderComponent } from './default/header/header.component';
@@ -41,7 +41,7 @@ const PASSPORT = [
 ];
 
 @NgModule({
-    imports: [SharedModule],
+    imports: [SharedModule,AppBaseModule],
     providers: [],
     declarations: [
         ...COMPONENTS,
