@@ -1,7 +1,7 @@
 import { Injectable,Injector } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { BaseDataService }  from '../../base/base-data.service';
+import { BaseDataService }  from 'bizapp/base/base-data.service';
 
 @Injectable()
 export class TestRecService extends BaseDataService {
