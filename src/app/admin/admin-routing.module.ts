@@ -8,6 +8,7 @@ import { LayoutPassportComponent } from '../layout/passport/passport.component';
 
 // dashboard pages
 import { DashboardMonitorComponent } from './dashboard/monitor/monitor.component';
+import { SimpleTableComponent } from './simple-table/simple-table.component';
 
 // passport pages
 import { UserLoginComponent } from './passport/login/login.component';
@@ -28,8 +29,10 @@ const routes: Routes = [
             { path: '', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
             { path: 'dashboard/monitor', component: DashboardMonitorComponent, data: { translate: 'dashboard_monitor' } },
+            { path: 'simpleTable/:id', component: SimpleTableComponent, data: {title:"简易1表格"} },
             { path: 'trackSearch', loadChildren: '../admin/VehicleSearch/trackSearch.module#TrackModule'},
             { path: 'regional', loadChildren: '../admin/VehicleArea/regional.module#RegionalModule'} 
+
         ]
     },
     // // 全屏布局

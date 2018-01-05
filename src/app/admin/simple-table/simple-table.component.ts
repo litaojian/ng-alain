@@ -7,7 +7,7 @@ import { NzMessageService } from 'ng-zorro-antd';
     templateUrl: './simple-table.component.html'
 })
 export class SimpleTableComponent {
-    url = `remote/api/rest/testRec`;
+    url = `remote/mock/api/rest/testRec`;
     params = { a: 1, _allow_anonymous: true };
     // mock
     total = 100;
