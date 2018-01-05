@@ -9,6 +9,7 @@ import { LayoutPassportComponent } from '../layout/passport/passport.component';
 // dashboard pages
 import { DashboardMonitorComponent } from './dashboard/monitor/monitor.component';
 import { SimpleTableComponent } from './simple-table/simple-table.component';
+import { TestRecComponent } from './test-rec/test-rec.component';
 
 // passport pages
 import { UserLoginComponent } from './passport/login/login.component';
@@ -29,8 +30,11 @@ const routes: Routes = [
             { path: '', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
             { path: 'dashboard/monitor', component: DashboardMonitorComponent, data: { translate: 'dashboard_monitor' } },
+            { path: 'admin/simple', component: SimpleTableComponent, data: { title:"列表" } },  
+            { path: 'admin/testRec', component: TestRecComponent, data: { title:"测试表" } },
             { path: 'trackSearch', loadChildren: '../vehicle/VehicleSearch/trackSearch.module#TrackModule'},
             { path: 'regional', loadChildren: '../vehicle/VehicleArea/regional.module#RegionalModule'} 
+
         ]
     },
     // // 全屏布局y
