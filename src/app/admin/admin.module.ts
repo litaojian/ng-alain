@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminRoutingModule } from './admin-routing.module';
+import { AppBaseModule } from 'bizapp/base/app-base.module';
+
 
 import { SharedModule } from '@shared/shared.module';
 import { SimpleTableComponent } from './simple-table/simple-table.component';
 import { UserLoginComponent } from './passport/login/login.component';
-import { TestRecListComponent } from './test-rec/testRec.component';
 import { DashboardMonitorComponent } from './dashboard/monitor/monitor.component';
 import { Exception403Component } from './exception/403.component';
 import { Exception404Component } from './exception/404.component';
@@ -22,7 +23,6 @@ import { CanActivateMenusProvide } from './services/can-activate.menus.provide';
   declarations: [
     SimpleTableComponent,
     UserLoginComponent,
-    TestRecListComponent,
     DashboardMonitorComponent,
     Exception403Component,
     Exception404Component,
