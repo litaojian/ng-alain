@@ -3,6 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR,NgControl} from '@angular/forms
 import {enableProdMode} from '@angular/core';
 import { MyTabelService } from './mytabel.service';
 import { NzModalService } from 'ng-zorro-antd';
+declare var $:any;
 @Component({
      selector: 'my-table',
      templateUrl: './mytabel.component.html',
@@ -12,7 +13,10 @@ import { NzModalService } from 'ng-zorro-antd';
 export class TabelComponent implements OnInit, ControlValueAccessor{
     _totalData:any[]=[];
     _data: any;
+    pagination:any;
     _searchdata: any;
+    pageIndex: any;
+    pageSize: any;
     data: any[] = [];
     datanums:any;
     currentModal:any;
@@ -27,34 +31,34 @@ export class TabelComponent implements OnInit, ControlValueAccessor{
 		private MyTabelService: MyTabelService,
 		private modalService: NzModalService
 	 ) {
+         this.pagination = {
+            curPage: 1,
+            rows: 10
+         };
 	}
   @Input()
 	set ifUrl(v: any) {//监听定义ifUrl的值是否发生变化
         this._data=v;
-        if(this._data==true){       
+        if(this._data==true){
+           this.pagination.curPage=1;
            this.getTabelList();
         }
 	}
 	get ifUrl(): any {
 		return this._data;
 	}
-    // @Input()
-    // set searchData(v: any){
-    //     this._searchdata=v;
-    // }
-    // get searchData(): any {
-	// 	return this._searchdata;
-	// }
     writeValue(value: any) {
        
     }
    ngOnInit() {
-        // alert(this.Myurl)
+        //  this.pageIndex=this.pagination.curPage;
+        //  this.pageSize=this.pagination.rows;
 	}
    //页数变化
    indexChange(e){
-      this._searchdata._page=e;
-      this.getTabelList();
+        //  alert(12);
+         this.pagination.curPage=e;
+         this.getTabelList();
    }
    registerOnChange(fn: any) {
         this._onChange = fn;
@@ -68,11 +72,11 @@ export class TabelComponent implements OnInit, ControlValueAccessor{
 	// }
     private getTabelList() {
          this._totalData=[];
-         this._searchdata=this.searchData;
+         this._searchdata = $.extend({}, this.searchData, this.pagination);
          console.log(this._searchdata);
-		 this.MyTabelService.getData(this._searchdata,this.Myurl).subscribe(data => {
-               this.data=data.rows;
-               this.datanums=data.total;
+		 this.MyTabelService.getData(this.Myurl,this._searchdata).subscribe(data => {
+               this.data=data.data;
+               this.datanums=data.count;
                this._data=false;
                this._totalData.push(this.data);
                this._totalData.push(this._data);

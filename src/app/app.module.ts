@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { HttpModule } from '@angular/http';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
@@ -47,6 +47,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
     ],
     imports: [
         BrowserModule,
+        HttpModule,
         BrowserAnimationsModule,
         SharedModule.forRoot(),
         CoreModule,

@@ -1,27 +1,23 @@
-import { Injectable } from '@angular/core';
-import { Headers, Http, URLSearchParams,RequestOptions } from '@angular/http';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-// import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs/Observable';
+import { MyDataService } from '../../admin/services/my.data.service';
 @Injectable()
 export class TrackSearchService {
-	constructor(private http: HttpClient) {}
-
-	getTrackSearch(params: any):any{
-	   return this.http
-            .get('remote/api/rest/passrec', {params});
+	constructor(private MyDataService: MyDataService) {
+    }
+	getTrackSearch(body: any):any{
 	  
 	}
-	getTrackSearchByOne(params: any):any{
-	   return this.http
-            .get('remote/api/rest/passrec', {params});
-	}
+	// getTrackSearchByOne(gcxh: any,sj:any):any{
+	//    return this.MyDataService.doGet('vehicle/api/data/pass/passinfo?gcxh='+gcxh+'&sj=201709');
+	// }
      //获取个区县单位
-     getCounty(xzqh):any{
-        return this.http.get("remote/api/rest/qxList?dmz="+xzqh);
+     getCounty(xzqhVal: any):any{
+        return this.MyDataService.doGet('vehicle/api/dic/rest/data/quxian?xzqh='+xzqhVal);  
      }
     //获取卡口信息
-    getKkList(xzqh):any{
-        return this.http.get("remote/api/rest/kkList?xzqh="+xzqh);
+    getKkList(xzqhVal):any{
+         return this.MyDataService.doGet('vehicle/api/dic/rest/data/gate?xzqh='+xzqhVal);  
     }
 }

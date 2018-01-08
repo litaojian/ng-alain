@@ -99,3 +99,23 @@
 :host ::ng-deep .ant-card-bordered{
       border:1px solid #2db7f5;
 }
+#showListType{
+      margin-bottom:10px;
+}
+#showListType span{
+      display: inline-block;
+      width:100px;
+      height: 30px;
+      background: #fff;
+      text-align: center;
+      line-height: 30px;
+      border: 1px solid #d9d9d9;
+      cursor: pointer;
+}
+#showListType .activeTab{
+      border:1px solid  #108ee9;
+      color: #108ee9;
+}
+#showListType span:first-child{
+      margin-left:13px;
+}

@@ -8,6 +8,6 @@ export class MySelect2Service {
 	}
 
 	getData(url: string):any{
-		return this.http.get(url);
+		return this.http.post(url,{});
 	}
 }
