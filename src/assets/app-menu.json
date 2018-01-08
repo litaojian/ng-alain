@@ -64,7 +64,7 @@
                 "icon": "icon-grid",
                 "children": [{
                         "text": "用户管理",
-                        "link": "/page/admin/user",
+                        "link": "/page/admin/user/list",
                         "acl": "admin"
                     },
                     {

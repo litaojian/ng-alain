@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 import { DialogService }  from '../../base/dialog.service';
-import { ExHttpService } from '../../base/http.service';
 
 import { ExtrasPoiEditComponent } from './edit/edit.component';
 
@@ -22,7 +21,6 @@ export class ExtrasPoiComponent implements OnInit {
     total = 0;
 
     constructor(
-        public http: ExHttpService,
         public msgSrv: NzMessageService,
         private dialogService: DialogService) { }
 
@@ -34,10 +32,10 @@ export class ExtrasPoiComponent implements OnInit {
         if (reload) {
             this.s.pi = 1;
         }
-        this.http.get('./assets/pois.json', this.s).subscribe((res: any) => {
-            this.list = res.data;
-            this.total = res.total;
-        });
+        // this.http.get('./assets/pois.json', this.s).subscribe((res: any) => {
+        //     this.list = res.data;
+        //     this.total = res.total;
+        // });
     }
 
     edit(i) {

@@ -488,7 +488,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     //console.log("loadValueListData "+ this.service.getValuelistTypes().toString() +" ..........");
     if (typenames != null){
         typenames.forEach(typename =>{
-          this.valueListDataService.getValueList(typename).then(data =>{    
+          this.valueListDataService.getValueList2(typename).subscribe(data =>{    
           let typename, label , value;
           for(let item in data){
             //console.log("item:" + JSON.stringify(data[item]));
@@ -507,7 +507,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
   getValueList(typename:string){
     //console.log("getValueList async..........");
-    return this.valueListDataService.getValueList(typename);
+    return this.valueListDataService.getValueList2(typename);
   }
   
 }  

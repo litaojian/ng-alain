@@ -1,0 +1,9 @@
+{
+    "pageTitle": "Bug",
+    "basePagePath": "/page/wr/bug",
+    "listTemplateUrl": "bug.html",
+    "formTemplateUrl": "bugForm.html",
+    "dataApiUrl": "/api/rest/ztBug",
+    "idField": "bugId",
+    "remarks": ""
+}

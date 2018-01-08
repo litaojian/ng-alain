@@ -1,0 +1,59 @@
+<style>
+    .center {
+        text-align: center;
+    }
+    
+    .left {
+        text-align: left;
+    }
+    
+    .login-form {
+        margin-top: 95px;
+        display: inline-block;
+        width: 300px;
+    }
+    
+    .login-form-forgot {
+        float: right;
+    }
+    
+    .login-form-button {
+        width: 100%;
+    }
+</style>
+<nz-layout>
+    <nz-content class="center">
+        <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
+            <div nz-form-item>
+                <div nz-form-control [nzValidateStatus]="loginForm.controls.loginId">
+                    <nz-input [nzId]="'loginId'" formControlName="loginId" [nzPlaceHolder]="'登录帐号'" [nzSize]="'large'">
+                        <ng-template #prefix>
+                            <i class="anticon anticon-user"></i>
+                        </ng-template>
+                    </nz-input>
+                    <div nz-form-explain *ngIf="loginForm.controls.loginId.dirty&&loginForm.controls.loginId.hasError('required')">请输入登录帐号!</div>
+                </div>
+            </div>
+            <div nz-form-item>
+                <div nz-form-control [nzValidateStatus]="loginForm.controls.password">
+                    <nz-input formControlName="password" [nzType]="'password'" [nzPlaceHolder]="'密码'" [nzSize]="'large'">
+                        <ng-template #prefix>
+                            <i class="anticon anticon-lock"></i>
+                        </ng-template>
+                    </nz-input>
+                    <div nz-form-explain *ngIf="loginForm.controls.password.dirty&&loginForm.controls.password.hasError('required')">请输入登录密码!</div>
+                </div>
+            </div>
+            <div nz-form-item>
+                <div nz-form-control class="left">
+                    <label nz-checkbox formControlName="remember">
+                      <span>记住密码</span>
+                    </label>
+                    <a class="login-form-forgot" class="login-form-forgot">忘记密码</a>
+                    <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">登录</button> 或
+                    <a href="javascript:void(0)" onclick="$('#loginId').val('user2')">注册新用户!</a>
+                </div>
+            </div>
+        </form>
+    </nz-content>
+</nz-layout>

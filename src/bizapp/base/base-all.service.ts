@@ -270,6 +270,10 @@ export class BaseService {
 		let url = ajaxUrl;
 		if (!ajaxUrl.startsWith("http://") && !ajaxUrl.startsWith("/remote/api/")) {
 			url = ajaxUrl.replace("/api/", "remote/api/");
+			let production = environment["production"];
+			if (!production){
+				//url = ajaxUrl.replace("remote/api/", "remote/mock/api/");				
+			}
 			let api_context_path = environment['api_context_path'];
 			if (api_context_path != null && api_context_path != "/") {
 				url = ajaxUrl.replace("/api/", api_context_path + "/api/");

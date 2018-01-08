@@ -1,12 +1,7 @@
 {
     "/remote/api": {
         "target": "http://192.168.2.176:8082/demo",
-        "pathRewrite": { "^/remote": "" },
-        "secure": false
-    },
-    "/remote/mock": {
-        "target": "http://192.168.2.176:8082/demo",
-        "pathRewrite": { "^/remote": "" },
+        "pathRewrite": { "": "" },
         "secure": false
     },
 

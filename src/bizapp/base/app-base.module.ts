@@ -30,7 +30,6 @@ import { BaseDialogComponent }  from './base-dialog.component';
 import { ValueListDataService } from './valuelist-data.service';
 import { ZxTreeService } from './controls/zxtree.service';
 import { MenuTreeService } from './menu-tree.service';
-import { ExHttpService } from './http.service';
 import { DialogService }  from './dialog.service';
 
 @NgModule({
@@ -95,7 +94,6 @@ import { DialogService }  from './dialog.service';
 	ValueListDataService, 
 	MenuTreeService,
 	ZxTreeService,
-    ExHttpService,
     DialogService
   ]
 })
