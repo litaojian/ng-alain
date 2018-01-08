@@ -39,7 +39,7 @@ export class trackSearchComponent {
     countyList: any;//地市
     kkList: any;//卡口
     currentModal;
-    dcList:any=[{"dmz": "01", "dmsm1": "数据列表"},{"dmz": "26", "dmsm1": "过车图片"}];
+    dcList:any=[{"dmz": "1", "dmsm1": "数据列表"},{"dmz": "2", "dmsm1": "过车图片"}];
     constructor(
         private modalService: NzModalService,
         private DatePipe: DatePipe,
@@ -62,7 +62,7 @@ export class trackSearchComponent {
           //导出
           this.putout={
               dcnr:'',
-              dcsl:''
+              num:''
           }
           //接收保存对象的参数
           this.search2={
