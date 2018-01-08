@@ -182,17 +182,6 @@
                 </div>
             </div>
 </my-table>
-        <!--<div nz-row [nzGutter]="24" class="showCarPhoto">
-              <div nz-col [nzSpan]="6" *ngFor="let item of data">
-                  <img src="{{item.tp1}}" alt="" style="width:250px;height:120px;margin-left:5px">
-                  <dl>
-                          <dt></dt>
-                          <dd>{{item.hphm}}  {{item.hpzlmc}}</dd>
-                          <dd>{{item.gcsj}}</dd>
-                      
-                 </dl>
-              </div>
-        </div>-->
  <my-loading *ngIf="loading"></my-loading>
 <!--显示详情-->
 <nz-modal [nzContent]="modalContent">
@@ -319,13 +308,13 @@
                 <div nz-form-item class="d-flex" style="margin-bottom:0px">
                     <div nz-form-label><label for="dcsl">导出数量：</label></div>
                     <div nz-form-control class="flex-1">
-                         <nz-input [(ngModel)]="putout.dcsl" [nzPlaceHolder]="'导出数量'" name="dcsl"></nz-input>
+                         <nz-input [(ngModel)]="putout.num" [nzPlaceHolder]="'导出数量'" name="num"></nz-input>
                     </div>
                 </div>
             </div>
         <p>1.导出数据最多只能导出2000条； 2.导出图片</p>
       </div>
        <div class="myModal-footer">
-          <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'">导出</button>
+          <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="putOut()">导出</button>
       </div>
 </my-modal>

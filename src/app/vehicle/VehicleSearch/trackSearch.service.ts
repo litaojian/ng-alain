@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { MyDataService } from '../../admin/services/my.data.service';
 @Injectable()
 export class TrackSearchService {
-	constructor(private MyDataService: MyDataService) {
+	constructor(private myDataService: MyDataService) {
     }
 	getTrackSearch(body: any):any{
 	  
@@ -14,10 +14,10 @@ export class TrackSearchService {
 	// }
      //获取个区县单位
      getCounty(xzqhVal: any):any{
-        return this.MyDataService.doGet('vehicle/api/dic/rest/data/quxian?xzqh='+xzqhVal);  
+        return this.myDataService.doGet('vehicle/api/dic/rest/data/quxian?xzqh='+xzqhVal);  
      }
     //获取卡口信息
     getKkList(xzqhVal):any{
-         return this.MyDataService.doGet('vehicle/api/dic/rest/data/gate?xzqh='+xzqhVal);  
+         return this.myDataService.doGet('vehicle/api/dic/rest/data/gate?xzqh='+xzqhVal);  
     }
 }
