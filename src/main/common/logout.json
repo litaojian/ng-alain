@@ -1,0 +1,9 @@
+{
+    "pageTitle": "系统退出",
+    "basePagePath": "/page/sso/logout",
+    "formTemplateUrl": "logout.html",
+    "userFunctionJS": "",
+    "dataApiUrl": "/api/data/login",
+    "idField": "loginId",
+    "remarks": ""
+}

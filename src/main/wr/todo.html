@@ -1,0 +1,85 @@
+<style>
+    .panel {
+        margin-top: 58px
+    }
+    .center{
+    	text-align:center;
+    }    
+    .right{
+    	text-align:right;
+    }
+    .left{
+    	text-align:left;
+    }
+</style>
+
+<panel-header title="工作周报"  module="workReport"></panel-header>
+<panel-toolbar></panel-toolbar>
+
+<div id="querybox" class="hidden"></div>
+
+<div class="row page-content with-menu">
+    <div class="page-container">
+        <div class="row with-padding">
+            <form id="queryForm"  class="form-inline" #f="ngForm"  (ngSubmit)="onQueryFormSubmit(f)">
+                <input type="hidden" value="queryTodoListByOrgId" name="filter" />            
+                <div class="form-group">
+                    <label for="beginDate" class="pdl5">部门</label>
+                    <input type="text" class="form-control" id="orgId" placeholder="" name="orgId" value="35"  [(ngModel)]="queryForm['orgId']">
+                </div>                            
+                <button type="submit" class="btn btn-default mgl25" >查询</button>             
+            </form>
+        </div>
+        <div class="row with-padding">
+            <my-table title="列表" [totalCount]="totalCount" (goPageEvent)="onPageLinkClick($event)"  pageSize="20">
+                <thead>
+                    <tr style="valign:middle; text-align:center;">
+                        <th rowspan="2"  class="wd50" style="valign:middle; text-align:center;">编号</th>
+                        <th rowspan="2"  class="wd80" style="valign:middle; text-align:center;">负责人</th>
+                        <th rowspan="2"  class="wd120" style="valign:middle; text-align:center;">产品</th>
+                        <th rowspan="2"  class="wd120" style="valign:middle; text-align:center;">项目</th>
+                        <th colspan ="3"  class="wd60" style="valign:middle; text-align:center;">功能需求</th>                        
+                        <th colspan ="3"  class="wd60" style="valign:middle; text-align:center;">相关缺陷</th>
+                        <th colspan ="2"  class="wd60" style="valign:middle; text-align:center;">工时</th>  
+                        <th colspan ="4"  class="wd60" style="valign:middle; text-align:center;">周计划</th>
+                        <th rowspan="2"  >操作</th>
+                    </tr>
+                    <tr style="valign:middle; text-align:center;">
+                        <th class="wd80 center">待处理</th>    
+                        <th class="wd80 center">未排期</th>                        
+                        <th class="wd80 center">已完成</th>
+                        <th class="wd80 center">待处理</th>    
+                        <th class="wd80 center">未排期</th>   
+                        <th class="wd80 center">已完成</th>
+                        <th class="wd60 center">总预计</th>
+                        <th class="wd60 center">总剩余</th>
+                        <th class="wd80 center">上上周</th>
+                        <th class="wd80 center">上周</th>
+                        <th class="wd80 center">本周</th>
+                        <th class="wd80 center">下周</th>                                                
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of tableData; let rowNum = index"   class="right">
+                        <td class="center">{{rowNum+1}}</td>
+                        <td class="left">{{row.username}}</td>
+                        <td class="left">{{row.productname}}</td>
+                        <td class="left">{{row.projectname}}</td>
+                        <td class="center"><a href="javascript:;"  [routerLink]="['../../story/list' ]"  [queryParams]="{'projectId':row.projectid, 'status':'open', filter:'queryListByProject'}">{{row.opened_stories}}</a></td>
+                        <td class="center"></td>                        
+                        <td class="center">{{row.closed_stories}}/{{row.total_stories}}</td>
+                        <td class="center"><a href="javascript:;"  [routerLink]="['../../bug/list' ]"  [queryParams]="{'projectId':row.projectid, 'status':'open', filter:'queryListByProject'}">{{row.opened_bugs}}</a></td>
+                        <td class="center"></td>                        
+                        <td class="center">{{row.closed_bugs}}/{{row.total_bugs}}</td>
+                        <td class="center"></td>
+                        <td  class="right"><a href="javascript:;"  [routerLink]="['../../effort/list' ]"  [queryParams]="{'user':row.account}"> {{row.total_workhours | number:'1.1-1'}}</a></td>
+						<td class="center"></td>
+						<td class="center"></td>
+						<td class="center"></td>
+						<td class="center"></td>
+                        <td class="left"> <span>&nbsp;</span></td>                                                
+                    </tr>
+                </tbody>
+            </my-table>
+        </div>
+    </div>

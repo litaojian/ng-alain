@@ -1,0 +1,92 @@
+<style>
+    .panel {
+        margin-top: 15px
+    }
+    
+    .panel-body {
+        padding: 10px;
+    }
+    
+    .panel-heading {
+        height: 45px;
+    }
+    
+    .btn-xs {
+        padding: 1px 5px;
+    }
+    
+    .headerSortUp {
+        color: #2973EA;
+    }
+    
+    .my-label {
+        display: inline;
+        padding: .2em .6em .2em;
+        font-size: 75%;
+        /*color: #fff;*/
+    }
+    
+    .disable {
+        display: inline-block;
+    }
+    
+    .search {
+        display: inline-block;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+    
+    .form-input {
+        display: inline-block;
+        width: 60%;
+        height: 34px;
+    }
+    
+    .pull-right {
+        margin-top: -7px;
+    }
+    
+    .my-table th,
+    .my-table tr td {
+        vertical-align: middle;
+        padding: 8px;
+    }
+    
+    .my-table tr td {
+        /*line-height: .8;*/
+        padding: 12px 0;
+        /*text-align: center;*/
+    }
+    
+    label {
+        margin-bottom: 0px;
+    }
+    
+    .text-left {
+        padding: 2px;
+        text-align: left;
+    }
+    
+    .text-left a {
+        padding: 0px 2px;
+    }
+    
+    .w-380px {
+        width: 380px;
+    }
+</style>
+
+<panel-header title="后台管理" module="admin"></panel-header>
+<!--<panel-toolbar></panel-toolbar>-->
+
+<div class="col-md-12">
+    <div class="row page-content with-menu">
+        <div class="jumbotron">
+            <h1>Hello, world!</h1>
+            <a class="btn btn-primary" href="javascript:;" (click)="openLink('/page/admin/role/list')" style="font-size:200%;" routerLink="/page/admin/user/create">用户</a>
+            <a class="btn btn-primary" href="javascript:;" (click)="openLink('/page/admin/role/create')" routerLink="/page/admin/role/create">角色</a>
+            <p>...</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        </div>
+    </div>
+</div>

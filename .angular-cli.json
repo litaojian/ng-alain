@@ -8,6 +8,7 @@
         "outDir": "dist",
         "assets": [
             "assets",
+            "main",
             "favicon.ico"
         ],
         "index": "index.html",
@@ -19,7 +20,7 @@
         "prefix": "app",
         "styles": [
             "styles.less"
-        ],   
+        ],
         "scripts": [
             "../node_modules/jquery/dist/jquery.js",
             "../node_modules/jquery-sparkline/jquery.sparkline.js",

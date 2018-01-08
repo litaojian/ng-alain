@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/assets/jquery/jquery.min.js"></script>
+    <script src="/assets/jquery/jquery.cookie.min.js"></script>
+    
+</head>
+
+<body>
+    <script>
+        function toggleUserStatus(params) {
+            //alert("debug:params = " + JSON.stringify(params));
+            //var token = $.cookie("");
+            var url = "/remote/api/rest/sysUser/command";
+            var _params = {"command":'ChangeStatus', "userId":params.userId,"userStatus":params.userStatus};
+            var header = {};
+            $.post(url, _params).then(jsonData =>{
+                //alert(JSON.stringify(respText));
+                if (jsonData != null && jsonData.resultCode == 0){
+                    // 刷新窗口
+                    var href = window.parent.location.href;
+                    console.log("refresh url=" +href);
+                    window.parent.location.reload();
+                }
+            });
+        }
+        
+    </script>
+    <p>Hello, ltj</p>
+</body>
+
+</html>

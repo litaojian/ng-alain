@@ -1,0 +1,9 @@
+{
+    "pageTitle": "Effort",
+    "basePagePath": "/page/wr/effort",
+    "listTemplateUrl": "effort.html",
+    "formTemplateUrl": "effort.html",
+    "dataApiUrl": "/api/rest/ztEffort",
+    "idField": "Id",
+    "remarks": ""
+}
