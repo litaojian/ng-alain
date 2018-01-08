@@ -105,9 +105,17 @@ export class trackSearchComponent {
   putOut = () => {
     this.putoutAll=$.extend({}, this.list[0], this.putout);
     this.TrackSearchService.putOuts(this.putoutAll).subscribe(res =>{
-              // this.countyList=res.data;
+          var filename = res.filename.replace("\"","").replace("\"","");
+					// var fr = $('#fr');
+					// fr.action = "vehicle/api/data/rest/pass/downfinally?filename="+filename;
+          window.location.href="vehicle/api/data/rest/pass/downfinally?filename="+filename;
+					// fr.submit();
+					// fr.action = "";
       });
-    this.isModalShow_put = true;
+    
+  }
+  putOutMask(){
+     this.isModalShow_put = true;
   }
   handleCancel = () => {
     this.isVisible = false;

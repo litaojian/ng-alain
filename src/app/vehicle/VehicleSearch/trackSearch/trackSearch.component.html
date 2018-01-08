@@ -111,7 +111,7 @@
              </div>  
              <div nz-row [nzGutter]="24" class="searchButton">
                   <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="searchList()">查询</button>
-                  <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="putOut()">导出</button>
+                  <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="putOutMask()">导出</button>
              </div>
         </div>
     </my-panel>
@@ -120,6 +120,7 @@
         <span [ngClass]="{'activeTab':tabColor == false}" (click)="showListTypes('photo')">图表展示</span>
     </div>
  </div>
+ <form action="" id="fr" method="post"></form>
 <!--<nz-table #nzTable [nzScroll]="{ y: 440 }" id="searchList" [nzPageSize]="8" [nzPageIndex]="1" [nzAjaxData]="data" nzShowQuickJumper nzShowTotal [nzTotal]="datanums" (nzPageIndexChange)="searchList($event)">
             <ng-template #nzFixedHeader>
                 <thead nz-thead>
