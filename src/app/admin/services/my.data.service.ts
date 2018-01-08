@@ -3,10 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpEvent } from '@a
 import { _HttpClient } from "@delon/theme/services/http/http.client";
 import { MenuService, SettingsService, TitleService } from '@delon/theme';
 import { ITokenService, DA_SERVICE_TOKEN } from '@delon/auth';
-
 import { Observable } from 'rxjs/Observable';
 import { tap, map, mergeMap, catchError } from 'rxjs/operators';
-
 @Injectable()
 export class MyDataService {
         
@@ -18,9 +16,9 @@ export class MyDataService {
     ) { 
         this._httpClient = _injector.get(_HttpClient);        
     }
-
-    doPost(url: string, body?: any, params?: any):Observable<any> {
-        return this._httpClient.post(url, body, params);
+    doPost(url: string, body?: any, params?: any,option?: any):Observable<any> {
+        // debugger;
+        return this._httpClient.post(url, body,params,option);
     }
 
     doGet(url: string, body?: any, params?: any):Observable<any> {
