@@ -12,11 +12,11 @@ export class SimpleTableComponent {
     // mock
     total = 100;
     columns: SimpleTableColumn[] = [
-        { title: '编号', index: 'id.value' },
-        { title: '头像', type: 'img', width: '50px', index: 'picture.thumbnail' },
-        { title: '邮箱', index: 'email' },
-        { title: '电话', index: 'phone' },
-        { title: '注册时间', type: 'date', index: 'registered' },
+        { title: '编号', index: 'testrecid' },
+        { title: '头像', type: 'img', width: '50px', index: 'testpic' },
+        { title: '名称', index: 'testname' },
+        { title: '数字', index: 'testamount' },
+        { title: '注册时间', type: 'date', index: 'testdate' },
         {
             title: '操作区',
             buttons: [

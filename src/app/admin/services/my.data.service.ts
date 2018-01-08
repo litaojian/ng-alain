@@ -54,7 +54,7 @@ export class MyDataService {
     }
 
     loadSysMenu():Observable<any>{
-        let url = "remote/api/data/json/app-menu";
+        let url = "assets/app-menu.json";
         //url = "assets/app-data.json";
         let body = null;
         let params = {};      
