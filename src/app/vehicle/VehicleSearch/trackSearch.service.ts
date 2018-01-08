@@ -6,8 +6,8 @@ import { MyDataService } from '../../admin/services/my.data.service';
 export class TrackSearchService {
 	constructor(private myDataService: MyDataService) {
     }
-	getTrackSearch(body: any):any{
-	  
+	putOuts(body: any):any{
+	   return this.myDataService.doGet('vehicle/api/data/rest/pass/downExcel',body);
 	}
 	// getTrackSearchByOne(gcxh: any,sj:any):any{
 	//    return this.MyDataService.doGet('vehicle/api/data/pass/passinfo?gcxh='+gcxh+'&sj=201709');

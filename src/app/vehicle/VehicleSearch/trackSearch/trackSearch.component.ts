@@ -21,6 +21,7 @@ export class trackSearchComponent {
     showLp:any=true;
     tabColor:any=true;//tab主题切换
     datanums:any;
+    putoutAll:any;
     type:any;
     showSearch= true;
     _value: any[] = null;
@@ -56,7 +57,7 @@ export class trackSearchComponent {
                 kkbh:'',
                 hpzl:'',
                 xian:'',
-                cxfs:'',
+                cxfs:'1',
                 citys:''
              };
           //导出
@@ -64,6 +65,7 @@ export class trackSearchComponent {
               dcnr:'',
               num:''
           }
+          this.putoutAll={};
           //接收保存对象的参数
           this.search2={
                
@@ -101,6 +103,10 @@ export class trackSearchComponent {
     }
   isVisible = false;
   putOut = () => {
+    this.putoutAll=$.extend({}, this.list[0], this.putout);
+    this.TrackSearchService.putOuts(this.putoutAll).subscribe(res =>{
+              // this.countyList=res.data;
+      });
     this.isModalShow_put = true;
   }
   handleCancel = () => {
