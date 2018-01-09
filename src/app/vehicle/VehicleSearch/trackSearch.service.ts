@@ -9,9 +9,9 @@ export class TrackSearchService {
 	putOuts(body: any):any{
 	   return this.myDataService.doGet('vehicle/api/data/rest/pass/downExcel',body);
 	}
-	// getTrackSearchByOne(gcxh: any,sj:any):any{
-	//    return this.MyDataService.doGet('vehicle/api/data/pass/passinfo?gcxh='+gcxh+'&sj=201709');
-	// }
+	getData(params: any):any{
+	   return this.myDataService.doGet('vehicle/api/data/rest/pass/getdata',params); 
+	}
      //获取个区县单位
      getCounty(xzqhVal: any):any{
         return this.myDataService.doGet('vehicle/api/dic/rest/data/quxian?xzqh='+xzqhVal);  

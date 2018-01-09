@@ -84,6 +84,16 @@
                     }
                 ]
             }, {
+                "text": "过车查询",
+                "translate": "",
+                "link": "/vehicle/search",
+                "icon": "icon-note"
+            }, {
+                "text": "ZORRO示例",
+                "translate": "",
+                "link": "/zorro/index",
+                "icon": "icon-note"
+            }, {
                 "text": "表格示例",
                 "translate": "",
                 "link": "/admin/simple",

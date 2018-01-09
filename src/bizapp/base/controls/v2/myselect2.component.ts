@@ -24,7 +24,8 @@ export class MySelect2Component implements OnInit, ControlValueAccessor {
 
 	@Input()
 	name:string;
-
+    @Input()
+	myPlaceHolder:any;
 	@Input()
 	disabled:string;
 
@@ -97,7 +98,7 @@ export class MySelect2Component implements OnInit, ControlValueAccessor {
 	ngOnInit() {
 		let that = this;
 		this.defaults = {
-                            placeholder: '请选择',
+                            placeholder: this.myPlaceHolder,
                             allowClear: true,
                             language: {
                                 noResults: function (params) {
