@@ -198,7 +198,8 @@
          <div nz-row>
             <div nz-col [nzSpan]="8" style="text-align:center">
                 <nz-popover>
-                    <img src="{{dataOne.tp1}}" alt="" style="width:200px" nz-popover>
+                    <img src="{{dataOne.tp1}}" alt="" style="width:200px" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==false">
+                    <img src="../../../../assets/img/error.jpg" alt="" style="width:200px" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==true">
                     <ng-template #nzTemplate>
                         <img src="{{dataOne.tp1}}" alt="">
                     </ng-template>
@@ -206,7 +207,8 @@
             </div>
             <div nz-col [nzSpan]="8" style="text-align:center">
                <nz-popover>
-                    <img src="{{dataOne.tp2}}" alt="" style="width:200px" nz-popover>
+                    <img src="{{dataOne.tp2}}" alt="" style="width:200px" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==false">
+                    <img src="../../../../assets/img/error.jpg" alt="" style="width:200px" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==true">
                     <ng-template #nzTemplate>
                         <img src="{{dataOne.tp2}}" alt="">
                     </ng-template>
@@ -214,7 +216,8 @@
             </div>
              <div nz-col [nzSpan]="8" style="text-align:center">
                  <nz-popover>
-                    <img src="{{dataOne.tp3}}" alt="" style="width:200px" nz-popover>
+                    <img src="{{dataOne.tp3}}" alt="" style="width:200px" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==false">
+                    <img src="../../../../assets/img/error.jpg" alt="" style="width:200px" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==true">
                     <ng-template #nzTemplate>
                         <img src="{{dataOne.tp3}}" alt="">
                     </ng-template>
@@ -249,7 +252,7 @@
                 </p>
                 <p class="carMessage">
                     <span>卡口名称：</span>
-                    <span style="width:150px" class="carMessageSpan">{{dataOne.kkbh}}</span>
+                    <span style="width:450px" class="carMessageSpan">{{dataOne.kkbh}}</span>
                     
                 </p>
             </nz-collapse>
@@ -296,7 +299,7 @@
     </ng-template>
 </nz-modal>
 <!--导出数据-->
-<my-modal [isModal]="isModalShow_put" (initRows)=hasChange($event)>
+<my-modal [isModal]="isModalShow_put">
       <div class="myModal-title">
           <span>导出数据</span>
       </div>
