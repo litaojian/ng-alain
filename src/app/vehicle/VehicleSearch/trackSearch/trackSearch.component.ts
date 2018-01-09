@@ -39,10 +39,11 @@ export class trackSearchComponent {
     putout: any;
     numOne:any;
     indexNum:any;
-    countyList: any;//地市
+    countyList: any=[];//地市
     kkList: any;//卡口
     currentModal;
     dcList:any=[{"dmz": "1", "dmsm1": "数据列表"},{"dmz": "2", "dmsm1": "过车图片"}];
+    searchType:any=[{"dmz": "1", "dmsm1": "精确查询"},{"dmz": "2", "dmsm1": "模糊查询"},{"dmz": "3", "dmsm1": "无号牌"}];
     constructor(
         private modalService: NzModalService,
         private DatePipe: DatePipe,
@@ -123,10 +124,10 @@ export class trackSearchComponent {
     this.isVisible = false;
   }
 //接收子组件传回来的值,是否显示对话框
-// hasChange(e){
-//   this.isModalShow_put=e;
-//   this.isModalShow=e;
-// }
+hasChange(e){
+  this.isModalShow_put=e;
+  this.isModalShow=e;
+}
 //接收表格组件返回来的数组
 // getTabelList(e){
 //     this.data=e[0];
@@ -158,15 +159,15 @@ addMessage(){
             };
     this.list.push(this.searchL);
     console.log(this.list);
+    this.searchList(1);
     this.isModalShow=false;
  }
 delete(num){
     this.list.splice(num,1);
+    this.searchList(1);
 }
 //点击查询调用方法
-searchList(page){  
-        this.loading=true;    
-        this.pagination.curPage=page;    
+searchList(page){     
         if(this.list[0]==undefined){
                 this.msg.create('error','请选择查询条件');
                 return;
@@ -174,6 +175,8 @@ searchList(page){
                this.searchtest = $.extend({}, this.list[0], this.pagination);
               //  this.searchtest = this.list[0];
           }
+        this.loading=true;  
+        this.pagination.curPage=page;  
 		    this.TrackSearchService.getData(this.searchtest).subscribe(data => {
                this.data=data.data;
                this.datanums=data.count;
@@ -205,14 +208,17 @@ onConcel(){
 //保存查询条件
 onSave(){
       this.list[this.indexNum]=this.search2;
+      this.searchList(1);
       this.isModalShow=false;
  }
 //根据行政区划 查询区县
   seachCounty(xzqh){
         var xzqhVal=xzqh.substring(0,4);
+        
         this.TrackSearchService.getCounty(xzqhVal).subscribe(res =>{
+              
               this.countyList=res.data;
-        });
+        })
   }
  //根据区县 查询卡口
   seachKK(qx){
