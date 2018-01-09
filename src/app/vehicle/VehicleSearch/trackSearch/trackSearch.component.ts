@@ -123,17 +123,17 @@ export class trackSearchComponent {
     this.isVisible = false;
   }
 //接收子组件传回来的值,是否显示对话框
-// hasChange(e){
-//   this.isModalShow_put=e;
-//   this.isModalShow=e;
-// }
+hasChange(e){
+  this.isModalShow_put=e;
+  this.isModalShow=e;
+}
 //接收表格组件返回来的数组
-// getTabelList(e){
-//     this.data=e[0];
-//     console.log(this.data);
-//     this.loading=false;
-//     this.Url=e[1];
-// }
+getTabelList(e){
+    this.data=e[0];
+    console.log(this.data);
+    this.loading=false;
+    this.Url=e[1];
+}
 //tabs切换
 showListTypes(type){
     if(type=='list'){

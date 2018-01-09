@@ -199,7 +199,7 @@
             <div nz-col [nzSpan]="8" style="text-align:center">
                 <nz-popover>
                     <img src="{{dataOne.tp1}}" alt="" style="width:200px" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==false">
-                    <img src="../../../../assets/img/error.jpg" alt="" style="width:200px" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==true">
+                    <img src="../../../../assets/img/error.jpg" alt="" style="width:200px" nz-popover *ngIf="ifErrorImg==true">
                     <ng-template #nzTemplate>
                         <img src="{{dataOne.tp1}}" alt="">
                     </ng-template>
@@ -208,7 +208,7 @@
             <div nz-col [nzSpan]="8" style="text-align:center">
                <nz-popover>
                     <img src="{{dataOne.tp2}}" alt="" style="width:200px" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==false">
-                    <img src="../../../../assets/img/error.jpg" alt="" style="width:200px" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==true">
+                    <img src="../../../../assets/img/error.jpg" alt="" style="width:200px" nz-popover *ngIf="ifErrorImg==true">
                     <ng-template #nzTemplate>
                         <img src="{{dataOne.tp2}}" alt="">
                     </ng-template>
@@ -217,7 +217,7 @@
              <div nz-col [nzSpan]="8" style="text-align:center">
                  <nz-popover>
                     <img src="{{dataOne.tp3}}" alt="" style="width:200px" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==false">
-                    <img src="../../../../assets/img/error.jpg" alt="" style="width:200px" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==true">
+                    <img src="../../../../assets/img/error.jpg" alt="" style="width:200px" nz-popover *ngIf="ifErrorImg==true">
                     <ng-template #nzTemplate>
                         <img src="{{dataOne.tp3}}" alt="">
                     </ng-template>
