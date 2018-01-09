@@ -1,10 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID, APP_INITIALIZER, Injector } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+
+import { DelonModule } from './delon.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
@@ -15,22 +15,16 @@ import { LayoutModule } from './layout/layout.module';
 import { StartupService } from './admin/services/startup.service';
 
 import { DefaultInterceptor } from '@core/net/default.interceptor';
-import { AlainAuthModule, SimpleInterceptor } from '@delon/auth';
-
-// mock
-import { DelonMockModule } from '@delon/mock';
-import * as MOCKDATA from '../../_mock';
-import { environment } from '../environments/environment';
-const MOCKMODULE = !environment.production || environment.chore === true ?
-                    [ DelonMockModule.forRoot({ data: MOCKDATA }) ] : [];
-
-// i18n
-import { I18NService } from './core/i18n/i18n.service';
-import { ALAIN_I18N_TOKEN } from '@delon/theme';
-
+import { SimpleInterceptor } from '@delon/auth';
+// angular i18n
 import { registerLocaleData } from '@angular/common';
 import localeZhHans from '@angular/common/locales/zh-Hans';
 registerLocaleData(localeZhHans);
+// i18n
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ALAIN_I18N_TOKEN } from '@delon/theme';
+import { I18NService } from '@core/i18n/i18n.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -49,16 +43,13 @@ export function StartupServiceFactory(startupService: StartupService): Function 
         BrowserModule,
         HttpModule,
         BrowserAnimationsModule,
-        SharedModule.forRoot(),
+        HttpClientModule,
+        DelonModule,
         CoreModule,
+        SharedModule,
         LayoutModule,
         AdminModule,
-        // mock
-        ...MOCKMODULE,
-        // auth
-        AlainAuthModule.forRoot({
-            login_url: `/passport/login`
-        }),
+        //RoutesModule,
         // i18n
         TranslateModule.forRoot({
             loader: {
