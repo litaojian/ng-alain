@@ -49,6 +49,27 @@
 :host ::ng-deep .ant-modal{
       width: 890px;
 }
+:host ::ng-deep .ant-table table{
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+    border-radius: 4px 4px 0 0;
+    overflow: hidden;
+    width: 100%;
+}
+.ant-table-thead > tr > th{
+      background: #CBE7FA;
+      padding: 10px 8px;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+}
+.ant-table-tbody > tr > td{
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+}
 /*:host ::ng-deep .ant-table-placeholder{
       display: none;
 }*/

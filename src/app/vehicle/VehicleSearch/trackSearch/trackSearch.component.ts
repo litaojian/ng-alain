@@ -18,6 +18,8 @@ export class trackSearchComponent {
     ifMoreSearch = false;
     isModalShow= false;
     isModalShow_put=false;
+    ifErrorImg=false;
+    pagination:any;
     showLp:any=true;
     tabColor:any=true;//tab主题切换
     datanums:any;
@@ -60,6 +62,10 @@ export class trackSearchComponent {
                 cxfs:'1',
                 citys:''
              };
+          this.pagination = {
+            curPage: 1,
+            rows: 10
+         };
           //导出
           this.putout={
               dcnr:'',
@@ -106,11 +112,7 @@ export class trackSearchComponent {
     this.putoutAll=$.extend({}, this.list[0], this.putout);
     this.TrackSearchService.putOuts(this.putoutAll).subscribe(res =>{
           var filename = res.filename.replace("\"","").replace("\"","");
-					// var fr = $('#fr');
-					// fr.action = "vehicle/api/data/rest/pass/downfinally?filename="+filename;
           window.location.href="vehicle/api/data/rest/pass/downfinally?filename="+filename;
-					// fr.submit();
-					// fr.action = "";
       });
     
   }
@@ -121,17 +123,17 @@ export class trackSearchComponent {
     this.isVisible = false;
   }
 //接收子组件传回来的值,是否显示对话框
-hasChange(e){
-  this.isModalShow_put=e;
-  this.isModalShow=e;
-}
+// hasChange(e){
+//   this.isModalShow_put=e;
+//   this.isModalShow=e;
+// }
 //接收表格组件返回来的数组
-getTabelList(e){
-    this.data=e[0];
-    console.log(this.data);
-    this.loading=false;
-    this.Url=e[1];
-}
+// getTabelList(e){
+//     this.data=e[0];
+//     console.log(this.data);
+//     this.loading=false;
+//     this.Url=e[1];
+// }
 //tabs切换
 showListTypes(type){
     if(type=='list'){
@@ -162,20 +164,40 @@ delete(num){
     this.list.splice(num,1);
 }
 //点击查询调用方法
-searchList(){      
+searchList(page){  
+        this.loading=true;    
+        this.pagination.curPage=page;    
         if(this.list[0]==undefined){
                 this.msg.create('error','请选择查询条件');
                 return;
           }else{
-               this.searchtest = this.list[0];
-           }
-         this.Url=true;
-         this.loading=true;
+               this.searchtest = $.extend({}, this.list[0], this.pagination);
+              //  this.searchtest = this.list[0];
+          }
+		    this.TrackSearchService.getData(this.searchtest).subscribe(data => {
+               this.data=data.data;
+               this.datanums=data.count;
+               this.loading=false;
+               this.errorImg();
+         })
+        //  this.Url=true;
+         
+}
+errorImg(){
+  this.ifErrorImg=true;
+}
+indexChange(e){
+    // this.pagination.curPage=e;
+    this.searchList(e);
 }
 //当全局查询是调用该方法
 searchListTotal(){
-         this.Url=true;
-         this.loading=true;
+        this.loading=true; 
+        this.TrackSearchService.getData(this.searchtest).subscribe(data => {
+               this.data=data.data;
+               this.datanums=data.count;
+               this.loading=false;
+         })
 }
 onConcel(){
     this.isModalShow=false; 
@@ -213,8 +235,19 @@ onSave(){
           this.seachKK(this.search.xian);
       }else{        
         //  this.search.xzqh='440000000000';
+        //  this.search={};
          this.countyList='';
          this.kkList='';
+         this.search = {
+                hphm:'',
+                kssj:'',
+                jssj:'',
+                kkbh:'',
+                hpzl:'',
+                xian:'',
+                cxfs:'1',
+                citys:''
+             };
          var newDate = new Date();
          var newDate1=(newDate.getTime()-3*24*3600*1000);
          var oneweekdate = new Date(newDate1);
