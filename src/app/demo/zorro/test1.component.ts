@@ -9,7 +9,7 @@ import { BaseListComponent, QueryForm } from 'bizapp/base/base-list.component';
 import { BaseDetailComponent } from 'bizapp/base/base-detail.component';
 import { BaseDataService } from 'bizapp/base/base-data.service';
 
-import { TestRecService } from './testRec.service';
+import { TestRecService } from '../test-rec/testRec.service';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -17,22 +17,26 @@ export class MyQueryForm extends QueryForm {
 	testname: string;
 	teststatus:string;
 	testdesc: string;
+	testtype: string;	
 	createdBy:string;
 
 }
 
 
 @Component({
-	//moduleId: module.id,
-	templateUrl: './testRec-list.html',
+	templateUrl: './test1.html',
 	inputs: [],
 	outputs: []
 })
-export class TestRecListComponent extends BaseListComponent implements OnInit, OnDestroy {
+export class Test1Component extends BaseListComponent implements OnInit, OnDestroy {
 
 	queryForm: MyQueryForm = new MyQueryForm();
 
 	options_docstatus:Object[] = [];
+
+	options = [];
+  	selectedOption;
+
 
 	constructor(
 		injector: Injector,
@@ -51,6 +55,17 @@ export class TestRecListComponent extends BaseListComponent implements OnInit, O
 		this.setPageSize(10);
 		// load the tableData
 		this.getList("refresh", this.getPageIndex(), this.getPageSize());
+
+		 /*模拟服务器异步加载*/
+		 setTimeout(_ => {
+			this.options = [
+			  { value: 'jack', label: 'Jack' },
+			  { value: 'lucy', label: 'Lucy' },
+			  { value: 'disabled', label: 'Disabled', disabled: true }
+			];
+			this.selectedOption = this.options[ 0 ];
+		  }, 100);
+		  
 	}
 
 	onQuery(): void {
@@ -63,37 +78,3 @@ export class TestRecListComponent extends BaseListComponent implements OnInit, O
 
 }
 
-
-@Component({
-	//moduleId: module.id,
-	templateUrl: './testRec-detail.html',
-	styles: [],  
-	animations: []
-})
-export class TestRecDetailComponent extends BaseDetailComponent implements OnInit, AfterViewInit {
-
-	// @HostBinding('style.display') display = 'block';
-	// @HostBinding('style.position') position = 'absolute';
-	//@ViewChild(MyFormComponent) myFormComponent:MyFormComponent;
-
-	constructor(
-		injector:Injector,
-		service: TestRecService,
-		activatedRoute: ActivatedRoute,
-		router: Router,
-		location: Location
-	) {
-		super(injector, service);
-	}
-
-	ngOnInit() {
-		super.ngOnInit();
-		
-	}
-
-
-	ngAfterViewInit() {
-
-	}
-
-}

@@ -1,37 +1,13 @@
-<pro-header [title]="'搜索列表'">
-    <ng-template #content>
-        <div class="text-center">
-            <nz-input [nzType]="'search'" [nzSize]="'large'" [nzPlaceHolder]="'请输入'" style="width: 520px;"></nz-input>
-        </div>
-    </ng-template>
-    <ng-template #tab>
-        <nz-tabset [nzSize]="'default'" [nzSelectedIndex]="0">
-            <nz-tab><ng-template #nzTabHeading><a [routerLink]="['/pro/list/search']">文章</a></ng-template></nz-tab>
-            <nz-tab><ng-template #nzTabHeading><a [routerLink]="['/pro/list/filter-card-list']">应用</a></ng-template></nz-tab>
-            <nz-tab><ng-template #nzTabHeading><a [routerLink]="['/pro/list/cover-card-list']">项目</a></ng-template></nz-tab>
-        </nz-tabset>
-    </ng-template>
-</pro-header>
 <nz-card [nzBordered]="false">
     <form nz-form [nzLayout]="'inline'">
-        <standard-form-row [title]="'所属类目'" block style="padding-bottom: 11px">
+        <standard-form-row [title]="'条件组合'" block style="padding-bottom: 11px">
             <div nz-form-item>
                 <div nz-form-control>
                     <tag-select>
-                        <nz-checkable-tag *ngFor="let i of categories; let idx = index" [nzChecked]="i.value" (nzChange)="changeCategory($event, idx)">
+                        <nz-checkable-tag nzClosable *ngFor="let i of categories; let idx = index" [nzChecked]="i.value" (nzChange)="changeCategory($event, idx)">
                             {{i.text}}
                         </nz-checkable-tag>
                     </tag-select>
-                </div>
-            </div>
-        </standard-form-row>
-        <standard-form-row [title]="'owner'" grid>
-            <div nz-form-item>
-                <div nz-form-control>
-                    <nz-select [(ngModel)]="q.owners" name="owners" [nzSize]="'large'" [nzMode]="'tags'" style="width: 286px;">
-                        <nz-option *ngFor="let i of owners" [nzLabel]="i.name" [nzValue]="i.id"></nz-option>
-                    </nz-select>
-                    <a class="ml-sm" (click)="setOwner()">只看自己的</a>
                 </div>
             </div>
         </standard-form-row>
@@ -39,20 +15,13 @@
             <div nz-row [nzGutter]="16">
                 <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="10" nzXl="8">
                     <div nz-form-item nz-row>
-                        <div nz-form-label nz-col><label for="rate">活跃用户</label></div>
+                        <div nz-form-label nz-col></div>
                         <div nz-form-control nz-col nzXs="24" nzSm="24" nzMd="12">
                             <nz-select [(ngModel)]="q.user" name="user" [nzPlaceHolder]="'不限'" [nzShowSearch]="true" [nzSize]="'large'" style="width: 200px;">
-                                <nz-option [nzLabel]="'李三'" [nzValue]="'lisa'"></nz-option>
-                            </nz-select>
-                        </div>
-                    </div>
-                </div>
-                <div nz-col nzXs="24" nzSm="24" nzMd="12" nzLg="10" nzXl="8">
-                    <div nz-form-item nz-row>
-                        <div nz-form-label nz-col><label for="rate">好评度</label></div>
-                        <div nz-form-control nz-col nzXs="24" nzSm="24" nzMd="12">
-                            <nz-select [(ngModel)]="q.rate" name="rate" [nzPlaceHolder]="'不限'" [nzShowSearch]="true" [nzSize]="'large'" style="width: 200px;">
-                                <nz-option [nzLabel]="'优秀'" [nzValue]="'good'"></nz-option>
+                                <nz-option [nzLabel]="'无牌车'" [nzValue]="'lisa1'"></nz-option>
+                                <nz-option [nzLabel]="'假牌车'" [nzValue]="'lisa2'"></nz-option>
+                                <nz-option [nzLabel]="'未年检'" [nzValue]="'lisa3'"></nz-option>
+                                <nz-option [nzLabel]="'已报废'" [nzValue]="'lisa4'"></nz-option>
                             </nz-select>
                         </div>
                     </div>
@@ -62,39 +31,102 @@
     </form>
 </nz-card>
 <nz-card [nzBordered]="false">
-    <nz-list
-        nzSize="large"
-        nzItemLayout="vertical"
-        [nzLoading]="loading"
-        [nzDataSource]="list">
-        <ng-template #item let-item>
-            <nz-list-item [nzContent]="nzContent" [nzExtra]="nzExtra">
-                <nz-list-item-action><i class="anticon anticon-star-o mr-sm"></i>{{item.star}}</nz-list-item-action>
-                <nz-list-item-action><i class="anticon anticon-like-o mr-sm"></i>{{item.like}}</nz-list-item-action>
-                <nz-list-item-action><i class="anticon anticon-message mr-sm"></i>{{item.message}}</nz-list-item-action>
-                <ng-template #nzExtra><div style="width: 272px; height: 1px;"></div></ng-template>
-                <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
-                    <ng-template #nzTitle><a href="{{item.href}}" target="_blank">{{item.title}}</a></ng-template>
-                    <ng-template #nzDescription>
-                        <nz-tag>Alain</nz-tag><nz-tag>ng-zorro-antd</nz-tag><nz-tag>Ant Design</nz-tag>
-                    </ng-template>
-                </nz-list-item-meta>
-                <ng-template #nzContent>
-                    <p>{{item.content}}</p>
-                    <div class="mt-md d-flex">
-                        <nz-avatar [nzSrc]="item.avatar" [nzSize]="'small'" class="mr-sm"></nz-avatar>
-                        <a href="{{item.href}}" target="_blank">{{item.owner}}</a>
-                        <span class="px-sm">发布在</span>
-                        <a href="{{item.href}}" target="_blank">{{item.href}}</a>
-                        <time class="pl-md text-grey" title="{{item.updatedAt}}">{{item.updatedAt | _date}}</time>
-                    </div>
-                </ng-template>
-            </nz-list-item>
-        </ng-template>
-        <ng-template #loadMore>
-            <div class="text-center mt-md">
-                <button nz-button (click)="getData()" [nzLoading]="loading" [nzType]="'dashed'" [nzSize]="'large'" style="min-width:200px">加载更多</button>
+
+    <nz-tabset>
+        <nz-tab>
+            <ng-template #nzTabHeading>
+                图片
+            </ng-template>
+            <span>
+                    <nz-list nzSize="large" nzItemLayout="vertical" [nzLoading]="loading" [nzDataSource]="list">
+                            <ng-template #item let-item>
+                                <nz-list-item [nzContent]="nzContent" [nzExtra]="nzExtra">
+                                    <nz-list-item-action><i class="anticon anticon-star-o mr-sm"></i>{{item.star}}</nz-list-item-action>
+                                    <nz-list-item-action><i class="anticon anticon-like-o mr-sm"></i>{{item.like}}</nz-list-item-action>
+                                    <nz-list-item-action><i class="anticon anticon-message mr-sm"></i>{{item.message}}</nz-list-item-action>
+                                    <ng-template #nzExtra>
+                                        <div style="width: 272px; height: 1px;"></div>
+                                    </ng-template>
+                                    <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
+                                        <ng-template #nzTitle><a href="{{item.href}}" target="_blank">粤AJ9K12</a></ng-template>
+                                        <ng-template #nzDescription>
+                                            <nz-tag>初次入城</nz-tag>
+                                            <nz-tag>昼伏夜出</nz-tag>
+                                            <nz-tag>Ant Design</nz-tag>
+                                        </ng-template>
+                                    </nz-list-item-meta>
+                                    <ng-template #nzContent>
+                                        
+                                        <div class="mt-md d-flex">
+                                            <nz-avatar [nzSrc]="item.avatar" [nzSize]="'small'" class="mr-sm"></nz-avatar>
+                                            <a href="{{item.href}}" target="_blank">车辆</a>
+                                            <span class="px-sm">出现在</span>
+            <a href="{{item.href}}" target="_blank">地点1</a>
+            <time class="pl-md text-grey" title="{{item.updatedAt}}">{{item.updatedAt | _date}}</time>
             </div>
-        </ng-template>
-    </nz-list>
+            </ng-template>
+            </nz-list-item>
+            </ng-template>
+            <ng-template #loadMore>
+                <div class="text-center mt-md">
+                    <button nz-button (click)="getData()" [nzLoading]="loading" [nzType]="'dashed'" [nzSize]="'large'" style="min-width:200px">加载更多</button>
+                </div>
+            </ng-template>
+            </nz-list>
+            </span>
+        </nz-tab>
+        <nz-tab>
+            <ng-template #nzTabHeading>
+                列表
+            </ng-template>
+            <span>
+                    <nz-table #nzTable [nzDataSource]="data" [nzPageSize]="10">
+                            <thead nz-thead>
+                              <tr>
+                                <th nz-th><span>车辆号牌</span></th>
+            <th nz-th><span>经过时间</span></th>
+            <th nz-th style="width:200px;"><span>地点</span></th>
+            <th nz-th style="width:260px;"><span>详情</span></th>
+            <th nz-th><span>操作</span></th>
+            </tr>
+            </thead>
+            <tbody nz-tbody>
+                <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                    <td nz-td>
+                        <a>{{data.name}}</a>
+                    </td>
+                    <td nz-td></td>
+                    <td nz-td></td>
+                    <td nz-td>{{data.address}}</td>
+                    <td nz-td>
+                        <span>
+                            <a href="#">Action 一 {{data.name}}</a>
+                                    <span nz-table-divider></span>
+                        <a href="#">Delete</a>
+                        <span nz-table-divider></span>
+                        <nz-dropdown>
+                            <a class="ant-dropdown-link" nz-dropdown>
+                                        More actions <i class="anticon anticon-down"></i>
+                                      </a>
+                            <ul nz-menu>
+                                <li nz-menu-item>
+                                    <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">1st menu item</a>
+                                </li>
+                                <li nz-menu-item>
+                                    <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">2nd menu item</a>
+                                </li>
+                                <li nz-menu-item>
+                                    <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">3rd menu item</a>
+                                </li>
+                            </ul>
+                        </nz-dropdown>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+            </nz-table>
+
+            </span>
+        </nz-tab>
+    </nz-tabset>
 </nz-card>
