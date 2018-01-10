@@ -114,13 +114,29 @@ export class MyReuseTabService implements OnDestroy {
 
     /** @private */
     getTitle(url: string, route?: ActivatedRouteSnapshot): string {
+        debugger;
         if (this._titleCached[url]) return this._titleCached[url];
         if (route && route.data && (route.data.reuseTitle || route.data.title))
             return route.data.reuseTitle || route.data.title;
         if (!this.menuService) return url;
 
-        const list = this.menuService.getPathByUrl(url);
-        const item = list.pop();
+        let list = this.menuService.getPathByUrl(url);
+        let item = list.pop();
+        if (!item){
+            let pos = url.lastIndexOf("?");
+            if (pos > 0){
+                url = url.substring(0, pos);
+            }
+            if (url.endsWith("/create")){
+                url = url.replace("/create", "/index");
+            }else if ( url.endsWith("/edit")){
+                url = url.replace("/edit", "/index");
+            }else if ( url.endsWith("/view")){
+                url = url.replace("/view", "/index");
+            }    
+            list = this.menuService.getPathByUrl(url);
+            item = list.pop();
+        }
         return item ? item.text : url;
     }
 

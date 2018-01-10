@@ -13,8 +13,8 @@ import { TestRecListComponent, TestRecDetailComponent } from './test-rec/testRec
 const routes: Routes = [
     { path: 'testRec/index', component: TestRecListComponent },
     { path: 'testRec/create', component: TestRecDetailComponent },
-    { path: 'testRec/edit/:id', component: TestRecDetailComponent },
-    { path: 'testRec/view/:id', component: TestRecDetailComponent },
+    { path: 'testRec/edit', component: TestRecDetailComponent },
+    { path: 'testRec/view', component: TestRecDetailComponent },
     { path: 'testRec', redirectTo: 'testRec/index', pathMatch: 'full' },
     { path: 'index', redirectTo: 'testRec/index', pathMatch: 'full' },
     { path: '', redirectTo: 'testRec/index', pathMatch: 'full' }  
