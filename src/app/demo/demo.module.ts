@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
-import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppBaseModule } from 'bizapp/base/app-base.module';
@@ -31,7 +29,6 @@ const routes: Routes = [{
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClient,
     AppBaseModule,
     RouterModule.forChild(routes)
   ],
