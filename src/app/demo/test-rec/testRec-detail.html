@@ -1,112 +1,124 @@
-<style>
-    .page-container {
-        margin-top: 58px;
-        padding: 5px;
-    }
-    
-    .table>thead>tr>th {
-        width: auto;
-    }
-</style>
-
-<div class="page-content with-menu">
-    <div class="page-container">
-        <div class="row pdt10">
-            <div class="col-sm-12">
-                <form *ngIf="formData" #f="ngForm">
-                    <fieldset>
-                        <legend>基本信息</legend>
-                        <div class="row form-group mg5">
-                            <label class="col-sm-2 control-label" for="testname">文本名称</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" type="string" name="testname" [(ngModel)]="formData['testname']" />
-                            </div>
-                            <label class="col-sm-2 control-label" for="testdesc">描述</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" type="text" name="testdesc" [(ngModel)]="formData['testdesc']" />
-                            </div>
-                        </div>
-                        <div class="row form-group mg5">
-                            <label class="col-sm-2 control-label" for="ds_username">整数</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" type="int" name="testAge" [(ngModel)]="formData['testAge']" placeholder="" required/>
-                            </div>
-                            <label class="col-sm-2 control-label" for="ds_password">日期</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" type="date" name="testdate" [(ngModel)]="formData['testdate']" placeholder="" required/>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <div class="row form-group mg5">
-                            <label class="col-sm-2 control-label" for="">开始时间</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" type="datetime" name="testdatetime" [(ngModel)]="formData['testdatetime']" placeholder="" required/>
-                            </div>
-                            <label class="col-sm-2 control-label" for="">时间</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" type="time" name="testtime" [(ngModel)]="formData['testtime']" placeholder="" />
-                            </div>
-                        </div>
-                        <!--
-                        <div class="row form-group mg5">
-                            <label class="col-sm-2 control-label" for="">区县</label>
-                            <my-cxSelect id="element_id" selects="province,city,area" name="testdizhi" [(ngModel)]="formData['testdizhi']" data-source="/assets/jquery/cxselect/cityData.json"></my-cxSelect>
-                        </div>
-                        <div class="row form-group mg5">
-                            <label class="col-sm-2 control-label" for="">市级</label>
-                            <my-cxSelect id="wqdcdadw" selects="shengfen,shiqu" name="assdsa" [(ngModel)]="formData['testdaa']" data-source="/assets/jquery/cxselect/cityData.json"></my-cxSelect>
-                        </div>
-                        -->
-                    </fieldset>
-                    <div class="row form-group mg5">
-                        <label class="col-sm-2 control-label">状态</label>
-                        <div class="col-sm-8">
-                            <my-select name="teststatus" [(ngModel)]="formData['teststatus']" ngDefaultControl data-source="docStatus" placeholder="状态" class="form-control"></my-select>
-
-                        </div>
-                    </div>
-
-                    <div class="row form-group mg5">
-                        <label class="col-sm-2 control-label">部门(弹窗多选)</label>
-                        <div class="col-sm-8">
-                            <my-select id="aaaaaaa" name="testdept" [(ngModel)]="formData['testdept']" placeholder="部门" ngDefaultControl data-source="/assets/jquery/cxselect/mytree.json" class="form-control tree-select"></my-select>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <label class="col-sm-2 control-label">图片(上传)</label>
-                        <div class="col-sm-8">
-                            <my-uploader [(ngModel)]="formData['testPic']" name="testPic"></my-uploader>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <label class="col-sm-2 control-label">附件(上传)</label>
-                        <div class="col-sm-8">
-                            <input class="form-control" type="text" name="testfile" [(ngModel)]="formData['testfile']" placeholder="" />
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div>
-                            <label class="col-sm-2 control-label">富文本编辑器</label>
-                            <my-texteditor name="remark" [(ngModel)]="formData['remark']"></my-texteditor>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <label class="col-sm-2 control-label">备注</label>
-                        <div class="col-sm-8">
-                            <textarea class="form-control" rows="3" type="text" name="remark" [(ngModel)]="formData['remark']" placeholder=""></textarea>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <label class="col-sm-2 control-label"></label>
-                        <div class="col-sm-8">
-                            <button type="button" class="btn btn-default" (click)="onSubmitBtnClick()">Submit</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a class="" (click)="goBack()">返回</a>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+<div class="content__title">
+    <h1>
+        详情
+        <small>详细信息</small>
+    </h1>
+    <!--
+    <div class="text-right">
+        <button nz-button (click)="loadData()" [nzLoading]="loading">
+            <span>审核</span>
+        </button>
     </div>
-
+    -->
 </div>
+<form nz-form [formGroup]="formGroup" (ngSubmit)="_submitForm()" [nzLayout]="'vertical'">
+    <nz-card [nzBordered]="false" nzTitle="TestRec">
+        <ng-template #body>
+            <div nz-row [nzGutter]="16">
+                <div nz-col nzMd="6" nzSm="12" nzXs="24">
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col><label>名称</label></div>
+                        <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="name">
+                            <nz-input formControlName="name" nzPlaceHolder="请输入名称" nzSize="large"></nz-input>
+                            <p nz-form-explain *ngIf="false">
+                                请输入名称
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div nz-col [nzMd]="{span:6, offset:2}" nzSm="12" nzXs="24">
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col><label>数字</label></div>
+                        <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="url">
+                            <nz-input formControlName="url" nzPlaceHolder="请输入" nzSize="large">
+                                <ng-template #addOnBefore>http://</ng-template>
+                                <ng-template #addOnAfter>.com</ng-template>
+                            </nz-input>
+                            <p nz-form-explain *ngIf="false">
+                                请输入数字
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div nz-col [nzMd]="{span:8, offset:2}" nzSm="24" nzXs="24">
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col><label>状态</label></div>
+                        <div nz-form-control nz-col [nzValidateStatus]="owner">
+                            <nz-select formControlName="owner" [nzPlaceHolder]="'请选择状态'" [nzShowSearch]="true" nzSize="large">
+                                <nz-option *ngFor="let i of users" [nzLabel]="i.label" [nzValue]="i.value">
+                                </nz-option>
+                            </nz-select>
+                            <p nz-form-explain *ngIf="false">
+                                请选择状态
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div nz-row [nzGutter]="16">
+                <div nz-col nzMd="6" nzSm="12" nzXs="24">
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col><label>审批员</label></div>
+                        <div nz-form-control nz-col [nzValidateStatus]="approver">
+                            <nz-select formControlName="approver" [nzPlaceHolder]="'请选择审批员'" [nzShowSearch]="true" nzSize="large">
+                                <nz-option *ngFor="let i of users" [nzLabel]="i.label" [nzValue]="i.value">
+                                </nz-option>
+                            </nz-select>
+                            <p nz-form-explain *ngIf="false">
+                                请选择审批员
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div nz-col [nzMd]="{span:6, offset:2}" nzSm="12" nzXs="24">
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col><label>生效日期</label></div>
+                        <div nz-form-control>
+                            <div nz-col [nzSpan]="11">
+                                <div nz-form-item nz-row>
+                                    <div nz-form-control [nzValidateStatus]="time_start">
+                                        <nz-datepicker formControlName="time_start" [nzPlaceHolder]="'开始日期'"></nz-datepicker>
+                                        <p nz-form-explain *ngIf="false">
+                                            请选择开始日期
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div nz-col [nzSpan]="2">
+                                <p nz-form-split>-</p>
+                            </div>
+                            <div nz-col [nzSpan]="11">
+                                <div nz-form-item nz-row>
+                                    <div nz-form-control [nzValidateStatus]="time_end">
+                                        <nz-datepicker formControlName="time_end" [nzPlaceHolder]="'结束日期'"></nz-datepicker>
+                                        <p nz-form-explain *ngIf="false">
+                                            请选择结束日期
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div nz-col [nzMd]="{span:8, offset:2}" nzSm="24" nzXs="24">
+                    <div nz-form-item nz-row>
+                        <div nz-form-label nz-col><label>类型</label></div>
+                        <div nz-form-control nz-col [nzValidateStatus]="type">
+                            <nz-select formControlName="type" nzSize="large" [nzShowSearch]="true" [nzPlaceHolder]="'请选择类型'">
+                                <nz-option [nzLabel]="'私密'" [nzValue]="'private'"></nz-option>
+                                <nz-option [nzLabel]="'公开'" [nzValue]="'public'"></nz-option>
+                            </nz-select>
+                            <p nz-form-explain *ngIf="false">
+                                请选择类型
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div nz-row [nzGutter]="16" class="text-right">
+                <button nz-button [nzType]="'primary'" nzSize="large">提交</button>
+                <button nz-button [nzType]="'default'" nzSize="large">返回</button>
+            </div>
+        </ng-template>
+    </nz-card>
+</form>

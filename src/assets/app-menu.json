@@ -101,7 +101,7 @@
             }, {
                 "text": "CRUD示例",
                 "translate": "",
-                "link": "/demo/testRec/list",
+                "link": "/demo/testRec/index",
                 "icon": "icon-note"
             }]
         }

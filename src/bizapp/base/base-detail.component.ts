@@ -11,6 +11,9 @@ import 'rxjs/add/operator/switchMap';
 
 export class BaseDetailComponent implements OnInit {
 
+  formGroup: FormGroup;
+  formBuilder: FormBuilder
+
   formData: DataObject = new DataObject();
   isNew: boolean = true;
   isReadOnly: boolean = false;
@@ -29,7 +32,10 @@ export class BaseDetailComponent implements OnInit {
     this.activatedRoute = injector.get(ActivatedRoute);
     this.router = injector.get(Router);
     this.location = injector.get(Location);
+    this.formBuilder = injector.get(FormBuilder);
 
+    this.formGroup = this.formBuilder.group({});
+    
     //set the view url
     let url = this.router.url;
     this.service.setPageViewUrl(url, "form");

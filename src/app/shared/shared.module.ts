@@ -15,8 +15,10 @@ import { CountdownModule } from 'ngx-countdown';
 const THIRDMODULES = [ CountdownModule ];
 // endregion
 
+import { MyReuseTabComponent } from '../admin/reuse-tab/reuse-tab.component';
+
 // region: your componets & directives
-const COMPONENTS = [];
+const COMPONENTS = [MyReuseTabComponent];
 const DIRECTIVES = [];
 // endregion
 
