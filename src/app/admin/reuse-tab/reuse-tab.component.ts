@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { filter, debounceTime, take, first } from 'rxjs/operators';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { ReuseTabService } from './reuse-tab.service';
+import { MyReuseTabService } from './my-reuse-tab.service';
 import { ReuseTabCached, ReuseTabNotify } from './interface';
 
 @Component({
@@ -55,7 +55,7 @@ export class MyReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     @Output() close: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(
-        public srv: ReuseTabService,
+        public srv: MyReuseTabService,
         private cd: ChangeDetectorRef,
         private router: Router,
         private route: ActivatedRoute,

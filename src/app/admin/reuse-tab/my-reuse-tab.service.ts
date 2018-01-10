@@ -6,7 +6,7 @@ import { MenuService } from '@delon/theme';
 import { ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify } from './interface';
 
 @Injectable()
-export class ReuseTabService implements OnDestroy {
+export class MyReuseTabService implements OnDestroy {
     private _max = 10;
     private _mode = ReuseTabMatchMode.Menu;
     private _excludes: RegExp[] = [ ];
