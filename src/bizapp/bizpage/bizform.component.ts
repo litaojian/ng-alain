@@ -40,8 +40,7 @@ export class BizFormComponent extends BaseDetailComponent implements OnInit, Aft
 		private _compiler: Compiler,
 		private _injector: Injector,
 		private _ngModuleRef: NgModuleRef<any>,
-		private viewContainerRef: ViewContainerRef,
-		private formBuilder: FormBuilder
+		private viewContainerRef: ViewContainerRef
 	) {
 		super(_injector, service);
 		this.messageService = _injector.get(NzMessageService);

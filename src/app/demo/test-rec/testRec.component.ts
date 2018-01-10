@@ -61,6 +61,7 @@ export class TestRecListComponent extends BaseListComponent implements OnInit, O
 		console.log(" testRec ngOnDestory......");				
 	}
 
+
 }
 
 
@@ -71,11 +72,10 @@ export class TestRecListComponent extends BaseListComponent implements OnInit, O
 	animations: []
 })
 export class TestRecDetailComponent extends BaseDetailComponent implements OnInit, AfterViewInit {
-
-	// @HostBinding('style.display') display = 'block';
-	// @HostBinding('style.position') position = 'absolute';
-	//@ViewChild(MyFormComponent) myFormComponent:MyFormComponent;
-
+	
+	i: any;
+	cat: string[] = [ '美食', '美食,粤菜', '美食,粤菜,湛江菜' ];
+	
 	constructor(
 		injector:Injector,
 		service: TestRecService,
@@ -88,7 +88,23 @@ export class TestRecDetailComponent extends BaseDetailComponent implements OnIni
 
 	ngOnInit() {
 		super.ngOnInit();
-		
+	
+		this.formGroup = this.formBuilder.group({
+            name: [null, [Validators.required]],
+            url: [null, [Validators.required]],
+            owner: [undefined, [Validators.required]],
+            approver : [null, [Validators.required]],
+            time_start : [null, [Validators.required]],
+            time_end : [null, [Validators.required]],
+            type : [null, [Validators.required]],
+            name2 : [null, [Validators.required]],
+            summary : [null, [Validators.required]],
+            owner2 : [null, [Validators.required]],
+            approver2 : [null, [Validators.required]],
+            time : [null, [Validators.required]],
+            type2 : [null, [Validators.required]],
+            items: this.formBuilder.array([])
+        });
 	}
 
 
