@@ -1,71 +1,97 @@
-<style>
-    .page-container {
-        margin-top: 58px;
-        padding: 5px;
-    }
-    
-    .table>thead>tr>th {
-        width: auto;
-    }
-</style>
-
-<panel-header title="开发示例"></panel-header>
-<!-- Page Menu -->
-<panel-toolbar></panel-toolbar>
-
-
-
-<div class="row page-content with-menu">
-    <div class="page-container">
-        <div class="row with-padding">
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="exampleInputName2" class="pdl5">Name</label>
-                    <input type="text" class="form-control" id="exampleInputName2" placeholder="" name="testname" [(ngModel)]="queryForm.testname">
+<nz-card [nzBordered]="false">
+    <ng-template #body>
+        <form id="queryForm" zx-formInput [formData]="queryForm" nz-form #f="ngForm" (ngSubmit)="onQueryFormSubmit(f)" [nzLayout]="'inline'">
+            <div nz-row [nzGutter]="24">
+                <div nz-col [nzSpan]="8" class="mb-md">
+                    <div nz-form-item class="d-flex">
+                        <div nz-form-label><label for="no">名称</label></div>
+                        <div nz-form-control class="flex-1">
+                            <nz-input [(ngModel)]="queryForm['testname']" name="testname" [nzSize]="'large'" [nzPlaceHolder]="'请输入名称'" nzId="testname"></nz-input>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail2" class="pdl25">Status</label>
-                    <my-select name="teststatus" [(ngModel)]="queryForm.teststatus" ngDefaultControl data-source="docStatus" placeholder="手机号" class="form-control"></my-select>
-                    <my-select name="createdBy" [(ngModel)]="queryForm.createdBy" ngDefaultControl data-source="table/TestRec" placeholder="输入人" class="form-control"></my-select>
-                    <my-select name="testname" [(ngModel)]="queryForm.testname" ngDefaultControl data-source="table/TestRec" placeholder="输入人" class="form-control"></my-select>
+                <div nz-col [nzSpan]="8" class="mb-md">
+                    <div nz-form-item class="d-flex">
+                        <div nz-form-label><label for="status">类型</label></div>
+                        <div nz-form-control class="flex-1">
+                            <nz-select #nzSelect [(ngModel)]="queryForm['testtype']" name="testtype" nzId="testtype" [nzPlaceHolder]="'请选择'" [nzShowSearch]="true" [nzSize]="'large'">
+                                <nz-option *ngFor="let row of getValueList('docStatus'); let idx = index" [nzLabel]="row.label" [nzValue]="row.value"></nz-option>
+                            </nz-select>
+                        </div>
+                    </div>
                 </div>
-
-                <button type="submit" class="btn btn-default mgl25" (click)="onQuery()">查询</button>
-                <button type="button" class="btn btn-default mgl25" (click)="onAddNew()">添加</button>
-            </form>
+            </div>
+        </form>
+        <div class="mb-md">
+            <button nz-button (click)="onAddNew()" [nzType]="'primary'" [nzSize]="'large'">
+                <i class="anticon anticon-plus"></i><span>新建</span>
+            </button>
+            <ng-container *ngIf="selectedRows.length > 0">
+                <button nz-button [nzSize]="'large'">批量操作</button>
+                <nz-dropdown [nzPlacement]="'bottomLeft'">
+                    <button nz-button nz-dropdown [nzSize]="'large'">
+                        更多操作 <i class="anticon anticon-down"></i>
+                    </button>
+                    <ul nz-menu>
+                        <li nz-menu-item (click)="remove()">删除</li>
+                        <li nz-menu-item (click)="approval()">批量审批</li>
+                    </ul>
+                </nz-dropdown>
+            </ng-container>
         </div>
-        <div class="row with-padding">
-            <my-table title="TestRec列表" (goPageEvent)="onPageLinkClick($event)">
-                <thead>
-                    <tr>
-                        <th class="w-60px">Num</th>
-                        <th>
-                            <div class="header">TestName</div>
-                        </th>
-                        <th class="w-90px">Status</th>
-                        <th class="w-90px">Age</th>
-                        <th class="w-90px">pic</th>
-                        <th>Operations</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let row of tableData">
-                        <td>{{row[idField]}}
-                        </td>
-                        <td>{{row.testname}}</td>
-                        <td>
-                            <my-label data-source="docStatus" [value]='row.teststatus'></my-label>
-                        </td>
-                        <td>{{row.testAge}}</td>
-                        <td>{{row.testPic}}</td>
-                        <td>
-                            <a href="javascript:void(0)" (click)="onViewRow(row)">查看</a>
-                            <a href="javascript:void(0)" (click)="onEditRow(row)">编辑</a>
-                            <a href="javascript:void(0)" (click)="onDeleteRow(row)">删除</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </my-table>
-        </div>
-    </div>
-</div>
+        <nz-table #nzTable [nzDataSource]="tableData" [nzPageSize]="pageSize" [nzLoading]="loading" (nzPageIndexChange)="goPage($event)">
+            <thead nz-thead>
+                <tr>
+                    <th nz-th [nzCheckbox]="true">
+                        <label nz-checkbox [(ngModel)]="allChecked" [nzIndeterminate]="indeterminate" (ngModelChange)="checkAll($event)"></label>
+                    </th>
+                    <th nz-th><span>编号</span></th>
+                    <th nz-th><span>名称</span></th>
+                    <th nz-th>
+                        <span>描述</span>
+                    </th>
+                    <th nz-th>
+                        <span>类型</span>
+                        <nz-dropdown [nzTrigger]="'click'">
+                            <i class="anticon anticon-filter" nz-dropdown></i>
+                            <ul nz-menu>
+                                <li nz-menu-item *ngFor="let i of valuelist['datatype']">
+                                    <label nz-checkbox [(ngModel)]="i.value"><span>{{i.label}}</span></label>
+                                </li>
+                            </ul>
+                            <div nz-table-filter>
+                                <span nz-table-filter-confirm (click)="onQuery()">确定</span>
+                                <span nz-table-filter-clear (click)="reset(status)">重置</span>
+                            </div>
+                        </nz-dropdown>
+                    </th>
+                    <th nz-th>
+                        <span>输入时间</span>
+                        <nz-table-sort [(nzValue)]="sortMap['created']" (nzValueChange)="sort('created',$event)"></nz-table-sort>
+                    </th>
+                    <th nz-th><span>操作</span></th>
+                </tr>
+            </thead>
+            <tbody nz-tbody>
+                <tr nz-tbody-tr *ngFor="let row of nzTable.data">
+                    <td nz-td [nzCheckbox]="true">
+                        <label nz-checkbox [nzDisabled]="row.disabled" [(ngModel)]="row.checked" (ngModelChange)="refreshStatus($event)">
+                        </label>
+                    </td>
+                    <td nz-td>{{row.testname}}</td>
+                    <td nz-td>{{row.testtype}}</td>
+                    <td nz-td class="text-center">{{row.description}}</td>
+                    <td nz-td>
+                        <my-label data-source="docStatus" [value]='row.teststatus'></my-label>
+                    </td>
+                    <td nz-td>{{row.created | date }}</td>
+                    <td nz-td>
+                        <a *ngIf="row.testrecid" (click)="onEditRow(row)">编辑</a>
+                        <span nz-table-divider></span>
+                        <a *ngIf="row.testrecid" (click)="onDeleteRow(row)">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </ng-template>
+</nz-card>

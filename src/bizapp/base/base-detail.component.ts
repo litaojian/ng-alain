@@ -11,6 +11,9 @@ import 'rxjs/add/operator/switchMap';
 
 export class BaseDetailComponent implements OnInit {
 
+  formGroup: FormGroup;
+  formBuilder: FormBuilder
+
   formData: DataObject = new DataObject();
   isNew: boolean = true;
   isReadOnly: boolean = false;
@@ -21,6 +24,9 @@ export class BaseDetailComponent implements OnInit {
   router: Router;
   location: Location;
 
+  // valuelist data
+  valuelist:Object = {};
+
   constructor(
     injector: Injector,
     service: BaseDataService
@@ -29,6 +35,11 @@ export class BaseDetailComponent implements OnInit {
     this.activatedRoute = injector.get(ActivatedRoute);
     this.router = injector.get(Router);
     this.location = injector.get(Location);
+    this.formBuilder = injector.get(FormBuilder);
+
+    this.formGroup = this.formBuilder.group({});
+    
+    //set the view url
     let url = this.router.url;
     this.service.setPageViewUrl(url, "form");
 
@@ -47,12 +58,11 @@ export class BaseDetailComponent implements OnInit {
     // 根据参数读取指定记录
     let rowId = this.activatedRoute.snapshot.params['id'];
     let queryParams = this.activatedRoute.snapshot.queryParams;    
+    if (!rowId){
+      rowId = queryParams['id'];
+    }
 
-    this.activatedRoute.params
-      // (+) converts string 'id' to a number
-      .switchMap((params: Params) => this.service.getDetail(+params['id']))
-      .subscribe((resultData: Object) => {
-        //console.log("get Detail responseJSON =" + JSON.stringify(resultData));
+    this.service.getDetail(rowId).then( resultData =>{
 
         let tmpData = resultData["data"];
         if (tmpData == null) {
@@ -77,9 +87,38 @@ export class BaseDetailComponent implements OnInit {
           //console.log(this.formData);
           
         }
+    });
 
+    // this.activatedRoute.params
+    //   // (+) converts string 'id' to a number
+    //   .switchMap((params: Params) => this.service.getDetail(+params['id']))
+    //   .subscribe((resultData: Object) => {
+    //     //console.log("get Detail responseJSON =" + JSON.stringify(resultData));
 
-      });
+    //     let tmpData = resultData["data"];
+    //     if (tmpData == null) {
+    //       tmpData = resultData["rowData"];
+    //     }
+    //     //debugger;
+    //     if (tmpData != null) {
+    //        if (tmpData instanceof Array){
+    //         this.formData = tmpData[0];
+    //        }else{
+    //         this.formData = tmpData;
+    //        }
+    //        this.isNew = false;          
+    //     } else {
+          
+    //       let keys = this.getKeys(queryParams);
+    //       for(let i = 0; i < keys.length;i++){
+    //         //let paramVal:string = queryParams[keys[i]];
+    //         //console.log("debug:" + keys[i] + "=" + queryParams[keys[i]]);
+    //         this.formData[keys[i]] = queryParams[keys[i]];
+    //       }          
+    //       //console.log(this.formData);
+          
+    //     }
+    //   });
 
   }
 
@@ -179,4 +218,14 @@ export class BaseDetailComponent implements OnInit {
     return Object.keys(item).sort();
   }
 
+  getValueList(typename:string){
+		//console.log("getValueList async..........");
+		if (!this.valuelist[typename]){
+			this.service.getValueList(typename).subscribe(result =>{
+				this.valuelist[typename] = result;
+			})
+		}
+		return this.valuelist[typename];
+  }
+  
 }

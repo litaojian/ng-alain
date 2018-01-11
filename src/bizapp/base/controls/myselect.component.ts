@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit, ViewChild, ElementRef, Renderer2, Optional} from '@angular/core';
 import { DefaultValueAccessor, ControlValueAccessor, SelectControlValueAccessor, NgControl, NgModel } from '@angular/forms';
-import { ValueListDataService } from '../valuelist-data.service';
+import { BaseDataService } from '../base-data.service';
 
 @Component({
 	selector: 'my-select',
@@ -11,7 +11,7 @@ import { ValueListDataService } from '../valuelist-data.service';
 		</select>`,
 	inputs: ['placeholder','formControl'],
 	outputs: [],
-	providers: [ValueListDataService]
+	providers: [BaseDataService]
 })
 
 export class MySelectComponent extends SelectControlValueAccessor implements OnInit {
@@ -42,7 +42,7 @@ export class MySelectComponent extends SelectControlValueAccessor implements OnI
 	constructor(
 		_renderer: Renderer2,
 		_elementRef: ElementRef,
-		private dataService: ValueListDataService,
+		private dataService: BaseDataService,
 		private model: NgModel)
 	{
 		super(_renderer, _elementRef);
@@ -53,7 +53,7 @@ export class MySelectComponent extends SelectControlValueAccessor implements OnI
 		
 		//console.log("name=" + this.name + ", dataSource=" + this.optionDataSource);
 		if (this.optionDataSource != null) {
-			this.dataService.getValueList(this.optionDataSource).then(
+			this.dataService.getValueListV1(this.optionDataSource).then(
 				resultData => this.processResult(resultData)
 			);
 		}

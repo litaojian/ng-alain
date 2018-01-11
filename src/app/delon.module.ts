@@ -1,20 +1,9 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule, RouteReuseStrategy } from '@angular/router';
-
-import { NgZorroAntdExtraModule } from 'ng-zorro-antd-extra';
-import { AlainThemeModule } from '@delon/theme';
-import { AlainABCModule, SimpleTableConfig, ReuseTabService, ReuseTabStrategy, FullContentService, XlsxService, DA_XLSX_CONFIG, LazyService, ZipService, DA_ZIP_CONFIG } from '@delon/abc';
-import { AlainACLModule } from '@delon/acl';
-
-// third libs
-import { CountdownModule } from 'ngx-countdown';
-
-// i18n
-import { TranslateModule } from '@ngx-translate/core';
-import { I18NService } from '@core/i18n/i18n.service';
+/**
+ * 进一步对基础模块的导入提炼
+ * 有关模块注册指导原则请参考：https://github.com/cipchk/ng-alain/issues/180
+ */
+import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { throwIfAlreadyLoaded } from '@core/module-import-guard';
 
 // region: zorro modules
 
@@ -69,7 +58,7 @@ import {
     NzNotificationService,
     NzMessageService
 } from 'ng-zorro-antd';
-const ZORROMODULES = [
+export const ZORROMODULES = [
     // LoggerModule,
     // NzLocaleModule,
     NzButtonModule,
@@ -147,7 +136,7 @@ import {
     AdXlsxModule,
     AdZipModule
 } from '@delon/abc';
-const ABCMODULES = [
+export const ABCMODULES = [
     AdSimpleTableModule,
     AdReuseTabModule,
     AdAvatarListModule,
@@ -176,60 +165,43 @@ const ABCMODULES = [
 ];
 // endregion
 
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NgZorroAntdExtraModule } from 'ng-zorro-antd-extra';
+import { AlainThemeModule } from '@delon/theme';
+import { AlainABCModule } from '@delon/abc';
+import { AlainAuthModule } from '@delon/auth';
+import { AlainACLModule } from '@delon/acl';
+import { DelonCacheModule } from '@delon/cache';
+// mock
+import { DelonMockModule } from '@delon/mock';
+import * as MOCKDATA from '../../_mock';
+import { environment } from '@env/environment';
+const MOCKMODULE = !environment.production || environment.chore === true ?
+                    [ DelonMockModule.forRoot({ data: MOCKDATA }) ] : [];
+
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule,
-        RouterModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        ...ZORROMODULES,
+        NgZorroAntdModule.forRoot(),
         NgZorroAntdExtraModule.forRoot(),
-        AlainThemeModule.forChild(),
-        ...ABCMODULES,
+        // theme
+        AlainThemeModule.forRoot(),
+        // abc
+        AlainABCModule.forRoot(),
+        // auth
+        AlainAuthModule.forRoot({
+            // ignores: [ `\\/login`, `assets\\/` ],
+            login_url: `/passport/login`
+        }),
+        // acl
         AlainACLModule.forRoot(),
-        // third libs
-        CountdownModule
-    ],
-    exports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        RouterModule,
-        ...ZORROMODULES,
-        NgZorroAntdExtraModule,
-        AlainThemeModule,
-        ...ABCMODULES,
-        AlainACLModule,
-        // i18n
-        TranslateModule,
-        // third libs
-        CountdownModule
+        // cache
+        DelonCacheModule.forRoot(),
+        // mock
+        ...MOCKMODULE
     ]
 })
-export class SharedModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: SharedModule,
-            providers: [
-                // ng-zorro-antd Services
-                NzNotificationService,
-                NzMessageService,
-                // @delon/abc
-                SimpleTableConfig,
-                FullContentService,
-                // reuse-tab
-                ReuseTabService,
-                { provide: RouteReuseStrategy, useClass: ReuseTabStrategy, deps: [ ReuseTabService ] },
-                // xlsx
-                XlsxService,
-                { provide: DA_XLSX_CONFIG, useValue: {} },
-                // zip
-                ZipService,
-                { provide: DA_ZIP_CONFIG, useValue: {} },
-                // utils
-                LazyService
-            ]
-        };
-    }
+export class DelonModule {
+  constructor( @Optional() @SkipSelf() parentModule: DelonModule) {
+    throwIfAlreadyLoaded(parentModule, 'DelonModule');
+  }
 }

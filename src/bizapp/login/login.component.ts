@@ -12,7 +12,6 @@ import { AppBaseModule } from '../base/app-base.module';
 import { BaseDetailComponent } from '../base/base-detail.component';
 import { MyInputComponent } from '../base/controls/myinput.component';
 import { DataObject} from '../base/base-data.service';
-import { ValueListDataService } from '../base/valuelist-data.service';
 import { BizFormComponent } from '../bizpage/bizform.component';
 import { BizFormService } from '../bizpage/bizform.service';
 import { AuthService, LoginInfo } from '../base/acl/auth.service';
@@ -44,12 +43,11 @@ export class LoginComponent extends BizFormComponent implements OnInit {
     _compiler: Compiler,
 		_ngModuleRef: NgModuleRef<any>,
 		_viewContainerRef: ViewContainerRef,
-		_formBuilder: FormBuilder
 	) {
-		super(service, activatedRoute, router, location, resolver, _compiler, _injector, _ngModuleRef, _viewContainerRef, _formBuilder);
+		super(service, activatedRoute, router, location, resolver, _compiler, _injector, _ngModuleRef, _viewContainerRef);
     this.bizFormService = service;
     this.authService = _injector.get(AuthService);
-
+    
     this.message = "";
     this.loginInfo.loginId = "user1";
     this.loginInfo.password = "123456";
@@ -58,7 +56,7 @@ export class LoginComponent extends BizFormComponent implements OnInit {
     }
 
 
-    this.loginForm = _formBuilder.group({
+    this.loginForm = this.formBuilder.group({
       loginId: ['user1'],      
       email: [null],
       password: ["123456", Validators.required],

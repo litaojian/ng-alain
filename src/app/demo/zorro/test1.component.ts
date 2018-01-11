@@ -37,6 +37,8 @@ export class Test1Component extends BaseListComponent implements OnInit, OnDestr
 	options = [];
   	selectedOption;
 
+	person$: Observable<Object>;
+
 
 	constructor(
 		injector: Injector,
@@ -52,6 +54,9 @@ export class Test1Component extends BaseListComponent implements OnInit, OnDestr
 		this.options_docstatus.push({"value":"2", "label":"text2"});
 		this.options_docstatus.push({"value":"APPR", "label":"已审核2"});
 
+		let params = {};
+		this.person$ = this.service.ajaxGet2('https://jsonplaceholder.typicode.com/posts/1', params);
+	  
 		this.setPageSize(10);
 		// load the tableData
 		this.getList("refresh", this.getPageIndex(), this.getPageSize());

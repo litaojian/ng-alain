@@ -1,5 +1,5 @@
 import { Component, Directive, Optional, EventEmitter, Input, Output, OnInit, AfterViewInit, HostListener, ElementRef, Renderer } from '@angular/core';
-import { ValueListDataService } from '../valuelist-data.service';
+import { BaseDataService } from '../base-data.service';
 
 
 @Component({
@@ -7,9 +7,9 @@ import { ValueListDataService } from '../valuelist-data.service';
 	template: `
 		 <div [class]='styleClass'>{{fieldText}}<div>
 	`,
-	inputs:[]
+	inputs:[],
+	providers: [BaseDataService]
 })
-
 
 
 export class MyLabelComponent  implements OnInit, AfterViewInit {
@@ -30,7 +30,7 @@ export class MyLabelComponent  implements OnInit, AfterViewInit {
 	
 	labelDataCache:Object[];
       
-	constructor(private dataService: ValueListDataService) {
+	constructor(private dataService: BaseDataService) {
 
 	}
 
@@ -58,7 +58,7 @@ export class MyLabelComponent  implements OnInit, AfterViewInit {
 			//console.log("label data load from cache ....")			
 			return Promise.resolve(this.labelDataCache);
 		}		
-		return this.dataService.getValueList(dataSource).then(valueData => {
+		return this.dataService.getValueListV1(dataSource).then(valueData => {
 			//console.log("label data cache load ok....")
 			this.labelDataCache = valueData;			
 			return valueData;

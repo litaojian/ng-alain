@@ -24,17 +24,19 @@ const routes: Routes = [
     {
         path: '',
         component: LayoutDefaultComponent,
-        canActivate: [ CanActivateMenusProvide ],  
+        canActivate: [ CanActivateMenusProvide ],
         children: [
             { path: '', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
             { path: 'dashboard/monitor', component: DashboardMonitorComponent, data: { translate: 'dashboard_monitor' } },
-            { path: 'admin/simple', component: SimpleTableComponent, data: { title:"列表" } },  
-            { path: 'zorro', loadChildren: '../demo/zorro/zorro.module#ZorroModule'},            
+            { path: 'admin/simple', component: SimpleTableComponent, data: { title:"列表" } },
+            { path: 'zorro', loadChildren: '../demo/zorro/zorro.module#ZorroModule'},
+            { path: 'demo', loadChildren: '../demo/demo.module#DemoModule'},
             { path: 'vehicle', loadChildren: '../vehicle/vehicleSearch.module#VehicleSearchModule'},
             { path: 'trackSearch', loadChildren: '../vehicle/VehicleSearch/trackSearch.module#TrackModule'},
             { path: 'regional', loadChildren: '../vehicle/VehicleArea/regional.module#RegionalModule'},
-            { path: 'page', loadChildren: '../../bizapp/bizpage/page.module#PageModule'}  
+            { path: 'carControl', loadChildren: '../vehicle/VehicleControlRequest/vehicleControl.module#VehicleControlModule'},
+            { path: 'page', loadChildren: '../../bizapp/bizpage/page.module#PageModule'}
 
         ]
     },

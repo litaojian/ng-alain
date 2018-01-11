@@ -41,6 +41,12 @@
                 "shortcut": true,
                 "icon": "icon-compass"
             }, {
+                "text": "车辆布控",
+                "translate": "",
+                "link": "/carControl/list",
+                "shortcut": true,
+                "icon": "icon-compass"
+            }, {
                 "text": "关联资源",
                 "translate": "",
                 "link": "/logics",
@@ -94,9 +100,14 @@
                 "link": "/zorro/index",
                 "icon": "icon-note"
             }, {
-                "text": "表格示例",
+                "text": "简单示例",
                 "translate": "",
                 "link": "/admin/simple",
+                "icon": "icon-note"
+            }, {
+                "text": "CRUD示例",
+                "translate": "",
+                "link": "/demo/testRec/index",
                 "icon": "icon-note"
             }]
         }

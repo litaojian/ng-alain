@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminRoutingModule } from './admin-routing.module';
-import { AppBaseModule } from 'bizapp/base/app-base.module';
-
-
 import { SharedModule } from '@shared/shared.module';
+
 import { SimpleTableComponent } from './simple-table/simple-table.component';
 import { UserLoginComponent } from './passport/login/login.component';
 import { DashboardMonitorComponent } from './dashboard/monitor/monitor.component';

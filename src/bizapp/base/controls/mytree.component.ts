@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer } from '@angular/core';
-import { ValueListDataService } from '../valuelist-data.service';
+import { BaseDataService } from '@bizapp/base/base-data.service';
+
 
 @Component({
   selector: 'my-tree',
@@ -22,7 +23,7 @@ export class MyTreeComponent implements OnInit, AfterViewInit {
 	@Output('nodeClick') 
 	nodeClickEvent = new EventEmitter<any>();
 
-	constructor(_renderer: Renderer, _elementRef: ElementRef, private dataService: ValueListDataService){
+	constructor(_renderer: Renderer, _elementRef: ElementRef, private dataService: BaseDataService){
 		//console.log("MyTreeComponent init:");
 	}
 

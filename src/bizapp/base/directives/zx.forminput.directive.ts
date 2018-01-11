@@ -4,7 +4,6 @@ import { DatePipe } from '@angular/common';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
-import { ValueListDataService } from '../valuelist-data.service';
 
 
 /**
@@ -24,8 +23,6 @@ export class ZxFormInputDirective implements OnInit, AfterContentInit, AfterView
     @Input('formData') _formData:Object = {};
 
     activatedRoute: ActivatedRoute;
-
-    service:ValueListDataService;
 
     constructor(
         private _renderer2: Renderer2,
@@ -163,7 +160,7 @@ export class ZxFormInputDirective implements OnInit, AfterContentInit, AfterView
                 inputValue = this.formatDate(_date);
                 
             } else if (inputValue == "${loginUserId}$") {
-                inputValue = <string>this.service.getLoginId();
+                //inputValue = <string>this.service.getLoginId();
             } else if (inputValue.startsWith("${request.") && inputValue.endsWith("}$")) {
                 let paramKey = inputValue.substring(10, (inputValue.length - 2));
                 inputValue = this.activatedRoute.snapshot.queryParams[paramKey];

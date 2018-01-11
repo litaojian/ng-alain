@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
+import { QueryDialogComponent } from './query.dialog.component';
+import { NzModalService } from 'ng-zorro-antd';
 
 @Component({
     selector: 'vehicle-search',
@@ -7,7 +9,6 @@ import { _HttpClient } from '@delon/theme';
     styleUrls: ['./search.component.less']
 })
 export class SearchComponent implements OnInit {
-
 
     data = [
         {
@@ -55,6 +56,8 @@ export class SearchComponent implements OnInit {
         } else {
             this.categories[idx].value = status;
         }
+        //alert("idx=" + idx);
+        this.showModalForComponent();
     }
     // endregion
 
@@ -87,7 +90,7 @@ export class SearchComponent implements OnInit {
     }
     // endregion
 
-    constructor(private http: _HttpClient) {}
+    constructor(private http: _HttpClient, private modalService: NzModalService) {}
 
     ngOnInit() {
         this.getData();
@@ -100,4 +103,24 @@ export class SearchComponent implements OnInit {
             this.loading = false;
         });
     }
+
+    showModalForComponent() {
+        const subscription = this.modalService.open({
+          title          : '对话框标题',
+          content        : QueryDialogComponent,
+          onOk() {
+          },
+          onCancel() {
+            console.log('Click cancel');
+          },
+          footer         : false,
+          componentParams: {
+            name: '测试渲染Component'
+          }
+        });
+        subscription.subscribe(result => {
+          console.log(result);
+        })
+      }
+
 }
