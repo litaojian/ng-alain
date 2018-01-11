@@ -15,7 +15,7 @@
                         <div nz-form-label><label for="status">类型</label></div>
                         <div nz-form-control class="flex-1">
                             <nz-select #nzSelect [(ngModel)]="queryForm['testtype']" name="testtype" nzId="testtype" [nzPlaceHolder]="'请选择'" [nzShowSearch]="true" [nzSize]="'large'">
-                                <nz-option *ngFor="let row of getValueList('docStatus'); let idx = index" [nzLabel]="row.label" [nzValue]="row.value"></nz-option>
+                                <nz-option *ngFor="let row of valuelist['docStatus']; let idx = index" [nzLabel]="row.label" [nzValue]="row.value"></nz-option>
                             </nz-select>
                         </div>
                     </div>

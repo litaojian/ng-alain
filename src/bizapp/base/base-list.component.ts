@@ -60,7 +60,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     console.log("base-list onInit..........");
     // load the all valuelist
-    this.loadValueListData();
+    this.valuelist = this.service.loadValueListData();
 
     // 初始化查询参数
     this.initDefaultQueryParamters();
@@ -487,36 +487,14 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     this.refreshStatus();
   }
  
-	loadValueListData(){
-    let typenames:string[] = this.service.getValuelistTypes();
-    //console.log("loadValueListData "+ this.service.getValuelistTypes().toString() +" ..........");
-    if (typenames != null){
-        typenames.forEach(typename =>{
-          this.service.getValueList(typename).subscribe(data =>{    
-          let typename, label , value;
-          for(let item in data){
-            //console.log("item:" + JSON.stringify(data[item]));
-            typename = data[item]["typename"].toLowerCase();
-            value = data[item]["keyname"];
-            label = data[item]["valuetext"];
-            if (this.valuelist[typename] == null){
-              this.valuelist[typename] = [];
-            }      
-            this.valuelist[typename].push({"label":label, "value":value});
-          }            
-        });
-      });    
-    }
-  }
-
-	getValueList(typename:string){
-		console.log("getValueList async.........." + typename);
-		if (!this.valuelist[typename]){
-			this.service.getValueList(typename).subscribe(result =>{        
-				this.valuelist[typename] = result;
-			});
-		}
-		return this.valuelist[typename];
-	}
+	// getValueList(typename:string){
+	// 	console.log("getValueList async.........." + typename);
+	// 	if (!this.valuelist[typename]){
+	// 		this.service.getValueList(typename).subscribe(result =>{        
+	// 			this.valuelist[typename] = result;
+	// 		});
+	// 	}
+	// 	return this.valuelist[typename];
+	// }
   
 }  

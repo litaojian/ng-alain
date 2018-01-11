@@ -512,4 +512,32 @@ export class BaseDataService extends BaseService {
     }
 
 
+	
+	loadValueListData():Object {
+		let typenames:string[] = this.getValuelistTypes();
+		let valuelist = {};
+		//console.log("loadValueListData "+ this.service.getValuelistTypes().toString() +" ..........");
+		if (typenames != null){
+			typenames.forEach(_typename =>{
+			  this.getValueList(_typename).subscribe(data =>{    
+			  let label , value;
+			  for(let item in data){
+				if (valuelist[_typename] == null){
+				  	valuelist[_typename] = [];
+				}
+				//console.log("item:" + JSON.stringify(data[item]));
+				if (data[item]["typename"] && data[item]["keyname"]){
+				  //typename = data[item]["typename"].toLowerCase();
+				  value = data[item]["keyname"];
+				  label = data[item]["valuetext"];
+				  valuelist[_typename].push({"label":label, "value":value});    
+				}else{
+				  valuelist[_typename].push(data[item]);
+				}
+			  }            
+			});
+		  });    
+		}
+		return valuelist;
+	}
 }
