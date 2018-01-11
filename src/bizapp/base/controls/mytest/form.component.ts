@@ -21,24 +21,15 @@ import { dialogService } from './dialog.service';
             </button>
            <button (click)="myclick()">12</button>`
 })
-export class NzDemoModalServiceComponent extends NzModalCustomizeComponent implements OnInit  {
-   formRequire:any={
-			userName: [ null, [ Validators.required]],
-			password: [ null, [ Validators.required,Validators.minLength(5)]],
-			sex: [ null, [ Validators.required ] ],
-			remember: [ true ],
-		}
-  constructor(injector:Injector,private dialogService:dialogService) {
-	super(injector); // injector的注入在父类的构造函数constructor也必须存在参数injectorprivate modalService: NzModalService,
+export class NzDemoModalServiceComponent implements OnInit  {
+  constructor(private dialogService:dialogService) {
+	// super(injector); // injector的注入在父类的构造函数constructor也必须存在参数injectorprivate modalService: NzModalService,
   }
   ngOnInit() {
 	//   super.ngOnInit();
 	// this.mobileValidator();
   }
-  aaa(){
-
-  }
   showModalForComponent(title){
-	   this.dialogService.showModalForComponent1(title,this.formRequire,NzModalCustomizeComponent);
+	   this.dialogService.showModalForComponent1(title,NzModalCustomizeComponent);
   }
 }

@@ -68,7 +68,7 @@ import {
     `
   ]
 })
-export class NzModalCustomizeComponent implements OnInit {
+export class NzModalCustomizeComponent extends dialogComponent implements OnInit {
    _val: any;
    searchDta:any={
       userName:'',
@@ -78,16 +78,14 @@ export class NzModalCustomizeComponent implements OnInit {
   set val(value: any) {
     this._val = value;
   }
-  validateForm: FormGroup;
-  subject:NzModalSubject;
-  fb:FormBuilder
   // private subject: NzModalSubject
   constructor(injector:Injector) {
-     this.fb=injector.get(FormBuilder);
-     this.subject = injector.get(NzModalSubject);
-     this.subject.on('onDestory', () => {
-        console.log('destroy');
-     });
+    super(injector);
+    //  this.fb=injector.get(FormBuilder);
+    //  this.subject = injector.get(NzModalSubject);
+    //  this.subject.on('onDestory', () => {
+    //     console.log('destroy');
+    //  });
    }
   // mobileValidator(){
   //     // 获取到输入框的值
@@ -98,24 +96,22 @@ export class NzModalCustomizeComponent implements OnInit {
   //     return result ? null : { mobile: { info: '手机号码格式不正确' } };
   // }
   //提交验证
-  _submitForm() {
-    alert(this.validateForm.status);
-    if(this.validateForm.errors){
-      alert('格式正确');
-    }
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[ i ].markAsDirty();
-    }
-  }
-  //向上一岑传递数据
-  emitDataOutside() {
-    this.subject.next(this.searchDta);
-  }
-  //取消操作
-  handleCancel(e) {
-    this.subject.destroy('onCancel');
-  }
+  // _submitForm() {
+  //   alert(this.validateForm.status);
+  //   if(this.validateForm.errors){
+  //     alert('格式正确');
+  //   }
+  //   for (const i in this.validateForm.controls) {
+  //     this.validateForm.controls[ i ].markAsDirty();
+  //   }
+  // }
+  // emitDataOutside() {
+  //   this.subject.next(this.searchDta);
+  // }
+  // handleCancel(e) {
+  //   this.subject.destroy('onCancel');
+  // }
   ngOnInit() {
-    this.validateForm = this.fb.group(this._val);
+   super.ngOnInit();
   }
 }

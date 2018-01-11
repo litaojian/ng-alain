@@ -23,7 +23,6 @@ export class dialogComponent implements OnInit  {
       this.validateForm.controls[ i ].markAsDirty();
       
     }
-    alert(12);
   }
   emitDataOutside() {
     this.subject.next('1212');

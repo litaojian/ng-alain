@@ -11,7 +11,7 @@ export class dialogService {
     constructor(injector:Injector) {
        this.mzModalService=injector.get(NzModalService);
 	}
-    showModalForComponent1(title,params,Component) {
+    showModalForComponent1(title,Component) {
         const subscription = this.mzModalService.open({
             title          : title,
             content        : Component,
@@ -21,7 +21,7 @@ export class dialogService {
             },
             footer         : false,
             componentParams: {
-                val: params
+                val: ''
             }
             });
             subscription.subscribe(result => {
