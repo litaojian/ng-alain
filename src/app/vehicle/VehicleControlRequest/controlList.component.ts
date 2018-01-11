@@ -24,8 +24,6 @@ export class ControlListComponent extends BaseListComponent implements OnInit {
      }
     pi = 1;
     ps = 10;
-    total = 200; // mock total
-    list = [];
     loading = false;
     args: any = { };
     _indeterminate = false;
