@@ -8,11 +8,20 @@ export class TestRecService extends BaseDataService {
 
     constructor(injector: Injector) {
         super(injector);
-		
-		//this.setIsTest(false);
-		
+				
 		this.setApiUrl("/api/rest/testRec");
 		this.setIdField("testRecId");
 	}
-	
+
+	update(updatedRow: Object): Promise<Object> {
+
+		let result = super.update(updatedRow);
+		//
+		return result;
+	}	
+
+
+
+
+
 }

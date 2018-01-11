@@ -9,7 +9,6 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import { AppBaseModule } from '../base/app-base.module';
 import { BaseListComponent, QueryForm } from '../base/base-list.component';
-import { ValueListDataService } from '../base/valuelist-data.service';
 import { BaseDataService } from '../base/base-data.service';
 import { BizQueryService } from './bizquery.service';
 
@@ -133,7 +132,7 @@ export class BizDialogForQueryComponent extends BaseListComponent implements OnI
 			const tmpModule = NgModule({ 
 				imports: [CommonModule, FormsModule, AppBaseModule,RouterModule], 
 				declarations: [tmpCmp],
-				providers:[BizQueryService,ValueListDataService] 
+				providers:[BizQueryService] 
 			})(class {
 				
 			});

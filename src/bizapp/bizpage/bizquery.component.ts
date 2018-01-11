@@ -9,7 +9,6 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import { AppBaseModule } from '../base/app-base.module';
 import { BaseListComponent, QueryForm } from '../base/base-list.component';
-import { ValueListDataService } from '../base/valuelist-data.service';
 import { BaseDataService } from '../base/base-data.service';
 import { BizDialogService } from './bizdialog.service';
 import { BizQueryService } from './bizquery.service';
@@ -131,7 +130,7 @@ export class BizQueryComponent extends BaseListComponent implements OnInit, Afte
 			const tmpModule = NgModule({ 
 				imports: [CommonModule, FormsModule, AppBaseModule,RouterModule], 
 				declarations: [tmpCmp],
-				providers:[BizQueryService,ValueListDataService] 
+				providers:[BizQueryService] 
 			})(class {
 				
 			});

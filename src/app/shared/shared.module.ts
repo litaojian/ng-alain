@@ -10,10 +10,14 @@ import { ZORROMODULES, ABCMODULES } from '../delon.module';
 // i18n
 import { TranslateModule } from '@ngx-translate/core';
 
+
+
 // region: third libs
 import { CountdownModule } from 'ngx-countdown';
-const THIRDMODULES = [ CountdownModule ];
+import { MyReuseTabModule } from '../admin/reuse-tab/reuse-tab.module';
+const THIRDMODULES = [ CountdownModule];
 // endregion
+
 
 // region: your componets & directives
 const COMPONENTS = [];
@@ -32,6 +36,7 @@ const DIRECTIVES = [];
         ...ABCMODULES,
         AlainACLModule,
         // third libs
+        MyReuseTabModule.forRoot(),
         ...THIRDMODULES
     ],
     declarations: [
@@ -51,6 +56,7 @@ const DIRECTIVES = [];
         // i18n
         TranslateModule,
         // third libs
+        MyReuseTabModule,
         ...THIRDMODULES,
         // your components
         ...COMPONENTS,

@@ -100,9 +100,14 @@
                 "link": "/zorro/index",
                 "icon": "icon-note"
             }, {
-                "text": "表格示例",
+                "text": "简单示例",
                 "translate": "",
                 "link": "/admin/simple",
+                "icon": "icon-note"
+            }, {
+                "text": "CRUD示例",
+                "translate": "",
+                "link": "/demo/testRec/index",
                 "icon": "icon-note"
             }]
         }

@@ -26,7 +26,6 @@ import { PanelHeaderComponent }  from './panel-header.component';
 import { PanelToolbarComponent }  from './panel-toolbar.component';
 import { BaseDialogComponent }  from './base-dialog.component';
 
-import { ValueListDataService } from './valuelist-data.service';
 import { ZxTreeService } from './controls/zxtree.service';
 import { MenuTreeService } from './menu-tree.service';
 import { DialogService }  from './dialog.service';
@@ -86,7 +85,6 @@ import { DialogService }  from './dialog.service';
   entryComponents:[
   ],
   providers: [
-	ValueListDataService,
 	MenuTreeService,
 	ZxTreeService,
     DialogService

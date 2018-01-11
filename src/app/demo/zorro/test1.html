@@ -1,18 +1,11 @@
-<nz-card style="width:300px;">
-    <ng-template #title>
-        Card title
-    </ng-template>
-    <ng-template #extra>
-        <a>More</a>
-    </ng-template>
+<nz-card [nzBordered]="false">
     <ng-template #body>
-        <form nz-form [nzLayout]="'inline'">
-            <nz-datepicker [nzPlaceHolder]="'Select date'" [nzFormat]="'YYYY/MM/DD'"></nz-datepicker>
-            <nz-rangepicker [nzFormat]="'YYYY/MM/DD'"></nz-rangepicker>
-
-            <button nz-button [nzType]="'primary'">
-                <span>Primary</span>
-            </button>
-        </form>
+        <nz-tabset>
+            <nz-tab>
+                <ng-template #nzTabHeading>
+                    图片
+                </ng-template>
+            </nz-tab>
+        </nz-tabset>
     </ng-template>
 </nz-card>

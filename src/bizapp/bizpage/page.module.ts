@@ -8,7 +8,6 @@ import { BizQueryComponent } from './bizquery.component';
 import { BizQueryService } from './bizquery.service';
 import { BizFormComponent } from './bizform.component';
 import { BizFormService } from './bizform.service';
-import { ValueListDataService } from '../base/valuelist-data.service';
 import { PageContainerComponent } from './page.container.component';
 
 import { BizDialogForQueryComponent } from './bizdialog.query.component';
@@ -45,7 +44,7 @@ const routes: Routes = [{
   entryComponents:[
     BizDialogForQueryComponent
   ],
-  providers: [BizQueryService, BizFormService, BizDialogService, ValueListDataService]
+  providers: [BizQueryService, BizFormService, BizDialogService]
 })
 
 export class PageModule { }

@@ -11,7 +11,6 @@ import { AppBaseModule } from '../base/app-base.module';
 import { BaseDetailComponent } from '../base/base-detail.component';
 import { MyInputComponent } from '../base/controls/myinput.component';
 import { DataObject} from '../base/base-data.service';
-import { ValueListDataService } from '../base/valuelist-data.service';
 import { BizFormService } from './bizform.service';
 import { NzMessageService } from 'ng-zorro-antd';
 
@@ -40,8 +39,7 @@ export class BizFormComponent extends BaseDetailComponent implements OnInit, Aft
 		private _compiler: Compiler,
 		private _injector: Injector,
 		private _ngModuleRef: NgModuleRef<any>,
-		private viewContainerRef: ViewContainerRef,
-		private formBuilder: FormBuilder
+		private viewContainerRef: ViewContainerRef
 	) {
 		super(_injector, service);
 		this.messageService = _injector.get(NzMessageService);
@@ -103,7 +101,7 @@ export class BizFormComponent extends BaseDetailComponent implements OnInit, Aft
 			const tmpModule = NgModule({ 
 				imports: [CommonModule, FormsModule, RouterModule, AppBaseModule], 
 				declarations: [tmpCmp],
-				providers:[BizFormService,ValueListDataService] 
+				providers:[BizFormService] 
 			})(class {
 				
 			});
