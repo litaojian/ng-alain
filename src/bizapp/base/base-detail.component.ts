@@ -24,6 +24,9 @@ export class BaseDetailComponent implements OnInit {
   router: Router;
   location: Location;
 
+  // valuelist data
+  valuelist:Object = {};
+
   constructor(
     injector: Injector,
     service: BaseDataService
@@ -215,4 +218,14 @@ export class BaseDetailComponent implements OnInit {
     return Object.keys(item).sort();
   }
 
+  getValueList(typename:string){
+		//console.log("getValueList async..........");
+		if (!this.valuelist[typename]){
+			this.service.getValueList(typename).subscribe(result =>{
+				this.valuelist[typename] = result;
+			})
+		}
+		return this.valuelist[typename];
+  }
+  
 }
