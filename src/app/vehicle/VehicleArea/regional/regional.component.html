@@ -6,6 +6,7 @@
 <!--<div nz-row [nzGutter]="24" *ngIf="ifMoreSearch">
      <div id="search_more" (click)="showMoreSearch()"><i class="anticon anticon-down"></i>显示查询条件</div>
 </div>-->
+<nz-demo-modal-service></nz-demo-modal-service>
 <my-modal [isModal]="isModalShow" (initRows)=hasChange($event)>
       <div class="myModal-title">
           <span *ngIf="!numOne">区域添加</span>

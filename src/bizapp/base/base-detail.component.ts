@@ -29,8 +29,6 @@ export class BaseDetailComponent implements OnInit {
     this.activatedRoute = injector.get(ActivatedRoute);
     this.router = injector.get(Router);
     this.location = injector.get(Location);
-
-    //set the view url
     let url = this.router.url;
     this.service.setPageViewUrl(url, "form");
 

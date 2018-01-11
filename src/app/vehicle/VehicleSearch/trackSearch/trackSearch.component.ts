@@ -109,7 +109,7 @@ export class trackSearchComponent {
            this.seachKK(this.search.xian);
     }
   isVisible = false;
-  putOut = () => {
+  putOut(){
     this.putoutAll=$.extend({}, this.list[0], this.putout);
     this.TrackSearchService.putOuts(this.putoutAll).subscribe(res =>{
           var filename = res.filename.replace("\"","").replace("\"","");
@@ -120,7 +120,7 @@ export class trackSearchComponent {
   putOutMask(){
      this.isModalShow_put = true;
   }
-  handleCancel = () => {
+  handleCancel(){
     this.isVisible = false;
   }
 //接收子组件传回来的值,是否显示对话框

@@ -87,7 +87,7 @@
                         <nz-card nz-col [nzSpan]="3" class="mb-md" *ngFor="let data of list;let i=index" style="cursor:pointer;margin-left: 12px;border-radius:5px;" (click)="carDetail(i)">
                             <ng-template #title>
                                 <nz-tooltip [nzTitle]="data.kssj+'--'+data.jssj" [nzPlacement]="'top'">
-                                    <p class="det ailName" nz-tooltip>过车查询信息{{i+1}}</p>
+                                    <p class="det ailName" nz-tooltip>过车条件{{i+1}}</p>
                                 </nz-tooltip>
                             </ng-template>
                             <ng-template #extra>
@@ -190,7 +190,7 @@
                 </div>
             </div>
 </my-table>-->
- <my-loading *ngIf="loading"></my-loading>
+<my-loading *ngIf="loading"></my-loading>
 <!--显示详情-->
 <nz-modal [nzContent]="modalContent">
     <ng-template #title>
@@ -305,7 +305,7 @@
     </ng-template>
 </nz-modal>
 <!--导出数据-->
-<my-modal [isModal]="isModalShow_put">
+<my-modal [isModal]="isModalShow_put" (initRows)=hasChange($event)>
       <div class="myModal-title">
           <span>导出数据</span>
       </div>
