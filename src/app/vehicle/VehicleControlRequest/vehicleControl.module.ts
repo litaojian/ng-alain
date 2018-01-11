@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
-import { AppBaseModule } from "../../../bizapp/base/app-base.module";
+// import { AppBaseModule } from "../../../bizapp/base/app-base.module";
 
 import { ControlListComponent } from "./controlList.component";
 import { ControlModifyComponent} from "./controlModify.component";
@@ -19,7 +19,6 @@ const routes = [
     imports: [
         SharedModule, //框架
         CommonModule,
-        AppBaseModule,
         RouterModule.forChild(routes)
     ],
     exports: [RouterModule],
