@@ -11,6 +11,7 @@ export class TestRecService extends BaseDataService {
 				
 		this.setApiUrl("/api/rest/testRec");
 		this.setIdField("testRecId");
+		this.setValuelistTypes(["docStatus","dataType"]);
 	}
 
 	update(updatedRow: Object): Promise<Object> {

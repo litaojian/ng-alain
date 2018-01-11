@@ -44,6 +44,9 @@ export class TestRecListComponent extends BaseListComponent implements OnInit, O
 	}
 
 	ngOnInit() {
+
+		super.ngOnInit();
+		
 		this.options_docstatus.push({"value":"1", "label":"text1"});
 		this.options_docstatus.push({"value":"2", "label":"text2"});
 		this.options_docstatus.push({"value":"APPR", "label":"已审核2"});

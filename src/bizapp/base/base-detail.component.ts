@@ -43,7 +43,6 @@ export class BaseDetailComponent implements OnInit {
     let url = this.router.url;
     this.service.setPageViewUrl(url, "form");
 
-    
   }
 
   ngOnInit() {
@@ -54,7 +53,9 @@ export class BaseDetailComponent implements OnInit {
     if (this.router.url.indexOf("/create") > 0){
       this.isNew = true;
     }
-    
+    // 预载入值列表
+    this.valuelist = this.service.loadValueListData();
+
     // 根据参数读取指定记录
     let rowId = this.activatedRoute.snapshot.params['id'];
     let queryParams = this.activatedRoute.snapshot.queryParams;    
@@ -218,14 +219,5 @@ export class BaseDetailComponent implements OnInit {
     return Object.keys(item).sort();
   }
 
-  getValueList(typename:string){
-		//console.log("getValueList async..........");
-		if (!this.valuelist[typename]){
-			this.service.getValueList(typename).subscribe(result =>{
-				this.valuelist[typename] = result;
-			})
-		}
-		return this.valuelist[typename];
-  }
-  
+
 }
