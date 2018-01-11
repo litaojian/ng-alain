@@ -203,7 +203,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
   getList(action: string, pageIndex: number, pageSize: number): void {
     //debugger;
-    let params = this.queryForm;
+    let params = JSON.parse(JSON.stringify(this.queryForm));
 
     let pid = this.activatedRoute.snapshot.data["parentId"];
     if (pid != null) {
@@ -509,9 +509,14 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getValueList(typename:string){
-    //console.log("getValueList async..........");
-    return this.service.getValueList(typename);
-  }
+	getValueList(typename:string){
+		console.log("getValueList async.........." + typename);
+		if (!this.valuelist[typename]){
+			this.service.getValueList(typename).subscribe(result =>{        
+				this.valuelist[typename] = result;
+			});
+		}
+		return this.valuelist[typename];
+	}
   
 }  

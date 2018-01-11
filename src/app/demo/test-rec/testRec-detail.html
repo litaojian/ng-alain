@@ -43,7 +43,7 @@
                         <div nz-form-label nz-col><label>状态</label></div>
                         <div nz-form-control nz-col [nzValidateStatus]="owner">
                             <nz-select [nzPlaceHolder]="'请选择状态'" [(ngModel)]="formData['teststatus']" name="teststatus" [nzShowSearch]="true" nzSize="large">
-                                <nz-option *ngFor="let i of users" [nzLabel]="i.label" [nzValue]="i.value">
+                                <nz-option *ngFor="let i of getValueList('docStatus')" [nzLabel]="i.label" [nzValue]="i.value">
                                 </nz-option>
                             </nz-select>
                             <p nz-form-explain *ngIf="false">
@@ -59,7 +59,7 @@
                         <div nz-form-label nz-col><label>审批员</label></div>
                         <div nz-form-control nz-col [nzValidateStatus]="approver">
                             <nz-select [nzPlaceHolder]="'请选择审批员'" [nzShowSearch]="true" nzSize="large">
-                                <nz-option *ngFor="let i of users" [nzLabel]="i.label" [nzValue]="i.value">
+                                <nz-option *ngFor="let i of getValueList('dataType')" [nzLabel]="i.label" [nzValue]="i.value">
                                 </nz-option>
                             </nz-select>
                             <p nz-form-explain *ngIf="false">

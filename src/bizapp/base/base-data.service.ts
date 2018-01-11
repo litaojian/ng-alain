@@ -388,9 +388,34 @@ export class BaseDataService extends BaseService {
 						data[i]["label"] = data[i][columns[1]];						
 					}
 				}
+
+				let rows:Object[];
+				
+				if (result["data"] != null){
+					rows = result["data"]["options"];
+					if (rows == null){
+						rows = result["data"];
+					}						
+				}else{
+					rows = result;
+				}
+				let options: Object[] = [];
+				if (rows != null) {
+					for (var item in rows) { // for acts as a foreach	
+						//console.log(rows[item]["keyname"]);
+						if (rows[item]["keyname"]){
+							options.push({ value: rows[item]["keyname"], label: rows[item]["valuetext"] });
+						}else if (item["keyname"]){
+							options.push({ value: item["keyname"], label: item["valuetext"] });
+						}else if (Number.parseInt(item) >= 0 ){
+							options.push({ value: rows[item]["optvalue"], label: rows[item]["optlabel"] });
+						}								
+					}
+		
+				}
 				// cache the valuelist
-				BaseDataService.CachedDataMap.set(typeName, result);			
-				return result;
+				BaseDataService.CachedDataMap.set(typeName, options);			
+				return options;
 			})
 			.catch(this.handleError);
 

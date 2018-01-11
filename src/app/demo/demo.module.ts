@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
+import { SharedModule } from '@shared/shared.module';
 import { AppBaseModule } from 'bizapp/base/app-base.module';
 
 import { TestRecService } from './test-rec/testRec.service';
@@ -25,7 +26,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AppBaseModule,
+    //AppBaseModule,
+    SharedModule, 
     RouterModule.forChild(routes)
   ],
   declarations: [

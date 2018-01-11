@@ -49,8 +49,6 @@ export class TestRecListComponent extends BaseListComponent implements OnInit, O
 		this.options_docstatus.push({"value":"APPR", "label":"已审核2"});
 
 		this.setPageSize(10);
-		// load the tableData
-		this.getList("refresh", this.getPageIndex(), this.getPageSize());
 	}
 
 	onQuery(): void {
@@ -60,7 +58,6 @@ export class TestRecListComponent extends BaseListComponent implements OnInit, O
 	ngOnDestroy(){	
 		console.log(" testRec ngOnDestory......");				
 	}
-
 
 }
 
