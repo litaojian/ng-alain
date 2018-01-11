@@ -4,7 +4,6 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { HttpModule, JsonpModule } from '@angular/http';
 import { FormsModule,ReactiveFormsModule}    from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 import { MyTableComponent }  from './controls/mytable.component';
 import { MyFormComponent }  from './controls/myform.component';
@@ -36,11 +35,10 @@ import { DialogService }  from './dialog.service';
   imports: [
 		CommonModule,
 		HttpModule,
-		JsonpModule,		
+		JsonpModule,
 		FormsModule,
 		ReactiveFormsModule,
-		RouterModule,
-		NgZorroAntdModule
+		RouterModule
   ],
   exports:[
 		FormsModule,
@@ -61,13 +59,11 @@ import { DialogService }  from './dialog.service';
 		MyTreeSelectComponent,
 		PanelToolbarComponent,
 		PanelHeaderComponent,
-		NgZorroAntdModule,
 		ValuelistDirective,
 		ZxFormInputDirective,
 		ValueFilterPipe
   ],
   declarations: [
-		BaseDialogComponent,
 		MyUploaderComponent,
 		MyTextEditorComponent,
 		MySelectComponent,
@@ -86,12 +82,11 @@ import { DialogService }  from './dialog.service';
 		ValuelistDirective,
 		ZxFormInputDirective,
 		ValueFilterPipe
-	],  
+	],
   entryComponents:[
-	BaseDialogComponent
   ],
   providers: [
-	ValueListDataService, 
+	ValueListDataService,
 	MenuTreeService,
 	ZxTreeService,
     DialogService
@@ -99,6 +94,6 @@ import { DialogService }  from './dialog.service';
 })
 export class AppBaseModule {
   constructor() {
-   
-  }  
+
+  }
 }
