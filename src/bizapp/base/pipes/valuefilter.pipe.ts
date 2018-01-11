@@ -1,5 +1,4 @@
 import { PipeTransform, Pipe } from '@angular/core';
-import { ValueListDataService } from '../valuelist-data.service';
 
 
 @Pipe({name: 'valueFilter'})

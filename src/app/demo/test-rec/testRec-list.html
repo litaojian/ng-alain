@@ -6,7 +6,7 @@
                     <div nz-form-item class="d-flex">
                         <div nz-form-label><label for="no">名称</label></div>
                         <div nz-form-control class="flex-1">
-                            <nz-input [(ngModel)]="queryForm['rolename']" name="rolename" [nzSize]="'large'" [nzPlaceHolder]="'请输入名称'" nzId="rolename"></nz-input>
+                            <nz-input [(ngModel)]="queryForm['testname']" name="testname" [nzSize]="'large'" [nzPlaceHolder]="'请输入名称'" nzId="testname"></nz-input>
                         </div>
                     </div>
                 </div>
@@ -14,8 +14,8 @@
                     <div nz-form-item class="d-flex">
                         <div nz-form-label><label for="status">类型</label></div>
                         <div nz-form-control class="flex-1">
-                            <nz-select #nzSelect [(ngModel)]="queryForm['roletype']" data-value="Business" name="roletype" nzId="roletype" [nzPlaceHolder]="'请选择'" [nzShowSearch]="true" [nzSize]="'large'">
-                                <nz-option *ngFor="let row of valuelist['doctype']; let idx = index" [nzLabel]="row.label" [nzValue]="row.value"></nz-option>
+                            <nz-select #nzSelect [(ngModel)]="queryForm['testtype']" data-value="Business" name="testtype" nzId="testtype" [nzPlaceHolder]="'请选择'" [nzShowSearch]="true" [nzSize]="'large'">
+                                <nz-option *ngFor="let row of docStatus; let idx = index" [nzLabel]="row.label" [nzValue]="row.value"></nz-option>
                             </nz-select>
                         </div>
                     </div>
@@ -86,9 +86,9 @@
                     </td>
                     <td nz-td>{{row.created | date }}</td>
                     <td nz-td>
-                        <a *ngIf="row.roleid" (click)="onEditRow(row)">编辑</a>
+                        <a *ngIf="row.testrecid" (click)="onEditRow(row)">编辑</a>
                         <span nz-table-divider></span>
-                        <a *ngIf="row.roleid" (click)="onDeleteRow(row)">删除</a>
+                        <a *ngIf="row.testrecid" (click)="onDeleteRow(row)">删除</a>
                     </td>
                 </tr>
             </tbody>

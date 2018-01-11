@@ -11,7 +11,7 @@
     </div>
     -->
 </div>
-<form nz-form [formGroup]="formGroup" (ngSubmit)="_submitForm()" [nzLayout]="'vertical'">
+<form nz-form (ngSubmit)="onSubmitBtnClick()" [nzLayout]="'vertical'">
     <nz-card [nzBordered]="false" nzTitle="TestRec">
         <ng-template #body>
             <div nz-row [nzGutter]="16">
@@ -19,7 +19,7 @@
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col><label>名称</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="name">
-                            <nz-input formControlName="name" nzPlaceHolder="请输入名称" nzSize="large"></nz-input>
+                            <nz-input [(ngModel)]="formData['testname']" name="testname" nzPlaceHolder="请输入名称" nzSize="large"></nz-input>
                             <p nz-form-explain *ngIf="false">
                                 请输入名称
                             </p>
@@ -30,9 +30,7 @@
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col><label>数字</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="url">
-                            <nz-input formControlName="url" nzPlaceHolder="请输入" nzSize="large">
-                                <ng-template #addOnBefore>http://</ng-template>
-                                <ng-template #addOnAfter>.com</ng-template>
+                            <nz-input nzPlaceHolder="请输入" nzSize="large" [(ngModel)]="formData['testage']" name="testage">
                             </nz-input>
                             <p nz-form-explain *ngIf="false">
                                 请输入数字
@@ -44,7 +42,7 @@
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col><label>状态</label></div>
                         <div nz-form-control nz-col [nzValidateStatus]="owner">
-                            <nz-select formControlName="owner" [nzPlaceHolder]="'请选择状态'" [nzShowSearch]="true" nzSize="large">
+                            <nz-select [nzPlaceHolder]="'请选择状态'" [(ngModel)]="formData['teststatus']" name="teststatus" [nzShowSearch]="true" nzSize="large">
                                 <nz-option *ngFor="let i of users" [nzLabel]="i.label" [nzValue]="i.value">
                                 </nz-option>
                             </nz-select>
@@ -60,7 +58,7 @@
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col><label>审批员</label></div>
                         <div nz-form-control nz-col [nzValidateStatus]="approver">
-                            <nz-select formControlName="approver" [nzPlaceHolder]="'请选择审批员'" [nzShowSearch]="true" nzSize="large">
+                            <nz-select [nzPlaceHolder]="'请选择审批员'" [nzShowSearch]="true" nzSize="large">
                                 <nz-option *ngFor="let i of users" [nzLabel]="i.label" [nzValue]="i.value">
                                 </nz-option>
                             </nz-select>
@@ -77,7 +75,7 @@
                             <div nz-col [nzSpan]="11">
                                 <div nz-form-item nz-row>
                                     <div nz-form-control [nzValidateStatus]="time_start">
-                                        <nz-datepicker formControlName="time_start" [nzPlaceHolder]="'开始日期'"></nz-datepicker>
+                                        <nz-datepicker [nzPlaceHolder]="'开始日期'"></nz-datepicker>
                                         <p nz-form-explain *ngIf="false">
                                             请选择开始日期
                                         </p>
@@ -90,7 +88,7 @@
                             <div nz-col [nzSpan]="11">
                                 <div nz-form-item nz-row>
                                     <div nz-form-control [nzValidateStatus]="time_end">
-                                        <nz-datepicker formControlName="time_end" [nzPlaceHolder]="'结束日期'"></nz-datepicker>
+                                        <nz-datepicker [nzPlaceHolder]="'结束日期'"></nz-datepicker>
                                         <p nz-form-explain *ngIf="false">
                                             请选择结束日期
                                         </p>
@@ -104,7 +102,7 @@
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col><label>类型</label></div>
                         <div nz-form-control nz-col [nzValidateStatus]="type">
-                            <nz-select formControlName="type" nzSize="large" [nzShowSearch]="true" [nzPlaceHolder]="'请选择类型'">
+                            <nz-select nzSize="large" [nzShowSearch]="true" [nzPlaceHolder]="'请选择类型'">
                                 <nz-option [nzLabel]="'私密'" [nzValue]="'private'"></nz-option>
                                 <nz-option [nzLabel]="'公开'" [nzValue]="'public'"></nz-option>
                             </nz-select>
@@ -117,7 +115,7 @@
             </div>
             <div nz-row [nzGutter]="16" class="text-right">
                 <button nz-button [nzType]="'primary'" nzSize="large">提交</button>
-                <button nz-button [nzType]="'default'" nzSize="large">返回</button>
+                <button nz-button [nzType]="'default'" nzSize="large" (click)="goBack()">返回</button>
             </div>
         </ng-template>
     </nz-card>

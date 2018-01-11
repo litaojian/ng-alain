@@ -55,12 +55,11 @@ export class BaseDetailComponent implements OnInit {
     // 根据参数读取指定记录
     let rowId = this.activatedRoute.snapshot.params['id'];
     let queryParams = this.activatedRoute.snapshot.queryParams;    
+    if (!rowId){
+      rowId = queryParams['id'];
+    }
 
-    this.activatedRoute.params
-      // (+) converts string 'id' to a number
-      .switchMap((params: Params) => this.service.getDetail(+params['id']))
-      .subscribe((resultData: Object) => {
-        //console.log("get Detail responseJSON =" + JSON.stringify(resultData));
+    this.service.getDetail(rowId).then( resultData =>{
 
         let tmpData = resultData["data"];
         if (tmpData == null) {
@@ -85,9 +84,38 @@ export class BaseDetailComponent implements OnInit {
           //console.log(this.formData);
           
         }
+    });
 
+    // this.activatedRoute.params
+    //   // (+) converts string 'id' to a number
+    //   .switchMap((params: Params) => this.service.getDetail(+params['id']))
+    //   .subscribe((resultData: Object) => {
+    //     //console.log("get Detail responseJSON =" + JSON.stringify(resultData));
 
-      });
+    //     let tmpData = resultData["data"];
+    //     if (tmpData == null) {
+    //       tmpData = resultData["rowData"];
+    //     }
+    //     //debugger;
+    //     if (tmpData != null) {
+    //        if (tmpData instanceof Array){
+    //         this.formData = tmpData[0];
+    //        }else{
+    //         this.formData = tmpData;
+    //        }
+    //        this.isNew = false;          
+    //     } else {
+          
+    //       let keys = this.getKeys(queryParams);
+    //       for(let i = 0; i < keys.length;i++){
+    //         //let paramVal:string = queryParams[keys[i]];
+    //         //console.log("debug:" + keys[i] + "=" + queryParams[keys[i]]);
+    //         this.formData[keys[i]] = queryParams[keys[i]];
+    //       }          
+    //       //console.log(this.formData);
+          
+    //     }
+    //   });
 
   }
 

@@ -1,7 +1,6 @@
 import { Component, ViewChild, ContentChildren, OnInit, AfterViewInit, Injector } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { BaseDataService } from './base-data.service';
-import { ValueListDataService } from './valuelist-data.service';
 import { CookieService } from './cookies.service';
 
 export class QueryForm {
@@ -37,7 +36,6 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   valuelist:Object = {};
   
   service: BaseDataService;
-  valueListDataService:ValueListDataService;
   
   activatedRoute: ActivatedRoute;
   router: Router;
@@ -51,7 +49,6 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
     //this.messageService = injector.get(NzMessageService);
     //this.modalService = injector.get(NzModalService);
-    this.valueListDataService = injector.get(ValueListDataService);
    
     //set the view url
     let url = this.router.url;
@@ -254,38 +251,45 @@ export class BaseListComponent implements OnInit, AfterViewInit {
       }
     }
 
-    params["backtoUrl"] = this.service.base64Encode(this.router.url);
-
-    let url = this.service.getContextPath(this.router.url) + this.service.getFormViewUrl();
-    if (url.endsWith("/edit") || url.endsWith("/view")) {
-      url = url.substring(0, (url.length - 5));
-    }
+    params["backtoUrl"] = this.service.base64Encode(this.router.url);    
+    let url = this.getUrl(this.service.getContextPath(this.router.url) + this.service.getFormViewUrl());
     this.router.navigate([url, 'create'], { queryParams: params });
   }
 
   onEditRow(row: Object): void {
     //debugger;
     this.selectedRow = row;
-    let url = this.service.getContextPath(this.router.url) + this.service.getFormViewUrl();
-    if (url.endsWith("/edit") || url.endsWith("/view")) {
-      url = url.substring(0, (url.length - 5));
-    }
+    let url = this.getUrl(this.service.getContextPath(this.router.url) + this.service.getFormViewUrl());
     let rowId = this.getValue(row, this.service.getIdField());
-    this.router.navigate([url, 'edit', rowId], { queryParams: {} });
+    this.router.navigate([url, 'edit'], { queryParams: {'id':rowId} });
     //console.log("edit the row:" + row);
   }
 
   onViewRow(row: Object): void {
     //debugger;
     this.selectedRow = row;
-    let url = this.service.getContextPath(this.router.url) + this.service.getFormViewUrl();
-    if (url.endsWith("/edit") || url.endsWith("/view")) {
-      url = url.substring(0, (url.length - 5));
-    }
+    let url = this.getUrl(this.service.getContextPath(this.router.url) + this.service.getFormViewUrl());
     let rowId = this.getValue(row, this.service.getIdField());
-    this.router.navigate([url, 'view', rowId], { queryParams: {} });
+    this.router.navigate([url, 'view'], { queryParams: {'id':rowId} });
     //console.log(" show the row:" + row);
   }
+
+  
+	getUrl(url:string){
+		let pos = url.lastIndexOf("?");
+        if (pos > 0){
+            url = url.substring(0, pos);
+        }
+        if (url.endsWith("/create")){
+            url = url.substring(0, url.length -7);
+        }else if ( url.endsWith("/edit")){
+            url = url.substring(0, url.length - 5);
+        }else if ( url.endsWith("/view")){
+            url = url.substring(0, url.length -5);
+        }    
+        return url;
+  }
+  
   onQueryFormSubmit(form: any): void {
 
     let fieldNames = this.getKeys(this.queryForm);
@@ -488,7 +492,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     //console.log("loadValueListData "+ this.service.getValuelistTypes().toString() +" ..........");
     if (typenames != null){
         typenames.forEach(typename =>{
-          this.valueListDataService.getValueList2(typename).subscribe(data =>{    
+          this.service.getValueList(typename).subscribe(data =>{    
           let typename, label , value;
           for(let item in data){
             //console.log("item:" + JSON.stringify(data[item]));
@@ -507,7 +511,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
   getValueList(typename:string){
     //console.log("getValueList async..........");
-    return this.valueListDataService.getValueList2(typename);
+    return this.service.getValueList(typename);
   }
   
 }  

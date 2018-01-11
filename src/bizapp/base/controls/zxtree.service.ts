@@ -1,7 +1,6 @@
 import { Injectable, Injector, EventEmitter} from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
-
-import { ValueListDataService } from '../valuelist-data.service';
+import { BaseDataService } from '@bizapp/base/base-data.service';
 
 
 export interface TreeNodeClickEventCallback {
@@ -12,7 +11,7 @@ export interface TreeNodeClickEventCallback {
  *  ztree服务处理类
  */
 @Injectable()
-export class ZxTreeService {
+export class ZxTreeService extends BaseDataService {
 
 	nodeClickEvent = new EventEmitter<any>();
 	
@@ -22,8 +21,8 @@ export class ZxTreeService {
 
 	treeDataCache:Object[];
 	
-    constructor(protected http: Http, injector: Injector, private dataService:ValueListDataService) {
-
+    constructor(protected http: Http, injector: Injector) {
+		super(injector);
 	}
 
 	/**
@@ -53,7 +52,7 @@ export class ZxTreeService {
 		if (this.treeDataCache != null){
 			return Promise.resolve(this.treeDataCache);
 		}		
-		return this.dataService.getTreeData(treeDataSource).then(treeData => {
+		return this.getTreeData(treeDataSource).then(treeData => {
 			this.treeDataCache = treeData;
 			return treeData;
 		});

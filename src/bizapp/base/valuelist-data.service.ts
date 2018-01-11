@@ -63,9 +63,8 @@ export class ValueListDataService extends BaseService {
 	
 		// invoke http request
 		return this.ajaxGet2(url, options)
-			.map(respObject => { 
-				//debugger;
-				let result = JSON.parse(respObject["_body"]);
+			.map(result => { 
+				debugger;
 				if (tableColumns != null && result != null){
 					let columns = tableColumns.split(",");
 					let data = result["data"];
@@ -133,7 +132,9 @@ export class ValueListDataService extends BaseService {
 				return result;
 			})
 			.catch(this.handleError);
+
 	}
+
 
 	handleError(error: any): Promise<any> {
 		//console.error('An error occurred', error); // for demo purposes only

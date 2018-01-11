@@ -65,7 +65,7 @@ export class MyReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     ) { }
 
     private gen(url?: string, reload = false) {
-        console.log("reuse-tab gen call..." + url);
+        //console.log("reuse-tab gen call..." + url);
         if (!url) url = this.srv.getUrl(this.route.snapshot);
         let nowPos = this._list.findIndex(w => w.url === url);
         if (nowPos == -1){

@@ -122,6 +122,11 @@ export class MyReuseTabService implements OnDestroy {
 
         let list = this.menuService.getPathByUrl(url);
         let item = list.pop();
+        if (!item){
+            let url2 = this.splitUrl(url);
+            list = this.menuService.getPathByUrl(url2);
+            item = list.pop();
+        }
         return item ? item.text : url;
     }
     splitUrl(url:string){

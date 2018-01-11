@@ -12,7 +12,6 @@ import { AppBaseModule } from '../base/app-base.module';
 import { BaseDetailComponent } from '../base/base-detail.component';
 import { MyInputComponent } from '../base/controls/myinput.component';
 import { DataObject} from '../base/base-data.service';
-import { ValueListDataService } from '../base/valuelist-data.service';
 import { BizFormComponent } from '../bizpage/bizform.component';
 import { BizFormService } from '../bizpage/bizform.service';
 import { AuthService, LoginInfo } from '../base/acl/auth.service';
