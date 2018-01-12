@@ -39,8 +39,8 @@
                             </div>
                             <span style="padding-left:5px;padding-right:5px;opacity:0">--</span>
                             <div nz-form-control class="flex-1">
-                                <my-select2 *ngIf="!numOne" name="hpzl" [(ngModel)]="search.hpzl" url="/vehicle/api/dic/rest/data/hpzl" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'号牌种类'"></my-select2>
-                                <my-select2 *ngIf="numOne" name="hpzl" [(ngModel)]="search2.hpzl" url="/vehicle/api/dic/rest/data/hpzl" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'号牌种类'"></my-select2>
+                                <my-select2 *ngIf="!numOne" name="hpzl" [(ngModel)]="search.hpzl" url="vehicle/api/dic/rest/data/hpzl" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'号牌种类'"></my-select2>
+                                <my-select2 *ngIf="numOne" name="hpzl" [(ngModel)]="search2.hpzl" url="vehicle/api/dic/rest/data/hpzl" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'号牌种类'"></my-select2>
                             </div>
                         </div>
                 </div>
@@ -48,8 +48,8 @@
                         <div nz-form-item class="d-flex" style="margin-bottom:0px">
                             <div nz-form-label><label for="citys">所属地市：</label></div>
                             <div nz-form-control class="flex-1">
-                                <my-select2 *ngIf="!numOne" name="citys" (onChange)="seachCounty(search.citys)" [(ngModel)]="search.citys" url="/vehicle/api/dic/rest/data/citys" [fieldKey]="{text:'jdmc',value:'dwdm'}" [myPlaceHolder]="'所属地市'"></my-select2>
-                                <my-select2 *ngIf="numOne" name="citys" (onChange)="seachCounty(search2.citys)" [(ngModel)]="search2.citys" url="/vehicle/api/dic/rest/data/citys" [fieldKey]="{text:'jdmc',value:'dwdm'}" [myPlaceHolder]="'所属地市'"></my-select2>
+                                <my-select2 *ngIf="!numOne" name="citys" (onChange)="seachCounty(search.citys)" [(ngModel)]="search.citys" url="vehicle/api/dic/rest/data/citys" [fieldKey]="{text:'jdmc',value:'dwdm'}" [myPlaceHolder]="'所属地市'"></my-select2>
+                                <my-select2 *ngIf="numOne" name="citys" (onChange)="seachCounty(search2.citys)" [(ngModel)]="search2.citys" url="vehicle/api/dic/rest/data/citys" [fieldKey]="{text:'jdmc',value:'dwdm'}" [myPlaceHolder]="'所属地市'"></my-select2>
                             </div>
                             <span style="padding-left:5px;padding-right:5px;opacity:0">--</span>
                             <div nz-form-control class="flex-1">
@@ -87,7 +87,7 @@
                         <nz-card nz-col [nzSpan]="3" class="mb-md" *ngFor="let data of list;let i=index" style="cursor:pointer;margin-left: 12px;border-radius:5px;" (click)="carDetail(i)">
                             <ng-template #title>
                                 <nz-tooltip [nzTitle]="data.kssj+'--'+data.jssj" [nzPlacement]="'top'">
-                                    <p class="det ailName" nz-tooltip>过车查询信息{{i+1}}</p>
+                                    <p class="det ailName" nz-tooltip>过车条件{{i+1}}</p>
                                 </nz-tooltip>
                             </ng-template>
                             <ng-template #extra>
@@ -108,11 +108,28 @@
              </div>-->
         </div>
     </my-panel>
-    <div nz-row [nzGutter]="24" id="showListType">
-        <span [ngClass]="{'activeTab':tabColor == true}" (click)="showListTypes('list')">列表展示</span>
-        <span [ngClass]="{'activeTab':tabColor == false}" (click)="showListTypes('photo')">图表展示</span>
-        <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="putOutMask()">导出</button>
-    </div>
+    <!--<div nz-row [nzGutter]="24">-->
+        <!--<span [ngClass]="{'activeTab':tabColor == true}" (click)="showListTypes('list')">列表展示</span>
+        <span [ngClass]="{'activeTab':tabColor == false}" (click)="showListTypes('photo')">图表展示</span>-->
+       <nz-tabset [nzTabBarExtraTemplate]="tabBarExtraContent">
+            <nz-tab (nzClick)="showListTypes('list')">
+                <ng-template #nzTabHeading>
+                   <!--<i [ngClass]="'anticon anticon-exception'"></i>-->
+                   列表展示
+                </ng-template>
+            </nz-tab>
+            <nz-tab (nzClick)="showListTypes('photo')">
+                <ng-template #nzTabHeading>
+                  <!--<i [ngClass]="'anticon anticon-picture'"></i>-->
+                  图表展示
+                </ng-template>
+            </nz-tab>
+            <ng-template #tabBarExtraContent>
+              <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="putOutMask()">导出</button>
+            </ng-template>
+        </nz-tabset>
+        <!--<button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="putOutMask()">导出</button>-->
+    <!--</div>-->
  </div>
 <nz-table #nzTable id="searchList" [nzPageSize]="pagination.rows" [nzPageIndex]="pagination.curPage" [nzAjaxData]="data" nzShowQuickJumper nzShowTotal [nzTotal]="datanums" (nzPageIndexChange)="indexChange($event)">
             <!--<ng-template #nzFixedHeader>-->
@@ -190,7 +207,7 @@
                 </div>
             </div>
 </my-table>-->
- <my-loading *ngIf="loading"></my-loading>
+<my-loading *ngIf="loading"></my-loading>
 <!--显示详情-->
 <nz-modal [nzContent]="modalContent">
     <ng-template #title>
@@ -305,7 +322,7 @@
     </ng-template>
 </nz-modal>
 <!--导出数据-->
-<my-modal [isModal]="isModalShow_put">
+<my-modal [isModal]="isModalShow_put" (initRows)=hasChange($event)>
       <div class="myModal-title">
           <span>导出数据</span>
       </div>

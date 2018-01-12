@@ -62,14 +62,12 @@
             <nz-card>
                 <nz-table #nzTable
                     [nzAjaxData]="tableData"
-                    [nzShowSizeChanger]="true"
                     [nzLoading]="loading"
                     [nzTotal]="totalCount"
-                    [(nzPageIndex)]="pi"
-                    (nzPageIndexChange)="load()"
-                    [(nzPageSize)]="ps"
-                    nzShowTotal
-                    (nzPageSizeChange)="load()">
+                    [(nzPageIndex)]="pageIndex"
+                    (nzPageIndexChange)="goPage()"
+                    [(nzPageSize)]="pageSize"
+                    nzShowTotal>
                     <thead nz-thead>
                         <tr>
                             <th nz-th><span>序号</span></th>
