@@ -11,9 +11,6 @@ import { ModalComponent }  from '../v2/mymodal.component';
 import { PanelComponent }  from '../v2/mypanel.component';
 import { TabelComponent }  from '../v2/mytabel.component';
 import { HeaderSearchComponent }  from '../v2/searchInput.component';
-import { NzDemoModalServiceComponent }  from '../mytest/form.component';
-import { NzModalCustomizeComponent }  from '../mytest/form-test.component';
-import { dialogService } from '../mytest/dialog.service';
 @NgModule({
     imports: [
         CommonModule,
@@ -30,9 +27,7 @@ import { dialogService } from '../mytest/dialog.service';
         ModalComponent,
         PanelComponent,
         TabelComponent,
-        HeaderSearchComponent,
-        NzDemoModalServiceComponent,
-        NzModalCustomizeComponent
+        HeaderSearchComponent
     ],
     declarations: [
         MySelect2Component,
@@ -42,14 +37,12 @@ import { dialogService } from '../mytest/dialog.service';
         ModalComponent,
         PanelComponent,
         TabelComponent,
-        HeaderSearchComponent,
-        NzDemoModalServiceComponent,
-        NzModalCustomizeComponent
+        HeaderSearchComponent
     ],
-    entryComponents: [
-        NzModalCustomizeComponent
-    ],
-    providers: [dialogService],
+    // entryComponents: [
+    //     NzModalCustomizeComponent
+    // ],
+    providers: [],
 }) 
 
 export class AppBaseModule {
