@@ -43,7 +43,7 @@
             }, {
                 "text": "车辆布控",
                 "translate": "",
-                "link": "/carControl/list",
+                "link": "/carControl/index",
                 "shortcut": true,
                 "icon": "icon-compass"
             }, {

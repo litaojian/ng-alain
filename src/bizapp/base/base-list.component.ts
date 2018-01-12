@@ -110,7 +110,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     }
 
     let queryParams = {};
-    let keys = this.getKeys(this.queryForm)
+    let keys = this.getKeys(this.queryForm);
     for (let i = 0; i < keys.length; i++) {
       queryParams[keys[i]] = this.queryForm[keys[i]];
     }
