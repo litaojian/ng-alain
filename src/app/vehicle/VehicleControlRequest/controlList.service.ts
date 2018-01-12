@@ -6,7 +6,7 @@ import { HttpClient } from "@angular/common/http";
 export class ControlListService extends BaseDataService  {
     constructor(protected injector:Injector){
         super(injector);
-        this.setApiUrl("/api/data/monitor");
+        this.setApiUrl("/api/rest/carControl");
         this.setIsTest(false);
         this.setIdField("bkxh");
     }
