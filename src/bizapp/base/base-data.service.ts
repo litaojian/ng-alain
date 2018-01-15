@@ -245,6 +245,14 @@ export class BaseDataService extends BaseService {
 		if (params == null){
 			params = {};
 		}
+
+		let keys = this.getKeys(params);
+    	for (let i = 0; i < keys.length; i++) {
+			if (params[keys[i]] == null){
+				params.delete(keys[i]);
+			}
+		}
+	
 		let headers = new Headers({ 'Content-Type': 'application/json','Authorization': this.getAccessToken()});
 		let options = new RequestOptions({
 			headers: headers,

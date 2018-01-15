@@ -39,10 +39,6 @@
                 <div nz-col [nzSpan]="expandForm ? 24 : 8" class="mb-md" [class.text-right]="expandForm">
                     <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading" [nzSize]="'large'">查询</button>
                     <button nz-button type="reset" [nzSize]="'large'" class="mx-sm">重置</button>
-                    <a (click)="expandForm=!expandForm">
-                    {{expandForm ? '收起' : '展开'}}
-                    <i class="anticon" [class.anticon-down]="!expandForm" [class.anticon-up]="expandForm"></i>
-                </a>
                 </div>
             </div>
         </form>
@@ -98,7 +94,7 @@
             </thead>
             <tbody nz-tbody>
                 <tr nz-tbody-tr *ngFor="let row of nzTable.data">
-                    <td nz-td [nzCheckbox]="true">
+                    <td nz-td [nzCheckbox]="true" *ngIf="row.roleid">
                         <label nz-checkbox [nzDisabled]="row.disabled" [(ngModel)]="row.checked" (ngModelChange)="refreshStatus($event)">
                     </label>
                     </td>
@@ -111,7 +107,7 @@
                     <td nz-td>{{row.created | date }}</td>
                     <td nz-td>
                         <a *ngIf="row.roleid" (click)="onEditRow(row)">编辑</a>
-                        <span nz-table-divider></span>
+                        <span nz-table-divider *ngIf="row.roleid"></span>
                         <a *ngIf="row.roleid" (click)="onDeleteRow(row)">删除</a>
                     </td>
                 </tr>

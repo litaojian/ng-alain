@@ -4,12 +4,12 @@ import { NzMessageService } from 'ng-zorro-antd';
 import { ControlListService } from "./controlList.service";
 
 export class MyForm extends QueryForm{
-    hphm:string = "";
-    bkqssj:string = "";
-    bkjzsj:string = "";
-    YgNetLoginToken:string = "b690732a-212b-4e74-bf2f-d13b37feb8b0";
-    YgNetLoginId:string = "yangguangnaite";
-    tokenServerName:string = "ssov3";
+    hphm:string;
+    bkqssj:string;
+    bkjzsj:string;
+    // YgNetLoginToken:string = "b690732a-212b-4e74-bf2f-d13b37feb8b0";
+    // YgNetLoginId:string = "yangguangnaite";
+    // tokenServerName:string = "ssov3";
 
 }
 
@@ -22,8 +22,6 @@ export class ControlListComponent extends BaseListComponent implements OnInit {
         super(Injector,cl);
         this.queryForm = new MyForm();
      }
-    pi = 1;
-    ps = 10;
     loading = false;
     args: any = { };
     _indeterminate = false;
@@ -31,11 +29,11 @@ export class ControlListComponent extends BaseListComponent implements OnInit {
 
     ngOnInit() {
         this.setPageSize(10);
-        this.getList("seach",1,10);
+        // this.getList("seach",1,10);
      }
 
-     getTableList(){
-
+     goPage(){
+        this.getList("common",this.pageIndex,this.pageSize);
      }
      showMsg(msg: string,row) {
         // this.message.info(msg);
