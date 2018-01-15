@@ -257,12 +257,11 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   }
 
   onEditRow(row: Object): void {
-    debugger;
+    // debugger;
     this.selectedRow = row;
     let url = this.getUrl(this.service.getContextPath(this.router.url) + this.service.getFormViewUrl());
     let rowId = this.getValue(row, this.service.getIdField());
-    // this.router.navigate([url, 'edit'], { queryParams: {'id':rowId} });
-    this.router.navigate(['/carSearch/edit']);
+    this.router.navigate([url, 'edit'], { queryParams: {'id':rowId} });
     //console.log("edit the row:" + row);
   }
 
