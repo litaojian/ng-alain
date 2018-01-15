@@ -213,6 +213,7 @@ onSave(){
  }
 //根据行政区划 查询区县
   seachCounty(xzqh){
+        console.log(xzqh);
         var xzqhVal=xzqh.substring(0,4);
         
         this.TrackSearchService.getCounty(xzqhVal).subscribe(res =>{

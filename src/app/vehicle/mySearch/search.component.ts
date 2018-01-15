@@ -99,8 +99,8 @@ export class mySearchComponent extends BaseListComponent implements OnInit {
     ngOnInit() {
         this.getData();
         this.setPageSize(10);
-        this.queryForm.kssj="2017-10-12";
-        this.getList("seach",1,10);
+        // this.queryForm.kssj="2017-10-12";
+        this.getList("trackSearch",1,10);
         console.log(this.queryForm.command);
     }
 
@@ -127,9 +127,10 @@ export class mySearchComponent extends BaseListComponent implements OnInit {
           }
         });
         subscription.subscribe(result => {
-         
-          this.queryForm.kssj=result.kssj;
-          console.log(result.length);
+            if(result.kssj!=undefined){
+               this.queryForm.kssj=result.kssj;
+               this.getList("trackSearch",1,10);
+            }
         })
     }
 

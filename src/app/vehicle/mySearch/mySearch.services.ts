@@ -30,9 +30,9 @@ import { HttpClient } from "@angular/common/http";
 export class mySearchService extends BaseDataService  {
     constructor(protected injector:Injector){
         super(injector);
-        this.setApiUrl("/api/data/monitor");
+        this.setApiUrl("/api/rest/passrec");
         this.setIsTest(false);
-        this.setIdField("bkxh");
+        this.setIdField("fxbh");
     }
 
 }

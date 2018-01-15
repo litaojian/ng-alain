@@ -34,7 +34,15 @@
                 "link": "/trackSearch/list",
                 "shortcut": true,
                 "icon": "icon-compass"
-            }, {
+            }, 
+            {
+                "text": "过车查询测试",
+                "translate": "",
+                "link": "/carSearch/index",
+                "shortcut": true,
+                "icon": "icon-compass"
+            },
+            {
                 "text": "区域碰撞",
                 "translate": "",
                 "link": "/regional/list",
