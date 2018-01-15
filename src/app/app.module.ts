@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 //import { RoutesModule } from './routes/routes.module';
 import { AdminModule } from './admin/admin.module';
 import { LayoutModule } from './layout/layout.module';
-import { StartupService } from '@core/startup/startup.service';
+import { StartupService } from './admin/services/startup.service';
+//import { StartupService } from '@core/startup/startup.service';
 import { DefaultInterceptor } from '@core/net/default.interceptor';
 import { SimpleInterceptor } from '@delon/auth';
 // angular i18n
@@ -40,7 +41,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        DelonModule,
+        DelonModule.forRoot(),
         CoreModule,
         SharedModule,
         LayoutModule,
