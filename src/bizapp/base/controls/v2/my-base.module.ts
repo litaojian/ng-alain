@@ -11,6 +11,8 @@ import { ModalComponent }  from '../v2/mymodal.component';
 import { PanelComponent }  from '../v2/mypanel.component';
 import { TabelComponent }  from '../v2/mytabel.component';
 import { HeaderSearchComponent }  from '../v2/searchInput.component';
+import { NzSelectComponent }  from '../v2/my-select2.component';
+import { selectService } from './my-select2.service';
 @NgModule({
     imports: [
         CommonModule,
@@ -27,7 +29,8 @@ import { HeaderSearchComponent }  from '../v2/searchInput.component';
         ModalComponent,
         PanelComponent,
         TabelComponent,
-        HeaderSearchComponent
+        HeaderSearchComponent,
+        NzSelectComponent
     ],
     declarations: [
         MySelect2Component,
@@ -37,12 +40,13 @@ import { HeaderSearchComponent }  from '../v2/searchInput.component';
         ModalComponent,
         PanelComponent,
         TabelComponent,
-        HeaderSearchComponent
+        HeaderSearchComponent,
+        NzSelectComponent
     ],
     // entryComponents: [
     //     NzModalCustomizeComponent
     // ],
-    providers: [],
+    providers: [selectService],
 }) 
 
 export class AppBaseModule {

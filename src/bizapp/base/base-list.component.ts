@@ -110,7 +110,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     }
 
     let queryParams = {};
-    let keys = this.getKeys(this.queryForm)
+    let keys = this.getKeys(this.queryForm);
     for (let i = 0; i < keys.length; i++) {
       queryParams[keys[i]] = this.queryForm[keys[i]];
     }
@@ -257,7 +257,11 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   }
 
   onEditRow(row: Object): void {
+<<<<<<< HEAD
     debugger;
+=======
+    // debugger;
+>>>>>>> 7cee9b28ab69dabd91fc062b8675b09450c609c9
     this.selectedRow = row;
     let url = this.getUrl(this.service.getContextPath(this.router.url) + this.service.getFormViewUrl());
     let rowId = this.getValue(row, this.service.getIdField());

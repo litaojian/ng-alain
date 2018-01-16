@@ -1,6 +1,6 @@
 {
     "/remote/api": {
-        "target": "http://192.168.2.176:8082/demo",
+        "target": "http://localhost:8080/work",
         "pathRewrite": { "": "" },
         "secure": false
     },

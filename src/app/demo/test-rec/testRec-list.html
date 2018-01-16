@@ -20,6 +20,10 @@
                         </div>
                     </div>
                 </div>
+                <div nz-col [nzSpan]="expandForm ? 24 : 8" class="mb-md" [class.text-right]="expandForm">
+                    <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading" [nzSize]="'large'">查询</button>
+                    <button nz-button type="reset" [nzSize]="'large'" class="mx-sm">重置</button>
+                </div>
             </div>
         </form>
         <div class="mb-md">
@@ -39,7 +43,7 @@
                 </nz-dropdown>
             </ng-container>
         </div>
-        <nz-table #nzTable [nzDataSource]="tableData" [nzPageSize]="pageSize" [nzLoading]="loading" (nzPageIndexChange)="goPage($event)">
+        <nz-table #nzTable [nzAjaxData]="tableData" [nzPageSize]="pageSize" [nzLoading]="loading" (nzPageIndexChange)="onPageLinkClick($event)" [nzTotal]="totalCount" [nzShowTotal]="true">
             <thead nz-thead>
                 <tr>
                     <th nz-th [nzCheckbox]="true">
@@ -47,6 +51,7 @@
                     </th>
                     <th nz-th><span>编号</span></th>
                     <th nz-th><span>名称</span></th>
+                    <th nz-th><span>年龄</span></th>
                     <th nz-th>
                         <span>描述</span>
                     </th>
@@ -78,8 +83,9 @@
                         <label nz-checkbox [nzDisabled]="row.disabled" [(ngModel)]="row.checked" (ngModelChange)="refreshStatus($event)">
                         </label>
                     </td>
+                    <td nz-td>{{row.testrecid}}</td>
                     <td nz-td>{{row.testname}}</td>
-                    <td nz-td>{{row.testtype}}</td>
+                    <td nz-td>{{row.testage}}</td>
                     <td nz-td class="text-center">{{row.description}}</td>
                     <td nz-td>
                         <my-label data-source="docStatus" [value]='row.teststatus'></my-label>

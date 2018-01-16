@@ -36,7 +36,8 @@ const routes: Routes = [
             { path: 'trackSearch', loadChildren: '../vehicle/VehicleSearch/trackSearch.module#TrackModule'},
             { path: 'regional', loadChildren: '../vehicle/VehicleArea/regional.module#RegionalModule'},
             { path: 'carControl', loadChildren: '../vehicle/VehicleControlRequest/vehicleControl.module#VehicleControlModule'},
-            { path: 'page', loadChildren: '../../bizapp/bizpage/page.module#PageModule'}
+            { path: 'page', loadChildren: '../../bizapp/bizpage/page.module#PageModule'},
+            { path: 'carSearch', loadChildren: '../vehicle/mySearch/mySearch.modules#SearchModule'}
 
         ]
     },
