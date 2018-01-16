@@ -5,7 +5,7 @@
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col><label>申请人</label></div>
                         <div nz-form-control nz-col>
-                            <nz-input  nzSize="large"></nz-input>
+                            <nz-input formControlName="sqry" nzSize="large"></nz-input>
                         </div>
                     </div>
                 </div>
@@ -13,7 +13,7 @@
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col><label>申请单位</label></div>
                         <div nz-form-control nz-col>
-                            <nz-input  nzSize="large"></nz-input>
+                            <nz-input formControlName="sqdw" nzSize="large"></nz-input>
                         </div>
                     </div>
                 </div>
@@ -21,14 +21,14 @@
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col><label>申请日期</label></div>
                         <div nz-form-control nz-col>
-                                <nz-input  nzSize="large"></nz-input>
+                                <nz-input formControlName="sqrj"  nzSize="large"></nz-input>
                         </div>
                     </div>
                 </div>
                 <div nz-col nzMd="6" nzSm="12" nzXs="24">
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col><label>联系电话</label></div>
-                        <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="name3">
+                        <div nz-form-control nz-col [nzValidateStatus]="name3">
                             <nz-input formControlName="name3" nzPlaceHolder="联系电话" nzSize="large"></nz-input>
                             <p nz-form-explain *ngIf="(name3.dirty || name3.touched) && name3.errors?.required">
                                 联系电话
@@ -42,13 +42,13 @@
             <div nz-row [nzGutter]="16">
                 <div nz-col nzMd="8" nzSm="12" nzXs="24">
                     <div nz-form-item nz-row>
-                        <div nz-form-label nz-col><label>号牌号码</label>
+                        <div nz-form-label nz-col><label><span class="req">*</span>号牌号码</label>
                             <nz-tooltip [nzTitle]="'例如:粤A12345'">
                                 <i nz-tooltip class="anticon anticon-question-circle-o"></i>
                             </nz-tooltip>
                         </div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="hphm">
-                            <nz-input formControlName="hphm" nzPlaceHolder="请输入号牌号码" [(ngModel)]="car.hphm" nzSize="large"></nz-input>
+                            <nz-input formControlName="hphm" nzPlaceHolder="请输入号牌号码" nzSize="large"></nz-input>
                             <p nz-form-explain *ngIf="(hphm.dirty || hphm.touched) && hphm.errors?.required">
                                 请输入号牌号码
                             </p>
@@ -57,7 +57,7 @@
                 </div>
                 <div nz-col nzMd="8" nzSm="12" nzXs="24">
                     <div nz-form-item nz-row>
-                        <div nz-form-label nz-col><label>号牌种类</label></div>
+                        <div nz-form-label nz-col><label><span class="req">*</span>号牌种类</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="hpzl">
                             <nz-select formControlName="hpzl" [nzPlaceHolder]="'请选择执行人'" [nzShowSearch]="true" nzSize="large">
                                 <nz-option *ngFor="let i of users" [nzLabel]="i.label" [nzValue]="i.value">
@@ -75,7 +75,7 @@
             <div nz-row [nzGutter]="16">
                 <div nz-col nzMd="8" nzSm="16" nzXs="24">
                     <div nz-form-item nz-row>
-                        <div nz-form-label nz-col><label>布控类别</label></div>
+                        <div nz-form-label nz-col><label><span class="req">*</span>布控类别</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="bkdl" style="width: 30%;display: inline-block;">
                             <nz-select formControlName="bkdl" [nzPlaceHolder]="'布控大类'" [nzShowSearch]="true" nzSize="large">
                                 <nz-option *ngFor="let i of users" [nzLabel]="i.label" [nzValue]="i.value">
@@ -98,7 +98,7 @@
                 </div>
                 <div nz-col nzMd="8" nzSm="16" nzXs="24">
                     <div nz-form-item nz-row>
-                        <div nz-form-label nz-col><label>布控性质</label></div>
+                        <div nz-form-label nz-col><label><span class="req">*</span>布控性质</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="bkxz">
                             <nz-select formControlName="bkxz" [nzPlaceHolder]="'请选择执行人'" [nzShowSearch]="true" nzSize="large">
                                 <nz-option *ngFor="let i of users" [nzLabel]="i.label" [nzValue]="i.value">
@@ -112,7 +112,7 @@
                 </div>
                 <div nz-col nzMd="8" nzSm="16" nzXs="24">
                     <div nz-form-item nz-row>
-                        <div nz-form-label nz-col><label>布控级别</label></div>
+                        <div nz-form-label nz-col><label><span class="req">*</span>布控级别</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="bkjb">
                             <nz-select formControlName="bkjb" [nzPlaceHolder]="'请选择布控级别'" [nzShowSearch]="true" nzSize="large">
                                 <nz-option *ngFor="let i of users" [nzLabel]="i.label" [nzValue]="i.value">
@@ -128,7 +128,7 @@
             <div nz-row [nzGutter]="16">
                 <div nz-col nzMd="8" nzSm="16" nzXs="24">
                     <div nz-form-item nz-row>
-                        <div nz-form-label nz-col><label>布控起始时间</label></div>
+                        <div nz-form-label nz-col><label><span class="req">*</span>布控起始时间</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="bkqssj">
                             <nz-datepicker formControlName="bkqssj" style="width:100%" nzShowTime [nzFormat]="'YYYY-MM-DD'"></nz-datepicker>
                             <p nz-form-explain *ngIf="(bkqssj.dirty || bkqssj.touched) && bkqssj.errors?.required">
@@ -139,7 +139,7 @@
                 </div>
                 <div nz-col nzMd="8" nzSm="16" nzXs="24">
                     <div nz-form-item nz-row>
-                        <div nz-form-label nz-col><label>布控截止时间</label></div>
+                        <div nz-form-label nz-col><label><span class="req">*</span>布控截止时间</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="bkjzsj">
                             <nz-datepicker formControlName="bkjzsj" style="width:100%" nzShowTime [nzFormat]="'YYYY-MM-DD'"></nz-datepicker>
                             <p nz-form-explain *ngIf="(bkjzsj.dirty || bkjzsj.touched) && bkjzsj.errors?.required">
@@ -150,7 +150,7 @@
                 </div>
                 <div nz-col nzMd="8" nzSm="16" nzXs="24">
                     <div nz-form-item nz-row>
-                        <div nz-form-label nz-col><label>报警预案</label></div>
+                        <div nz-form-label nz-col><label><span class="req">*</span>报警预案</label></div>
                         <div nz-form-control nz-col nzHasFeedback [nzValidateStatus]="bjya">
                             <nz-select formControlName="bjya" [nzPlaceHolder]="'请选择报警预案'" [nzShowSearch]="true" nzSize="large">
                                 <nz-option *ngFor="let i of users" [nzLabel]="i.label" [nzValue]="i.value">
