@@ -233,7 +233,7 @@ export class BaseDataService extends BaseService {
 
 
 	getList(action: string, params: any, pageIndex: number, pageSize: number, customUrl?:string): Promise<Object> {
-		//debugger;
+		// debugger;
 		let url = this.apiUrl;
 		if (customUrl != null){
 			url = this.formatUrl(customUrl);

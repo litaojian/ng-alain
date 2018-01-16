@@ -4,10 +4,11 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { HttpModule, JsonpModule } from '@angular/http';
 import { FormsModule,ReactiveFormsModule}    from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { MyTableComponent }  from './controls/mytable.component';
 import { MyFormComponent }  from './controls/myform.component';
 import { MySelectComponent }  from './controls/myselect.component';
+import { NzSelect2Component }  from './controls/my-select2.component';
 import { MyUploaderComponent }  from './controls/myuploader.component';
 import { MyLookupComponent }  from './controls/mylookup.component';
 import { MyTextEditorComponent }  from './controls/mytexteditor.component';
@@ -27,6 +28,7 @@ import { PanelToolbarComponent }  from './panel-toolbar.component';
 import { BaseDialogComponent }  from './base-dialog.component';
 
 import { ZxTreeService } from './controls/zxtree.service';
+import { SelectService } from './controls/my-select2.service';
 import { MenuTreeService } from './menu-tree.service';
 import { DialogService }  from './dialog.service';
 
@@ -37,7 +39,8 @@ import { DialogService }  from './dialog.service';
 		JsonpModule,
 		FormsModule,
 		ReactiveFormsModule,
-		RouterModule
+		RouterModule,
+		NgZorroAntdModule
   ],
   exports:[
 		FormsModule,
@@ -60,7 +63,8 @@ import { DialogService }  from './dialog.service';
 		PanelHeaderComponent,
 		ValuelistDirective,
 		ZxFormInputDirective,
-		ValueFilterPipe
+		ValueFilterPipe,
+		NzSelect2Component
   ],
   declarations: [
 		MyUploaderComponent,
@@ -80,14 +84,16 @@ import { DialogService }  from './dialog.service';
 		PanelHeaderComponent,
 		ValuelistDirective,
 		ZxFormInputDirective,
-		ValueFilterPipe
+		ValueFilterPipe,
+		NzSelect2Component
 	],
   entryComponents:[
   ],
   providers: [
 	MenuTreeService,
 	ZxTreeService,
-    DialogService
+    DialogService,
+	SelectService
   ]
 })
 export class AppBaseModule {

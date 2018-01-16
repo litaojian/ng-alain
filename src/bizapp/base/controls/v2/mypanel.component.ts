@@ -9,6 +9,7 @@ import { NzModalService } from 'ng-zorro-antd';
             <div class="widget-header"> 
                 <i class="anticon anticon-{{myClass}}"></i>
                 <h3>{{myTitle}}</h3>
+                <nz-select></nz-select>
                 <ng-content select=".panel-title"></ng-content> 
             </div>
             <div class="widget-content"> 
