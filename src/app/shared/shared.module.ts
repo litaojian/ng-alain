@@ -13,6 +13,9 @@ import { TranslateModule } from '@ngx-translate/core';
 // region: third libs
 import { CountdownModule } from 'ngx-countdown';
 import { AppBaseModule } from 'bizapp/base/app-base.module';
+// import { MyAppBaseModule } from 'bizapp/base/components/myapp-base.module';
+import { MySelectModule } from 'bizapp/base/components/myselect/myselect.module';
+import { MyLoadingModule } from 'bizapp/base/components/myloading/myloading.module';
 import { MyReuseTabModule } from '../admin/reuse-tab/reuse-tab.module';
 
 const THIRDMODULES = [ CountdownModule];
@@ -24,7 +27,7 @@ const COMPONENTS = [];
 const DIRECTIVES = [];
 // endregion
 
-@NgModule({
+@NgModule({  
     imports: [
         CommonModule,
         FormsModule,
@@ -38,6 +41,8 @@ const DIRECTIVES = [];
         // third libs
         AppBaseModule,
         MyReuseTabModule.forRoot(),
+        MySelectModule,
+        MyLoadingModule,
         ...THIRDMODULES
     ],
     declarations: [
@@ -58,6 +63,8 @@ const DIRECTIVES = [];
         TranslateModule,
         // third libs
         AppBaseModule,
+        MySelectModule,
+        MyLoadingModule,
         MyReuseTabModule,
         ...THIRDMODULES,
         // your components

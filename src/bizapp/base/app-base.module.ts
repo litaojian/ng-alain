@@ -8,7 +8,6 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { MyTableComponent }  from './controls/mytable.component';
 import { MyFormComponent }  from './controls/myform.component';
 import { MySelectComponent }  from './controls/myselect.component';
-import { NzSelect2Component }  from './controls/my-select2.component';
 import { MyUploaderComponent }  from './controls/myuploader.component';
 import { MyLookupComponent }  from './controls/mylookup.component';
 import { MyTextEditorComponent }  from './controls/mytexteditor.component';
@@ -28,7 +27,6 @@ import { PanelToolbarComponent }  from './panel-toolbar.component';
 import { BaseDialogComponent }  from './base-dialog.component';
 
 import { ZxTreeService } from './controls/zxtree.service';
-import { SelectService } from './controls/my-select2.service';
 import { MenuTreeService } from './menu-tree.service';
 import { DialogService }  from './dialog.service';
 
@@ -63,8 +61,7 @@ import { DialogService }  from './dialog.service';
 		PanelHeaderComponent,
 		ValuelistDirective,
 		ZxFormInputDirective,
-		ValueFilterPipe,
-		NzSelect2Component
+		ValueFilterPipe
   ],
   declarations: [
 		MyUploaderComponent,
@@ -84,16 +81,14 @@ import { DialogService }  from './dialog.service';
 		PanelHeaderComponent,
 		ValuelistDirective,
 		ZxFormInputDirective,
-		ValueFilterPipe,
-		NzSelect2Component
+		ValueFilterPipe
 	],
   entryComponents:[
   ],
   providers: [
 	MenuTreeService,
 	ZxTreeService,
-    DialogService,
-	SelectService
+    DialogService
   ]
 })
 export class AppBaseModule {

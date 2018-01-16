@@ -6,7 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SelectService } from './my-select2.service';
 declare var $: any;
 @Component({
-  selector: 'ng-select2',
+  selector: 'nz-select2',
   templateUrl: './my-select2.component.html',
   providers: [ 
           {
