@@ -3,7 +3,7 @@ import { Component, forwardRef, Input,OnInit,ElementRef,Output,EventEmitter} fro
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { selectService } from './my-select2.service';
+import { SelectService } from './my-select2.service';
 declare var $: any;
 @Component({
   selector: 'nz-select2',
@@ -11,12 +11,12 @@ declare var $: any;
   providers: [ 
           {
             provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => NzSelectComponent),//注入表单控件
+            useExisting: forwardRef(() => NzSelect2Component),//注入表单控件
             multi: true
           }]
 })
-export class NzSelectComponent implements OnInit{
-   constructor(private selectService:selectService) { 
+export class NzSelect2Component implements OnInit{
+   constructor(private selectService:SelectService) { 
     }
   private innerValue: any = ''; 
   //监听绑定的值，与外岑的ngModel相互绑定

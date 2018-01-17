@@ -65,13 +65,14 @@
           </div>
       </div>
 </my-modal>
+<!--查询条件部分 *ngIf="!ifMoreSearch"-->
 <div class="tab-pane-all">
-    <my-panel [myTitle]="'区域选择'" [myClass]="'car'">
-        <div class="panel-content">
-              <div nz-row [nzGutter]="24" style="margin-top:14px">
+     <standard-form-row [title]="'区域选择'" block style="padding-bottom: 0px">
+            <div class="panel-content">
+              <div nz-row [nzGutter]="24">
                         <nz-card nz-col [nzSpan]="3" class="mb-md" *ngFor="let data of list;let i=index" style="cursor:pointer;margin-left: 12px;border-radius:5px;" (click)="carDetail(i)">
                             <ng-template #title>
-                                <nz-tooltip [nzTitle]="data.gcsj_gt+'--'+data.gcsj_lte" [nzPlacement]="'top'">
+                                <nz-tooltip [nzTitle]="data.kssj+'--'+data.jssj" [nzPlacement]="'top'">
                                     <p class="det ailName" nz-tooltip>区域信息{{i+1}}</p>
                                 </nz-tooltip>
                             </ng-template>
@@ -86,15 +87,54 @@
                                 </nz-tooltip>
                             </ng-template>
                     </nz-card>
-             </div> 
-             <div nz-row [nzGutter]="24" class="searchButton">
-                   <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="getSearchData(1)">查询</button>
-             </div> 
+             </div>
         </div>
-    </my-panel>
+    </standard-form-row>
+    <standard-form-row [title]="'其它选项'" grid last>
+    </standard-form-row>
  </div>
+<!--<nz-table #nzTable id="searchList" [nzPageSize]="pagination.rows" [nzPageIndex]="pagination.curPage" [nzAjaxData]="data" nzShowQuickJumper nzShowTotal [nzTotal]="datanums" (nzPageIndexChange)="indexChange($event)">
+            
+                <thead nz-thead *ngIf="showLp==true">
+                <tr>
+                    <th nz-th [nzWidth]="'100px'"><span>号牌号码</span></th>
+                    <th nz-th [nzWidth]="'100px'"><span>号牌种类</span></th>
+                    <th nz-th [nzWidth]="'150px'"><span>过车时间</span></th>
+                    <th nz-th [nzWidth]="'350px'"><span>卡口名称</span></th>
+                    <th nz-th [nzWidth]="'150px'"><span>行驶方向</span></th>
+                    <th nz-th [nzWidth]="'100px'"><span>行驶速度</span></th>
+                    <th nz-th [nzWidth]="'100px'"><span>车辆类型</span></th>
+                    <th nz-th [nzWidth]="'50px'"><span>操作</span></th>
+                </tr>
+                </thead>
+           
+            <tbody nz-tbody *ngIf="showLp==true">
+                <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                    <td nz-td>{{data.hphm}}</td>
+                    <td nz-td>{{data.hpzl}}</td>
+                    <td nz-td>{{data.gcsj}}</td>
+                    <td nz-td title="{{data.kkbh}}">{{data.kkbh}}</td>
+                    <td nz-td>{{data.xsfx}}</td>
+                    <td nz-td>{{data.clsu}}</td>
+                    <td nz-td>{{data.cllx}}</td>
+                    <td nz-td style="color:#108ee9;cursor:pointer" (click)="carDetailMore(title, content,footer,800,data)">详情</td>
+               </tr>
+            </tbody>
+            <div nz-row [nzGutter]="24" class="showCarPhoto" *ngIf="showLp==false">
+                    <div nz-col [nzSpan]="6" *ngFor="let item of data">
+                        <img src="{{item.tp1}}" alt="" (error)="errorImg()" *ngIf="ifErrorImg==false" title="{{item.kkbh}}" (click)="carDetailMore(title, content,footer,800,data)">
+                        <img src="../../../../assets/img/error.jpg" alt=""  *ngIf="ifErrorImg==true" title="{{item.kkbh}}" (click)="carDetailMore(title, content,footer,800,data)">
+                        <dl>
+                                <dt></dt>
+                                <dd>{{item.hphm}}  {{item.hpzl}}</dd>
+                                <dd>{{item.gcsj}}</dd>
+                            
+                        </dl>
+                    </div>
+            </div>
+</nz-table>-->
 <!--列表数据显示部分 *ngIf="expandForm" [nzPageSize]="50"-->
-<!--<nz-table #nzTable [nzScroll]="{ y: 540 }" id="searchList" [nzPageSize]="8" [nzPageIndex]="1" [nzAjaxData]="data" nzShowQuickJumper nzShowTotal [nzTotal]="data_total" (nzPageIndexChange)="getSearchData($event)">
+<nz-table #nzTable [nzScroll]="{ y: 540 }" id="searchList" [nzPageSize]="8" [nzPageIndex]="1" [nzAjaxData]="data" nzShowQuickJumper nzShowTotal [nzTotal]="data_total" (nzPageIndexChange)="getSearchData($event)">
       <ng-template #nzFixedHeader>
         <thead nz-thead>
           <tr>
@@ -111,8 +151,8 @@
           <td nz-td *ngFor="let tdList of list">2{{i}}</td>
         </tr>
       </tbody>
-</nz-table>-->
-<my-table [Myurl]="'remote/api/rest/passrec'" [ifUrl]="Url" (tableLists)="getTabelList($event)" [searchData]="search1">
+</nz-table>
+<!--<my-table [Myurl]="'remote/api/rest/passrec'" [ifUrl]="Url" (tableLists)="getTabelList($event)" [searchData]="search1">
                  <div class="mytabel-body">
                       <div nz-row [nzGutter]="24" id="tabel_thead">
                           <div nz-col [nzSpan]="8"><span>号牌号码</span> </div>
@@ -125,5 +165,5 @@
                           <div nz-col [nzSpan]="8"><span>{{data.xsfx}}</span></div>
                       </div>
                  </div>
-</my-table>
+</my-table>-->
 <my-loading *ngIf="loadings"></my-loading>

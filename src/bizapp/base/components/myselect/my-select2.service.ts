@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 // import { environment } from '../../environments/environment';
 @Injectable()
-export class selectService {
+export class SelectService {
 	constructor(private http: HttpClient) {}
     getValue(url: any):any{
 	   return this.http

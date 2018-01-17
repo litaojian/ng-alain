@@ -148,7 +148,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
 
   processResult(resultData: Object) {
-    //debugger;
+    debugger;
     let rows = [];
     let total = 0;
     let _pageSize = this.pageSize;
@@ -291,7 +291,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   }
 
   onQueryFormSubmit(form: any): void {
-
+    // debugger;
     let fieldNames = this.getKeys(this.queryForm);
     let controlValue, inputValue, inputType, inputName;
     let fieldValues = {};
