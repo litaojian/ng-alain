@@ -1,5 +1,5 @@
 
- <nz-modal [nzVisible]="isModal" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel($event)">
+ <nz-modal [nzVisible]="isModal" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel($event)" [nzZIndex]="100" [nzWidth]="mywidth">
     <ng-template #modalTitle>
         <ng-content select=".myModal-title"></ng-content> 
     </ng-template>

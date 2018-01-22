@@ -6,22 +6,21 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class RegionalService {
 	constructor(private http: HttpClient) {}
-
-	getTrackSearch(params: any):any{
+    getList(body:any):any{
 	   return this.http
-            .get('remote/api/rest/passrec', {params});
+            .post('analysis/api/analysis/regional/touch/list',body);
 	  
 	}
-	getTrackSearchByOne(params: any):any{
+    recentCar(body:any):any{
 	   return this.http
-            .get('remote/api/rest/passrec', {params});
+            .post('analysis/api/analysis/late/track',body);	  
 	}
-     //获取个区县单位
-     getCounty(xzqh):any{
-        return this.http.get("remote/api/rest/qxList?dmz="+xzqh);
-     }
-    //获取卡口信息
-    getKkList(xzqh):any{
-        return this.http.get("remote/api/rest/kkList?xzqh="+xzqh);
-    }
+	areaDel(body:any):any{
+	   return this.http
+            .post('analysis/api/analysis/regional/touch/detail',body);	  
+	}
+	areaByOneDel(body:any):any{
+	   return this.http
+            .post('analysis/api/analysis/track/detail',body);	  
+	}
 }

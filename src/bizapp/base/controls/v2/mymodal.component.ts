@@ -9,9 +9,12 @@ import { NzModalService } from 'ng-zorro-antd';
 })
 export class ModalComponent implements OnInit, ControlValueAccessor{
     _data: any=[];
+    mywidth:any=520;
     currentModal:any;
     @Input()
     isModal:any;
+    @Input()
+    myWidth:any;
     @Output() initRows = new EventEmitter<any>();
     _onChange = (_: any) => { };
     constructor(
@@ -25,6 +28,9 @@ export class ModalComponent implements OnInit, ControlValueAccessor{
     }
     
    ngOnInit() {
+       if(this.myWidth){
+          this.mywidth=this.myWidth;
+       }
        console.log(this.isModal);
 	}
     handleCancel = () => {

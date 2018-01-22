@@ -15,6 +15,7 @@ import { CountdownModule } from 'ngx-countdown';
 import { AppBaseModule } from 'bizapp/base/app-base.module';
 // import { MyAppBaseModule } from 'bizapp/base/components/myapp-base.module';
 import { MySelectModule } from 'bizapp/base/components/myselect/myselect.module';
+import { MyChooseIconModule } from 'bizapp/base/components/areachoose/chooseIcon.module';
 import { MyLoadingModule } from 'bizapp/base/components/myloading/myloading.module';
 import { MyReuseTabModule } from '../admin/reuse-tab/reuse-tab.module';
 
@@ -43,6 +44,7 @@ const DIRECTIVES = [];
         MyReuseTabModule.forRoot(),
         MySelectModule,
         MyLoadingModule,
+        MyChooseIconModule,
         ...THIRDMODULES
     ],
     declarations: [
@@ -64,6 +66,7 @@ const DIRECTIVES = [];
         // third libs
         AppBaseModule,
         MySelectModule,
+        MyChooseIconModule,
         MyLoadingModule,
         MyReuseTabModule,
         ...THIRDMODULES,

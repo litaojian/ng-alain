@@ -97,3 +97,69 @@
       right: 10px;
       top: 3px;
 }
+.colorLink{
+      color: blue;
+      cursor: pointer;
+}
+.recentCarLeft{
+      float:left;
+}
+.recentCarLeft dl .overflowHide{
+    width: 170px;
+}
+.overflowHide{
+    display: inline-block;
+    position: absolute;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;  
+}
+.recentCarRight{
+      float:right;
+}
+.recentComment img{
+      height: 230px;
+}
+.recentComment dl dt{
+      color: blue;
+}
+.recentComment dl dd span:first-child{
+    display: inline-block;
+    width: 70px;
+    text-align: right;
+}
+.smallImg{
+      width: 50px;
+}
+.middleImg{
+      width: 220px;
+}
+.overflowHide{
+    display: inline-block;
+    position: absolute;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;   
+}
+.showCarDetailImg img{
+      width: 200px;
+      height: 130px;
+}
+.carMessage{
+       margin-top: 5px;
+       text-align: left;
+ }
+.carMessage span{
+    display: inline-block;
+    width: 80px;
+    font-size: 15px;
+    color: #252525;
+    text-align: left;
+ }
+ .carMessage .carMessageSpan{
+       width:150px;
+       color: #595959;
+ }
+ :host ::ng-deep .ant-collapse > .ant-collapse-item > .ant-collapse-header{
+       text-align: left;
+ }

@@ -189,42 +189,6 @@
                     </div>
             </div>
 </nz-table>
-<!--列表数据显示部分 *ngIf="expandForm" [nzPageSize]="50"-->
-<!--<my-table [Myurl]="'vehicle/api/data/rest/pass/getdata'" [ifUrl]="Url" (tableLists)="getTabelList($event)" [searchData]="searchtest">
-            <div class="mytabel-body">
-                <div class="nzAjaxData" *ngIf="showLp==true">
-                <div nz-row [nzGutter]="24" id="tabel_thead">
-                    <div nz-col [nzSpan]="4"><span>过车时间</span></div>
-                    <div nz-col [nzSpan]="5"><span>卡口名称</span></div>
-                    <div nz-col [nzSpan]="3"> <span>号牌号码</span> </div>
-                    <div nz-col [nzSpan]="3"><span>号牌种类</span></div>
-                    <div nz-col [nzSpan]="3"><span>行驶方向</span></div>
-                    <div nz-col [nzSpan]="3"><span>行驶速度</span></div>
-                    <div nz-col [nzSpan]="3"><span>车辆类型</span></div>
-                </div>
-                <div nz-row [nzGutter]="24" id="tabel_body" *ngFor="let data of data" (click)="carDetailMore(title, content, footer,800,data)">
-                    <div nz-col [nzSpan]="4"><span>{{data.gcsj}}</span></div>
-                    <div nz-col [nzSpan]="5"><span>{{data.kkbh}}</span></div>
-                    <div nz-col [nzSpan]="3"><span>{{data.hphm}}</span> </div>
-                    <div nz-col [nzSpan]="3"><span>{{data.hpzl}}</span></div>
-                    <div nz-col [nzSpan]="3"><span>{{data.xsfx}}</span></div>
-                    <div nz-col [nzSpan]="3"><span>{{data.clsu}}</span></div>
-                    <div nz-col [nzSpan]="3"><span>{{data.cllx}}</span></div>
-                </div>
-                </div>
-                <div nz-row [nzGutter]="24" class="showCarPhoto" *ngIf="showLp==false">
-                    <div nz-col [nzSpan]="6" *ngFor="let item of data">
-                        <img src="{{item.tp1}}" alt="" style="width:250px;height:120px;margin-left:5px">
-                        <dl>
-                                <dt></dt>
-                                <dd>{{item.hphm}}  {{item.hpzlmc}}</dd>
-                                <dd>{{item.gcsj}}</dd>
-                            
-                        </dl>
-                    </div>
-                </div>
-            </div>
-</my-table>-->
 <my-loading *ngIf="loading"></my-loading>
 <!--显示详情-->
 <nz-modal [nzContent]="modalContent">

@@ -9,6 +9,11 @@
         "pathRewrite": { "": "" },
         "secure": false
     },
+    "/analysis/api": {
+        "target": "http://10.2.20.13:9080",
+        "pathRewrite": { "": "" },
+        "secure": false
+    },
     "/remote/api/service/vehicle": {
         "target": "http://192.168.2.176:8081/work",
         "pathRewrite": { "": "" },

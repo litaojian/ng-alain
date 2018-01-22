@@ -37,7 +37,7 @@ const routes: Routes = [
             { path: 'regional', loadChildren: '../vehicle/VehicleArea/regional.module#RegionalModule'},
             { path: 'carControl', loadChildren: '../vehicle/VehicleControlRequest/vehicleControl.module#VehicleControlModule'},
             { path: 'page', loadChildren: '../../bizapp/bizpage/page.module#PageModule'},
-            { path: 'carSearch', loadChildren: '../vehicle/mySearch/mySearch.modules#SearchModule'}
+            { path: 'carSearch', loadChildren: '../vehicle/mySearch/mySearch.module#SearchModule'}
 
         ]
     },

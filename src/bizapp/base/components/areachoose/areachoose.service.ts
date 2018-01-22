@@ -4,9 +4,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 // import { environment } from '../../environments/environment';
 @Injectable()
-export class SelectService {
+export class ChooseAreaService {
 	constructor(private http: HttpClient) {}
-    getValue(url: any):any{
+    getCityValue(url: any,body:any):any{
+	   return this.http
+            .post(url,body);
+	  
+	}
+    getCityList(url: any):any{
 	   return this.http
             .get(url);
 	  
