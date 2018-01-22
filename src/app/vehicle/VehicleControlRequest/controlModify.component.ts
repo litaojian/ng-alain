@@ -25,18 +25,20 @@ export class ControlModifyComponent extends BaseDetailComponent implements OnIni
         { value: 'mao', label: '周毛毛' }
     ];
 
+    selectList:object = {};
+
     constructor(
         private fb: FormBuilder,
         private datePipe:DatePipe,
         controlListService:ControlListService,
+        private cl:ControlListService,
         injector:Injector
     ) {
         super(injector,controlListService);
+        this.selectList = controlListService.getSelectList();
     };
     ngOnInit() {
         this.form = this.fb.group({
-            name: [null, [Validators.required]],
-            url: [null, [Validators.required]],
             hphm: [null,[Validators.required]],
             hpzl: [null,[Validators.required]],
             bklb: [null,[Validators.required]],
@@ -46,61 +48,28 @@ export class ControlModifyComponent extends BaseDetailComponent implements OnIni
             bkqssj: [null,[Validators.required]],
             bkjzsj: [null,[Validators.required]],
             bjya: [null,[Validators.required]],
-            // owner: [undefined, [Validators.required]],
-            // approver : [null, [Validators.required]],
-            // time_start : [null, [Validators.required]],
-            // time_end : [null, [Validators.required]],
-            // type : [null, [Validators.required]],
-            // name2 : ['2018-01-21', [Validators.required]],
             name3 : [null, [Validators.required]],
-            // summary : [null, [Validators.required]],
             owner2 : [null, [Validators.required]],
-            // approver2 : [null, [Validators.required]],
-            // time : [null, [Validators.required]],
-            // type2 : [null, [Validators.required]],
-            sqry:[null,[]],
-            sqdw:[null,[]],
-            sqrj:[null,[]]
+            city : [null, [Validators.required]],
+            sqsb : [false,[]],
+            sqrq : [null,[]],
+            sqdw : [null,[]],
+            sqr : [null,[]]
             // items: this.fb.array([])
         });
-        this.car.hphm = "粤A12345";
-        // const userList = [
-        //     {
-        //         key: '1',
-        //         workId: '00001',
-        //         name: 'John Brown',
-        //         department: 'New York No. 1 Lake Park',
-        //     }, {
-        //         key: '2',
-        //         workId: '00002',
-        //         name: 'Jim Green',
-        //         department: 'London No. 1 Lake Park',
-        //     }, {
-        //         key: '3',
-        //         workId: '00003',
-        //         name: 'Joe Black',
-        //         department: 'Sidney No. 1 Lake Park',
-        //     }
-        // ];
-        // userList.forEach(i => {
-        //     const field = this.createUser();
-        //     field.patchValue(i);
-        //     this.items.push(field);
-        // });
-    }
 
-    createUser(): FormGroup {
-        return this.fb.group({
-            key: [ null ],
-            workId: [ null, [ Validators.required ] ],
-            name: [ null, [ Validators.required ] ],
-            department: [ null, [ Validators.required ] ]
+        // this.formData['sqsb'] = true;
+        this.cl.getUserInfo().then(res=>{
+            this.formData['sqr'] = res['yhmc']
+            this.formData['sqdw'] = res['glbm'];
+            this.formData['sqrq'] = this.datePipe.transform(new Date(), 'y-MM-dd');
         });
     }
 
+
     //#region get form fields
-    get name() { return this.form.controls.name; }
-    get url() { return this.form.controls.url; }
+    // get name() { return this.form.controls.name; }
+    // get url() { return this.form.controls.url; }
     get hphm() { return this.form.controls.hphm}
     get hpzl() { return this.form.controls.hpzl}
     get bklb() { return this.form.controls.bklb; }
@@ -110,9 +79,11 @@ export class ControlModifyComponent extends BaseDetailComponent implements OnIni
     get bkqssj() { return this.form.controls.bkqssj; }
     get bkjzsj() { return this.form.controls.bkjzsj; }
     get bjya() { return this.form.controls.bjya; }
+    get sqsb() { return this.form.controls.sqsb; }
     get sqry() { return this.form.controls.sqry; }
     get sqdw() { return this.form.controls.sqdw; }
     get sqrj() { return this.form.controls.sqrj; }
+    get city() { return this.form.controls.city; }
     // get owner() { return this.form.controls.owner; }
     // get approver() { return this.form.controls.approver; }
     // get time_start() { return this.form.controls.time_start; }
@@ -161,14 +132,16 @@ export class ControlModifyComponent extends BaseDetailComponent implements OnIni
     // }
 
     _submitForm() {
-        debugger;
-        console.log(this.form.value);
+        // debugger;
         // let a = this.datePipe.transform(this.form.value.owner2, 'y-MM-dd');
         for (const i in this.form.controls) {
             this.form.controls[ i ].markAsDirty();
         }
-        if (!this.form.invalid) return ;
+        if (this.form.invalid) return ;
+        if(!this.formData['id']){//模仿自生成布控单编号
+            this.formData['id'] = Math.round(Math.random()*100000);
+        }
         this.formGroup = this.form;
-        // this.onSubmitBtnClick();
+        this.onSubmitBtnClick();
     }
 }

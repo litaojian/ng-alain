@@ -20,23 +20,23 @@ export class DataObject {
 		//super();
 	}
 
-	get [Symbol.species]() { 
+	get [Symbol.species]() {
 		debugger;
 		return null;
-		//return Map; 
+		//return Map;
 	}
 
-	set [Symbol.species](val:any) { 
+	set [Symbol.species](val:any) {
 		debugger;
-		//return Map; 
+		//return Map;
 	}
-	
+
 }
 
 
 @Injectable()
 export class BaseDataService extends BaseService {
-  
+
 	//private headers = new Headers({ 'Content-Type': 'application/json' });
 	protected apiUrl = '/api/rest/nosetting';  // URL to web API
 
@@ -50,19 +50,19 @@ export class BaseDataService extends BaseService {
 	protected idField: string = "id";
 
 	protected valuelistTypes:string[] = [];
-		
+
 	protected static CachedDataMap:Map<string, any> = new Map();
 
 	constructor(injector: Injector) {
 		super(injector);
-		this.isTest = !environment.production; 
+		this.isTest = !environment.production;
 		//
 	}
 
 	setIdField(value: string) {
 		this.idField = value.toLowerCase();
 	}
-	
+
 	getIdField() {
 		return this.idField;
 	}
@@ -74,7 +74,7 @@ export class BaseDataService extends BaseService {
 	getIsTest(){
 		return this.isTest;
 	}
-	
+
 	setValuelistTypes(typenames:string[]){
 		this.valuelistTypes = typenames;
 	}
@@ -82,37 +82,37 @@ export class BaseDataService extends BaseService {
 	getValuelistTypes(){
 		return this.valuelistTypes;
 	}
-	
+
 	getContextPath(url: string) {
 		let pos = url.lastIndexOf(this.getListViewUrl());
 		if (pos > 0){
 			return url.substring(0, pos);
 		}
 		return "";
-		
+
 	}
 
 	getApiUrl(){
 		return this.apiUrl;
 	}
-	
+
 	setApiUrl(url: string) {
 		this.apiUrl = this.formatUrl(url);
 		// 去掉前缀 'api/'
 		//this.listViewUrl = url.replace("/api/", "")
-		//this.formViewUrl = this.listViewUrl;	
+		//this.formViewUrl = this.listViewUrl;
 		// if (!this.isTest) {
 		// 	this.apiUrl = url.replace("/api/", "remote/api/");
-		// 	let api_context_path = environment.api_context_path; 
+		// 	let api_context_path = environment.api_context_path;
 		// 	if (api_context_path != null &&  api_context_path != "/"){
-		// 		this.apiUrl = url.replace("/api/",  api_context_path + "/api/");			
-		// 	}	
+		// 		this.apiUrl = url.replace("/api/",  api_context_path + "/api/");
+		// 	}
 		// }
 	}
 
 	setPageViewUrl(url: string, view:string){
 		if ("list" == view){
-			this.setListViewUrl(url);		
+			this.setListViewUrl(url);
 			if (url.endsWith("/list")){
 				this.setFormViewUrl(url.replace("/list", ""));
 			}else{
@@ -136,10 +136,10 @@ export class BaseDataService extends BaseService {
 				}
 			}
 		}
-		
+
 		//
 		CookieService.save("last_menu_url", this.base64Encode(url));
-		// 
+		//
 
 	}
 	setListViewUrl(url: string) {
@@ -205,9 +205,9 @@ export class BaseDataService extends BaseService {
 			// }
 			return this.http.get(url, options)
 				.toPromise()
-				.then(response => { 
+				.then(response => {
 					let result = response.json();
-					//debugger;					
+					//debugger;
 					if (result["rows"] != null && result["rows"]  instanceof Array){
 			           result["rows"] = result["rows"][0];
 		            }
@@ -221,7 +221,7 @@ export class BaseDataService extends BaseService {
 	}
 
 	executeCmd(command:string, params:Object): Promise<Object> {
-		const headers = new Headers({ 'Content-Type': 'application/json','Authorization': this.getAccessToken() });		
+		const headers = new Headers({ 'Content-Type': 'application/json','Authorization': this.getAccessToken() });
 		const url = `${this.apiUrl}/${command}`;
 		//debugger;
 		return this.http
@@ -238,7 +238,7 @@ export class BaseDataService extends BaseService {
 		if (customUrl != null){
 			url = this.formatUrl(customUrl);
 		}
-		
+
 		if (params != null && params['ajaxUrl'] != null){
 			url = params['ajaxUrl'];
 		}
@@ -252,7 +252,7 @@ export class BaseDataService extends BaseService {
 				params.delete(keys[i]);
 			}
 		}
-	
+
 		let headers = new Headers({ 'Content-Type': 'application/json','Authorization': this.getAccessToken()});
 		let options = new RequestOptions({
 			headers: headers,
@@ -265,10 +265,10 @@ export class BaseDataService extends BaseService {
 
 		if (customUrl == null){
 			if (!url.endsWith(".json")){
-				url = `${url}/query`;					
+				url = `${url}/query`;
 			}
 		}
-			
+
 		params["pageIndex"] = pageIndex;
 		params["pageSize"]  = pageSize;
 		if (action == "query"){
@@ -293,7 +293,7 @@ export class BaseDataService extends BaseService {
 			console.log("callServiceAPI " + apiUrl + ", error:" + JSON.stringify(error));
             return error;
         });
-	}	
+	}
 
 
 	getValueListV1(typeName: string): Promise<Object[]> {
@@ -314,22 +314,22 @@ export class BaseDataService extends BaseService {
 		let customUrl:string;
 		let tableColumns:string;
 
-		if (typeName.startsWith("/api")){								
-			let splitPos = typeName.indexOf("?");	
+		if (typeName.startsWith("/api")){
+			let splitPos = typeName.indexOf("?");
 			customUrl = typeName.substring(0, splitPos);
 			if (splitPos  > 0){
 				tableColumns = typeName.substring(splitPos);
 				tableColumns = tableColumns.replace("?cols=","");
-				//console.log("getValueList: tableColumns=" + tableColumns);										
+				//console.log("getValueList: tableColumns=" + tableColumns);
 			}else {
 				customUrl = typeName;
-			}				
+			}
 			url = customUrl;
 		}
-	
+
 		// invoke http request
 		return this.ajaxGet(url, options)
-			.then(result => { 
+			.then(result => {
 				//debugger;
 				if (tableColumns != null && result != null){
 					let columns = tableColumns.split(",");
@@ -340,7 +340,7 @@ export class BaseDataService extends BaseService {
 					}
 				}
 				// cache the valuelist
-				BaseDataService.CachedDataMap.set(typeName, result);			
+				BaseDataService.CachedDataMap.set(typeName, result);
 				return result;
 			})
 			.catch(this.handleErrorForPromise);
@@ -351,7 +351,7 @@ export class BaseDataService extends BaseService {
 
 		//return Observable.of([{"label":"123", "value":"123"}, {"label":"456", "value":"456"}]);
 
-		//debugger;
+		// debugger;
 		let data = BaseDataService.CachedDataMap.get(typeName);
 		if (data && data instanceof Array && data.length > 0 ){
 			// get data from data cache
@@ -368,23 +368,23 @@ export class BaseDataService extends BaseService {
 		let customUrl:string;
 		let tableColumns:string;
 
-		if (typeName.startsWith("/api")){								
-			let splitPos = typeName.indexOf("?");	
+		if (typeName.startsWith("/api")){
+			let splitPos = typeName.indexOf("?");
 			customUrl = typeName.substring(0, splitPos);
 			if (splitPos  > 0){
 				tableColumns = typeName.substring(splitPos);
 				tableColumns = tableColumns.replace("?cols=","");
-				//console.log("getValueList: tableColumns=" + tableColumns);										
+				//console.log("getValueList: tableColumns=" + tableColumns);
 			}else {
 				customUrl = typeName;
-			}				
+			}
 			url = customUrl;
 		}
-	
+
 		// invoke http request
 		return this.ajaxGet2(url, options)
-			.map(respObject => { 
-				//debugger;
+			.map(respObject => {
+				// debugger;
 				let result = JSON.parse(respObject["_body"]);
 				if (tableColumns != null && result != null){
 					let columns = tableColumns.split(",");
@@ -393,23 +393,23 @@ export class BaseDataService extends BaseService {
 						data[i]["keyname"] = data[i][columns[0]];
 						data[i]["valuetext"] = data[i][columns[1]];
 						data[i]["value"] = data[i][columns[0]];
-						data[i]["label"] = data[i][columns[1]];						
+						data[i]["label"] = data[i][columns[1]];
 					}
 				}
 
 				let rows:Object[];
-				
+
 				if (result["data"] != null){
 					rows = result["data"]["options"];
 					if (rows == null){
 						rows = result["data"];
-					}						
+					}
 				}else{
 					rows = result;
 				}
 				let options: Object[] = [];
 				if (rows != null) {
-					for (var item in rows) { // for acts as a foreach	
+					for (var item in rows) { // for acts as a foreach
 						//console.log(rows[item]["keyname"]);
 						if (rows[item]["keyname"]){
 							options.push({ value: rows[item]["keyname"], label: rows[item]["valuetext"] });
@@ -417,12 +417,12 @@ export class BaseDataService extends BaseService {
 							options.push({ value: item["keyname"], label: item["valuetext"] });
 						}else if (Number.parseInt(item) >= 0 ){
 							options.push({ value: rows[item]["optvalue"], label: rows[item]["optlabel"] });
-						}								
+						}
 					}
-		
+
 				}
 				// cache the valuelist
-				BaseDataService.CachedDataMap.set(typeName, options);			
+				BaseDataService.CachedDataMap.set(typeName, options);
 				return options;
 			})
 			.catch(this.handleError);
@@ -439,32 +439,32 @@ export class BaseDataService extends BaseService {
 		let tableColumns:string;
 
 
-		if (dataUrl.startsWith("/api")){								
-			let splitPos = dataUrl.indexOf("?");	
+		if (dataUrl.startsWith("/api")){
+			let splitPos = dataUrl.indexOf("?");
 			customUrl = dataUrl.substring(0, splitPos);
 			if (splitPos  > 0){
 				tableColumns = dataUrl.substring(splitPos);
 				tableColumns = tableColumns.replace("?cols=","");
-				//console.log("getValueList: tableColumns=" + tableColumns);										
-			}				
+				//console.log("getValueList: tableColumns=" + tableColumns);
+			}
 			url = customUrl;
-		}			
-	
+		}
+
 		// invoke http request
 		return this.ajaxGet(url, options)
-			.then(result => { 
+			.then(result => {
 				//debugger;
 				if (tableColumns != null && result != null){
 					let columns = tableColumns.split(",");
 					let idColumn = columns[0];
 					let parentColumn = columns[1];
-					let textColumn = columns[2];					 
+					let textColumn = columns[2];
 					result = this.buildTree(result, idColumn, parentColumn, textColumn);
-				}	
+				}
 				if (result["rows"] != null && result["children"] == null && result["resultCode"] == 0){
 					result = result["rows"];
 				}
-				//debugger;							
+				//debugger;
 				return result;
 			})
 			.catch(this.handleErrorForPromise);
@@ -482,7 +482,7 @@ export class BaseDataService extends BaseService {
             // debugger;
             let tmpNode = new Object();
             tmpNode["html"] = "<a href='javascript:void(0);'>" + inputData[i][textColumn] + "</a>";
-			tmpNode["title"] = inputData[i][textColumn];            
+			tmpNode["title"] = inputData[i][textColumn];
             tmpNode["nid"] = inputData[i][idColumn];
             tmpNode["parentId"] = inputData[i][parentColumn];
             tmpNode["open"] = true;
@@ -490,7 +490,7 @@ export class BaseDataService extends BaseService {
             if (pnode != null) {
                 if (pnode["children"] ==null){
                     pnode["children"] = [];
-                }    
+                }
                 pnode["children"].push(tmpNode);
             }else{
                 tmpNodes.push(tmpNode);
@@ -511,8 +511,8 @@ export class BaseDataService extends BaseService {
 					let pnode = this.findParent(nodes[i]["children"], nid);
 					if (pnode != null){
 						return pnode;
-					}	
-				}				
+					}
+				}
             }
         } else {
             return null;
@@ -520,14 +520,14 @@ export class BaseDataService extends BaseService {
     }
 
 
-	
+
 	loadValueListData():Object {
 		let typenames:string[] = this.getValuelistTypes();
 		let valuelist = {};
 		//console.log("loadValueListData "+ this.service.getValuelistTypes().toString() +" ..........");
 		if (typenames != null){
 			typenames.forEach(_typename =>{
-			  this.getValueList(_typename).subscribe(data =>{    
+			  this.getValueList(_typename).subscribe(data =>{
 			  let label , value;
 			  for(let item in data){
 				if (valuelist[_typename] == null){
@@ -538,13 +538,13 @@ export class BaseDataService extends BaseService {
 				  //typename = data[item]["typename"].toLowerCase();
 				  value = data[item]["keyname"];
 				  label = data[item]["valuetext"];
-				  valuelist[_typename].push({"label":label, "value":value});    
+				  valuelist[_typename].push({"label":label, "value":value});
 				}else{
 				  valuelist[_typename].push(data[item]);
 				}
-			  }            
+			  }
 			});
-		  });    
+		  });
 		}
 		return valuelist;
 	}
