@@ -20,6 +20,9 @@ export class ChooseIconComponent implements OnInit {
   cityUrl:any;
   @Input()
   searchkkUrl:any;
+  //树的数据格式
+  @Input()
+	private fieldKey:any;
   @Output() kkouBack = new EventEmitter<any>();
   ngOnInit() {
   }
@@ -36,7 +39,8 @@ export class ChooseIconComponent implements OnInit {
       footer         : false,
       componentParams: {
          cityUrl: this.cityUrl,
-         searchkkUrl:this.searchkkUrl
+         searchkkUrl:this.searchkkUrl,
+         fieldKey:this.fieldKey
       }
     });
     subscription.subscribe(result => {

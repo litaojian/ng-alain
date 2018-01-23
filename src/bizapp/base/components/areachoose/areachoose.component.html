@@ -1,10 +1,10 @@
 <div>
         <div style="margin-bottom:0px">
                 <div class="searchDiv">
-                    <nz-input [nzPlaceHolder]="'请输入卡口名称'" name="no" [(ngModel)]="kkmc"></nz-input>
+                    <nz-input [nzPlaceHolder]="'请输入卡口名称'" name="no" [(ngModel)]="pagination.kdmc"></nz-input>
                 </div>
                 <div class="searchDiv">
-                    <button nz-button [nzType]="'primary'" [nzSize]="'large'">
+                    <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="searchByInput()">
                         查询
                     </button>
                     <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="emitDataOutside($event)">
@@ -18,12 +18,12 @@
        <section>
            <div class="selectLeft">
                 <!--<nz-select2 [url]="_cityUrl" [fieldKey]="{text:'name',value:'id'}" [myPlaceHolder]="'所属地市'" (dataBack)="getKKou(citys)" [(ngModel)]="citys"></nz-select2>-->
-                <!--<tree-root [nodes]="nodes" [options]="options" (activate)="onEvent()"></tree-root>-->
-                <tree-root #tree [nodes]="nodes">
+                <tree-root [nodes]="nodes" [options]="options" (activate)="getKKou($event)"></tree-root>
+                <!--<tree-root #tree [nodes]="nodes">
                     <ng-template #treeNodeTemplate let-node let-index="index">
                         <span (click)="getKKou(node.data.dmz)">{{ node.data.dmsm1 }}</span>
                     </ng-template>
-                </tree-root>
+                </tree-root>-->
            </div>
            <div class="selectRight">
                 <nz-table #nzTable [nzPageSize]="pagination.pageSize" [nzPageIndex]="pagination.pageIndex" nzShowQuickJumper nzShowTotal [nzAjaxData]="data" [nzTotal]="datanums" (nzPageIndexChange)="indexChange($event)">
