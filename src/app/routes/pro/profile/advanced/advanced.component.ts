@@ -7,7 +7,7 @@ import { _HttpClient } from '@delon/theme';
     templateUrl: './advanced.component.html'
 })
 export class ProProfileAdvancedComponent implements OnInit {
-    data = {
+    data:any = {
         advancedOperation1: [],
         advancedOperation2: [],
         advancedOperation3: []

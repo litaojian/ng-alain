@@ -8,7 +8,7 @@ import { _HttpClient } from '@delon/theme';
     templateUrl: './iconsfont.component.html'
 })
 export class IconsFontComponent implements OnInit {
-    data = [];
+    data:any = [];
 
     constructor(
         private msg: NzMessageService,

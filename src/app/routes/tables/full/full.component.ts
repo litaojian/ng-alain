@@ -13,7 +13,7 @@ export class TableFullComponent implements OnInit {
     pi = 1;
     ps = 10;
     total = 200; // mock total
-    list = [];
+    list:any = [];
     loading = false;
     args: any = { };
     _indeterminate = false;
@@ -65,7 +65,7 @@ export class TableFullComponent implements OnInit {
 
     ngOnInit() {
         this.load();
-        this.http.get('/chart/visit').subscribe(res => this.events = res);
+        this.http.get('/chart/visit').subscribe((res:any) => this.events = res);
     }
 
     showMsg(msg: string) {
