@@ -1,8 +1,7 @@
 import { NgModule, LOCALE_ID, APP_INITIALIZER, Injector } from '@angular/core';
+import { HttpClient, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClient, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 
 import { DelonModule } from './delon.module';
 import { CoreModule } from './core/core.module';
@@ -11,9 +10,8 @@ import { AppComponent } from './app.component';
 //import { RoutesModule } from './routes/routes.module';
 import { AdminModule } from './admin/admin.module';
 import { LayoutModule } from './layout/layout.module';
-//import { StartupService } from './core/services/startup.service';
 import { StartupService } from './admin/services/startup.service';
-
+//import { StartupService } from '@core/startup/startup.service';
 import { DefaultInterceptor } from '@core/net/default.interceptor';
 import { SimpleInterceptor } from '@delon/auth';
 // angular i18n
@@ -41,10 +39,9 @@ export function StartupServiceFactory(startupService: StartupService): Function 
     ],
     imports: [
         BrowserModule,
-        HttpModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        DelonModule,
+        DelonModule.forRoot(),
         CoreModule,
         SharedModule,
         LayoutModule,
