@@ -1,0 +1,342 @@
+<div class="show-body">
+<div class="header">
+   <div class="header-title">
+      <div class="title-two">
+          <div class="title-three">
+            <!--<i class="icon-min-police-sign"></i>-->
+            广东公安涉车综合应用系统
+          </div>
+          <div class="line">
+            <ul class="list">
+                <li class="active">汇总展示</li>
+                <li (click)="skipPage()">分类展示</li>
+            </ul>
+          </div>
+      </div>
+   </div>
+</div>
+<div class="content">
+    <div class="part-warp" id="content-top">
+        <!-- 可视化左边图表 -->
+        <div class="panel-left fl">
+            <!-- 当日过车统计 -->
+            <div class="unit">
+              <span class="line-l"></span>
+              <span class="line-r"></span>
+              <span class="line-b"></span>
+              <span class="line-t"></span>
+              <div class="unit-title">
+                  <div class="unit-title-text">当日全省过车数</div>
+              </div>
+              <div class="unit-body">
+                  <div style="text-align:center">
+                    <span class="digib-text" id="count">{{carPassTotal}}</span>
+                    <span>次</span>
+                  </div>
+              </div>
+            </div>
+            <!-- 当日过车统计结束 -->
+            <!-- 车辆布控情况 -->
+            <div class="unit">
+              <span class="line-l"></span>
+              <span class="line-r"></span>
+              <span class="line-b"></span>
+              <span class="line-t"></span>
+              <div class="unit-title">
+                  <div class="unit-title-text">
+                    车辆布控
+                    <span class="totalCount">总数:
+                        <span class="req">{{bkdlDetail.total}}</span>
+                    </span>
+                  </div>
+              </div>
+              <div class="unit-body" style="background:none">
+                  <div class="unit-chart">
+                    <div style="width:100%;height:100%;" id="radar">
+
+                    </div>
+                  </div>
+                  <div class="radar-data">
+                      <ul class="">
+                        <!--<li><label>布控车辆数</label><span class=" car1 font-red">{{bkdlDetail.total}}</span>辆</li>-->
+                        <li><label>拦截类</label><span style="color:#ff7373">{{bkdlDetail.ljl}}</span>辆</li>
+                        <li><label>交通违法类</label><span class="font-blue">{{bkdlDetail.jtwf}}</span>辆</li>
+                        <li><label>管控类</label><span class="font-yellow">{{bkdlDetail.gkl}}</span>辆</li>
+                      </ul>
+                  </div>
+              </div>
+            </div>
+            <!-- 车辆布控情况结束 -->
+            <!-- 各省联动布控总数 -->
+            <!--<div class="unit">
+              <span class="line-l"></span>
+              <span class="line-r"></span>
+              <span class="line-b"></span>
+              <span class="line-t"></span>
+              <div class="unit-title">
+                  <div class="unit-title-text">各省联动布控总数</div>
+              </div>
+              <div class="unit-body" style="background:none">
+                  <div class="unit-chart">
+                      <div style="width:100%;height:100%;" id="linkage">
+
+                      </div>
+                  </div>
+                  <div class="radar-data">
+                      <table class="data-table ta-c">
+                        <thead>
+                          <tr>
+                            <th class="ta-c">省份</th>
+                            <th class="ta-c">布控数</th>
+                            <th class="ta-c">预警数</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of monitorList">
+                              <td>{{item.xzqhmc | slice:0:2}}</td>
+                              <td>{{item.bkcs}}</td>
+                              <td>{{item.yjcs}}</td>
+                            </tr>
+                        </tbody>
+                      </table>
+                  </div>
+              </div>
+            </div>-->
+            <!-- 各省联动布控总数结束 -->
+            <!-- 各地市卡口接入数 -->
+            <div class="unit">
+              <span class="line-l"></span>
+              <span class="line-r"></span>
+              <span class="line-b"></span>
+              <span class="line-t"></span>
+              <div class="unit-title">
+                  <div class="unit-title-text">全省卡口在线率</div>
+              </div>
+              <div class="unit-body">
+                  <!--<div class="chart-title">
+                    <div class="chart-title-text" style="border:0px;width:25%">所属地市</div>
+                    <div class="chart-title-text">在线数</div>
+                  </div>-->
+                  <div class="chart-bar-car" >
+                     <ul>
+                      <li><div id="carRank" style="width:100%;height:178px;"></div></li>
+                      <li>卡口在线数<span class="font-green">{{accessRate.online}}</span></li>
+                      <li>卡口总数<span class="req">{{accessRate.total}}</span></li>
+                    </ul>
+                  </div>
+              </div>
+            </div>
+            <!-- 各地市卡口接入数结束 -->
+            <!-- 重点人群车辆数-->
+            <div class="unit">
+              <span class="line-l"></span>
+              <span class="line-r"></span>
+              <span class="line-b"></span>
+              <span class="line-t"></span>
+              <div class="unit-title">
+                  <div class="unit-title-text">重点人群车辆数</div>
+              </div>
+              <div class="unit-body">
+                  <div class="chart-user-car" id="userCar">
+                  </div>
+              </div>
+            </div>
+            <!-- 重点人员车辆数结束-->
+        </div>
+        <!-- 可视化左边图表结束 -->
+        <!-- 可视化中间地图 -->
+        <div class="panel-mid" >
+            <!-- 地图 -->
+            <div style="width:100%;height:100%" id="map">
+            </div>
+            <!-- 布控车辆详情 -->
+            <div class="car-detail" *ngIf="switch.carDetail">
+                <div class="detail-title">预警详情</div>
+                <div class="detail-text">
+                  <div class="car-photo"><img [src]="alarmCarDetial.tp1"></div>
+                  <div class="car-table">
+                    <table>
+                        <tr>
+                          <td>号牌号码</td>
+                          <td>预警时间</td>
+                        </tr>
+                        <tr>
+                          <td>{{alarmCarDetial.hphm}}</td>
+                          <td>{{alarmCarDetial.bjsj | date:'y-MM-dd HH:mm:ss'}}</td>
+                        </tr>
+                        <tr>
+                          <td>行驶方向</td>
+                          <td>行车速度</td>
+                        </tr>
+                        <tr>
+                          <td>{{alarmCarDetial.fxmc}}</td>
+                          <td>{{alarmCarDetial.xssd}}KM/H</td>
+                        </tr>
+                    </table>
+                  </div>
+                </div>
+            </div>
+            <!-- 滚动字体窗口 -->
+            <div class="info-win">
+              <span class="line-l"></span>
+              <span class="line-r"></span>
+              <span class="line-b"></span>
+              <span class="line-t"></span>
+              <div class="info-content">
+                <div class="cont-left">实时预警</div>
+                <div class="cont-right" *ngIf="alarmCarList.length >0">
+                  <marquee onMouseOver=this.stop(); onMouseOut=this.start();  behavior="scroll">
+                    <span *ngFor="let item of alarmCarList" (click)="showCarDetail(item)">
+                      【车辆预警】{{item.hphm}},在{{item.bjsj | date:'y-MM-dd HH:mm:ss' }}经过{{item.sbmc}}
+                    </span>
+                  </marquee>
+                </div>
+              </div>
+            </div>
+            <!-- 滚动字体窗口结束 -->
+            <!-- 数据选择框 -->
+            <div class="select-win">
+                <div class="select-type">
+                  <input type="checkbox" [(ngModel)]="btn.first" (click)="changeBtn(1,$event.target.checked)">
+                  <span>过车数据</span>
+                </div>
+                <div class="select-type">
+                  <input type="checkbox" [(ngModel)]="btn.second" (click)="changeBtn(2,$event.target.checked)">
+                  <span>预警数据&nbsp;
+                    <i [class]="switch.showBkdl? 'icon icon-put-up': 'icon icon-put-down'" style="cursor: pointer;" (click)="switch.showBkdl = !switch.showBkdl"></i>
+                  </span>
+                </div>
+            </div>
+            <!-- 数据选择框结束 -->
+            <!-- 布控类详情 -->
+            <div class="data-type" *ngIf="switch.showBkdl">
+                <ul>
+                  <li><label>抓捕类</label><span>刑事案件&nbsp;交通案件&nbsp;重大治安案件&nbsp;违法犯罪嫌疑交通工具</span></li>
+                  <li><label>交通违法类</label><span>违法未处理&nbsp;逾期未年检&nbsp;报废&nbsp;套牌&nbsp;假牌</span></li>
+                  <li><label>管控类</label><span>涉恐&nbsp;涉枪&nbsp;涉车&nbsp;涉毒&nbsp;涉稳&nbsp;其他</span></li>
+                </ul>
+            </div>
+            <!-- 布控类详情结束 -->
+            <!-- 广东省各地市过车数 -->
+            <div class="car-list" id="carPssList">
+
+            </div>
+            <!-- 广东省各地市过车数结束 -->
+        </div>
+        <!-- 可视化中间地图结束 -->
+        <!-- 可视化右边图表-->
+        <div class="panel-right fr">
+          <!-- 车辆档案统计 -->
+            <div class="unit">
+              <span class="line-l"></span>
+              <span class="line-r"></span>
+              <span class="line-b"></span>
+              <span class="line-t"></span>
+              <div class="unit-title">
+                  <div class="unit-title-text">车辆档案数</div>
+              </div>
+              <div class="unit-body">
+                  <div style="text-align: center">
+                    <span class="digib-text">{{vehicleList.total}}</span>
+                    <span>份</span>
+                  </div>
+                  <div class="total-car">
+                    <span>本省车辆数:</span>
+                    <span class="blue">{{vehicleList.province}}</span>
+                  </div>
+                  <div class="total-car">
+                    <span>外省车辆数:</span>
+                    <span class="blue">{{vehicleList.outside}}</span>
+                  </div>
+              </div>
+            </div>
+          <!-- 车辆档案统计结束 -->
+          <!-- 全省预警数 -->
+            <div class="unit">
+              <span class="line-l"></span>
+              <span class="line-r"></span>
+              <span class="line-b"></span>
+              <span class="line-t"></span>
+              <div class="unit-title">
+                  <div class="unit-title-text">全省布控预警数(最近7天)</div>
+              </div>
+              <div class="unit-body">
+                  <!--<div class="chart-title eachcity">
+                    <div class="chart-title-text" style="border:0px">地市</div>
+                    <div class="chart-title-text">预警数量</div>
+                    <div class="chart-title-text">地市</div>
+                    <div class="chart-title-text">预警数量</div>
+                  </div>-->
+                  <!--<div class="chart-title">
+                    <div class="chart-title-text" style="border:0px;width:25%">地市</div>
+                    <div class="chart-title-text">预警数量</div>
+                  </div>-->
+                  <div class="chart-bar-car" id="warningCar" style="height: 306px;">
+                  </div>
+              </div>
+            </div>
+            <!-- 全省预警数结束 -->
+            <!--重点人群车辆预警趋势-->
+             <div class="unit">
+              <span class="line-l"></span>
+              <span class="line-r"></span>
+              <span class="line-b"></span>
+              <span class="line-t"></span>
+              <div class="unit-title">
+                  <div class="unit-title-text">重点人群车辆预警趋势</div>
+              </div>
+              <div class="unit-body">
+                  <div class="chart-bar-car" id="alarmCar" style="height: 305px;">
+                  </div>
+              </div>
+            </div>
+            <!-- 重点人群车辆预警趋势结束 -->
+          <!-- 外地车辆排行 -->
+            <!--<div class="unit">
+              <span class="line-l"></span>
+              <span class="line-r"></span>
+              <span class="line-b"></span>
+              <span class="line-t"></span>
+              <div class="unit-title">
+                  <div class="unit-title-text">外地车辆排行 Top 10</div>
+              </div>
+              <div class="unit-body">
+                  <div class="chart-bar-car" style="min-height:260px" id="warningType">
+                  </div>
+              </div>
+            </div>-->
+            <!-- 外地车辆排行结束 -->
+
+        </div>
+        <!-- 可视化右边图表结束 -->
+    </div>
+    <!-- 选择时间 -->
+    <div id="content-bottom" class="content-bottom">
+       <div class="spacle-unit">
+          <span class="line-l"></span>
+          <span class="line-r"></span>
+          <span class="line-b"></span>
+          <span class="line-t"></span>
+          <div class="spacle-title">
+              <div class="unit-left">
+                <div class="padding-left">时间段</div>
+                <div class="days" name="year" appMydatepicker [options]="{startView: 4,minView: 4,format:'yyyy'}" (getTime)="changeYear($event)">{{year}}年
+                  <input type="text" class="form-datetime"  id="year"/>
+                </div>
+                <div class="days" name="month" appMydatepicker [options]="{startView: 3,minView: 3,maxView:3,format:'mm'}" (getTime)="changeMonth($event)" >{{mon}}月 <input type="text" class="form-datetime" id="month"/></div>
+              </div>
+              <div class="unit-right">
+                  <ul id="dateul">
+                    <li *ngFor="let i of days" (click)="search(i+1)" [class.choose]="day==i+1"> <span>{{i+1}}</span> </li>
+                  </ul>
+              </div>
+          </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="footer-show">广东省公安厅情报信息中心</div>
+<!-- 弹出窗口遮蔽层 -->
+<div class="cover-win" *ngIf="switch.showCover" (click)="switch.showCover=false;switch.carDetail=false"></div>
+</div>

@@ -52,6 +52,8 @@ const routes: Routes = [
     //         { path: '', loadChildren: './data-v/data-v.module#DataVModule' }
     //     ]
     // },
+    //可视化
+    { path: 'visual', loadChildren: '../visual/visual.module#VisualModule'},
     // passport
     {
         path: 'passport',
