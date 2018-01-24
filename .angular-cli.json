@@ -19,7 +19,8 @@
         "testTsconfig": "tsconfig.spec.json",
         "prefix": "app",
         "styles": [
-            "styles.less"
+            "styles.less",
+            "./assets/lib/datetimepicker/datetimepicker.css"
         ],
         "scripts": [
             "../node_modules/jquery/dist/jquery.js",
@@ -28,7 +29,13 @@
             "../node_modules/@antv/data-set/dist/data-set.min.js",
             "../node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js",
             "assets/lib/jquery/jquery.min.js",
+            "./assets/lib/datetimepicker/datetimepicker.js",
             "assets/lib/select2/select2.js",
+            "./assets/lib/echarts/echarts.js",
+            "./assets/lib/echarts/echarts-liquidfill.js",
+            "./assets/lib/countUp/countUp.js",
+            "./assets/map/china.js",
+            "./assets/map/guangdong.js",
             "assets/lib/jedate/jquery.jedate.js"
         ],
         "environmentSource": "environments/environment.ts",

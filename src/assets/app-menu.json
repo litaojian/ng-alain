@@ -34,7 +34,7 @@
                 "link": "/trackSearch/list",
                 "shortcut": true,
                 "icon": "icon-compass"
-            }, 
+            },
             {
                 "text": "区域碰撞",
                 "translate": "",
@@ -74,6 +74,13 @@
                 "text": "车辆布控",
                 "translate": "",
                 "link": "/carControl/index",
+                "shortcut": true,
+                "icon": "icon-compass"
+            },
+            {
+                "text": "可视化",
+                "translate": "",
+                "link": "/visual/index",
                 "shortcut": true,
                 "icon": "icon-compass"
             }, {

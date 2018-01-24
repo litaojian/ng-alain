@@ -1,0 +1,60 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+<metadata>
+Created by FontForge 20161116 at Mon Jan 16 11:37:33 2017
+ By Jimmy Wärting
+Font Typeface: DS-Digital. Created by Dusit Supasawat , DS-Font 1998. All Rights Reserved
+</metadata>
+<defs>
+<font id="DS-Digital-Bold" horiz-adv-x="560" >
+  <font-face 
+    font-family="DS-Digital"
+    font-weight="700"
+    font-style="italic"
+    font-stretch="normal"
+    units-per-em="1100"
+    panose-1="0 0 0 0 0 0 0 0 0 0"
+    ascent="880"
+    descent="-220"
+    bbox="47 -116 501 700"
+    underline-thickness="70"
+    underline-position="-155"
+    unicode-range="U+001D-0039"
+  />
+<missing-glyph horiz-adv-x="0" 
+ />
+    <glyph glyph-name=".notdef" horiz-adv-x="0" 
+ />
+    <glyph glyph-name=".notdef" horiz-adv-x="0" 
+ />
+    <glyph glyph-name="glyph1" horiz-adv-x="260" 
+ />
+    <glyph glyph-name="nonmarkingreturn" unicode=" " horiz-adv-x="260" 
+ />
+    <glyph glyph-name="comma" unicode="," horiz-adv-x="198" 
+d="M151 -64l-52 -52l-52 52v139h104v-139z" />
+    <glyph glyph-name="period" unicode="." horiz-adv-x="198" 
+d="M47 0v104h104v-104h-104z" />
+    <glyph glyph-name="zero" unicode="0" 
+d="M482 700l-104 -105h-196l-104 105h404zM482 0h-404l104 104h196zM162 265v-141l-104 -104v271l39 39zM58 409v271l104 -104v-141l-65 -66zM501 291v-271l-104 104v141l65 65zM397 435v141l104 104v-271l-39 -40z" />
+    <glyph glyph-name="one" unicode="1" horiz-adv-x="314" 
+d="M209 291v-271l-104 104v141l65 65zM105 435v141l104 104v-271l-39 -40z" />
+    <glyph glyph-name="two" unicode="2" 
+d="M482 700l-104 -105h-196l-104 105h404zM482 0h-404l104 104h196zM162 265v-141l-104 -104v271l39 39zM397 435v141l104 104v-271l-39 -40zM391 402l52 -52l-52 -52h-222l-52 52l52 52h222z" />
+    <glyph glyph-name="three" unicode="3" 
+d="M482 700l-104 -105h-196l-104 105h404zM482 0h-404l104 104h196zM501 291v-271l-104 104v141l65 65zM397 435v141l104 104v-271l-39 -40zM391 402l52 -52l-52 -52h-222l-52 52l52 52h222z" />
+    <glyph glyph-name="four" unicode="4" 
+d="M58 409v271l104 -104v-141l-65 -66zM501 291v-271l-104 104v141l65 65zM397 435v141l104 104v-271l-39 -40zM391 402l52 -52l-52 -52h-222l-52 52l52 52h222z" />
+    <glyph glyph-name="five" unicode="5" 
+d="M482 700l-104 -105h-196l-104 105h404zM482 0h-404l104 104h196zM58 409v271l104 -104v-141l-65 -66zM501 291v-271l-104 104v141l65 65zM391 402l52 -52l-52 -52h-222l-52 52l52 52h222z" />
+    <glyph glyph-name="six" unicode="6" 
+d="M482 700l-104 -105h-196l-104 105h404zM482 0h-404l104 104h196zM162 265v-141l-104 -104v271l39 39zM58 409v271l104 -104v-141l-65 -66zM501 291v-271l-104 104v141l65 65zM391 402l52 -52l-52 -52h-222l-52 52l52 52h222z" />
+    <glyph glyph-name="seven" unicode="7" 
+d="M482 700l-104 -105h-196l-104 105h404zM501 291v-271l-104 104v141l65 65zM397 435v141l104 104v-271l-39 -40z" />
+    <glyph glyph-name="eight" unicode="8" 
+d="M482 700l-104 -105h-196l-104 105h404zM482 0h-404l104 104h196zM162 265v-141l-104 -104v271l39 39zM58 409v271l104 -104v-141l-65 -66zM501 291v-271l-104 104v141l65 65zM397 435v141l104 104v-271l-39 -40zM391 402l52 -52l-52 -52h-222l-52 52l52 52h222z" />
+    <glyph glyph-name="nine" unicode="9" 
+d="M482 700l-104 -105h-196l-104 105h404zM482 0h-404l104 104h196zM58 409v271l104 -104v-141l-65 -66zM501 291v-271l-104 104v141l65 65zM397 435v141l104 104v-271l-39 -40zM391 402l52 -52l-52 -52h-222l-52 52l52 52h222z" />
+  </font>
+</defs></svg>
