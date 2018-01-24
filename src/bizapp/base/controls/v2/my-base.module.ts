@@ -5,7 +5,6 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { MySelect2Component }  from '../v2/myselect2.component';
 import { CounterComponent }  from '../v2/mytime.component';
-import { MyLoadingComponent }  from '../v2/myloading.component';
 import { MyDatePickerComponent }  from '../v2/mydatepicker.component';
 import { ModalComponent }  from '../v2/mymodal.component';
 import { PanelComponent }  from '../v2/mypanel.component';
@@ -13,7 +12,7 @@ import { TabelComponent }  from '../v2/mytabel.component';
 import { HeaderSearchComponent }  from '../v2/searchInput.component';
 @NgModule({
     imports: [
-        CommonModule,
+        CommonModule, 
         FormsModule,
         RouterModule,
         NgZorroAntdModule,
@@ -23,7 +22,6 @@ import { HeaderSearchComponent }  from '../v2/searchInput.component';
         MySelect2Component,
         MyDatePickerComponent,
         CounterComponent,
-        MyLoadingComponent,
         ModalComponent,
         PanelComponent,
         TabelComponent,
@@ -33,7 +31,6 @@ import { HeaderSearchComponent }  from '../v2/searchInput.component';
         MySelect2Component,
         MyDatePickerComponent,
         CounterComponent,
-        MyLoadingComponent,
         ModalComponent,
         PanelComponent,
         TabelComponent,

@@ -166,6 +166,16 @@ delete(num){
     this.list.splice(num,1);
     this.searchList(1);
 }
+private getKkou(e){
+     if(e.kkListBh!=undefined&&e.kkList!=undefined){
+          console.log(e.kkListBh.join(","));
+          this.search.kkbh=e.kkListBh.join(",");
+          this.search.kkmc=e.kkList;
+          this.search2.kkbh=e.kkListBh.join(",");
+          this.search2.kkmc=e.kkList;
+     }
+    
+  }
 //点击查询调用方法
 searchList(page){     
         if(this.list[0]==undefined){
@@ -213,6 +223,7 @@ onSave(){
  }
 //根据行政区划 查询区县
   seachCounty(xzqh){
+        console.log(xzqh);
         var xzqhVal=xzqh.substring(0,4);
         
         this.TrackSearchService.getCounty(xzqhVal).subscribe(res =>{

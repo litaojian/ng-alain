@@ -3,11 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
 import { SearchComponent } from './search/search.component';
 import { QueryDialogComponent } from './search/query.dialog.component';
-import { mySearchComponent } from './mySearch/search.component';
-import { myQueryDialogComponent } from './mySearch/query.dialog.component';
 const routes: Routes = [
-    { path: 'search', component: SearchComponent,data: { title: '过车查询' } },
-    { path: 'mySearch', component: mySearchComponent,data: { title: '过车查询' } }
+    { path: 'search', component: SearchComponent,data: { title: '过车查询' } }
 ];
 
 @NgModule({
@@ -18,13 +15,10 @@ const routes: Routes = [
     providers: [],
     declarations: [
         SearchComponent,
-        QueryDialogComponent,
-        mySearchComponent,
-        myQueryDialogComponent
+        QueryDialogComponent
     ],
     entryComponents:[
-        QueryDialogComponent,
-        myQueryDialogComponent
+        QueryDialogComponent
     ],
     exports: [
         RouterModule

@@ -1,50 +1,17 @@
 <nz-card [nzBordered]="false">
     <form nz-form [nzLayout]="'inline'">
-        <standard-form-row [title]="'过车时间'" block style="padding-bottom: 11px">
+        <standard-form-row [title]="'过车查询'" block style="padding-bottom: 11px">
             <div nz-form-item>
                 <div nz-form-control>
                     <div nz-row [nzGutter]="24">
-                            <div nz-col [nzSpan]="12" class="mb-md">
-                                    <div nz-form-item class="d-flex" style="margin-bottom:0px">
-                                        <!--<div nz-form-label><label for="dcnr">过车时间</label></div>-->
-                                        <div nz-form-control class="flex-1">
-                                            <nz-datepicker name="created_begin" [nzPlaceHolder]="'begin'"></nz-datepicker>
-                                        </div>
-                                        <span style="padding-left:5px;padding-right:5px;">--</span>
-                                        <div nz-form-control class="flex-1">
-                                            <nz-datepicker name="created_begin" [nzPlaceHolder]="'begin'"></nz-datepicker>
-                                        </div>
-                                    </div>
-                                    
-                            </div>  
-                            <div nz-col [nzSpan]="12" class="mb-md">               
-                                        <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" style="margin-right:12px" (click)="getList('seach',1,10)">查询</button>
-                                        <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="showModalForComponent()">新增</button>
+                            <div nz-col [nzSpan]="12" class="mb-md"> 
+                                        <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="showModalForComponent()">新增</button>              
+                                        <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" style="margin-left:12px" (click)="getList('trackSearch',1,10)">查询</button>
+                                        
                             </div>          
                     </div>
                 </div>
-            </div>  
-            <!--<button (click)="myclick()">添加</button>-->
-            <!--<div class="panel-content">
-              <div nz-row [nzGutter]="24" style="margin-top:14px">
-                        <nz-card nz-col [nzSpan]="3" class="mb-md" *ngFor="let data of list;let i=index" style="cursor:pointer;margin-left: 12px;border-radius:5px;" (click)="carDetail(i)">
-                            <ng-template #title>
-                                <nz-tooltip [nzTitle]="data.kssj+'--'+data.jssj" [nzPlacement]="'top'">
-                                    <p class="det ailName" nz-tooltip>过车条件{{i+1}}</p>
-                                </nz-tooltip>
-                            </ng-template>
-                            <ng-template #extra>
-                                <a (click)="delete(i)"><i class="anticon anticon-close-square"></i></a>
-                            </ng-template>
-                        </nz-card>
-                        <nz-card nz-col [nzSpan]="3" class="mb-md" style="cursor:pointer;margin-left: 12px;border-radius:5px;"  (click)="carDetail()">
-                            <ng-template #title>
-                                <nz-tooltip [nzTitle]="'点击添加区域'" [nzPlacement]="'top'">
-                                    <p class="detailName" nz-tooltip style="text-align:center"><i class="anticon anticon-plus"></i></p>
-                                </nz-tooltip>
-                            </ng-template>
-                    </nz-card>
-             </div>  -->
+            </div>
         </standard-form-row>
         <standard-form-row [title]="'其它选项'" grid last>
             <div nz-row [nzGutter]="16">
@@ -52,7 +19,7 @@
                     <div nz-form-item nz-row>
                         <div nz-form-label nz-col></div>
                         <div nz-form-control nz-col nzXs="24" nzSm="24" nzMd="12">
-                            <nz-select [(ngModel)]="q.user" name="user" [nzPlaceHolder]="'不限'" [nzShowSearch]="true" [nzSize]="'large'" style="width: 200px;">
+                            <nz-select name="user" [nzPlaceHolder]="'不限'" [nzShowSearch]="true" [nzSize]="'large'" style="width: 200px;">
                                 <nz-option [nzLabel]="'无牌车'" [nzValue]="'lisa1'"></nz-option>
                                 <nz-option [nzLabel]="'假牌车'" [nzValue]="'lisa2'"></nz-option>
                                 <nz-option [nzLabel]="'未年检'" [nzValue]="'lisa3'"></nz-option>
@@ -85,9 +52,9 @@
                                     <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
                                         <ng-template #nzTitle><a href="{{item.href}}" target="_blank">{{item.hphm}}</a></ng-template>
                                         <ng-template #nzDescription>
-                                            <nz-tag>{{item.sqlxmc}}</nz-tag>
-                                            <nz-tag>{{item.bkrmc}}</nz-tag>
-                                            <nz-tag>{{item.bkdlmc}}</nz-tag>
+                                            <nz-tag>{{item.hpzlmc}}</nz-tag>
+                                            <nz-tag>{{item.hpysmc}}</nz-tag>
+                                            <nz-tag>{{item.gjlxmc}}</nz-tag>
                                         </ng-template>
                                     </nz-list-item-meta>
                                     <ng-template #nzContent>
@@ -96,8 +63,8 @@
                                             <nz-avatar [nzSrc]="item.tp1" [nzSize]="'small'" class="mr-sm"></nz-avatar>
                                             <a href="{{item.href}}" target="_blank">{{item.hphm}}</a>
                                             <span class="px-sm">出现在</span>
-            <a href="{{item.href}}" target="_blank">{{item.bkjgmc}}</a>
-            <time class="pl-md text-grey" title="{{item.updatedAt}}">{{item.bksj}}</time>
+            <a href="{{item.href}}" target="_blank">{{item.kkmc}}</a>
+            <time class="pl-md text-grey" title="{{item.updatedAt}}">{{item.gcsj}}</time>
             </div>
             </ng-template>
             </nz-list-item>
@@ -115,7 +82,7 @@
                 列表
             </ng-template>
             <span>
-                    <nz-table #nzTable [nzAjaxData]="tableData" [nzPageSize]="10">
+                    <nz-table #nzTable [nzAjaxData]="tableData" [nzPageSize]="pageSize" [nzTotal]="totalCount" [nzShowTotal]="true">
                             <thead nz-thead>
                               <tr>
                                 <th nz-th style="width:90px;"><span>车辆号牌</span></th>
@@ -130,12 +97,12 @@
                     <td nz-td>
                         <a>{{data.hphm}}</a>
                     </td>
-                    <td nz-td>{{data.bksj}}</td>
-                    <td nz-td>{{data.bkjgmc}}</td>
-                    <td nz-td>{{data.sqlxmc}}</td>
+                    <td nz-td>{{data.gcsj}}</td>
+                    <td nz-td>{{data.kkmc}}</td>
+                    <td nz-td>{{data.ycqkmc}}</td>
                     <td nz-td>
                         <span>
-                            <a href="#">编辑</a>
+                            <a href="#" (click)="onEditRow(data)">编辑</a>
                                     <span nz-table-divider></span>
                         <a href="#">修改</a>
                         <span nz-table-divider></span>

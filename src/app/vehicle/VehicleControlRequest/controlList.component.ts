@@ -33,7 +33,7 @@ export class ControlListComponent extends BaseListComponent implements OnInit {
      }
 
      goPage(){
-        this.getList("common",this.pageIndex,this.pageSize);
+        this.getList("search",this.pageIndex,this.pageSize);
      }
      showMsg(msg: string,row) {
         // this.message.info(msg);

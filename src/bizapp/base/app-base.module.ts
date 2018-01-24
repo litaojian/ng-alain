@@ -4,7 +4,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { HttpModule, JsonpModule } from '@angular/http';
 import { FormsModule,ReactiveFormsModule}    from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { MyTableComponent }  from './controls/mytable.component';
 import { MyFormComponent }  from './controls/myform.component';
 import { MySelectComponent }  from './controls/myselect.component';
@@ -37,7 +37,8 @@ import { DialogService }  from './dialog.service';
 		JsonpModule,
 		FormsModule,
 		ReactiveFormsModule,
-		RouterModule
+		RouterModule,
+		NgZorroAntdModule
   ],
   exports:[
 		FormsModule,

@@ -34,9 +34,9 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
   // valuelist data
   valuelist:Object = {};
-  
+
   service: BaseDataService;
-  
+
   activatedRoute: ActivatedRoute;
   router: Router;
   userFunctionJS: string;
@@ -49,14 +49,14 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
     //this.messageService = injector.get(NzMessageService);
     //this.modalService = injector.get(NzModalService);
-   
+
     //set the view url
     let url = this.router.url;
     this.service.setPageViewUrl(url, "list");
-    //this.slimLoader = injector.get(SlimLoadingBarService);	
+    //this.slimLoader = injector.get(SlimLoadingBarService);
 
   }
-  
+
   ngOnInit() {
     console.log("base-list onInit..........");
     // load the all valuelist
@@ -72,11 +72,11 @@ export class BaseListComponent implements OnInit, AfterViewInit {
       this.loadScript(this.userFunctionJS);
     } else {
       console.log("userFunctionJS=" + this.userFunctionJS);
-    }    
+    }
 
     // load the tableData
     this.getList("refresh", this.getPageIndex(), this.getPageSize());
-    
+
   }
 
   loadScript(scriptUrl: string) {
@@ -90,7 +90,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnDestroy() {
-    //console.log("base-list destory");	
+    //console.log("base-list destory");
   }
 
   openLink(path: string) {
@@ -101,16 +101,16 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   onPageLinkClick(pageParam: Object) {
     // 获取最新页码
     if (pageParam["pageSize"]){
-      this.pageSize = pageParam["pageSize"];      
+      this.pageSize = pageParam["pageSize"];
     }
     if (pageParam["pageIndex"]){
-      this.pageIndex = pageParam["pageIndex"];      
+      this.pageIndex = pageParam["pageIndex"];
     }else{
-      this.pageIndex = <number>pageParam;      
+      this.pageIndex = <number>pageParam;
     }
 
     let queryParams = {};
-    let keys = this.getKeys(this.queryForm);
+    let keys = this.getKeys(this.queryForm)
     for (let i = 0; i < keys.length; i++) {
       queryParams[keys[i]] = this.queryForm[keys[i]];
     }
@@ -148,7 +148,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
 
   processResult(resultData: Object) {
-    //debugger;
+    debugger;
     let rows = [];
     let total = 0;
     let _pageSize = this.pageSize;
@@ -171,7 +171,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     } else {
       rows.push(resultData);
     }
-    // 
+    //
     if (rows == null) {
       rows = [];
     }
@@ -195,7 +195,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   }
 
   initDefaultQueryParamters() {
-    // 
+    //
     if (this.activatedRoute.snapshot.queryParams["backto"] == "yes") {
       this.restoreCurrentState();
     }
@@ -212,12 +212,12 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     if ( params["pageSize"] != null && params["pageSize"] > 0) {
       pageSize = params["pageSize"];
     }
-    
+
     this.service.getList(action, params, pageIndex, pageSize)
       .then(resultData => this.processResult(resultData));
   }
 
-  
+
   onDeleteRow(row: Object): void {
     if (confirm("是否要删除此条数据?")) {
       //debugger;
@@ -251,13 +251,13 @@ export class BaseListComponent implements OnInit, AfterViewInit {
       }
     }
 
-    params["backtoUrl"] = this.service.base64Encode(this.router.url);    
+    params["backtoUrl"] = this.service.base64Encode(this.router.url);
     let url = this.getUrl(this.service.getContextPath(this.router.url) + this.service.getFormViewUrl());
     this.router.navigate([url, 'create'], { queryParams: params });
   }
 
   onEditRow(row: Object): void {
-    //debugger;
+    // debugger;
     this.selectedRow = row;
     let url = this.getUrl(this.service.getContextPath(this.router.url) + this.service.getFormViewUrl());
     let rowId = this.getValue(row, this.service.getIdField());
@@ -274,7 +274,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     //console.log(" show the row:" + row);
   }
 
-  
+
 	getUrl(url:string){
 		let pos = url.lastIndexOf("?");
         if (pos > 0){
@@ -286,24 +286,24 @@ export class BaseListComponent implements OnInit, AfterViewInit {
             url = url.substring(0, url.length - 5);
         }else if ( url.endsWith("/view")){
             url = url.substring(0, url.length -5);
-        }    
+        }
         return url;
   }
-  
-  onQueryFormSubmit(form: any): void {
 
+  onQueryFormSubmit(form: any): void {
+    // debugger;
     let fieldNames = this.getKeys(this.queryForm);
     let controlValue, inputValue, inputType, inputName;
     let fieldValues = {};
 
     for (var i = 0; i < fieldNames.length; i++) {
       inputType = $("input[name='" + fieldNames[i] + "']").attr("data-type");
-      inputName = $("input[name='" + fieldNames[i] + "']").attr("name");      
+      inputName = $("input[name='" + fieldNames[i] + "']").attr("name");
       inputValue = $("input[name='" + fieldNames[i] + "']").val();
       if (inputType != null && inputName != null){
-        fieldValues[fieldNames[i]] = inputValue;                
+        fieldValues[fieldNames[i]] = inputValue;
       }else{
-        fieldValues[fieldNames[i]] = this.queryForm[fieldNames[i]];        
+        fieldValues[fieldNames[i]] = this.queryForm[fieldNames[i]];
       }
       // inputValue = $("input[name='" + fieldNames[i] + "']").val();
       // if (form.controls[fieldNames[i]]) {
@@ -311,7 +311,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
       // } else {
       //   controlValue = null;
       // }
-      // //console.log("ngForm input field(" + fieldNames[i] + ") :" + inputValue, + "vs" + controlValue);      
+      // //console.log("ngForm input field(" + fieldNames[i] + ") :" + inputValue, + "vs" + controlValue);
       // if (inputValue != null && inputValue != controlValue) {
       //   let fieldValue = {};
       //   fieldValue[fieldNames[i]] = inputValue;
@@ -347,13 +347,13 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     //this.slimLoader.height = "6px";
     //this.slimLoader.start();
 
-    // let defaultQueryParams = this.getDefaultQueryParamters();   
+    // let defaultQueryParams = this.getDefaultQueryParamters();
     // let keys = this.getKeys(defaultQueryParams);
     // for(let i = 0; i < keys.length;i++){
     //   queryParams[keys[i]] = defaultQueryParams[keys[i]];
     // }
 
-    // pageIndex必须从1开始    
+    // pageIndex必须从1开始
     this.setPageIndex(1);
     this.service.getList("query", queryParams, 1, this.getPageSize())
       .then(resultData => {
@@ -399,7 +399,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
           let rowData = params["rowdata"];
           this.getList("refresh", this.getPageIndex(), this.getPageSize());
         }
-        //debugger; 
+        //debugger;
         //this.slimLoader.complete();
       });
   }
@@ -409,7 +409,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     // 保存返回状态参数
     this.saveCurrentState();
 
-    //alert("method=" + method);	
+    //alert("method=" + method);
     //method = "hello2('ddd')";
     let methodContainer = document.getElementById('commentIframe');
     if (methodContainer == null) {
@@ -486,15 +486,15 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     });
     this.refreshStatus();
   }
- 
+
 	// getValueList(typename:string){
 	// 	console.log("getValueList async.........." + typename);
 	// 	if (!this.valuelist[typename]){
-	// 		this.service.getValueList(typename).subscribe(result =>{        
+	// 		this.service.getValueList(typename).subscribe(result =>{
 	// 			this.valuelist[typename] = result;
 	// 		});
 	// 	}
 	// 	return this.valuelist[typename];
 	// }
-  
-}  
+
+}
