@@ -237,7 +237,7 @@
 
 /* 修改时间选择控件样式*/
 .dropdown-menu{   /* */
-    background: rgba(13, 33, 46,0.9);
+    background: rgba(13, 33, 46,0.9) !important;
     color: white;
 }
 .datetimepicker td span.active{
