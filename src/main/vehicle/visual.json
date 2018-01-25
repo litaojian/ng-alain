@@ -1,0 +1,5 @@
+[
+    { "areaCode": "430101", "vehicle": "测A8563H", "lastPassTime": 15235684000, "gateId": "43010100124558", "pictureUrl": "1.jpg", "labels": "的士" },
+    { "areaCode": "430101", "vehicle": "测A8563H", "lastPassTime": 15235684000, "gateId": "43010100124558", "pictureUrl": "1.jpg", "labels": "朝九晚五,早出晚归" },
+    { "areaCode": "430101", "vehicle": "测A8563H", "lastPassTime": 15235684000, "gateId": "43010100124558", "pictureUrl": "1.jpg", "labels": "客运车" }
+]
