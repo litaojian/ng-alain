@@ -82,8 +82,13 @@
         <nz-list-item>
             <nz-card nzHoverable>
                 <ng-template #cover><img alt="{{item.vehicle}}" src="{{'elastic/image/demo/' + item.picture}}" style="height:180px"></ng-template>
-                <nz-card-meta [nzTitle]="nzTitle" [nzDescription]="'此车经过了' + item.location_count + '区域\n共被抓拍了' + item.doc_count +'次\n' + item.labels">
+                <nz-card-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
                     <ng-template #nzTitle><a>{{item.vehicle}}</a></ng-template>
+                    <ng-template #nzDescription>
+                        <p>途经区域:{{item.location_count}}</p>
+                        <p>被抓拍次数:{{item.doc_count}}</p>
+                        <p>分类标签: {{item.labels}}</p>
+                    </ng-template>
                 </nz-card-meta>
                 <div class="card-item-content">
                     <span class="text-grey">{{item.lastPassTime | date: 'yyyy-M-d HH:mm'}}</span>
