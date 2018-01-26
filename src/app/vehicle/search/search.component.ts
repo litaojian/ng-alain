@@ -84,7 +84,9 @@ export class SearchComponent implements OnInit {
 
     getData() {
         this.loading = true;
-        this.http.get('elastic/api/service/analysis/vehicle/find', {beginDate:'2017-12-01', endDate:'2017-12-01', licenseType:'02', rowLimit: this.q.ps }).subscribe((res: any) => {
+        let url = 'elastic/api/service/analysis/vehicle/find';
+        url = 'remote/api/rest/vehicleSearchResult';
+        this.http.get(url, {beginDate:'2017-12-01', endDate:'2017-12-01', licenseType:'02', rowLimit: this.q.ps }).subscribe((res: any) => {
             if (res.resultCode == 0){
                 this.list = res.rows.map(item => {
                     //if (item.updatedAt) item.updatedAt = moment(item.updatedAt).fromNow();
@@ -95,5 +97,9 @@ export class SearchComponent implements OnInit {
             }
             this.loading = false;
         });
+    }
+
+    vehicleSearchClick(){
+        alert('aaa');
     }
 }

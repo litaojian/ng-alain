@@ -2,12 +2,16 @@
     .alink {
         margin: 2px 8px;
     }
+    
+    .pdr5 {
+        padding-right: 5px;
+    }
 </style>
 
 <div class="content__title">
     <nz-card [nzBordered]="true" style="width:100%;">
         <form nz-form [nzLayout]="'inline'">
-            <standard-form-row [title]="'区域范围'" block style="padding-bottom: 11px">
+            <standard-form-row [title]="'地市范围'" block style="padding-bottom: 11px">
                 <div nz-form-item>
                     <div nz-form-control>
                         <tag-select>
@@ -32,44 +36,32 @@
                 </div>
             </standard-form-row>
             <standard-form-row [title]="'筛选条件'" grid last>
-                <div nz-col nzXs="24" nzSm="24" nzMd="6" nzLg="6" nzXl="4">
+                <div nz-col nzXs="24" nzSm="24" nzMd="4" nzLg="3" nzXl="2" class="pdr5">
                     <div nz-form-item>
                         <div nz-form-control>
-                            <nz-select name="license" [nzPlaceHolder]="'是否无牌车'" [nzShowSearch]="true" [nzSize]="'large'" style="width: 200px;">
+                            <nz-select name="hasLicense" [nzPlaceHolder]="'是否无牌车'" [nzShowSearch]="true" [nzSize]="'large'">
                                 <nz-option [nzLabel]="'有牌'" [nzValue]="'good'"></nz-option>
                                 <nz-option [nzLabel]="'无牌'" [nzValue]="'bad'"></nz-option>
                             </nz-select>
                         </div>
                     </div>
                 </div>
-                <div nz-col nzXs="24" nzSm="24" nzMd="6" nzLg="6" nzXl="4">
+                <div nz-col nzXs="24" nzSm="24" nzMd="8" nzLg="8" nzXl="4" class="pdr5">
                     <div nz-form-item>
                         <div nz-form-control>
-                            <nz-select name="license" [nzPlaceHolder]="'车牌号码'" [nzShowSearch]="true" [nzSize]="'large'" style="width: 200px;">
-                                <nz-option [nzLabel]="'湘'" [nzValue]="'1'"></nz-option>
-                                <nz-option [nzLabel]="'粤'" [nzValue]="'2'"></nz-option>
-                                <nz-option [nzLabel]="'桂'" [nzValue]="'3'"></nz-option>
+                            <nz-select name="region" [nzShowSearch]="true" [nzSize]="'large'" [nzPlaceHolder]="'途经区域'">
+                                <nz-option [nzLabel]="'火车站'" [nzValue]="'1'"></nz-option>
+                                <nz-option [nzLabel]="'汽车站'" [nzValue]="'2'"></nz-option>
+                                <nz-option [nzLabel]="'市民广场'" [nzValue]="'3'"></nz-option>
+                                <nz-option [nzLabel]="'步行街'" [nzValue]="'3'"></nz-option>
                             </nz-select>
                         </div>
                     </div>
                 </div>
-                <div nz-col nzXs="24" nzSm="24" nzMd="6" nzLg="6" nzXl="4">
+                <div nz-col nzXs="24" nzSm="24" nzMd="8" nzLg="8" nzXl="4">
                     <div nz-form-item>
                         <div nz-form-control>
-                            <nz-select name="rate" [nzPlaceHolder]="'号牌种类'" [nzShowSearch]="true" [nzSize]="'large'" style="width: 200px;">
-                                <nz-option [nzLabel]="'小型车'" [nzValue]="'1'"></nz-option>
-                                <nz-option [nzLabel]="'大型车'" [nzValue]="'2'"></nz-option>
-                            </nz-select>
-                        </div>
-                    </div>
-                </div>
-                <div nz-col nzXs="24" nzSm="24" nzMd="6" nzLg="6" nzXl="4">
-                    <div nz-form-item>
-                        <div nz-form-control>
-                            <nz-select name="rate" [nzPlaceHolder]="'车身颜色'" [nzShowSearch]="true" [nzSize]="'large'" style="width: 200px;">
-                                <nz-option [nzLabel]="'黄色'" [nzValue]="'1'"></nz-option>
-                                <nz-option [nzLabel]="'黑色'" [nzValue]="'2'"></nz-option>
-                            </nz-select>
+                            <nz-input [nzType]="'search'" [nzOnSearch]="vehicleSearchClick" [nzSize]="'large'" [nzPlaceHolder]="'车辆特征'"></nz-input>
                         </div>
                     </div>
                 </div>
