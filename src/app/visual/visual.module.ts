@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
+import { BaseVisModule } from "./demo/base-vis.module";
+
 
 import { PageComponent } from './page.component';
 import { VisualIndexComponent } from './visual-index.component';
@@ -31,6 +33,7 @@ const routes: Routes = [
         //BrowserAnimationsModule,
         FormsModule,
         HttpModule,
+        BaseVisModule,
         RouterModule.forChild(routes)
     ],
     declarations: [

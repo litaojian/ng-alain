@@ -38,7 +38,7 @@
             <!-- 当日过车统计结束 -->
             <!-- 车辆布控情况 -->
             <div class="unit">
-              <span class="line-l"></span>
+              <!-- <span class="line-l"></span>
               <span class="line-r"></span>
               <span class="line-b"></span>
               <span class="line-t"></span>
@@ -58,13 +58,13 @@
                   </div>
                   <div class="radar-data">
                       <ul class="">
-                        <!--<li><label>布控车辆数</label><span class=" car1 font-red">{{bkdlDetail.total}}</span>辆</li>-->
                         <li><label>拦截类</label><span style="color:#ff7373">{{bkdlDetail.ljl}}</span>辆</li>
                         <li><label>交通违法类</label><span class="font-blue">{{bkdlDetail.jtwf}}</span>辆</li>
                         <li><label>管控类</label><span class="font-yellow">{{bkdlDetail.gkl}}</span>辆</li>
                       </ul>
                   </div>
-              </div>
+              </div> -->
+              <app-clbk [data]="radarList" title="车辆布控" [bkdlDetail]="bkdlDetail"></app-clbk>
             </div>
             <!-- 车辆布控情况结束 -->
             <!-- 各省联动布控总数 -->
@@ -105,26 +105,23 @@
             <!-- 各省联动布控总数结束 -->
             <!-- 各地市卡口接入数 -->
             <div class="unit">
-              <span class="line-l"></span>
-              <span class="line-r"></span>
-              <span class="line-b"></span>
-              <span class="line-t"></span>
-              <div class="unit-title">
-                  <div class="unit-title-text">全省卡口在线率</div>
-              </div>
-              <div class="unit-body">
-                  <!--<div class="chart-title">
-                    <div class="chart-title-text" style="border:0px;width:25%">所属地市</div>
-                    <div class="chart-title-text">在线数</div>
-                  </div>-->
-                  <div class="chart-bar-car" >
-                     <ul>
-                      <li><div id="carRank" style="width:100%;height:178px;"></div></li>
-                      <li>卡口在线数<span class="font-green">{{accessRate.online}}</span></li>
-                      <li>卡口总数<span class="req">{{accessRate.total}}</span></li>
-                    </ul>
-                  </div>
-              </div>
+                <!-- <span class="line-l"></span>
+                <span class="line-r"></span>
+                <span class="line-b"></span>
+                <span class="line-t"></span>
+                <div class="unit-title">
+                    <div class="unit-title-text">全省卡口在线率</div>
+                </div>
+                <div class="unit-body">
+                    <div class="chart-bar-car" >
+                       <ul>
+                        <li><div id="carRank" style="width:100%;height:178px;"></div></li>
+                        <li>卡口在线数<span class="font-green">{{accessRate.online}}</span></li>
+                        <li>卡口总数<span class="req">{{accessRate.total}}</span></li>
+                      </ul>
+                    </div>
+                </div> -->
+                <app-zxl title="全省卡口在线率" [data]="accessRate"></app-zxl>
             </div>
             <!-- 各地市卡口接入数结束 -->
             <!-- 重点人群车辆数-->

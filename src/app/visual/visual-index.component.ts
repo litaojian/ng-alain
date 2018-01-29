@@ -24,6 +24,8 @@ export class VisualIndexComponent implements OnInit {
   userCarCharts:any; //重点人员车辆数
   alarmCarCharts:any; //重点人员车辆预警趋势
 
+  radarList:Array<any> = [];
+
   days = []; //选中月的天数
   year :any; //选中的年份
   mon :any; //选择的月份
@@ -168,7 +170,7 @@ export class VisualIndexComponent implements OnInit {
     //获取各需要展示图标的dom
     getDoms(){
       //雷达图(车辆布控情况)
-      this.radarCharts = echarts.init(<HTMLCanvasElement>document.getElementById("radar"));
+    //   this.radarCharts = echarts.init(<HTMLCanvasElement>document.getElementById("radar"));
       //全省预警数柱状图
       this.warningCharts = echarts.init(<HTMLCanvasElement>document.getElementById("warningCar"));
       //全省卡口接入数
@@ -245,9 +247,10 @@ export class VisualIndexComponent implements OnInit {
                 }
                 bkList.push({name:el.bkdlmc,value:el.bkcs});
             });
-            this.radarOption.series[0].data = bkList;
-            this.radarCharts.setOption(this.radarOption);
-            window.onresize = this.radarCharts.resize;
+            this.radarList = bkList;
+            // this.radarOption.series[0].data = bkList;
+            // this.radarCharts.setOption(this.radarOption);
+            // window.onresize = this.radarCharts.resize;
         });
 
         //各地市过车次数
@@ -332,8 +335,8 @@ export class VisualIndexComponent implements OnInit {
                 return ;
             };
             this.accessRate = res.row;
-            this.carRankOption.series[0].data =[+res.row.per];
-            this.otherProvinceCharts.setOption(this.carRankOption);
+            // this.carRankOption.series[0].data =[+res.row.per];
+            // this.otherProvinceCharts.setOption(this.carRankOption);
         });
     }
 

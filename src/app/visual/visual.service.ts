@@ -89,7 +89,7 @@ export class VisualService {
   }
   //全省卡口在线率
   getOnlinePercent(date){
-      let url = '/vm/api/visual/vehicle/pass/gate/online/percent?showDate='+date;
+      let url = '/remote/api/data/visual/kkOnline';
       return this.http.get(url).map(res=>res.json());
   }
 
