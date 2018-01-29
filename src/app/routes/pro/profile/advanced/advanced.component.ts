@@ -7,7 +7,7 @@ import { _HttpClient } from '@delon/theme';
     templateUrl: './advanced.component.html'
 })
 export class ProProfileAdvancedComponent implements OnInit {
-    data = {
+    data:any = {
         advancedOperation1: [],
         advancedOperation2: [],
         advancedOperation3: []
@@ -16,6 +16,6 @@ export class ProProfileAdvancedComponent implements OnInit {
     constructor(public msg: NzMessageService, private http: _HttpClient) {}
 
     ngOnInit() {
-        this.http.get('/profile/advanced').subscribe(res => this.data = res);
+        this.http.get('/profile/advanced').subscribe((res: any) => this.data = res);
     }
 }

@@ -1,0 +1,89 @@
+[{
+        "doc_count": 5,
+        "location_count": 5,
+        "region_count": 13,
+        "lastPassTime": 1516879768088,
+        "lastRegion": "434051",
+        "key": "-_02",
+        "picture": "vehicle/513911.jpg",
+        "vehicle": "-_02",
+        "labels": ""
+    },
+    {
+        "doc_count": 3,
+        "location_count": 3,
+        "region_count": 105,
+        "lastPassTime": 1516879764359,
+        "lastRegion": "437588",
+        "key": "-_01",
+        "picture": "vehicle/323307.jpg",
+        "vehicle": "-_01",
+        "labels": "客运大巴"
+    },
+    {
+        "doc_count": 2,
+        "location_count": 2,
+        "region_count": 54,
+        "lastPassTime": 1516879733945,
+        "lastRegion": "438284",
+        "key": "湘LY3027_02",
+        "picture": "vehicle/918702.jpg",
+        "vehicle": "湘LY3027_02",
+        "labels": ""
+    },
+    {
+        "doc_count": 2,
+        "location_count": 2,
+        "region_count": 755,
+        "lastPassTime": 1516879726978,
+        "lastRegion": "432091",
+        "key": "湘N5VL28_01",
+        "picture": "vehicle/920398.jpg",
+        "vehicle": "湘N5VL28_01",
+        "labels": ""
+    },
+    {
+        "doc_count": 1,
+        "location_count": 1,
+        "region_count": 519,
+        "lastPassTime": 1516879753653,
+        "lastRegion": "43161",
+        "key": "-_99",
+        "picture": "vehicle/973515.jpg",
+        "vehicle": "-_99",
+        "labels": ""
+    },
+    {
+        "doc_count": 1,
+        "location_count": 1,
+        "region_count": 461,
+        "lastPassTime": 1516879720633,
+        "lastRegion": "431174",
+        "key": "浙AA5J57_02",
+        "picture": "vehicle/194870.jpg",
+        "vehicle": "浙AA5J57_02",
+        "labels": ""
+    },
+    {
+        "doc_count": 1,
+        "location_count": 1,
+        "region_count": 370,
+        "lastPassTime": 1516879731912,
+        "lastRegion": "439286",
+        "key": "浙ATK433_02",
+        "picture": "vehicle/282715.jpg",
+        "vehicle": "浙ATK433_02",
+        "labels": "套牌嫌疑"
+    },
+    {
+        "doc_count": 1,
+        "location_count": 1,
+        "region_count": 32,
+        "lastPassTime": 1516879730479,
+        "lastRegion": "435055",
+        "key": "浙BX5355_99",
+        "picture": "vehicle/207531.jpg",
+        "vehicle": "浙BX5355_99",
+        "labels": ""
+    }
+]
