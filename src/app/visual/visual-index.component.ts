@@ -57,6 +57,10 @@ export class VisualIndexComponent implements OnInit {
   alarmCarList:any = [];   //预警车辆信息list
   alarmCarDetial:any = {}; //点击预警信息存储的预警详情
 
+  importantCarNum = [];   //重点人群车辆数
+
+  warningList:any = {}; //全省布控预警数
+
   carPassTotal:number; //当日过车数
 
   monitorList = []; //各省布控总数
@@ -285,8 +289,9 @@ export class VisualIndexComponent implements OnInit {
             res.rows.forEach(el => {
               data.push({name:el.bklbmc,value:el.total});
             });
-            this.userCarOption.series[0].data = data;
-            this.userCarCharts.setOption(this.userCarOption);
+            this.importantCarNum = data;
+            // this.userCarOption.series[0].data = data;
+            // this.userCarCharts.setOption(this.userCarOption);
         });
         //重点人群车辆预警趋势
         this.visualService.getImportantAlarm(showDate).subscribe(res =>{
@@ -311,6 +316,7 @@ export class VisualIndexComponent implements OnInit {
         });
         //全省布控预警数(最近7天)
         this.visualService.getAlarmVehicle(showDate).subscribe(res =>{
+            debugger;
             let gkl = [];
             let jtwfl = [];
             let ljl = [];
@@ -321,11 +327,13 @@ export class VisualIndexComponent implements OnInit {
                ljl.push(res.ljl[i].total);
                date.push(res.datelist[i].anly_date);
             };
-            this.warningOption.xAxis[0].data = date;
-            this.warningOption.series[0].data = jtwfl;
-            this.warningOption.series[1].data = gkl;
-            this.warningOption.series[2].data = ljl;
-            this.warningCharts.setOption(this.warningOption);
+            this.warningList= {
+                'date' : date,
+                'jtwfl' : jtwfl,
+                'gkl' : gkl,
+                'ljl' : ljl
+            };
+            // this.warningCharts.setOption(this.warningOption);
         });
         //全省卡口在线率
         this.visualService.getOnlinePercent(showDate).subscribe(res =>{

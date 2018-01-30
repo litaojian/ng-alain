@@ -74,7 +74,7 @@ export class VisualService {
   }
   //重点人群车辆数
   getImportantCar(date?:any){
-      let url = '/vm/api/visual/susp/bklb/important?showDate='+date;
+      let url = '/remote/api/data/visual/zdcls';
       return this.http.get(url).map(res=>res.json());
   }
   //重点人群车辆预警趋势
@@ -84,7 +84,7 @@ export class VisualService {
   }
   //全省布控预警情况展示
   getAlarmVehicle(date?:any){
-      let url = '/vm/api/visual/alarm/bkdl?showDate='+date;
+      let url = '/remote/api/data/visual/bkyjs';
       return this.http.get(url).map(res=>res.json());
   }
   //全省卡口在线率

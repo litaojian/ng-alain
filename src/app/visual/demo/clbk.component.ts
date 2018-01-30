@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Input, Output } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
 
 declare let echarts:any;
 declare let $:any;
@@ -19,7 +19,7 @@ declare let $:any;
             </div>
             <div class="unit-body" style="background:none">
                 <div class="unit-chart">
-                <div style="width:100%;height:100%;" id="radar">
+                <div style="width:100%;height:100%;" id="radar" #radar>
 
                 </div>
                 </div>
@@ -35,7 +35,10 @@ declare let $:any;
     styleUrls:['../visual-all.css','../visual-index.component.css']
 })
 export class ClbkComponet implements OnInit {
-    constructor() { }
+    constructor(private ElementRef:ElementRef) { }
+
+    @ViewChild('radar')
+    div:ElementRef;
 
     //显示参数
     @Input()
@@ -65,6 +68,33 @@ export class ClbkComponet implements OnInit {
     }
     get option(){
         return this._option;
+    }
+
+    //存储dom
+    radarCharts: any;
+
+    //存储数据
+    _data:Array<any> = [];
+
+
+    ngOnInit() {
+
+     }
+
+    ngAfterViewInit() {
+        //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+        //Add 'implements AfterViewInit' to the class.
+        // this.radarCharts = echarts.init(<HTMLCanvasElement>document.getElementById("radar"));
+        var a = this.bkdlDetail;
+        this.initEcharts();
+    }
+
+    initEcharts(){
+        // this.radarCharts = echarts.init(<HTMLCanvasElement>document.getElementById("radar"));
+        this.radarCharts = echarts.init(this.div.nativeElement);
+        this._option.series[0].data = this._data;
+        this.radarCharts.setOption(this._option);
+        window.onresize = this.radarCharts.resize;
     }
 
     //echarts初始化
@@ -107,30 +137,4 @@ export class ClbkComponet implements OnInit {
             }
         ]
       };
-
-    //存储dom
-    radarCharts: any;
-
-    //存储数据
-    _data:Array<any> = [];
-
-
-    ngOnInit() {
-
-     }
-
-    ngAfterViewInit() {
-        //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-        //Add 'implements AfterViewInit' to the class.
-        // this.radarCharts = echarts.init(<HTMLCanvasElement>document.getElementById("radar"));
-        var a = this.bkdlDetail;
-        this.initEcharts();
-    }
-
-    initEcharts(){
-        this.radarCharts = echarts.init(<HTMLCanvasElement>document.getElementById("radar"));
-        this._option.series[0].data = this._data;
-        this.radarCharts.setOption(this._option);
-        window.onresize = this.radarCharts.resize;
-    }
 }

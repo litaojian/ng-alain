@@ -3,16 +3,22 @@ import { CommonModule } from '@angular/common';
 
 import { ClbkComponet } from "./clbk.component";
 import { QszxlComponent } from "./qszxl.component";
+import { ZdclsComponent} from "./zdcls.component";
+import { QsyjsComponent } from "./qsyjs.component";
 
 @NgModule({
     declarations: [
         ClbkComponet,
-        QszxlComponent
+        QszxlComponent,
+        ZdclsComponent,
+        QsyjsComponent
     ],
     imports: [ CommonModule ],
     exports: [
         ClbkComponet,
-        QszxlComponent
+        QszxlComponent,
+        ZdclsComponent,
+        QsyjsComponent
     ],
     providers: [],
 })

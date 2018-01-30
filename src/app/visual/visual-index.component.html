@@ -126,7 +126,7 @@
             <!-- 各地市卡口接入数结束 -->
             <!-- 重点人群车辆数-->
             <div class="unit">
-              <span class="line-l"></span>
+              <!-- <span class="line-l"></span>
               <span class="line-r"></span>
               <span class="line-b"></span>
               <span class="line-t"></span>
@@ -136,7 +136,8 @@
               <div class="unit-body">
                   <div class="chart-user-car" id="userCar">
                   </div>
-              </div>
+              </div> -->
+              <app-zdcls title="重点人群车辆数" [data]="importantCarNum"></app-zdcls>
             </div>
             <!-- 重点人员车辆数结束-->
         </div>
@@ -250,7 +251,7 @@
           <!-- 车辆档案统计结束 -->
           <!-- 全省预警数 -->
             <div class="unit">
-              <span class="line-l"></span>
+              <!-- <span class="line-l"></span>
               <span class="line-r"></span>
               <span class="line-b"></span>
               <span class="line-t"></span>
@@ -258,19 +259,10 @@
                   <div class="unit-title-text">全省布控预警数(最近7天)</div>
               </div>
               <div class="unit-body">
-                  <!--<div class="chart-title eachcity">
-                    <div class="chart-title-text" style="border:0px">地市</div>
-                    <div class="chart-title-text">预警数量</div>
-                    <div class="chart-title-text">地市</div>
-                    <div class="chart-title-text">预警数量</div>
-                  </div>-->
-                  <!--<div class="chart-title">
-                    <div class="chart-title-text" style="border:0px;width:25%">地市</div>
-                    <div class="chart-title-text">预警数量</div>
-                  </div>-->
                   <div class="chart-bar-car" id="warningCar" style="height: 306px;">
                   </div>
-              </div>
+              </div> -->
+              <app-qsyjs [data]="warningList" title="全省布控预警数(最近7天)"></app-qsyjs>
             </div>
             <!-- 全省预警数结束 -->
             <!--重点人群车辆预警趋势-->
