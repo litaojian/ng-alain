@@ -7,7 +7,7 @@ import { SharedModule } from '@shared/shared.module';
 
 import { TestRecService } from './test-rec/testRec.service';
 import { TestRecListComponent, TestRecDetailComponent } from './test-rec/testRec.component';
-import { PageContainerComponent } from '../admin/page.container.component';
+import { PageContainerComponent } from './page.container.component';
 
 
 const routes: Routes = [
