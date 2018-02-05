@@ -144,12 +144,11 @@ export class VisualIndexComponent implements OnInit {
             this.countObj.update(res.total);
         })
       }, 5000);
-
+      $("<script>").attr({ src: "assets/lib/zui/js/zui.js" }).appendTo("head");
    }
 
   ngOnInit() {
-    $("<link>").attr({ rel: "stylesheet", type: "text/css", href: "assets/lib/zui/css/zui.css" }).appendTo("head");
-    $("<script>").attr({ src: "assets/lib/zui/js/zui.js" }).appendTo("head");
+    // $("<link>").attr({ rel: "stylesheet", type: "text/css", href: "assets/lib/zui/css/zui.css" }).appendTo("head");
       //获取车档信息
       this.visualService.getArchiveCount().subscribe(data => {
           this.vehicleList.total = data.rowData.total;
