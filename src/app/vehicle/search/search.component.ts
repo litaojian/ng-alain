@@ -1,53 +1,69 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd';
+import * as moment from 'moment';
 import { _HttpClient } from '@delon/theme';
-import { QueryDialogComponent } from './query.dialog.component';
-import { NzModalService } from 'ng-zorro-antd';
 
 @Component({
-    selector: 'vehicle-search',
+    selector: 'vehicle-card-list',
     templateUrl: './search.component.html',
-    styleUrls: ['./search.component.less']
+    styles: [`
+    :host ::ng-deep .ant-card-meta-title {
+        margin-bottom: 4px;
+    }
+    :host ::ng-deep nz-list nz-card {
+        margin-bottom: 0 !important;
+    }
+    :host ::ng-deep .card-item-content {
+        display: flex;
+        margin-top: 16px;
+        margin-bottom: -4px;
+        line-height: 20px;
+        height: 20px;
+        justify-content: space-between;
+    }
+    `],
+    encapsulation: ViewEncapsulation.Emulated
 })
 export class SearchComponent implements OnInit {
-
-    data = [
-        {
-          key    : '1',
-          name   : 'John Brown',
-          age    : 32,
-          address: 'New York No. 1 Lake Park',
-        }, {
-          key    : '2',
-          name   : 'Jim Green',
-          age    : 42,
-          address: 'London No. 1 Lake Park',
-        }, {
-          key    : '3',
-          name   : 'Joe Black',
-          age    : 32,
-          address: 'Sidney No. 1 Lake Park',
-        }
-    ];
-
     q: any = {
-        ps: 5,
+        ps: 8,
         categories: [],
         owners: [ 'zxx' ]
     };
 
-    list: any[] = [];
-    loading = false;
+    list: any[] = [ ];
 
+    loading = true;
+
+    // region: cateogry
+    filters = [
+        { id: 0, text: '全部', value: false },
+        { id: 1, text: '车牌号码', value: false },
+        { id: 2, text: '号牌种类', value: false },
+        { id: 3, text: '车辆品牌', value: false },
+        { id: 4, text: '车辆颜色', value: false }
+    ];
+
+    changeFilter(status: boolean, idx: number) {
+        if (idx === 0) {
+            this.filters.map(i => i.value = status);
+        } else {
+            this.filters[idx].value = status;
+        }
+        this.getData();
+    }
+
+    
     // region: cateogry
     categories = [
         { id: 0, text: '全部', value: false },
-        { id: 1, text: '条件一', value: false },
-        { id: 2, text: '条件二', value: false },
-        { id: 3, text: '条件三', value: false },
-        { id: 4, text: '条件四', value: false },
-        { id: 5, text: '条件五', value: false },
-        { id: 6, text: '条件六', value: false },
-        { id: 7, text: '条件七', value: false }
+        { id: 1, text: '长沙', value: false },
+        { id: 2, text: '株州', value: false },
+        { id: 3, text: '衡阳', value: false },
+        { id: 4, text: '张家界', value: false },
+        { id: 5, text: '郴州', value: false },
+        { id: 6, text: '怀化', value: false },
+        { id: 7, text: '湘西州', value: false }
     ];
 
     changeCategory(status: boolean, idx: number) {
@@ -56,41 +72,11 @@ export class SearchComponent implements OnInit {
         } else {
             this.categories[idx].value = status;
         }
-        //alert("idx=" + idx);
-        this.showModalForComponent();
+        this.getData();
     }
     // endregion
 
-    // region: owners
-    owners = [
-        {
-            id: 'wzj',
-            name: '我自己',
-        },
-        {
-            id: 'wjh',
-            name: '吴家豪',
-        },
-        {
-            id: 'zxx',
-            name: '周星星',
-        },
-        {
-            id: 'zly',
-            name: '赵丽颖',
-        },
-        {
-            id: 'ym',
-            name: '姚明',
-        }
-    ];
-
-    setOwner() {
-        this.q.owners = [`wzj`];
-    }
-    // endregion
-
-    constructor(private http: _HttpClient, private modalService: NzModalService) {}
+    constructor(private http: _HttpClient, public msg: NzMessageService) {}
 
     ngOnInit() {
         this.getData();
@@ -98,29 +84,22 @@ export class SearchComponent implements OnInit {
 
     getData() {
         this.loading = true;
-        this.http.get('/api/list', { count: this.q.ps }).subscribe((res: any) => {
-            this.list = res;
+        let url = 'elastic/api/service/analysis/vehicle/find';
+        url = 'remote/api/rest/vehicleSearchResult';
+        this.http.get(url, {beginDate:'2017-12-01', endDate:'2017-12-01', licenseType:'02', rowLimit: this.q.ps }).subscribe((res: any) => {
+            if (res.resultCode == 0){
+                this.list = res.rows.map(item => {
+                    //if (item.updatedAt) item.updatedAt = moment(item.updatedAt).fromNow();
+                    return item;
+                });    
+            }else{
+                
+            }
             this.loading = false;
         });
     }
 
-    showModalForComponent() {
-        const subscription = this.modalService.open({
-          title          : '对话框标题',
-          content        : QueryDialogComponent,
-          onOk() {
-          },
-          onCancel() {
-            console.log('Click cancel');
-          },
-          footer         : false,
-          componentParams: {
-            name: '测试渲染Component'
-          }
-        });
-        subscription.subscribe(result => {
-          console.log(result);
-        })
-      }
-
+    vehicleSearchClick(){
+        alert('aaa');
+    }
 }

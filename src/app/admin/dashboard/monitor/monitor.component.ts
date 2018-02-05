@@ -11,7 +11,7 @@ import { _HttpClient } from '@delon/theme';
 })
 export class DashboardMonitorComponent implements OnInit, OnDestroy {
     data: any = { };
-    tags = [];
+    tags:any = [];
     loading = true;
     q: any = {
         start: null,
@@ -24,7 +24,7 @@ export class DashboardMonitorComponent implements OnInit, OnDestroy {
         zip(
             this.http.get('/chart'),
             this.http.get('/chart/tags')
-        ).subscribe(([ res, tags ]) => {
+        ).subscribe(([ res, tags ]: [ any, any ]) => {
             this.data = res;
             tags.list[Math.floor(Math.random() * tags.list.length) + 1].value = 1000;
             this.tags = tags.list;

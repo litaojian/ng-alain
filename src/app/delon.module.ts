@@ -2,7 +2,7 @@
  * 进一步对基础模块的导入提炼
  * 有关模块注册指导原则请参考：https://github.com/cipchk/ng-alain/issues/180
  */
-import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
 import { throwIfAlreadyLoaded } from '@core/module-import-guard';
 
 // region: zorro modules
@@ -54,6 +54,7 @@ import {
     // NzAffixModule,
     // NzAnchorModule,
     NzAvatarModule,
+    // NzUploadModule,
     // SERVICES
     NzNotificationService,
     NzMessageService
@@ -104,6 +105,7 @@ export const ZORROMODULES = [
     // NzBackTopModule,
     // NzAffixModule,
     // NzAnchorModule,
+    // NzUploadModule,
     NzAvatarModule
 ];
 // endregion
@@ -179,6 +181,15 @@ import { environment } from '@env/environment';
 const MOCKMODULE = !environment.production || environment.chore === true ?
                     [ DelonMockModule.forRoot({ data: MOCKDATA }) ] : [];
 
+// region: global config functions
+
+// import { SimpleTableConfig } from '@delon/abc';
+// export function simpleTableConfig(): SimpleTableConfig {
+//     return { ps: 20 };
+// }
+
+// endregion
+
 @NgModule({
     imports: [
         NgZorroAntdModule.forRoot(),
@@ -186,7 +197,11 @@ const MOCKMODULE = !environment.production || environment.chore === true ?
         // theme
         AlainThemeModule.forRoot(),
         // abc
-        AlainABCModule.forRoot(),
+        AdErrorCollectModule.forRoot(), AdFooterToolbarModule.forRoot(), AdSidebarNavModule.forRoot(), AdDownFileModule.forRoot(), AdImageModule.forRoot(),
+        AdAvatarListModule.forRoot(), AdDescListModule.forRoot(), AdEllipsisModule.forRoot(), AdExceptionModule.forRoot(), AdExceptionModule.forRoot(),
+        AdNoticeIconModule.forRoot(), AdNumberInfoModule.forRoot(), AdProHeaderModule.forRoot(), AdResultModule.forRoot(), AdStandardFormRowModule.forRoot(),
+        AdTagSelectModule.forRoot(), AdTrendModule.forRoot(), AdUtilsModule.forRoot(), AdChartsModule.forRoot(), AdCountDownModule.forRoot(), AdSimpleTableModule.forRoot(),
+        AdReuseTabModule.forRoot(), AdFullContentModule.forRoot(), AdXlsxModule.forRoot(), AdZipModule.forRoot(),
         // auth
         AlainAuthModule.forRoot({
             // ignores: [ `\\/login`, `assets\\/` ],
@@ -203,5 +218,15 @@ const MOCKMODULE = !environment.production || environment.chore === true ?
 export class DelonModule {
   constructor( @Optional() @SkipSelf() parentModule: DelonModule) {
     throwIfAlreadyLoaded(parentModule, 'DelonModule');
+  }
+
+  static forRoot(): ModuleWithProviders {
+      return {
+          ngModule: DelonModule,
+          providers: [
+              // TIPS：@delon/abc 有大量的全局配置信息，例如设置所有 `simple-table` 的页码默认为 `20` 行
+              // { provide: SimpleTableConfig, useFactory: simpleTableConfig }
+          ]
+      };
   }
 }
