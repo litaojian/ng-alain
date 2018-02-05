@@ -1,0 +1,42 @@
+
+<div class="myModal-content">
+    <div class="recentCarLeft recentComment">
+        <nz-popover>
+            <img src="{{recentCar.tplj}}" alt="" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==false">
+            <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true">
+            <ng-template #nzTemplate>
+                <img src="{{recentCar.tplj}}" alt="" *ngIf="ifErrorImg==false">
+                <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true">
+            </ng-template>
+        </nz-popover>
+        <dl>
+            <dt>过车信息</dt>
+            <dd><span>号牌号码：</span><span>{{recentCar.hphm}}</span></dd>
+            <dd><span>经过卡点：</span><span class="overflowHide">{{recentCar.kkmc}}</span></dd>
+            <dd><span>号牌颜色：</span><span>{{recentCar.hpysmc}}</span></dd>
+            <dd><span>过车时间：</span><span>{{recentCar.gcsj}}</span></dd>
+            <dd><span>所属区域：</span><span>{{recentCar.citymc}}</span></dd>
+        </dl>
+    </div>
+    <div class="recentCarRight recentComment">
+        <nz-popover>
+            <img src="{{recentCar.tplj}}" alt="" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==false">
+            <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true">
+            <ng-template #nzTemplate>
+                <img src="{{recentCar.tplj}}" alt="" *ngIf="ifErrorImg==false">
+                <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true">
+            </ng-template>
+        </nz-popover>
+        <dl>
+            <dt>机动车登记信息</dt>
+            <dd><span>车辆型号：</span><span>{{recentCar.clxh}}</span></dd>
+            <dd><span>所有人：</span><span>{{recentCar.syr}}</span></dd>
+            <dd><span>联系电话：</span><span>{{recentCar.lxdh}}</span></dd>
+            <dd><span>车辆品牌：</span><span>{{recentCar.clpp}}</span></dd>
+            <dd><span>车身颜色：</span><span>{{recentCar.csysmc}}</span></dd>
+        </dl>
+    </div>
+</div>
+<div class="myModal-footer" style="clear:both">
+    
+</div>

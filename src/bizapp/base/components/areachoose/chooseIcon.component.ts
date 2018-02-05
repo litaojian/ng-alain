@@ -5,7 +5,7 @@ import { AreaComponent } from './areachoose.component';
 @Component({
   selector: 'choose-icon',
   template:`
-     <i class="anticon anticon-appstore" (click)="showModalForComponent()" style="font-size:25px;cursor: pointer;" title="点击选择卡口"></i>
+     <i class="anticon anticon-search" (click)="showModalForComponent()" style="font-size:25px;cursor: pointer;" title="点击选择卡口"></i>
   `,
   styles  : [
       `

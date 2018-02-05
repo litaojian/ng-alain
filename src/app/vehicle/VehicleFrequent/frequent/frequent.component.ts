@@ -5,6 +5,8 @@ import * as moment from 'moment';
 import { NzModalService } from 'ng-zorro-antd';
 import { FrequentService } from '../frequent.service';
 import { Http} from '@angular/http';
+import { RecentCarModalComponent} from '../../VehicleCommon/commom/recent-car-modal.component';
+import { CardetailModalComponent} from '../../VehicleCommon/commom/car-detail-modal.component';
 declare var $: any;
 @Component({ 
     selector: 'app-acl',
@@ -37,6 +39,8 @@ export class FrequentComponent {
     private isCarByOneDetailShow:any=false;//点击区域详情中的号牌号码弹出框
     private recentCar:any={};//点击列表中号牌号码弹出框数据
     private ifErrorImg:any;//错误图片
+    private carDetailOne: any;
+    private carmodalDetail: any;
     constructor(
         private modalService: NzModalService,
         private fequentService: FrequentService,
@@ -45,20 +49,18 @@ export class FrequentComponent {
         ) {
            
             this.search = {
-                hpzl:'',
                 ksrq:'',
                 jsrq:'',
                 fxkssj:'05:00',
                 fxjssj:'18:00',
-                fxfw:'',
-                cxcs:''
+                cxcs:'',
+                hpzl:'',
+                fxfw:''
+               
              };
              this.areaList={
                 regionalparam:''
              }
-             this.search2={
-               
-             };
              this.pagination={
                 pageSize:10,
                 pageIndex:1
@@ -69,50 +71,25 @@ export class FrequentComponent {
              }
         }   
     ngOnInit() {
-           //默认时间间隔3天
-           var newDate = new Date();
-           var newDate1=(newDate.getTime()-3*24*3600*1000);
-           var oneweekdate = new Date(newDate1);
-           this.search.ksrq=this.DatePipe.transform(oneweekdate,'y-MM-dd HH:mm:ss');
-           this.search.jsrq=this.DatePipe.transform(new Date(),'y-MM-dd HH:mm:ss');
-        //    this.search.ksrq='2016-08-11 10:40:02';
-        //    this.search.jsrq='2016-08-20 10:40:02';
     }
- //保存子组件返回的卡口数据
- private getKkou(e){
-     if(e.kkListBh!=undefined&&e.kkList!=undefined){
-          console.log(e.kkListBh.join(","));
-          this.search.fxfw=e.kkListBh.join(",");
-          this.search.kkmc=e.kkList;
-          this.search2.fxfw=e.kkListBh.join(",");
-          this.search2.kkmc=e.kkList;
-     }
-    
-  }
-  //添加查询条件
-  private addMessage(){
-        this.searchL= {
-                    ksrq:this.search.ksrq,
-                    jsrq:this.search.jsrq,
-                    fxkssj:this.search.fxkssj,
-                    fxjssj:this.search.fxjssj,
-                    fxfw: this.search.fxfw,
-                    kkmc: this.search.kkmc,
-                    hpzl: this.search.hpzl,
-                    cxcs: this.search.cxcs
-                };
-          
-        this.list.push(this.searchL);
-        this.isModalShow=false;
-        this.areaList=$.extend({},this.pagination,this.list[0]);
-        // this.areaList.regionalparam=this.list;
-        // console.log(this.list);
-        // console.log(this.areaList);
-        this.getFrequentList(this.areaList);
- }
  //获取列表数据
  private getFrequentList(parmes){
+    // console.log(parmes);
+    this.search = {
+                ksrq:parmes.kssj,
+                jsrq:parmes.jssj,
+                fxkssj:parmes.fxkssj,
+                fxjssj:parmes.fxjssj,
+                cxcs:parmes.cxcs,
+                hpzl:parmes.hpzl,
+                fxfw:parmes.fxfw              
+    };
+    this.search=$.extend({},this.search,this.pagination);
     this.myLoading=true;
+    this.frequentList(this.search);
+    
+  }
+private frequentList(parmes){
     this.fequentService.getList(parmes).subscribe(data => { 
            if(data.resultCode!=0){
               this.msg.create('error', data.resultMsg);
@@ -122,10 +99,14 @@ export class FrequentComponent {
               this.data=data.rows;
               this.dataTotal=data.total;
               this.myLoading=false;
-           }
-           console.log(data);    
+           }   
      });
-  }
+}
+//列表页数改变
+private indexChange(e){
+    this.search.pageIndex=e;
+    this.frequentList(this.search);
+ }
  //tabs切换
 private showListTypes(type){
     if(type=='list'){
@@ -134,55 +115,58 @@ private showListTypes(type){
        this.showLp=false;
     }
 }
-//列表页数改变
-private indexChange(e){
-    this.areaList.pageIndex=e;
-    this.getFrequentList(this.areaList);
- }
-//保存修改信息
-private onSave(){
-      console.log(this.indexNum);
-      this.list[this.indexNum]=this.search2;
-      console.log(this.list[this.indexNum]);
-      console.log(this.list);
-      this.isModalShow=false;
-      this.areaList=$.extend({},this.pagination,this.list[0]);
-      this.getFrequentList(this.areaList);
- }
- //输出区域
-private delete(num){
-   this.list.splice(num,1);
-}
+
 //错误图片
 private errorImg(){
   this.ifErrorImg=true;
 }
 //获取列表单个号牌数据
 private recentCarDetail(car){
-     console.log(car);
-     this.isCarDetailShow=true;
-     this.fequentService.recentCar({"hphm":car.hphm,"hpzl":car.hpzl,"minTime":this.list[0].ksrq}).subscribe(data => { 
-            this.recentCar=data.rowData;
-            this.errorImg();
-     });
+      this.carDetailOne={
+          hphm:car.hphm,
+          hpzl:car.hpzl,
+          minTime:this.search.ksrq
+     }
+     const subscription = this.modalService.open({
+       title          : '最近一次过车记录',
+       content        : RecentCarModalComponent,
+       footer         : false,
+       componentParams: {
+         carDetailOne: this.carDetailOne
+       }
+    });
   }
 //获取区域单个号牌数据
 private showFrequentOne(car){
-     this.isCarByOneDetailShow=true;
-      this.fequentService.areaByOneDel({"hphm":car.hphm,"hpzl":car.hpzl,"gcsj":car.gcsj}).subscribe(data => { 
-            this.dataOne=data.rowData;
-            this.errorImg();
-     });
+     this.carmodalDetail={
+          hphm:car.hphm,
+          hpzl:car.hpzl,
+          gcsj:car.gcsj
+     }
+     const subscription = this.modalService.open({
+       title          : '详情页面',
+       content        : CardetailModalComponent,
+       footer         : false,
+       width          :800,
+       componentParams: {
+         carDetailOne: this.carmodalDetail
+       }
+    });
+    //  this.isCarByOneDetailShow=true;
+    //   this.fequentService.areaByOneDel({"hphm":car.hphm,"hpzl":car.hpzl,"gcsj":car.gcsj}).subscribe(data => { 
+    //         this.dataOne=data.rowData;
+    //         this.errorImg();
+    //  });
   }
 //区域单个号牌数据查询条件
 private showFrequentDetail(index,car){
       this.isAreaDetailShow=true; 
       this.areaDetail=$.extend({},this.paginationArea);
-      this.areaDetail.gckssj=this.list[index].ksrq;
-      this.areaDetail.gcjssj=this.list[index].jsrq;
-      this.areaDetail.beginTime=this.list[index].fxkssj;
-      this.areaDetail.endTime=this.list[index].fxjssj;
-      this.areaDetail.kdbh=this.list[index].fxfw;
+      this.areaDetail.gckssj=this.search.ksrq;
+      this.areaDetail.gcjssj=this.search.jsrq;
+      this.areaDetail.beginTime=this.search.fxkssj;
+      this.areaDetail.endTime=this.search.fxjssj;
+      this.areaDetail.kdbh=this.search.fxfw;
       this.areaDetail.hphm=car.hphm;
       this.areaDetail.hpzl=car.hpzl;
       this.getAreaDetail(this.areaDetail);
@@ -202,25 +186,6 @@ private showFrequentDetail(index,car){
   private areaIndexChange(e){
       this.areaDetail.pageIndex=e;
       this.getAreaDetail(this.areaDetail);
-  }
-  //点击添加数据
-  private carDetail(num) {
-      this.indexNum=num; 
-      this.isModalShow=true;              
-      if(num!=undefined){
-          this.numOne=true;
-          this.search2=this.list[num];
-      }else{        
-         this.search.kkmc='';
-         this.search.hpzl='';
-         this.search.cxcs='';
-         var newDate = new Date();
-         var newDate1=(newDate.getTime()-3*24*3600*1000);
-         var oneweekdate = new Date(newDate1);
-         this.search.ksrq=this.DatePipe.transform(oneweekdate,'y-MM-dd HH:mm:ss');
-         this.search.jsrq=this.DatePipe.transform(new Date(),'y-MM-dd HH:mm:ss');
-         this.numOne=false;
-      }
   }
   //关闭弹窗
   private hasChange(e){

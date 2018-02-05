@@ -4,14 +4,16 @@ import { SharedModule } from '@shared/shared.module';
 import { AppBaseModule } from '../../../bizapp/base/controls/v2/my-base.module';
 import { FirstComponent } from './first/first.component';
 import { FirstService } from './first.service';
+import { CommonModule } from '../VehicleCommon/commom.module';
 const routes: Routes = [
-    { path: 'list', component: FirstComponent}
+    { path: 'list', component: FirstComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
     imports: [
         SharedModule,
         AppBaseModule,
+        CommonModule,
         RouterModule.forChild(routes)
     ],
     providers: [FirstService],
@@ -20,6 +22,7 @@ const routes: Routes = [
     ],
     exports: [
         RouterModule
-    ]
+    ],
+    entryComponents:[]
 })
 export class FirstModule { }

@@ -29,55 +29,48 @@
             "text": "业务",
             "group": true,
             "children": [{
-                    "text": "轨迹查询",
-                    "translate": "",
-                    "link": "/trackSearch/list",
-                    "shortcut": true,
-                    "icon": "icon-compass"
-                },
-                {
-                    "text": "区域碰撞",
-                    "translate": "",
-                    "link": "/regional/list",
-                    "shortcut": true,
-                    "icon": "icon-compass"
-                },
-                {
-                    "text": "同行车分析",
-                    "translate": "",
-                    "link": "/peer/list",
-                    "shortcut": true,
-                    "icon": "icon-compass"
-                },
-                {
-                    "text": "首次出现车辆",
-                    "translate": "",
-                    "link": "/first/list",
-                    "shortcut": true,
-                    "icon": "icon-compass"
-                },
-                {
-                    "text": "频繁出入分析",
-                    "translate": "",
-                    "link": "/frequent/list",
-                    "shortcut": true,
-                    "icon": "icon-compass"
-                },
-                {
-                    "text": "过车查询测试",
-                    "translate": "",
-                    "link": "/carSearch/index",
-                    "shortcut": true,
-                    "icon": "icon-compass"
-                },
-                {
-                    "text": "车辆布控",
-                    "translate": "",
-                    "link": "/carControl/index",
-                    "shortcut": true,
-                    "icon": "icon-compass"
-                },
-                {
+                "text": "轨迹查询",
+                "translate": "",
+                "link": "/trackSearch/list",
+                "shortcut": true,
+                "icon": "icon-compass"
+            }, 
+            {
+                "text": "区域碰撞",
+                "translate": "",
+                "link": "/regional/list",
+                "shortcut": true,
+                "icon": "icon-compass"
+            },
+            {
+                "text": "同行车分析",
+                "translate": "",
+                "link": "/peer/list",
+                "shortcut": true,
+                "icon": "icon-compass"
+            },
+            {
+                "text": "首次出现车辆",
+                "translate": "",
+                "link": "/first/list",
+                "shortcut": true,
+                "icon": "icon-compass"
+            },
+            {
+                "text": "频繁出入分析",
+                "translate": "",
+                "link": "/frequent/list",
+                "shortcut": true,
+                "icon": "icon-compass"
+            },
+            {
+                "text": "车辆布控",
+                "translate": "",
+                "link": "/carControl/index",
+                "shortcut": true,
+                "icon": "icon-compass"
+            },
+            {
                     "text": "可视化",
                     "translate": "",
                     "link": "/visual/index",
