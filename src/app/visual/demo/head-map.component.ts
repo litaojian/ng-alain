@@ -77,7 +77,6 @@ export class HeadMapComponent implements OnInit {
     _status:boolean = false;
 
     loadding(){
-        debugger;
         if(!this.gdMap){
             this.gdMap = echarts.init(this.div.nativeElement);
         }
