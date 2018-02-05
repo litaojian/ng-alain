@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
 	template:
-		`<div class="clearfix">11111111111111-----------111111111111111</div><router-outlet></router-outlet><div>abc</div>`,
+		`<div class="clearfix"></div><router-outlet></router-outlet>`,
   	inputs:[],
   	outputs:[]
 })
