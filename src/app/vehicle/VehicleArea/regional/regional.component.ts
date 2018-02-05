@@ -26,7 +26,7 @@ export class RegionalComponent {
     private search: any;//保存添加数据
     private pagination: any;//页数
     private paginationArea:any;//区域页数
-    private search2: any;//保存修改后的数据
+    private search2: any[] = [];//中间数组
     private indexNum:any;//判断修改list数组里面的第几个
     private dataTotal:any;//总数
     private areaTotal:any;//区域总数
@@ -48,14 +48,12 @@ export class RegionalComponent {
                 hphm:'',
                 beginDate:'',
                 endDate:'',
-                kkbh:''
+                kkbh:'',
+                hpzl:''
              };
              this.areaList={
                 regionalparam:''
              }
-             this.search2={
-               
-             };
              this.pagination={
                 pageSize:10,
                 pageIndex:1
@@ -67,64 +65,81 @@ export class RegionalComponent {
         }   
     ngOnInit() {
            //默认时间间隔3天
-           var newDate = new Date();
-           var newDate1=(newDate.getTime()-3*24*3600*1000);
-           var oneweekdate = new Date(newDate1);
-           this.search.beginDate=this.DatePipe.transform(oneweekdate,'y-MM-dd HH:mm:ss');
-           this.search.endDate=this.DatePipe.transform(new Date(),'y-MM-dd HH:mm:ss');
+        //    var newDate = new Date();
+        //    var newDate1=(newDate.getTime()-3*24*3600*1000);
+        //    var oneweekdate = new Date(newDate1);
+        //    this.search.beginDate=this.DatePipe.transform(oneweekdate,'y-MM-dd HH:mm:ss');
+        //    this.search.endDate=this.DatePipe.transform(new Date(),'y-MM-dd HH:mm:ss');
            //初始化数据，默认开始存在两个区域
-           for(let i=0;i<2;i++){
-               this.addMessage(2);
-           }
+        //    for(let i=0;i<2;i++){
+        //        this.addMessage(2);
+        //    }
     }
  //保存子组件返回的卡口数据
- private getKkou(e){
-     if(e.kkListBh!=undefined&&e.kkList!=undefined){
-          console.log(e.kkListBh.join(","));
-          this.search.kkbh=e.kkListBh.join(",");
-          this.search.kkmc=e.kkList;
-          this.search2.kkbh=e.kkListBh.join(",");
-          this.search2.kkmc=e.kkList;
-     }
+//  private getKkou(e){
+//      if(e.kkListBh!=undefined&&e.kkList!=undefined){
+//           console.log(e.kkListBh.join(","));
+//           this.search.kkbh=e.kkListBh.join(",");
+//           this.search.kkmc=e.kkList;
+//           this.search2.kkbh=e.kkListBh.join(",");
+//           this.search2.kkmc=e.kkList;
+//      }
     
-  }
+//   }
   //添加查询条件
-  private addMessage(i){
-        this.searchL= {
-                    beginDate:this.search.beginDate,
-                    endDate:this.search.endDate,
-                    kkbh: this.search.kkbh,
-                    kkmc: this.search.kkmc,
-                    hphm: this.search.hphm
-                };
+//   private addMessage(i){
+//         this.searchL= {
+//                     beginDate:this.search.beginDate,
+//                     endDate:this.search.endDate,
+//                     kkbh: this.search.kkbh,
+//                     kkmc: this.search.kkmc,
+//                     hphm: this.search.hphm
+//                 };
           
-        this.list.push(this.searchL);
-        this.isModalShow=false;
-        this.areaList=$.extend({},this.pagination);
-        this.areaList.regionalparam=this.list;
-        if(i==1){
-           this.getAreaList(this.areaList);
-        }
-        // console.log(this.list);
-        // console.log(this.areaList);
-        // this.getAreaList(this.areaList);
- }
+//         this.list.push(this.searchL);
+//         this.isModalShow=false;
+//         this.areaList=$.extend({},this.pagination);
+//         this.areaList.regionalparam=this.list;
+//         if(i==1){
+//            this.getAreaList(this.areaList);
+//         }
+//  }
  //获取列表数据
  private getAreaList(parmes){
+    console.log(parmes);
+    this.search2=[];
+    for(let i=0;i<parmes.regionalparam.length;i++){
+           this.search = {
+                beginDate:parmes.regionalparam[i].kssj,
+                endDate:parmes.regionalparam[i].jssj,
+                hphm:parmes.regionalparam[i].hphm,
+                hpzl:parmes.regionalparam[i].hpzl,
+                kkbh:parmes.regionalparam[i].fxfw              
+            };
+           this.search2.push(this.search);
+     }
+    console.log(this.search2);
+    this.search=$.extend({},this.pagination);
+    this.search.regionalparam=this.search2;
+    console.log(this.search); 
     this.myLoading=true;
-    this.RegionalService.getList(parmes).subscribe(data => { 
-           if(data.resultCode!=0){
-              this.msg.create('error', data.resultMsg);
-              this.myLoading=false;
-              return;
-           }else{
-              this.data=data.rows;
-              this.dataTotal=data.total;
-              this.myLoading=false;
-           }
-           console.log(data);    
-     });
+    this.areaLists(this.search);
+    
   }
+areaLists(parmes){
+    this.RegionalService.getList(parmes).subscribe(data => { 
+            if(data.resultCode!=0){
+                this.msg.create('error', data.resultMsg);
+                this.myLoading=false;
+                return;
+            }else{
+                this.data=data.rows;
+                this.dataTotal=data.total;
+                this.myLoading=false;
+            }
+            console.log(data);    
+        });
+ }
  //tabs切换
 private showListTypes(type){
     if(type=='list'){
@@ -135,22 +150,22 @@ private showListTypes(type){
 }
 //列表页数改变
 private indexChange(e){
-    this.areaList.pageIndex=e;
-    this.getAreaList(this.areaList);
+    this.search.pageIndex=e;
+    this.areaLists(this.search);
  }
 //保存修改信息
-private onSave(){
-      console.log(this.indexNum);
-      this.list[this.indexNum]=this.search2;
-      console.log(this.list[this.indexNum]);
-      console.log(this.list);
-      this.isModalShow=false;
-      this.getAreaList(this.areaList);
- }
+// private onSave(){
+//       console.log(this.indexNum);
+//       this.list[this.indexNum]=this.search2;
+//       console.log(this.list[this.indexNum]);
+//       console.log(this.list);
+//       this.isModalShow=false;
+//       this.getAreaList(this.areaList);
+//  }
  //输出区域
-private delete(num){
-   this.list.splice(num,1);
-}
+// private delete(num){
+//    this.list.splice(num,1);
+// }
 //错误图片
 private errorImg(){
   this.ifErrorImg=true;
@@ -199,23 +214,23 @@ private showAreaDetail(index,car){
       this.getAreaDetail(this.areaDetail);
   }
   //点击添加数据
-  private carDetail(num) {
-      this.indexNum=num; 
-      this.isModalShow=true;              
-      if(num!=undefined){
-          this.numOne=true;
-          this.search2=this.list[num];
-      }else{        
-         this.search.kkmc='';
-         this.search.hphm='';
-         var newDate = new Date();
-         var newDate1=(newDate.getTime()-3*24*3600*1000);
-         var oneweekdate = new Date(newDate1);
-         this.search.beginDate=this.DatePipe.transform(oneweekdate,'y-MM-dd HH:mm:ss');
-         this.search.endDate=this.DatePipe.transform(new Date(),'y-MM-dd HH:mm:ss');
-         this.numOne=false;
-      }
-  }
+//   private carDetail(num) {
+//       this.indexNum=num; 
+//       this.isModalShow=true;              
+//       if(num!=undefined){
+//           this.numOne=true;
+//           this.search2=this.list[num];
+//       }else{        
+//          this.search.kkmc='';
+//          this.search.hphm='';
+//          var newDate = new Date();
+//          var newDate1=(newDate.getTime()-3*24*3600*1000);
+//          var oneweekdate = new Date(newDate1);
+//          this.search.beginDate=this.DatePipe.transform(oneweekdate,'y-MM-dd HH:mm:ss');
+//          this.search.endDate=this.DatePipe.transform(new Date(),'y-MM-dd HH:mm:ss');
+//          this.numOne=false;
+//       }
+//   }
   //关闭弹窗
   private hasChange(e){
     this.isModalShow=e;

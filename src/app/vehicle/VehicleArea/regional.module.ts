@@ -4,6 +4,7 @@ import { SharedModule } from '@shared/shared.module';
 import { AppBaseModule } from '../../../bizapp/base/controls/v2/my-base.module';
 import { RegionalComponent } from './regional/regional.component';
 import { RegionalService } from './regional.service';
+import { CommonModule } from '../VehicleCommon/commom.module';
 const routes: Routes = [
     { path: 'list', component: RegionalComponent}
 ];
@@ -12,6 +13,7 @@ const routes: Routes = [
     imports: [
         SharedModule,
         AppBaseModule,
+        CommonModule,
         RouterModule.forChild(routes)
     ],
     providers: [RegionalService],

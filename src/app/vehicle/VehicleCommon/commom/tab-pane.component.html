@@ -1,0 +1,160 @@
+<nz-modal [nzVisible]="isModalShow" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel($event)" [nzZIndex]="100">
+      <ng-template #modalTitle>
+            <div class="myModal-title">
+                <span *ngIf="!numOne">条件添加</span>
+                <span *ngIf="numOne">条件修改</span>
+           </div>
+      </ng-template>
+      <ng-template #modalContent>
+        <div class="myModal-content">
+          <div nz-row [nzGutter]="24">
+               <div nz-col [nzSpan]="24" class="mb-md" *ngIf="VehicleType=='search'">
+                    <div nz-form-item class="d-flex">
+                        <div nz-form-label><label for="types">查询方式：</label></div>
+                        <div nz-form-control class="flex-1">
+                            <nz-select2 *ngIf="!numOne" [dataSource]="searchType" [(ngModel)]="search.cxfs" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'查询方式'"></nz-select2>
+                            <nz-select2 *ngIf="numOne"  [dataSource]="searchType" [(ngModel)]="search2.cxfs" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'查询方式'"></nz-select2>
+                        </div>
+                    </div>
+                </div>
+                <div nz-col [nzSpan]="24" class="mb-md">
+                        <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                            <span class="mustTime">*</span>
+                            <div nz-form-label><label for="dcnr" (click)="onSave()">过车时间：</label></div>
+                            <div nz-form-control class="flex-1">
+                              <my-datepicker *ngIf="!numOne" name="kssj" [(ngModel)]="search.kssj" [options]="{format:'YYYY-MM-DD hh:mm:ss'}"></my-datepicker>
+                              <my-datepicker *ngIf="numOne" name="kssj" [(ngModel)]="search2.kssj" [options]="{format:'YYYY-MM-DD hh:mm:ss'}"></my-datepicker>
+                            </div>
+                            <span style="padding-left:5px;padding-right:5px;">--</span>
+                            <div nz-form-control class="flex-1">
+                                <my-datepicker *ngIf="!numOne" name="jssj" [(ngModel)]="search.jssj" [options]="{format:'YYYY-MM-DD hh:mm:ss'}"></my-datepicker>
+                                <my-datepicker *ngIf="numOne" name="jssj" [(ngModel)]="search2.jssj" [options]="{format:'YYYY-MM-DD hh:mm:ss'}"></my-datepicker>
+                            </div>
+                        </div>
+                </div>
+                 <div nz-col [nzSpan]="24" class="mb-md" *ngIf="VehicleType=='search' || VehicleType=='peer' || VehicleType=='area'">
+                        <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                            <div nz-form-label><label for="kkname">号牌号码：</label></div>
+                            <div nz-form-control class="flex-1">
+                                <nz-input *ngIf="!numOne" [(ngModel)]="search.hphm" [nzPlaceHolder]="'号牌号码'" name="no" [nzDisabled]="search.cxfs==3?true:false"></nz-input>
+                                <nz-input *ngIf="numOne" [(ngModel)]="search2.hphm" [nzPlaceHolder]="'号牌号码'" name="no"  [nzDisabled]="search.cxfs==3?true:false"></nz-input>
+                            </div>
+                            <span style="padding-left:5px;padding-right:5px;opacity:0">--</span>
+                            <div nz-form-control class="flex-1">
+                                <nz-select2 *ngIf="!numOne"  [url]="'vehicle/api/dic/rest/data/hpzl'" [(ngModel)]="search.hpzl" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'号牌种类'"></nz-select2>
+                                <nz-select2 *ngIf="numOne"  [url]="'vehicle/api/dic/rest/data/hpzl'" [(ngModel)]="search2.hpzl" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'号牌种类'"></nz-select2>                       
+                            </div>
+                        </div>
+                </div>
+                <div nz-col [nzSpan]="24" class="mb-md" *ngIf="VehicleType=='peer'">
+                        <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                            <div nz-form-label><label for="kkname">次数大于：</label></div>
+                            <div nz-form-control class="flex-1">
+                                 <nz-input *ngIf="!numOne" [(ngModel)]="search.times" [nzPlaceHolder]="'天数大于'" name="times"></nz-input>
+                                 <nz-input *ngIf="numOne" [(ngModel)]="search2.times" [nzPlaceHolder]="'天数大于'" name="times"></nz-input>
+                            </div>
+                            <span style="padding-left:5px;padding-right:5px;opacity:0">--</span>
+                            <div nz-form-control class="flex-1">
+                                <nz-select2 *ngIf="!numOne"  [dataSource]="peerTimes" [(ngModel)]="search.minutes" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'同行间隔时间'"></nz-select2>
+                                <nz-select2 *ngIf="numOne"  [dataSource]="peerTimes" [(ngModel)]="search2.minutes" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'同行间隔时间'"></nz-select2>                       
+                            </div>
+                        </div>
+                </div>
+                <div nz-col [nzSpan]="24" class="mb-md" *ngIf="VehicleType=='frequent'">
+                        <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                            <span class="mustTime">*</span>
+                            <div nz-form-label><label for="kkname">过车时段：</label></div>
+                            <div nz-form-control class="flex-1">
+                                <my-datepicker *ngIf="!numOne" name="fxkssj" [(ngModel)]="search.fxkssj" [options]="{format:'hh:mm'}"></my-datepicker>
+                                <my-datepicker *ngIf="numOne" name="fxkssj" [(ngModel)]="search2.fxkssj" [options]="{format:'hh:mm'}"></my-datepicker>
+                            </div>
+                            <span style="padding-left:5px;padding-right:5px;opacity:0">--</span>
+                            <div nz-form-control class="flex-1">
+                                <my-datepicker *ngIf="!numOne" name="fxjssj" [(ngModel)]="search.fxjssj" [options]="{format:'hh:mm'}"></my-datepicker>
+                                <my-datepicker *ngIf="numOne" name="fxjssj" [(ngModel)]="search2.fxjssj" [options]="{format:'hh:mm'}"></my-datepicker>
+                            
+                            </div>
+                        </div>
+                </div>
+                <div nz-col [nzSpan]="24" class="mb-md" *ngIf="VehicleType=='frequent'">
+                        <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                            <div nz-form-label><label for="kkname">天数大于：</label></div>
+                            <div nz-form-control class="flex-1">
+                                 <nz-input *ngIf="!numOne" [(ngModel)]="search.cxcs" [nzPlaceHolder]="'天数大于'" name="cxcs"></nz-input>
+                                 <nz-input *ngIf="numOne" [(ngModel)]="search2.cxcs" [nzPlaceHolder]="'天数大于'" name="cxcs"></nz-input>
+                            </div>
+                            <span style="padding-left:5px;padding-right:5px;opacity:0">--</span>
+                            <div nz-form-control class="flex-1">
+                                <nz-select2 *ngIf="!numOne"  [url]="'analysis/api/data/code/list/030107'" [(ngModel)]="search.hpzl" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'号牌种类'"></nz-select2>
+                                <nz-select2 *ngIf="numOne"  [url]="'analysis/api/data/code/list/030107'" [(ngModel)]="search2.hpzl" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'号牌种类'"></nz-select2>                       
+                            </div>
+                        </div>
+                </div>
+                <div nz-col [nzSpan]="24" class="mb-md">
+                        <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                            <span class="mustTime">*</span>
+                            <div nz-form-label><label for="kkname">卡口名称：</label></div>
+                            <div nz-form-control class="flex-1">
+                                <nz-input *ngIf="!numOne" [(ngModel)]="search.kkmc" [nzPlaceHolder]="'卡口名称'" name="kkmc" disabled title="{{search.kkmc}}"></nz-input>
+                                <nz-input *ngIf="numOne" [(ngModel)]="search2.kkmc" [nzPlaceHolder]="'卡口名称'" name="kkmc" disabled title="{{search2.kkmc}}"></nz-input>
+                            </div>
+                            <choose-icon [cityUrl]="'analysis/api/data/xzqh/children/list'" [searchkkUrl]="'analysis/api/data/gate/list'" (kkouBack)="getKkou($event)" [fieldKey]="{text:'dmsm1',value:'dmz'}"></choose-icon>
+                        </div>
+                </div>
+                 <div nz-col [nzSpan]="24" class="mb-md" *ngIf="VehicleType=='first'">
+                        <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                            <span class="mustTime">*</span>
+                            <div nz-form-label><label for="kkname">回溯天数：</label></div>
+                            <div nz-form-control class="flex-1">
+                                 <nz-input *ngIf="!numOne" [(ngModel)]="search.hssj" [nzPlaceHolder]="'回溯天数'" name="hssj"></nz-input>
+                                 <nz-input *ngIf="numOne" [(ngModel)]="search2.hssj" [nzPlaceHolder]="'回溯天数'" name="hssj"></nz-input>
+                            </div>
+                        </div>
+                </div>
+            </div>
+      </div>
+      </ng-template>
+      <ng-template #modalFooter>
+        <div class="customize-footer">
+            <div nz-row [nzGutter]="24">
+                    <div nz-col [nzSpan]="24" class="mb-md">
+                        <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="addMessage(1)" *ngIf="!numOne">添加</button>
+                        <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="onSave()" *ngIf="numOne">保存</button>
+                    </div>
+            </div>
+        </div>
+      </ng-template>
+</nz-modal>
+<!--查询条件部分 *ngIf="!ifMoreSearch"-->
+<div class="tab-pane-all">
+     <standard-form-row [title]="'条件选择'" block style="padding-bottom: 0px">
+            <div class="panel-content">
+              <div nz-row [nzGutter]="24">
+                        <nz-card nz-col [nzSpan]="3" class="mb-md" *ngFor="let data of list;let i=index" style="cursor:pointer;margin-left: 12px;border-radius:5px;" (click)="carDetail(i)">
+                            <ng-template #title>
+                                <nz-tooltip [nzTitle]="data.kssj+'--'+data.jssj" [nzPlacement]="'top'">
+                                    <p class="det ailName" nz-tooltip>条件信息{{i+1}}</p>
+                                </nz-tooltip>
+                            </ng-template>
+                            <ng-template #extra>
+                                <a (click)="delete(i)"><i class="anticon anticon-close-square"></i></a>
+                            </ng-template>
+                        </nz-card>
+                        <nz-card nz-col [nzSpan]="3" class="mb-md" style="cursor:pointer;margin-left: 12px;border-radius:5px;"  (click)="carDetail()" *ngIf="typeName=='searchOne'&&list.length==0">
+                            <ng-template #title>
+                                <nz-tooltip [nzTitle]="'点击添加区域'" [nzPlacement]="'top'">
+                                    <p class="detailName" nz-tooltip style="text-align:center"><i class="anticon anticon-plus"></i></p>
+                                </nz-tooltip>
+                            </ng-template>
+                       </nz-card>
+                       <nz-card nz-col [nzSpan]="3" class="mb-md" style="cursor:pointer;margin-left: 12px;border-radius:5px;"  (click)="carDetail()" *ngIf="typeName=='searchMore'">
+                            <ng-template #title>
+                                <nz-tooltip [nzTitle]="'点击添加区域'" [nzPlacement]="'top'">
+                                    <p class="detailName" nz-tooltip style="text-align:center"><i class="anticon anticon-plus"></i></p>
+                                </nz-tooltip>
+                            </ng-template>
+                      </nz-card>
+             </div>
+        </div>
+    </standard-form-row>
+ </div>

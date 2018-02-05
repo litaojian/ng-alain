@@ -64,31 +64,13 @@
                 "icon": "icon-compass"
             },
             {
-                "text": "过车查询测试",
-                "translate": "",
-                "link": "/carSearch/index",
-                "shortcut": true,
-                "icon": "icon-compass"
-            },
-            {
                 "text": "车辆布控",
                 "translate": "",
                 "link": "/carControl/index",
                 "shortcut": true,
                 "icon": "icon-compass"
-            }, {
-                "text": "关联资源",
-                "translate": "",
-                "link": "/logics",
-                "shortcut": true,
-                "icon": "icon-compass"
-            }, {
-                "text": "预警",
-                "translate": "",
-                "link": "/logics",
-                "shortcut": true,
-                "icon": "icon-chemistry"
-            }]
+            }
+            ]
         }, {
             "text": "More",
             "translate": "more",

@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
 import { AppBaseModule } from '../../../bizapp/base/controls/v2/my-base.module';
+import { CommonModule } from '../VehicleCommon/commom.module';
 import { FrequentComponent } from './frequent/frequent.component';
 import { FrequentService } from './frequent.service';
+import { RecentCarModalComponent} from '../VehicleCommon/commom/recent-car-modal.component';
+// import { CardetailModalComponent} from '../VehicleCommon/commom/car-detail-modal.component';
 const routes: Routes = [
     { path: 'list', component: FrequentComponent}
 ];
@@ -12,6 +15,7 @@ const routes: Routes = [
     imports: [
         SharedModule,
         AppBaseModule,
+        CommonModule,
         RouterModule.forChild(routes)
     ],
     providers: [FrequentService],
@@ -20,6 +24,7 @@ const routes: Routes = [
     ],
     exports: [
         RouterModule
-    ]
+    ],
+    entryComponents:[]
 })
 export class FrequentModule { }
