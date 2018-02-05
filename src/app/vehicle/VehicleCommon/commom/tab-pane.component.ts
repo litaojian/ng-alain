@@ -139,7 +139,10 @@ private handleCancel(e){
    this.list.splice(num,1);
  }
   //添加查询条件
- private addMessage(i){    
+ private addMessage(k){ 
+    //  if(){
+
+    //  }   
         this.searchValid={
              "开始时间":{
                          type:'search,area,peer,first,frequent',
@@ -178,15 +181,18 @@ private handleCancel(e){
                          name:this.search.cxfs
                        }
         }
-        for(i in this.searchValid){
-            // alert(this.searchValid[i].type);
-            if(this.searchValid[i].type.indexOf(this.VehicleType)>0){
-                 if(this.searchValid[i].name==''||this.searchValid[i].name==undefined){
-                        this.msg.create('error', i+'不能为空');
-                        return;
-                 }
-            };
+        if(k!==2){
+            for(let i in this.searchValid){
+                // alert(this.searchValid[i].type);
+                if(this.searchValid[i].type.indexOf(this.VehicleType)>0){
+                    if(this.searchValid[i].name==''||this.searchValid[i].name==undefined){
+                            this.msg.create('error', i+'不能为空');
+                            return;
+                    }
+                };
+            }
         }
+        
         this.searchL=$.extend({},this.search);  
         this.list.push(this.searchL);
         if(this.typeName=='searchOne'){
@@ -194,7 +200,7 @@ private handleCancel(e){
         }else{
            this.areaList.regionalparam=this.list; 
         }
-        if(i!==2){
+        if(k!==2){
             this.selectListBack.emit(this.areaList);
             this.isModalShow=false;
          }
