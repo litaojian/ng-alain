@@ -17,7 +17,6 @@ import { AppBaseModule } from 'bizapp/base/app-base.module';
 import { MySelectModule } from 'bizapp/base/components/myselect/myselect.module';
 import { MyChooseIconModule } from 'bizapp/base/components/areachoose/chooseIcon.module';
 import { MyLoadingModule } from 'bizapp/base/components/myloading/myloading.module';
-import { MyReuseTabModule } from '../admin/reuse-tab/reuse-tab.module';
 
 const THIRDMODULES = [ CountdownModule];
 // endregion
@@ -41,7 +40,6 @@ const DIRECTIVES = [];
         AlainACLModule,
         // third libs
         AppBaseModule,
-        MyReuseTabModule.forRoot(),
         MySelectModule,
         MyLoadingModule,
         MyChooseIconModule,
@@ -68,7 +66,6 @@ const DIRECTIVES = [];
         MySelectModule,
         MyChooseIconModule,
         MyLoadingModule,
-        MyReuseTabModule,
         ...THIRDMODULES,
         // your components
         ...COMPONENTS,

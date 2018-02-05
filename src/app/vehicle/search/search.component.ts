@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzMessageService, NzModalService } from 'ng-zorro-antd';
+import { QueryDialogComponent } from './query.dialog.component';
+
+
+
 import * as moment from 'moment';
 import { _HttpClient } from '@delon/theme';
 
@@ -76,7 +80,7 @@ export class SearchComponent implements OnInit {
     }
     // endregion
 
-    constructor(private http: _HttpClient, public msg: NzMessageService) {}
+    constructor(private http: _HttpClient, public msg: NzMessageService, private modal: NzModalService) {}
 
     ngOnInit() {
         this.getData();
@@ -100,6 +104,18 @@ export class SearchComponent implements OnInit {
     }
 
     vehicleSearchClick(){
-        alert('aaa');
+        //alert('aaa');
+        let size: '' | 'lg' | 'sm' = '';
+        let options = {
+            wrapClassName: size ? 'modal-' + size : '',
+            content: QueryDialogComponent,
+            footer: false,
+            componentParams: {
+                name: 'From Parent Data'
+            }
+        };
+        this.modal.open(options).subscribe(result => {
+            //this.msg.info(`subscribe status: ${JSON.stringify(result)}`);
+        });
     }
 }

@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs/Observable';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, ViewChild, ViewContainerRef, OnInit, OnDestroy, HostBinding, AfterViewInit, AfterViewChecked, AfterContentInit, AfterContentChecked, OnChanges, DoCheck } from '@angular/core';
-import { ComponentFactoryResolver, ComponentFactory, ComponentRef, Compiler, Injector, NgModule, NgModuleRef } from '@angular/core';
+import { ComponentFactoryResolver, ComponentFactory, ComponentRef, Compiler, Injector, ReflectiveInjector, NgModule, NgModuleRef } from '@angular/core';
 import { RouterModule, Router, ActivatedRoute, Params } from '@angular/router';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, FormBuilder, Validators, AbstractControl, NgModel } from '@angular/forms';
-import { Location } from '@angular/common';
+//import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import { AppBaseModule } from '../base/app-base.module';
@@ -42,6 +42,8 @@ export class BizQueryComponent extends BaseListComponent implements OnInit, Afte
 		super(injector, service);
 		this._compiler = injector.get(Compiler);
 		this._resolver = injector.get(ComponentFactoryResolver);
+		
+		//let nc = ReflectiveInjector.resolveAndCreate(COMPILER_PROVIDERS, injector);
 		this._ngModuleRef = injector.get(NgModuleRef);
 		this._viewContainerRef = injector.get(ViewContainerRef);
 
