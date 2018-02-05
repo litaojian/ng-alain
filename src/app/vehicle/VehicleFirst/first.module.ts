@@ -6,7 +6,7 @@ import { FirstComponent } from './first/first.component';
 import { FirstService } from './first.service';
 import { CommonModule } from '../VehicleCommon/commom.module';
 const routes: Routes = [
-    { path: 'list', component: FirstComponent}
+    { path: 'list', component: FirstComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

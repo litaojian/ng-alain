@@ -8,7 +8,7 @@ import { FrequentService } from './frequent.service';
 import { RecentCarModalComponent} from '../VehicleCommon/commom/recent-car-modal.component';
 // import { CardetailModalComponent} from '../VehicleCommon/commom/car-detail-modal.component';
 const routes: Routes = [
-    { path: 'list', component: FrequentComponent}
+    { path: 'list', component: FrequentComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -7,7 +7,7 @@ import { CommonModule } from '../VehicleCommon/commom.module';
 import { PeerService } from './peer.service';
 // import { RecentCarModalComponent} from '../VehicleCommon/commom/recent-car-modal.component';
 const routes: Routes = [
-    { path: 'list', component: PeerComponent}
+    { path: 'list', component: PeerComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

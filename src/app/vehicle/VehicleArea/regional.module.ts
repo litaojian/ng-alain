@@ -6,7 +6,7 @@ import { RegionalComponent } from './regional/regional.component';
 import { RegionalService } from './regional.service';
 import { CommonModule } from '../VehicleCommon/commom.module';
 const routes: Routes = [
-    { path: 'list', component: RegionalComponent}
+    { path: 'list', component: RegionalComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

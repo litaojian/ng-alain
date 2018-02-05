@@ -32,7 +32,6 @@ const routes: Routes = [
             { path: 'admin/simple', component: SimpleTableComponent, data: { title:"列表" } },
             { path: 'zorro', loadChildren: '../demo/zorro/zorro.module#ZorroModule'},
             { path: 'demo', loadChildren: '../demo/demo.module#DemoModule'},
-            { path: 'vehicle', loadChildren: '../vehicle/vehicleSearch.module#VehicleSearchModule'},
             { path: 'trackSearch', loadChildren: '../vehicle/VehicleSearch/trackSearch.module#TrackModule'},
             { path: 'regional', loadChildren: '../vehicle/VehicleArea/regional.module#RegionalModule'},
             { path: 'frequent', loadChildren: '../vehicle/VehicleFrequent/frequent.module#FrequentModule'},
@@ -52,8 +51,6 @@ const routes: Routes = [
     //         { path: '', loadChildren: './data-v/data-v.module#DataVModule' }
     //     ]
     // },
-    //可视化
-    { path: 'visual', loadChildren: '../visual/visual.module#VisualModule'},
     // passport
     {
         path: 'passport',
