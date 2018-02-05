@@ -57,8 +57,9 @@ export class QsyjsComponent implements OnInit {
     ngOnInit() { }
 
     initEcharts(){
-        debugger;
-        this.warningCharts = echarts.init(this.div.nativeElement);
+        if(!this.warningCharts){
+            this.warningCharts = echarts.init(this.div.nativeElement);
+        }
         this._option.xAxis[0].data = this._data.date;
         this._option.series[0].data = this._data.jtwfl;
         this._option.series[1].data = this._data.gkl;
