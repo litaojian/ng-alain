@@ -147,6 +147,10 @@ export class VisualIndexComponent implements OnInit {
       $("<script>").attr({ src: "assets/lib/zui/js/zui.js" }).appendTo("head");
    }
 
+   ngOnDestroy(){
+    $("<script>").attr({ src: "assets/lib/zui/js/zui.js" }).remove();
+   }
+
   ngOnInit() {
     // $("<link>").attr({ rel: "stylesheet", type: "text/css", href: "assets/lib/zui/css/zui.css" }).appendTo("head");
       //获取车档信息
