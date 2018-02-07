@@ -17,7 +17,7 @@ const routes: Routes = [
     children: [
       { path: 'index', component: TestRecListComponent},
       { path: 'create', component: TestRecDetailComponent},
-      { path: 'edit', component: TestRecDetailComponent },
+      { path: 'edit', component: TestRecDetailComponent},
       { path: 'view', component: TestRecDetailComponent },
       { path: '/', redirectTo: 'index', pathMatch: 'full' },
       { path: '', redirectTo: 'index', pathMatch: 'full' }  
