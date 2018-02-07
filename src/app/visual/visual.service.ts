@@ -23,17 +23,17 @@ export class VisualService {
   }
   //卡口预警热力图
   getAlarmHotMap(date:string){
-      let url = '/vm/api/visual/alarm/heatmap/list?showDate='+date;
+      let url = '/remote/api/data/visual/rlt';
 		  return this.http.get(url).map(res => res.json());
   }
   //卡口过车热力图
   getPassHotMap(date:string){
-      let url = '/vm/api/visual/vehicle/pass/heatmap/list?showDate='+date;
+      let url = '/remote/api/data/visual/rlt';
 		  return this.http.get(url).map(res => res.json());
   }
   //各地市过车环比
   getCarContrast(date:string){
-      let url = '/vm/api/visual/vehicle/pass/chain/list?showDate='+date;
+      let url = '/remote/api/data/visual/gcdb';
 		  return this.http.get(url).map(res => res.json());
   }
   //各地市预警情况展示
@@ -79,7 +79,7 @@ export class VisualService {
   }
   //重点人群车辆预警趋势
   getImportantAlarm(date?:any){
-      let url = '/vm/api/visual/alarm/bklb/important?showDate='+date;
+      let url = '/remote/api/data/visual/zdryqs';
       return this.http.get(url).map(res=>res.json());
   }
   //全省布控预警情况展示

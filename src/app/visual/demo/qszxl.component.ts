@@ -68,7 +68,9 @@ export class QszxlComponent implements OnInit {
 
     initEcharts(){
         // this.otherProvinceCharts = echarts.init(<HTMLCanvasElement>document.getElementById("carRank"));
-        this.otherProvinceCharts = echarts.init(this.div.nativeElement);
+        if(!this.otherProvinceCharts){
+            this.otherProvinceCharts = echarts.init(this.div.nativeElement);
+        }
         this._option.series[0].data =[+this.accessRate.per];
         this.otherProvinceCharts.setOption(this._option);
     }

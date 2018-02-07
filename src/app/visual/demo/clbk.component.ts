@@ -85,13 +85,13 @@ export class ClbkComponet implements OnInit {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
         //Add 'implements AfterViewInit' to the class.
         // this.radarCharts = echarts.init(<HTMLCanvasElement>document.getElementById("radar"));
-        var a = this.bkdlDetail;
-        this.initEcharts();
     }
 
     initEcharts(){
         // this.radarCharts = echarts.init(<HTMLCanvasElement>document.getElementById("radar"));
-        this.radarCharts = echarts.init(this.div.nativeElement);
+        if(!this.radarCharts){
+            this.radarCharts = echarts.init(this.div.nativeElement);
+        }
         this._option.series[0].data = this._data;
         this.radarCharts.setOption(this._option);
         window.onresize = this.radarCharts.resize;

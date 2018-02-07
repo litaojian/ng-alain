@@ -5,7 +5,7 @@ import { AppBaseModule } from '../../../bizapp/base/controls/v2/my-base.module';
 import { trackSearchComponent } from './trackSearch/trackSearch.component';
 import { TrackSearchService } from './trackSearch.service';
 const routes: Routes = [
-    { path: 'list', component: trackSearchComponent,data: { title: '轨迹查询' } }
+    { path: 'list', component: trackSearchComponent,data: { title: '轨迹查询' }, pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -61,7 +61,7 @@
                 <div nz-col nzXs="24" nzSm="24" nzMd="8" nzLg="8" nzXl="4">
                     <div nz-form-item>
                         <div nz-form-control>
-                            <nz-input [nzType]="'search'" [nzOnSearch]="vehicleSearchClick" [nzSize]="'large'" [nzPlaceHolder]="'车辆特征'"></nz-input>
+                            <nz-input nzType="search" (nzOnSearch)="vehicleSearchClick($event)" [nzSize]="'large'" [nzPlaceHolder]="'车辆特征'"></nz-input>
                         </div>
                     </div>
                 </div>

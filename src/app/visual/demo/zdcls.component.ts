@@ -62,7 +62,9 @@ export class ZdclsComponent implements OnInit {
     }
 
     initEcharts(){
-        this.userCarCharts = echarts.init(this.div.nativeElement);
+        if(!this.userCarCharts){
+            this.userCarCharts = echarts.init(this.div.nativeElement);
+        }
         this._option.series[0].data = this._data;
         this.userCarCharts.setOption(this._option);
     }

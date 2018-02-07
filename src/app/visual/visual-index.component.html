@@ -145,7 +145,8 @@
         <!-- 可视化中间地图 -->
         <div class="panel-mid" >
             <!-- 地图 -->
-            <div style="width:100%;height:100%" id="map">
+            <div style="width:100%;height:100%">
+                <app-map [data]="mapData" [status]="headMapLoadding"></app-map>
             </div>
             <!-- 布控车辆详情 -->
             <div class="car-detail" *ngIf="switch.carDetail">
@@ -216,8 +217,8 @@
             </div>
             <!-- 布控类详情结束 -->
             <!-- 广东省各地市过车数 -->
-            <div class="car-list" id="carPssList">
-
+            <div class="car-list">
+                <app-gchb [data]="carPassList"></app-gchb>
             </div>
             <!-- 广东省各地市过车数结束 -->
         </div>
@@ -266,8 +267,8 @@
             </div>
             <!-- 全省预警数结束 -->
             <!--重点人群车辆预警趋势-->
-             <div class="unit">
-              <span class="line-l"></span>
+            <div class="unit">
+              <!-- <span class="line-l"></span>
               <span class="line-r"></span>
               <span class="line-b"></span>
               <span class="line-t"></span>
@@ -277,7 +278,8 @@
               <div class="unit-body">
                   <div class="chart-bar-car" id="alarmCar" style="height: 305px;">
                   </div>
-              </div>
+              </div> -->
+                <app-zdclqs [data]="alarmCarTrend" title="重点人群车辆预警趋势"></app-zdclqs>
             </div>
             <!-- 重点人群车辆预警趋势结束 -->
           <!-- 外地车辆排行 -->

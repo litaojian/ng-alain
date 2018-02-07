@@ -64,13 +64,6 @@
                     "icon": "icon-compass"
                 },
                 {
-                    "text": "过车查询测试",
-                    "translate": "",
-                    "link": "/carSearch/index",
-                    "shortcut": true,
-                    "icon": "icon-compass"
-                },
-                {
                     "text": "车辆布控",
                     "translate": "",
                     "link": "/carControl/index",
@@ -102,52 +95,61 @@
             "translate": "more",
             "group": true,
             "children": [{
-                "text": "系统权限",
-                "translate": "",
-                "link": "/logics",
-                "icon": "icon-grid",
-                "children": [{
-                        "text": "用户管理",
-                        "link": "/page/admin/user/list",
-                        "acl": "admin"
-                    },
-                    {
-                        "text": "角色管理",
-                        "link": "/page/admin/role/list",
-                        "acl": "admin"
-                    },
-                    {
-                        "text": "菜单管理",
-                        "link": "/page/admin/menu/list",
-                        "acl": "admin"
-                    },
-                    {
-                        "text": "权限管理",
-                        "link": "/page/admin/permission/list",
-                        "acl": "admin"
-                    }
-                ]
-            }, {
-                "text": "搜车",
-                "translate": "",
-                "link": "/vehicle/search",
-                "icon": "icon-note"
-            }, {
-                "text": "ZORRO示例",
-                "translate": "",
-                "link": "/zorro/index",
-                "icon": "icon-note"
-            }, {
-                "text": "简单示例",
-                "translate": "",
-                "link": "/admin/simple",
-                "icon": "icon-note"
-            }, {
-                "text": "CRUD示例",
-                "translate": "",
-                "link": "/demo/testRec/index",
-                "icon": "icon-note"
-            }]
+                    "text": "系统权限",
+                    "translate": "",
+                    "link": "/logics",
+                    "icon": "icon-grid",
+                    "children": [{
+                            "text": "用户管理",
+                            "link": "/page/admin/user/list",
+                            "acl": "admin"
+                        },
+                        {
+                            "text": "角色管理",
+                            "link": "/page/admin/role/list",
+                            "acl": "admin"
+                        },
+                        {
+                            "text": "菜单管理",
+                            "link": "/page/admin/menu/list",
+                            "acl": "admin"
+                        },
+                        {
+                            "text": "权限管理",
+                            "link": "/page/admin/permission/list",
+                            "acl": "admin"
+                        }
+                    ]
+                },
+                {
+                    "text": "示例",
+                    "translate": "",
+                    "link": "/zorro/index",
+                    "icon": "icon-note",
+                    "children": [{
+                        "text": "搜车",
+                        "translate": "",
+                        "link": "/vehicle/search",
+                        "icon": "icon-note"
+                    }, {
+                        "text": "ZORRO示例",
+                        "translate": "",
+                        "link": "/zorro/index",
+                        "icon": "icon-note"
+                    }, {
+                        "text": "简单示例",
+                        "translate": "",
+                        "link": "/admin/simple",
+                        "icon": "icon-note"
+                    }]
+                },
+                {
+                    "text": "CRUD示例",
+                    "translate": "",
+                    "link": "/demo/testRec/index",
+                    "icon": "icon-note"
+                }
+            ]
         }
     ]
 }
