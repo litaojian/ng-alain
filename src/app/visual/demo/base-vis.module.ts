@@ -7,7 +7,7 @@ import { ZdclsComponent} from "./zdcls.component";
 import { QsyjsComponent } from "./qsyjs.component";
 import { ZdclqsComponent } from "./zdclqs.component";
 import { GchbComponent } from "./gchb.component";
-import { HeadMapComponent } from "./head-map.component";
+import { HeatMapComponent } from "./heat-map.component";
 
 @NgModule({
     declarations: [
@@ -17,7 +17,7 @@ import { HeadMapComponent } from "./head-map.component";
         QsyjsComponent,
         ZdclqsComponent,
         GchbComponent,
-        HeadMapComponent
+        HeatMapComponent
     ],
     imports: [ CommonModule ],
     exports: [
@@ -27,7 +27,7 @@ import { HeadMapComponent } from "./head-map.component";
         QsyjsComponent,
         ZdclqsComponent,
         GchbComponent,
-        HeadMapComponent
+        HeatMapComponent
     ],
     providers: [],
 })

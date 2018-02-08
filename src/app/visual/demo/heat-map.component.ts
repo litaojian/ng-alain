@@ -13,7 +13,7 @@ declare let $:any;
         }
     `]
 })
-export class HeadMapComponent implements OnInit {
+export class HeatMapComponent implements OnInit {
     constructor(private ElementRef:ElementRef) { }
     //存储传值list
     _data:any;

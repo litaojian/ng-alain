@@ -7,7 +7,7 @@ import { FormsRoutingModule } from './forms-routing.module';
 
 import { StandardComponent } from './standard/standard.component';
 import { ExtendedComponent } from './extended/extended.component';
-import { UploadComponent } from './upload/upload.component';
+// import { UploadComponent } from './upload/upload.component';
 import { CropperComponent } from './cropper/cropper.component';
 import { ValidationComponent } from './validation/validation.component';
 
@@ -21,7 +21,7 @@ import { ValidationComponent } from './validation/validation.component';
     declarations: [
         StandardComponent,
         ExtendedComponent,
-        UploadComponent,
+        // UploadComponent,
         CropperComponent,
         ValidationComponent
     ]

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
 import { AppBaseModule } from '../../../bizapp/base/controls/v2/my-base.module';
 import { TabpaneComponent } from './commom/tab-pane.component';
+import { TabPaneoneComponent } from './commom/tab-pane-one.component';
 import { CommonService } from './commom.service';
 import { RecentCarModalComponent} from '../VehicleCommon/commom/recent-car-modal.component';
 import { CardetailModalComponent} from '../VehicleCommon/commom/car-detail-modal.component';
@@ -13,11 +14,13 @@ import { CardetailModalComponent} from '../VehicleCommon/commom/car-detail-modal
     providers: [CommonService],
     declarations: [
         TabpaneComponent,
+        TabPaneoneComponent,
         RecentCarModalComponent,
         CardetailModalComponent
     ],
     exports: [
         TabpaneComponent,
+        TabPaneoneComponent,
         RecentCarModalComponent,
         CardetailModalComponent
     ],

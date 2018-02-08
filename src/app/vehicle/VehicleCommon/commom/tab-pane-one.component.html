@@ -1,0 +1,89 @@
+<div nz-row [nzGutter]="24" class="tab-pane-all">
+        <div nz-col [nzSpan]="12" class="mb-md">
+                <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                    <span class="mustTime">*</span>
+                    <div nz-form-label><label for="dcnr" (click)="onSave()">过车时间：</label></div>
+                    <div nz-form-control class="flex-1">
+                        <my-datepicker name="kssj" [(ngModel)]="search.kssj" [options]="{format:'YYYY-MM-DD hh:mm:ss'}"></my-datepicker>
+                    </div>
+                    <span style="padding-left:5px;padding-right:5px;">--</span>
+                    <div nz-form-control class="flex-1">
+                        <my-datepicker name="jssj" [(ngModel)]="search.jssj" [options]="{format:'YYYY-MM-DD hh:mm:ss'}"></my-datepicker>
+                    </div>
+                </div>
+        </div>
+         <div nz-col [nzSpan]="12" class="mb-md" *ngIf="VehicleType=='peer'">
+                        <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                            <div nz-form-label><label for="kkname">号牌号码：</label></div>
+                            <div nz-form-control class="flex-1">
+                                <nz-input [(ngModel)]="search.hphm" [nzPlaceHolder]="'号牌号码'" name="no" [nzDisabled]="search.cxfs==3?true:false"></nz-input>
+                            </div>
+                            <span style="padding-left:5px;padding-right:5px;opacity:0">--</span>
+                            <div nz-form-control class="flex-1">
+                                <nz-select2 [url]="'analysis/api/data/code/list/030107'" [(ngModel)]="search.hpzl" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'号牌种类'"></nz-select2>
+                                          
+                            </div>
+                        </div>
+                </div>
+        <div nz-col [nzSpan]="12" class="mb-md" *ngIf="VehicleType=='frequent'">
+                <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                    <span class="mustTime">*</span>
+                    <div nz-form-label><label for="kkname">过车时段：</label></div>
+                    <div nz-form-control class="flex-1">
+                        <my-datepicker name="fxkssj" [(ngModel)]="search.fxkssj" [options]="{format:'hh:mm'}"></my-datepicker>
+                    </div>
+                   <span style="padding-left:5px;padding-right:5px;">--</span>
+                    <div nz-form-control class="flex-1">
+                        <my-datepicker name="fxjssj" [(ngModel)]="search.fxjssj" [options]="{format:'hh:mm'}"></my-datepicker>
+                    
+                    </div>
+                </div>
+        </div>
+         <div nz-col [nzSpan]="12" class="mb-md" *ngIf="VehicleType=='frequent'">
+                        <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                            <div nz-form-label><label for="kkname">天数大于：</label></div>
+                            <div nz-form-control class="flex-1">
+                                 <nz-input [(ngModel)]="search.cxcs" [nzPlaceHolder]="'天数大于'" name="cxcs"></nz-input>
+                            </div>
+                            <span style="padding-left:5px;padding-right:5px;opacity:0">--</span>
+                            <div nz-form-control class="flex-1">
+                                <nz-select2 [url]="'analysis/api/data/code/list/030107'" [(ngModel)]="search.hpzl" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'号牌种类'"></nz-select2>                    
+                            </div>
+                        </div>
+        </div>
+        <div nz-col [nzSpan]="12" class="mb-md" *ngIf="VehicleType=='peer'">
+                        <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                            <div nz-form-label><label for="kkname">次数大于：</label></div>
+                            <div nz-form-control class="flex-1">
+                                 <nz-input [(ngModel)]="search.times" [nzPlaceHolder]="'次数大于'" name="times"></nz-input>
+                            </div>
+                            <span style="padding-left:5px;padding-right:5px;opacity:0">--</span>
+                            <div nz-form-control class="flex-1">
+                                <nz-select2 [dataSource]="peerTimes" [(ngModel)]="search.minutes" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'同行间隔时间'"></nz-select2>
+                                                    
+                            </div>
+                        </div>
+        </div>
+        <div nz-col [nzSpan]="12" class="mb-md">
+                <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                    <span class="mustTime">*</span>
+                    <div nz-form-label><label for="kkname">卡口名称：</label></div>
+                    <div nz-form-control class="flex-1">
+                        <nz-input [(ngModel)]="search.kkmc" [nzPlaceHolder]="'卡口名称'" name="kkmc" disabled title="{{search.kkmc}}"></nz-input>
+                    </div>
+                    <choose-icon [cityUrl]="'analysis/api/data/xzqh/children/list'" [searchkkUrl]="'analysis/api/data/gate/list'" (kkouBack)="getKkou($event)" [fieldKey]="{text:'dmsm1',value:'dmz'}"></choose-icon>
+                </div>
+        </div>
+        <div nz-col [nzSpan]="12" class="mb-md" *ngIf="VehicleType=='first'">
+                        <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                            <span class="mustTime">*</span>
+                            <div nz-form-label><label for="kkname">回溯天数：</label></div>
+                            <div nz-form-control class="flex-1">
+                                 <nz-input [(ngModel)]="search.hssj" [nzPlaceHolder]="'回溯天数'" name="hssj"></nz-input>
+                            </div>
+                        </div>
+        </div>
+       <div nz-col [nzSpan]="24" style="text-align: right;">
+            <button nz-button [nzType]="'primary'" (click)="addMessage()">Search</button>
+       </div>
+</div>

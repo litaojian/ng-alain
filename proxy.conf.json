@@ -5,6 +5,12 @@
         "secure": false
     },
 
+    "/sso/api": {
+        "target": "http://139.159.235.146/ssov6",
+        "pathRewrite": { "^/sso": "" },
+        "secure": false
+    },
+
     "/remote/assets": {
         "target": "http://192.168.2.176:8082/demo/assets",
         "pathRewrite": { "^/remote/assets": "" },

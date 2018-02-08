@@ -76,19 +76,7 @@
                     "link": "/visual/index",
                     "shortcut": true,
                     "icon": "icon-compass"
-                }, {
-                    "text": "关联资源",
-                    "translate": "",
-                    "link": "/logics",
-                    "shortcut": true,
-                    "icon": "icon-compass"
-                }, {
-                    "text": "预警",
-                    "translate": "",
-                    "link": "/logics",
-                    "shortcut": true,
-                    "icon": "icon-chemistry"
-                }
+             }
             ]
         }, {
             "text": "More",
