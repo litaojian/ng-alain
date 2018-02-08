@@ -33,7 +33,7 @@ export class ModalComponent implements OnInit, ControlValueAccessor{
        }
        console.log(this.isModal);
 	}
-    handleCancel = () => {
+    handleCancel = (e) => {
       this.isModal = false;
       this._updateValue(this.isModal);
     }

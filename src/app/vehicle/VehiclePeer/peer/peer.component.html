@@ -1,5 +1,6 @@
 <!--点击弹出条件填写框-->
-<my-tab [typeName]="'searchOne'" [VehicleType]="'peer'" (selectListBack)="getPeerList($event)"></my-tab>
+<!--<my-tab [typeName]="'searchOne'" [VehicleType]="'peer'" (selectListBack)="getPeerList($event)"></my-tab>-->
+<my-tab-one [VehicleType]="'peer'" (selectListBack)="getPeerList($event)"></my-tab-one>
 <!--点击区域显示详情-->
 <my-modal [isModal]="isAreaDetailShow" (initRows)=hasChange($event) [myWidth]="1100">
       <div class="myModal-title">

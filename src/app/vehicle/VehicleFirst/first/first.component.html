@@ -1,5 +1,5 @@
 <!--点击弹出条件填写框-->
-<my-tab [typeName]="'searchOne'" [VehicleType]="'first'" (selectListBack)="getFirstList($event)"></my-tab>
+<my-tab-one [VehicleType]="'first'" (selectListBack)="getFirstList($event)"></my-tab-one>
 <!--点击区域显示详情-->
 <my-modal [isModal]="isAreaDetailShow" (initRows)=hasChange($event) [myWidth]="1000">
       <div class="myModal-title">

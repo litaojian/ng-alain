@@ -61,7 +61,8 @@ import { DialogService }  from './dialog.service';
 		PanelHeaderComponent,
 		ValuelistDirective,
 		ZxFormInputDirective,
-		ValueFilterPipe
+		ValueFilterPipe,
+		BaseDialogComponent
   ],
   declarations: [
 		MyUploaderComponent,
@@ -81,9 +82,11 @@ import { DialogService }  from './dialog.service';
 		PanelHeaderComponent,
 		ValuelistDirective,
 		ZxFormInputDirective,
-		ValueFilterPipe
+		ValueFilterPipe,
+		BaseDialogComponent
 	],
   entryComponents:[
+
   ],
   providers: [
 	MenuTreeService,

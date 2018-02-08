@@ -27,14 +27,6 @@ export class TabpaneComponent {
     private areaList: any={};
     private pagination: any={};
     private paginationArea: any={};
-    private peerTimes:any=[
-                {"dmz": "5", "dmsm1": "5"},
-                {"dmz": "10", "dmsm1": "10"},
-                {"dmz": "15", "dmsm1": "15"},
-                {"dmz": "20", "dmsm1": "20"},
-                {"dmz": "25", "dmsm1": "25"},
-                {"dmz": "30", "dmsm1": "30"}
-            ];
     constructor(
         private modalService: NzModalService,
         private subject: NzModalSubject,
@@ -121,18 +113,12 @@ export class TabpaneComponent {
   //保存修改信息
 private onSave(){
       this.list[this.indexNum]=this.search2;
-      if(this.typeName=='searchOne'){
-           this.areaList=$.extend({},this.list[0]);
-       }else{
-           this.areaList.regionalparam=this.list; 
-      }
-    //   this.areaList=$.extend({},this.list[0]);
+      this.areaList.regionalparam=this.list;
       this.selectListBack.emit(this.areaList);
       this.isModalShow=false;
  }
 private handleCancel(e){
       this.isModalShow=false;
-    //   console.log(this.list);
   }
  //删除条件
  private delete(num){
@@ -183,8 +169,9 @@ private handleCancel(e){
         }
         if(k!==2){
             for(let i in this.searchValid){
-                // alert(this.searchValid[i].type);
-                if(this.searchValid[i].type.indexOf(this.VehicleType)>0){
+                // alert(this.searchValid[i].type.indexOf(this.VehicleType));
+                if(this.searchValid[i].type.indexOf(this.VehicleType)>=0){
+                    alert(this.searchValid[i].name);
                     if(this.searchValid[i].name==''||this.searchValid[i].name==undefined){
                             this.msg.create('error', i+'不能为空');
                             return;
@@ -195,11 +182,7 @@ private handleCancel(e){
         
         this.searchL=$.extend({},this.search);  
         this.list.push(this.searchL);
-        if(this.typeName=='searchOne'){
-           this.areaList=$.extend({},this.list[0]);
-        }else{
-           this.areaList.regionalparam=this.list; 
-        }
+        this.areaList.regionalparam=this.list; 
         if(k!==2){
             this.selectListBack.emit(this.areaList);
             this.isModalShow=false;

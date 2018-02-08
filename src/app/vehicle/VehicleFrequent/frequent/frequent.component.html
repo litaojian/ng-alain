@@ -1,5 +1,6 @@
 <!--查询条件部分 *ngIf="!ifMoreSearch"-->
-<my-tab [typeName]="'searchOne'" [VehicleType]="'frequent'" (selectListBack)="getFrequentList($event)"></my-tab>
+<!--<my-tab [typeName]="'searchOne'" [VehicleType]="'frequent'" (selectListBack)="getFrequentList($event)"></my-tab>-->
+<my-tab-one [VehicleType]="'frequent'" (selectListBack)="getFrequentList($event)"></my-tab-one>
 <!--点击区域显示详情-->
 <my-modal [isModal]="isAreaDetailShow" (initRows)=hasChange($event) [myWidth]="1000">
       <div class="myModal-title">

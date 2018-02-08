@@ -9,15 +9,15 @@ declare var $: any;
   styleUrls: ['./areachoose.component.css']
 })
 export class AreaComponent implements OnInit {
-  private _cityUrl: string;//树的url
-  private _kkUrl: string;//卡口的url
-  private myLoading = false;//加载
-  private data: any[] = [];//保存卡口的数据
-  private nodes: any[] = [];//保存树的数据
-  private pagination:any;//页数
-  private searchList:any;//查询条件
-  private datanums:any//卡口总数
-  private kkLists:any={
+  _cityUrl: string;//树的url
+   _kkUrl: string;//卡口的url
+  myLoading = false;//加载
+  data: any[] = [];//保存卡口的数据
+  nodes: any[] = [];//保存树的数据
+  pagination:any;//页数
+  searchList:any;//查询条件
+  datanums:any//卡口总数
+  kkLists:any={
      kkList:[],
      kkListBh:[]
   }
@@ -70,7 +70,7 @@ ngOnInit() {
     });
 }
 //获取卡口数据
-private _console(e,kkmc,kkbh) {
+_console(e,kkmc,kkbh) {
       if(e==true){
           this.kkLists.kkList.push(kkmc); 
           this.kkLists.kkListBh.push(kkbh); 
@@ -89,21 +89,21 @@ private _console(e,kkmc,kkbh) {
     console.log(this.kkLists);
   }
   //数据上传到父组件
-private emitDataOutside() {
+emitDataOutside(e) {
      this.subject.next(this.kkLists);
      this.subject.destroy('onCancel');
   }
   //关闭
-private handleCancel(e) {
+handleCancel(e) {
      this.subject.destroy('onCancel');
   }
   //页数改变
- private indexChange(e){
+indexChange(e){
      this.pagination.pageIndex=e;
      this.searchKK();
   }
   // 获取卡口数据
- private getKKou(citys){
+ getKKou(citys){
      for(let i in citys.node.data){
           if(i==this.fieldKey.value){
               this.pagination.xzqh=citys.node.data[i];
@@ -114,7 +114,7 @@ private handleCancel(e) {
      this.searchKK();
   } 
   // 查询卡口
- private searchByInput(){
+ searchByInput(){
      if(this.pagination.kdmc==''){
            alert('卡口不能为空');
            return;
@@ -123,7 +123,7 @@ private handleCancel(e) {
      this.searchKK();
   }
   // 获取卡口的方法
- private searchKK(){
+ searchKK(){
      this.myLoading=true;
      this.searchList=$.extend({},this.pagination);
      this.chooseAreaService.getCityValue(this._kkUrl,this.searchList).subscribe(data => { 
