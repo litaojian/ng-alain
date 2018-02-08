@@ -18,7 +18,7 @@ declare var $: any;
 export class NzSelect2Component implements OnInit{
    constructor(private selectService:SelectService) { 
     }
-  private innerValue: any = ''; 
+  innerValue: any = ''; 
   //监听绑定的值，与外岑的ngModel相互绑定
   set selectedOption(val:any){
       if (val !== this.innerValue) {
@@ -30,15 +30,15 @@ export class NzSelect2Component implements OnInit{
   get selectedOption():any{
        return this.innerValue;
   }
-  private options = [];//接收select的数组
-  private _dataSource:any;//接收本地的自定义数组或者请求返回的数组
+  options = [];//接收select的数组
+   _dataSource:any;//接收本地的自定义数组或者请求返回的数组
   @Input()
-  private url:any;//请求的url
+  url:any;//请求的url
   @Input()
-  private myPlaceHolder:any;//自定义的PlaceHolder
+  myPlaceHolder:any;//自定义的PlaceHolder
   @Input()
   //下拉框的数据格式
-	private fieldKey:any = {
+	fieldKey:any = {
 	  	text: 'text',
 		  value: 'value'
 	};
@@ -74,7 +74,7 @@ export class NzSelect2Component implements OnInit{
         }     
   }
   //转换下拉框下的字段
-  private _dataTransform(data: Array<any>){
+   _dataTransform(data: Array<any>){
        let _data = [];
        for (let i = 0; i < data.length; i++) {
           _data[i] = {};

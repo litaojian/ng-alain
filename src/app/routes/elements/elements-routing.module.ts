@@ -12,7 +12,6 @@ import { GridMasonryComponent } from './gridmasonry/gridmasonry.component';
 import { TypographyComponent } from './typography/typography.component';
 import { IconsFontComponent } from './iconsfont/iconsfont.component';
 import { ColorsComponent } from './colors/colors.component';
-import { TreeAntdComponent } from './tree-antd/tree-antd.component';
 import { DemoSortableComponent } from './sortable/sortable.component';
 import { SweetAlertComponent } from './sweetalert/sweetalert.component';
 
@@ -23,7 +22,6 @@ const routes: Routes = [
     { path: 'sweetalert', component: SweetAlertComponent },
     { path: 'spin', component: SpinComponent },
     { path: 'dropdown', component: DropdownComponent },
-    { path: 'tree-antd', component: TreeAntdComponent },
     { path: 'sortable', component: DemoSortableComponent },
     { path: 'grid', component: GridComponent },
     { path: 'gridmasonry', component: GridMasonryComponent },

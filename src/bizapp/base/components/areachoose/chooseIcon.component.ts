@@ -22,7 +22,7 @@ export class ChooseIconComponent implements OnInit {
   searchkkUrl:any;
   //树的数据格式
   @Input()
-	private fieldKey:any;
+	fieldKey:any;
   @Output() kkouBack = new EventEmitter<any>();
   ngOnInit() {
   }
