@@ -40,9 +40,9 @@ const routes: Routes = [
             { path: 'carControl', loadChildren: '../vehicle/VehicleControlRequest/vehicleControl.module#VehicleControlModule'},
             { path: 'page', loadChildren: '../../bizapp/bizpage/page.module#PageModule'},
             { path: 'carSearch', loadChildren: '../vehicle/mySearch/mySearch.module#SearchModule'}
-
         ]
     },
+    { path: 'visual', loadChildren: '../visual/visual.module#VisualModule'},
     // // 全屏布局y
     // {
     //     path: 'data-v',
