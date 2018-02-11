@@ -8,7 +8,6 @@ import { AppBaseModule } from '@bizapp/base/app-base.module';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 import { Test1Component } from './test1.component';
-import { TestRecService } from '../test-rec/testRec.service';
 
 
 
@@ -32,6 +31,6 @@ const routes: Routes = [{
   declarations: [
     Test1Component
   ],
-  providers: [TestRecService]
+  providers: []
 })
 export class ZorroModule { }

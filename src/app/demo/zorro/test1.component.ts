@@ -5,11 +5,11 @@ import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from
 import { Location } from '@angular/common';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
-import { BaseListComponent, QueryForm } from 'bizapp/base/base-list.component';
-import { BaseDetailComponent } from 'bizapp/base/base-detail.component';
-import { BaseDataService } from 'bizapp/base/base-data.service';
+import { BaseListComponent, QueryForm } from 'yg-widget/my-app/my-list.component';
+import { BaseDetailComponent } from 'yg-widget/my-app/my-detail.component';
 
-import { TestRecService } from '../test-rec/testRec.service';
+import { BaseDataService }  from 'yg-widget/base/base-data.service';
+import { TestRecService } from '../testRec2/testRec.service';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -55,7 +55,7 @@ export class Test1Component extends BaseListComponent implements OnInit, OnDestr
 		this.options_docstatus.push({"value":"APPR", "label":"已审核2"});
 
 		let params = {};
-		this.person$ = this.service.ajaxGet2('https://jsonplaceholder.typicode.com/posts/1', params);
+		this.person$ = this.service.ajaxGet('https://jsonplaceholder.typicode.com/posts/1', params);
 	  
 		this.setPageSize(10);
 		// load the tableData

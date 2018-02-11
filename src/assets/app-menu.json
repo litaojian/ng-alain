@@ -76,7 +76,7 @@
                     "link": "/visual/index",
                     "shortcut": true,
                     "icon": "icon-compass"
-             }
+                }
             ]
         }, {
             "text": "More",
@@ -134,7 +134,7 @@
                 {
                     "text": "CRUD示例",
                     "translate": "",
-                    "link": "/demo/testRec/index",
+                    "link": "/testRec/index",
                     "icon": "icon-note"
                 }
             ]
