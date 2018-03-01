@@ -6,14 +6,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../shared/yg.shared.module';
 
 import { TestRecService } from './testRec.service';
-import { TestRecListComponent, TestRecDetailComponent } from './testRec.component';
+// import { TestRecListComponent, TestRecDetailComponent } from './testRec.component';
 
 
 const routes: Routes = [
-  { path: 'index', component: TestRecListComponent},
-  { path: 'create', component: TestRecDetailComponent},
-  { path: 'edit', component: TestRecDetailComponent},
-  { path: 'view', component: TestRecDetailComponent },
+  // { path: 'index', component: TestRecListComponent},
+  // { path: 'create', component: TestRecDetailComponent},
+  // { path: 'edit', component: TestRecDetailComponent},
+  // { path: 'view', component: TestRecDetailComponent },
   { path: '/', redirectTo: 'index', pathMatch: 'full' },
   { path: '', redirectTo: 'index', pathMatch: 'full' }  
 ];
@@ -27,8 +27,8 @@ const routes: Routes = [
     SharedModule
   ],
   declarations: [
-    TestRecListComponent,
-    TestRecDetailComponent
+    // TestRecListComponent,
+    // TestRecDetailComponent
   ],
   providers: [TestRecService]
 })

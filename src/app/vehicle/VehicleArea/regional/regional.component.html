@@ -51,7 +51,7 @@
 <my-modal [isModal]="isAreaDetailShow" (initRows)=hasChange($event) [myWidth]="1000">
       <div class="myModal-title">
           <span>区域详细信息</span>
-      </div>
+      </div>    
       <div class="myModal-content">
           <nz-tabset>
                     <nz-tab (nzClick)="showListTypes('list')">
@@ -258,4 +258,4 @@
                     </tbody>
 </nz-table>
 <!--加载动画-->
-<my-loading *ngIf="myLoading"></my-loading>
+<!--<my-loading *ngIf="myLoading"></my-loading>-->
