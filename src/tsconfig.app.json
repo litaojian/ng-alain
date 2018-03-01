@@ -15,7 +15,8 @@
             "@testing": ["testing/"],
             "@testing/*": ["testing/*"],
             "@env": ["environments/"],
-            "@env/*": ["environments/*"]
+            "@env/*": ["environments/*"],
+            "@angular/*": ["../node_modules/@angular/*"]
         }
     },
     "exclude": [
