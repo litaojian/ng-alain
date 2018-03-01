@@ -38,8 +38,7 @@ const routes: Routes = [
             { path: 'first', loadChildren: '../vehicle/VehicleFirst/first.module#FirstModule'},
             { path: 'peer', loadChildren: '../vehicle/VehiclePeer/peer.module#PeerModule'},
             { path: 'carControl', loadChildren: '../vehicle/VehicleControlRequest/vehicleControl.module#VehicleControlModule'},
-            { path: 'page', loadChildren: './yg-app/yg-bizpage.module#MyBizPageModule'},
-            { path: 'carSearch', loadChildren: '../vehicle/mySearch/mySearch.module#SearchModule'}
+            { path: 'page', loadChildren: './yg-app/yg-bizpage.module#MyBizPageModule'}
         ]
     }, 
     { path: 'visual', loadChildren: '../visual/visual.module#VisualModule'},
