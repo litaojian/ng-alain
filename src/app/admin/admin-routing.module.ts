@@ -41,7 +41,7 @@ const routes: Routes = [
             { path: 'page', loadChildren: './yg-app/yg-bizpage.module#MyBizPageModule'},
             { path: 'carSearch', loadChildren: '../vehicle/mySearch/mySearch.module#SearchModule'}
         ]
-    },
+    }, 
     { path: 'visual', loadChildren: '../visual/visual.module#VisualModule'},
     // // 全屏布局y
     // {
