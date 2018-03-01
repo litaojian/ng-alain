@@ -3,8 +3,9 @@ import { _HttpClient } from '@delon/theme';
 import { myQueryDialogComponent } from './query.dialog.component';
 import { NzModalService } from 'ng-zorro-antd';
 import { mySearchService } from './mySearch.services';
-import { BaseListComponent,QueryForm } from "../../../bizapp/base/base-list.component";
+import { BaseListComponent } from "yg-widget/my-app/";
 import { MyQueryForms } from "./query.dialog.component";
+
 export class MyQueryForm1 extends MyQueryForms{
 
 }

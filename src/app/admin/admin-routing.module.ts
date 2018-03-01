@@ -26,7 +26,7 @@ const routes: Routes = [
         component: LayoutDefaultComponent,
         canActivate: [ CanActivateMenusProvide ],
         children: [
-            { path: '', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
+            { path: '', redirectTo: 'page/demo/testRec', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
             { path: 'dashboard/monitor', component: DashboardMonitorComponent, data: { translate: 'dashboard_monitor' } },
             { path: 'admin/simple', component: SimpleTableComponent, data: { title:"列表" } },
@@ -38,7 +38,7 @@ const routes: Routes = [
             { path: 'first', loadChildren: '../vehicle/VehicleFirst/first.module#FirstModule'},
             { path: 'peer', loadChildren: '../vehicle/VehiclePeer/peer.module#PeerModule'},
             { path: 'carControl', loadChildren: '../vehicle/VehicleControlRequest/vehicleControl.module#VehicleControlModule'},
-            { path: 'page', loadChildren: '../../bizapp/bizpage/page.module#PageModule'},
+            { path: 'page', loadChildren: './yg-app/yg-bizpage.module#MyBizPageModule'},
             { path: 'carSearch', loadChildren: '../vehicle/mySearch/mySearch.module#SearchModule'}
         ]
     },

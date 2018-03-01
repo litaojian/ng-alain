@@ -23,8 +23,9 @@
 //     }
 // }
 import { Injectable, Injector } from '@angular/core';
-import { BaseDataService } from "../../../bizapp/base/base-data.service";
 import { HttpClient } from "@angular/common/http";
+import { BaseDataService }  from 'yg-widget/my-app';
+
 
 @Injectable()
 export class mySearchService extends BaseDataService  {
