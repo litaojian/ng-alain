@@ -5,7 +5,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from
 import { Location } from '@angular/common';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
-import { BaseListComponent, QueryForm } from 'yg-widget/my-app/my-list.component';
+import { BaseListComponent, QueryForm } from 'yg-widget/my-app';
 import { BaseDetailComponent } from 'yg-widget/my-app';
 
 import { BaseDataService }  from 'yg-widget/my-app';
