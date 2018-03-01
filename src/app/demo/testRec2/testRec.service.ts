@@ -1,6 +1,6 @@
 import { Injectable,Injector } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { BaseDataService }  from 'yg-widget/base/base-data.service';
+import { BaseDataService }  from 'yg-widget/my-app';
 
 @Injectable()
 export class TestRecService extends BaseDataService {

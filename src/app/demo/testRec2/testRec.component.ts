@@ -7,8 +7,6 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import { BaseListComponent, QueryForm } from 'yg-widget/my-app/my-list.component';
 import { BaseDetailComponent } from 'yg-widget/my-app/my-detail.component';
-import { BaseDataService } from 'yg-widget/base/base-data.service';
-
 import { TestRecService } from './testRec.service';
 
 export class MyQueryForm extends QueryForm {

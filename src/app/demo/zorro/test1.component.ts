@@ -6,9 +6,9 @@ import { Location } from '@angular/common';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import { BaseListComponent, QueryForm } from 'yg-widget/my-app/my-list.component';
-import { BaseDetailComponent } from 'yg-widget/my-app/my-detail.component';
+import { BaseDetailComponent } from 'yg-widget/my-app';
 
-import { BaseDataService }  from 'yg-widget/base/base-data.service';
+import { BaseDataService }  from 'yg-widget/my-app';
 import { TestRecService } from '../testRec2/testRec.service';
 
 import 'rxjs/add/operator/switchMap';
