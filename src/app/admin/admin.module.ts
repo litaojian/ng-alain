@@ -10,7 +10,7 @@ import { Exception403Component } from './exception/403.component';
 import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
 
-//import { AppConfigService } from 'yg-widget/bizapp.config';
+import { AppConfigService } from 'yg-widget/bizapp.config';
 import { CanActivateMenusProvide } from './services/can-activate.menus.provide';
 import { MyDataService } from './services/my.data.service';
 
@@ -32,7 +32,7 @@ import { MyDataService } from './services/my.data.service';
   ],
   providers:[
     MyDataService,
-    //AppConfigService,
+    AppConfigService,
     CanActivateMenusProvide
   ]
 })

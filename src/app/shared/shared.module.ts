@@ -41,7 +41,6 @@ const DIRECTIVES = [];
         ...ABCMODULES,
         AlainACLModule,
         // third libs
-        AppBaseModule,
         MyAppModule,
         MySelectModule,
         MyReuseTabModule.forRoot(),
@@ -66,7 +65,6 @@ const DIRECTIVES = [];
         // i18n
         TranslateModule,
         // third libs
-        AppBaseModule,
         MyAppModule,
         MyChooseIconModule,
         MyLoadingModule,
