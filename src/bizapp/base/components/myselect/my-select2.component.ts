@@ -19,6 +19,7 @@ export class NzSelect2Component implements OnInit{
    constructor(private selectService:SelectService) { 
     }
   innerValue: any = ''; 
+  options = [];//接收select的数组
   //监听绑定的值，与外岑的ngModel相互绑定
   set selectedOption(val:any){
       if (val !== this.innerValue) {
@@ -30,7 +31,7 @@ export class NzSelect2Component implements OnInit{
   get selectedOption():any{
        return this.innerValue;
   }
-  options = [];//接收select的数组
+  
    _dataSource:any;//接收本地的自定义数组或者请求返回的数组
   @Input()
   url:any;//请求的url
@@ -47,6 +48,8 @@ export class NzSelect2Component implements OnInit{
 		this._dataSource = val;
 		if ($.isArray(this._dataSource)) {      
         this.options=this._dataTransform(this._dataSource);//如果是本地数组或直接请求的数组直接复制
+        // this.selectedOption=this.options[0];
+        
 	 	}
 	}
 	get dataSource(): any {
@@ -66,10 +69,20 @@ export class NzSelect2Component implements OnInit{
   onTouchedCallback = (value: any) => {};
   ngOnInit() {
          //如果url存在则直接请求
-        if(this.url){
+         this.getUrlData();
+        
+  }
+  getUrlData(){
+    if(this.url){
             this.selectService.getValue(this.url).subscribe(data => { 
                data = data.rows || data.data;        
                this.options=this._dataTransform(data);
+               for(let i=0;i<this.options.length;i++){
+                  if(this.options[i].value==this.innerValue.value){
+                    alert(this.innerValue.value);
+                    this.selectedOption=this.options[i];
+                  }
+               }
             });
         }     
   }

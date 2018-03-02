@@ -55,18 +55,15 @@ export class trackSearchComponent {
         //保存添加查询参数
         this.search = {
                 hphm:'',
-                kssj:'',
-                jssj:'',
+                beginDate:'',
+                endDate:'',
                 kkbh:'',
-                hpzl:'',
-                xian:'',
-                cxfs:'1',
-                citys:''
+                hpzl:''
              };
-          this.pagination = {
-            curPage: 1,
-            rows: 10
-         };
+          this.pagination={
+                pageSize:10,
+                pageIndex:1
+          }
           //导出
           this.putout={
               dcnr:'',
@@ -77,12 +74,6 @@ export class trackSearchComponent {
           this.search2={
                
           };
-          //传到子组件的对象参数
-          this.searchtest={
-              hphm:'',
-              kssj:'',
-              jssj:''
-           }
         
         }
 
@@ -105,77 +96,33 @@ export class trackSearchComponent {
            var oneweekdate = new Date(newDate1);
            this.search.kssj=this.DatePipe.transform(oneweekdate,'y-MM-dd HH:mm:ss');
            this.search.jssj=this.DatePipe.transform(new Date(),'y-MM-dd HH:mm:ss');
-          //  this.seachCounty(this.search.citys);
-           this.seachKK(this.search.xian);
     }
   isVisible = false;
-  putOut(){
-    this.putoutAll=$.extend({}, this.list[0], this.putout);
-    this.TrackSearchService.putOuts(this.putoutAll).subscribe(res =>{
-          var filename = res.filename.replace("\"","").replace("\"","");
-          window.location.href="vehicle/api/data/rest/pass/downfinally?filename="+filename;
-      });
+  // putOut(){
+  //   this.putoutAll=$.extend({}, this.list[0], this.putout);
+  //   this.TrackSearchService.putOuts(this.putoutAll).subscribe(res =>{
+  //         var filename = res.filename.replace("\"","").replace("\"","");
+  //         window.location.href="vehicle/api/data/rest/pass/downfinally?filename="+filename;
+  //     });
     
-  }
-  putOutMask(){
-     this.isModalShow_put = true;
-  }
-  handleCancel(){
-    this.isVisible = false;
-  }
-//接收子组件传回来的值,是否显示对话框
-hasChange(e){
-  this.isModalShow_put=e;
-  this.isModalShow=e;
-}
-//接收表格组件返回来的数组
-// getTabelList(e){
-//     this.data=e[0];
-//     console.log(this.data);
-//     this.loading=false;
-//     this.Url=e[1];
-// }
-//tabs切换
-showListTypes(type){
-    if(type=='list'){
-       this.tabColor=true;
-       this.showLp=true;
-    }else{
-       this.tabColor=false;
-       this.showLp=false;
-    }
-}
+  // }
 //添加查询条件
-addMessage(){
-    this.searchL= {
-                kssj:this.search.kssj,
-                jssj:this.search.jssj,
-                citys: this.search.citys.substring(0,4),
-                xian:this.search.xian.substring(0,4),
-                kkbh:this.search.kkbh.substring(0,4),
-                hphm:this.search.hphm,
-                hpzl:this.search.hpzl,
-                cxfs:this.search.cxfs
-            };
-    this.list.push(this.searchL);
-    console.log(this.list);
-    this.searchList(1);
-    this.isModalShow=false;
- }
-delete(num){
-    this.list.splice(num,1);
-    this.searchList(1);
-}
-private getKkou(e){
-     if(e.kkListBh!=undefined&&e.kkList!=undefined){
-          console.log(e.kkListBh.join(","));
-          this.search.kkbh=e.kkListBh.join(",");
-          this.search.kkmc=e.kkList;
-          this.search2.kkbh=e.kkListBh.join(",");
-          this.search2.kkmc=e.kkList;
-     }
-    
-  }
+// addMessage(){
+//     this.searchL= {
+//                 kssj:this.search.kssj,
+//                 jssj:this.search.jssj,
+//                 citys: this.search.citys.substring(0,4),
+//                 xian:this.search.xian.substring(0,4),
+//                 kkbh:this.search.kkbh.substring(0,4),
+//                 hphm:this.search.hphm,
+//                 hpzl:this.search.hpzl,
+//                 cxfs:this.search.cxfs
+//             };
+//     this.list.push(this.searchL);
+//     console.log(this.list);
+//     this.searchList(1);
+//     this.isModalShow=false;
+//  }
 //点击查询调用方法
 searchList(page){     
         if(this.list[0]==undefined){
@@ -212,81 +159,4 @@ searchListTotal(){
                this.loading=false;
          })
 }
-onConcel(){
-    this.isModalShow=false; 
 }
-//保存查询条件
-onSave(){
-      this.list[this.indexNum]=this.search2;
-      this.searchList(1);
-      this.isModalShow=false;
- }
-//根据行政区划 查询区县
-  seachCounty(xzqh){
-        console.log(xzqh);
-        var xzqhVal=xzqh.substring(0,4);
-        
-        this.TrackSearchService.getCounty(xzqhVal).subscribe(res =>{
-              
-              this.countyList=res.data;
-        })
-  }
- //根据区县 查询卡口
-  seachKK(qx){
-        var xzqhVal=qx.substring(0,4);
-        this.TrackSearchService.getKkList(xzqhVal).subscribe(res =>{
-           this.kkList = res.data;
-        });
-  }
-  showMoreSearch(){
-     this.ifMoreSearch=false;
-  }
-//显示查询条件
- carDetail(num) {
-      this.indexNum=num; 
-      this.isModalShow=true;     
-      if(num!=undefined){
-          this.numOne=true;
-          this.search2=this.list[num];
-          // this.seachCounty(this.search.citys);
-          this.seachKK(this.search.xian);
-      }else{        
-        //  this.search.xzqh='440000000000';
-        //  this.search={};
-         this.countyList='';
-         this.kkList='';
-         this.search = {
-                hphm:'',
-                kssj:'',
-                jssj:'',
-                kkbh:'',
-                hpzl:'',
-                xian:'',
-                cxfs:'1',
-                citys:''
-             };
-         var newDate = new Date();
-         var newDate1=(newDate.getTime()-3*24*3600*1000);
-         var oneweekdate = new Date(newDate1);
-         this.search.kssj=this.DatePipe.transform(oneweekdate,'y-MM-dd HH:mm:ss');
-         this.search.jssj=this.DatePipe.transform(new Date(),'y-MM-dd HH:mm:ss');
-        //  this.seachCounty(this.search.citys);
-         this.seachKK(this.search.xian);
-         this.numOne=false;
-      }
-  }
-  //显示单个信息
-  carDetailMore(titleTpl, contentTpl, footerTpl,width,dataOnes) {
-    this.dataOne=dataOnes;
-    this.currentModal = this.modalService.open({
-      title       : titleTpl,
-      content     : contentTpl,
-      footer      : footerTpl,
-      width      : width,
-      maskClosable: false,
-      onOk() {
-        console.log('Click ok');
-      }
-    });
-  }
- }

@@ -1,0 +1,14 @@
+
+ <nz-modal [nzVisible]="isModal" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel($event)" [nzZIndex]="100" [nzWidth]="mywidth">
+    <ng-template #modalTitle>
+        <ng-content select=".myModal-title"></ng-content> 
+    </ng-template>
+    <ng-template #modalContent>
+        <ng-content select=".myModal-content"></ng-content>
+    </ng-template>
+    <ng-template #modalFooter>
+        <ng-content select=".myModal-footer"></ng-content>
+    </ng-template>
+</nz-modal>
+ 
+

@@ -27,6 +27,8 @@ export class TabpaneComponent {
     private areaList: any={};
     private pagination: any={};
     private paginationArea: any={};
+    dcList:any=[{"dmz": "1", "dmsm1": "数据列表"},{"dmz": "2", "dmsm1": "过车图片"}];
+    searchType:any=[{"dmz": "1", "dmsm1": "精确查询"},{"dmz": "2", "dmsm1": "模糊查询"},{"dmz": "3", "dmsm1": "无号牌"}];
     constructor(
         private modalService: NzModalService,
         private subject: NzModalSubject,
@@ -38,8 +40,8 @@ export class TabpaneComponent {
              this.search = {
                 kssj:'2016-08-01 14:42:24',
                 jssj:'2016-08-10 14:42:30',
-                hphm:'湘A5351N',
-                hpzl:'',
+                hphm:'湘A5351N1',
+                hpzl:'01',
                 times:'',
                 fxkssj:'05:00',
                 fxjssj:'18:00',
@@ -64,9 +66,9 @@ export class TabpaneComponent {
              }
            
         }   
+    selectedOption;
     ngOnInit() {
-
-           //初始化数据，默认开始存在两个区域
+        //初始化数据，默认开始存在两个区域
         if(this.VehicleType=='area'){
             for(let i=0;i<2;i++){
                 this.addMessage(2);
@@ -77,7 +79,8 @@ export class TabpaneComponent {
   @Input()
     private VehicleType:any;
   @Input()
-	private typeName:any;
+  private typeName:any;
+  options:any;
   private carDetail(num) {
       this.indexNum=num; 
       this.isModalShow=true;              
@@ -85,11 +88,12 @@ export class TabpaneComponent {
           this.numOne=true;
           //this.search2=this.list[num];//这里不可以使用赋值的方式，不然会造成覆盖原数组
           this.search2=$.extend({},this.list[num]);
+          console.log(this.search2);
       }else{  
          this.search = {
                 kssj:'2016-08-01 14:42:24',
                 jssj:'2016-08-10 14:42:30',
-                hphm:'湘A5351N',
+                hphm:'湘A5351N12',
                 hpzl:'',
                 times:'',
                 fxkssj:'05:00',
@@ -171,7 +175,7 @@ private handleCancel(e){
             for(let i in this.searchValid){
                 // alert(this.searchValid[i].type.indexOf(this.VehicleType));
                 if(this.searchValid[i].type.indexOf(this.VehicleType)>=0){
-                    alert(this.searchValid[i].name);
+                    // alert(this.searchValid[i].name);
                     if(this.searchValid[i].name==''||this.searchValid[i].name==undefined){
                             this.msg.create('error', i+'不能为空');
                             return;
@@ -182,6 +186,7 @@ private handleCancel(e){
         
         this.searchL=$.extend({},this.search);  
         this.list.push(this.searchL);
+        console.log(this.list);
         this.areaList.regionalparam=this.list; 
         if(k!==2){
             this.selectListBack.emit(this.areaList);

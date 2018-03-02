@@ -5,9 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { SecurityGuardService } from '../bizapp/base/acl/security-guard.service';
-import { UserPermissionService } from '../bizapp/base/acl/user-permission.service';
-import { SsoClientService } from '../bizapp/base/acl/ssoclient.service';
 
 import { IndexComponent } from '../bizapp/index.component';
 
@@ -35,7 +32,6 @@ const routes: Routes = [
     entryComponents:[
     ],
     providers:[
-        SecurityGuardService, SsoClientService, UserPermissionService
     ]
 })
 

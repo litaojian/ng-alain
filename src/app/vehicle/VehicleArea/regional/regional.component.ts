@@ -173,7 +173,7 @@ private errorImg(){
 //获取列表单个号牌数据
 private recentCarDetail(car){
      this.isCarDetailShow=true;
-     this.RegionalService.recentCar({"hphm":car.hphm,"hpzl":car.hpzl,"minTime":this.list[0].beginDate}).subscribe(data => { 
+     this.RegionalService.recentCar({"hphm":car.hphm,"hpzl":car.hpzl,"minTime":this.search2[0].beginDate}).subscribe(data => { 
             this.recentCar=data.rowData;
             this.errorImg();
      });
@@ -190,9 +190,9 @@ private showAreaOne(car){
 private showAreaDetail(index,car){
       this.isAreaDetailShow=true; 
       this.areaDetail=$.extend({},this.paginationArea);
-      this.areaDetail.gckssj=this.list[index].beginDate;
-      this.areaDetail.gcjssj=this.list[index].endDate;
-      this.areaDetail.kdbh=this.list[index].kkbh;
+      this.areaDetail.gckssj=this.search2[index].beginDate;
+      this.areaDetail.gcjssj=this.search2[index].endDate;
+      this.areaDetail.kdbh=this.search2[index].kkbh;
       this.areaDetail.hphm=car.hphm;
       this.areaDetail.hpzl=car.hpzl;
       this.getAreaDetail(this.areaDetail);

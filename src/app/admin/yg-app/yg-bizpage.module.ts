@@ -5,17 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { SharedModule } from '../../shared/shared.module';
-// import { BizPageModule } from 'yg-widget/my-app';
 import { HttpClientService } from 'yg-widget/my-app/services/httpclient.service';
 import { BizQueryComponent, BizQueryService } from 'yg-widget/my-app';
 import { BizFormComponent, BizFormService } from 'yg-widget/my-app';
 
-//import { HelloService } from './shared/hello.service';
-
 
 const routes: Routes = [{
   path: '',
-  //component: PageContainerComponent,
   children: [
     { path: 'test/dialog/:id', component: BizQueryComponent },        
     { path: ':dir/:pageName/list', component: BizQueryComponent },    
