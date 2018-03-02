@@ -7,10 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { BizQueryComponent, BizQueryService,BizFormComponent, BizFormService } from 'yg-widget/biz-app';
 
-//import { BizQueryComponent, BizQueryService } from '@yg-widget/my-app';
-//import { BizFormComponent, BizFormService } from '@yg-widget/my-app';
 
-//import { HelloService } from './shared/hello.service';
 
 
 const routes: Routes = [{
