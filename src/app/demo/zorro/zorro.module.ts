@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppBaseModule } from '@bizapp/base/app-base.module';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 import { Test1Component } from './test1.component';
@@ -24,7 +23,6 @@ const routes: Routes = [{
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AppBaseModule,
     NgZorroAntdModule,
     RouterModule.forChild(routes)
   ],
