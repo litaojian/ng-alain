@@ -7,14 +7,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppBaseModule } from '@bizapp/base/app-base.module';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
-import { Test1Component } from './test1.component';
+// import { Test1Component } from './test1.component';
 
 
 
 const routes: Routes = [{
   path: '',
   children: [
-    { path: 'index', component: Test1Component },
+    // { path: 'index', component: Test1Component },
     { path: '', redirectTo: 'index', pathMatch: 'full' }
   ]
 }];
@@ -29,7 +29,7 @@ const routes: Routes = [{
     RouterModule.forChild(routes)
   ],
   declarations: [
-    Test1Component
+    // Test1Component
   ],
   providers: []
 })

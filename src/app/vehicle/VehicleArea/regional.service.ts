@@ -23,4 +23,9 @@ export class RegionalService {
 	   return this.http
             .post('analysis/api/analysis/track/detail',body);	  
 	}
+	getTabelHead(url:any):any{
+	   return this.http
+            .get(url);
+	  
+	}
 }

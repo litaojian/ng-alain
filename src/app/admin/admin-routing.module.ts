@@ -9,7 +9,7 @@ import { LayoutPassportComponent } from '../layout/passport/passport.component';
 // dashboard pages
 import { DashboardMonitorComponent } from './dashboard/monitor/monitor.component';
 import { SimpleTableComponent } from './simple-table/simple-table.component';
-
+ 
 // passport pages
 import { UserLoginComponent } from './passport/login/login.component';
 
@@ -37,12 +37,9 @@ const routes: Routes = [
             { path: 'frequent', loadChildren: '../vehicle/VehicleFrequent/frequent.module#FrequentModule'},
             { path: 'first', loadChildren: '../vehicle/VehicleFirst/first.module#FirstModule'},
             { path: 'peer', loadChildren: '../vehicle/VehiclePeer/peer.module#PeerModule'},
-            { path: 'carControl', loadChildren: '../vehicle/VehicleControlRequest/vehicleControl.module#VehicleControlModule'},
-            { path: 'page', loadChildren: './yg-app/yg-bizpage.module#MyBizPageModule'},
-            { path: 'carSearch', loadChildren: '../vehicle/mySearch/mySearch.module#SearchModule'}
+            { path: 'page', loadChildren: './yg-app/yg-bizpage.module#MyBizPageModule'}
         ]
     },
-    { path: 'visual', loadChildren: '../visual/visual.module#VisualModule'},
     // // 全屏布局y
     // {
     //     path: 'data-v',
