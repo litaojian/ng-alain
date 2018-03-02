@@ -13,20 +13,18 @@ import { TranslateModule } from '@ngx-translate/core';
 // region: third libs
 import { CountdownModule } from 'ngx-countdown';
 import { MyAppModule } from 'yg-widget/my-app/my-app.module';
-// import { MySelectModule } from 'yg-widget/yg-select/myselect.module';
-import { MyLoadingModule } from 'yg-widget/yg-loading/myloading.module';
 import { BizAppModule } from 'yg-widget/biz-app';
-// import { MyAppBaseModule } from 'bizapp/base/components/myapp-base.module';
+import { MyLoadingModule } from 'yg-widget/yg-loading/myloading.module';
 import { MySelectModule } from 'yg-widget/yg-select/myselect.module';
-// import { MyLoadingModule } from 'bizapp/base/components/myloading/myloading.module';
-import { MyReuseTabModule } from '../admin/reuse-tab/reuse-tab.module';
+import { HeaderSearchComponent } from '../vehicle/VehicleCommon/controls/v2/searchInput.component';
+
 
 const THIRDMODULES = [ CountdownModule, MyAppModule, BizAppModule, MySelectModule, MyLoadingModule];
 // endregion
 
 
 // region: your componets & directives
-const COMPONENTS = [];
+const COMPONENTS = [HeaderSearchComponent];
 const DIRECTIVES = [];
 // endregion
 
