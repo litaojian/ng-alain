@@ -11,10 +11,7 @@ import { SsoClientService } from '../bizapp/base/acl/ssoclient.service';
 
 import { IndexComponent } from '../bizapp/index.component';
 
-const routes: Routes = [
-    { path: 'sso',  loadChildren: '../bizapp/login/login.module#LoginModule'},            
-    { path: 'admin', loadChildren: '../bizapp/sysadmin/sysadmin.module#SysAdminModule', canActivateChild: [ SecurityGuardService ]},    
-    { path: 'page', loadChildren: '../bizapp/bizpage/page.module#PageModule', canActivateChild: [ SecurityGuardService ]},    
+const routes: Routes = [           
     { path: 'index', component: IndexComponent },    
     { path: '', redirectTo: 'index', pathMatch: 'full' }
 ];
@@ -30,7 +27,7 @@ const routes: Routes = [
         RouterModule.forRoot(routes, { useHash: true })
     ],
     declarations: [
-        IndexComponent
+        IndexComponent 
     ],
     exports: [
         RouterModule
