@@ -14,12 +14,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CountdownModule } from 'ngx-countdown';
 import { AppBaseModule } from 'bizapp/base/app-base.module';
 import { MyAppModule } from 'yg-widget/my-app/my-app.module';
-<<<<<<< HEAD
 // import { MySelectModule } from 'yg-widget/yg-select/myselect.module';
 import { MyLoadingModule } from 'yg-widget/yg-loading/myloading.module';
-=======
 import { BizAppModule } from 'yg-widget/biz-app';
->>>>>>> f0a283ac75e36be9990574ead55619a2257efedd
 // import { MyAppBaseModule } from 'bizapp/base/components/myapp-base.module';
 import { MySelectModule } from 'bizapp/base/components/myselect/myselect.module';
 import { MyChooseIconModule } from 'bizapp/base/components/areachoose/chooseIcon.module';
