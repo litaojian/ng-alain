@@ -14,15 +14,19 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CountdownModule } from 'ngx-countdown';
 import { AppBaseModule } from 'bizapp/base/app-base.module';
 import { MyAppModule } from 'yg-widget/my-app/my-app.module';
+<<<<<<< HEAD
 // import { MySelectModule } from 'yg-widget/yg-select/myselect.module';
 import { MyLoadingModule } from 'yg-widget/yg-loading/myloading.module';
+=======
+import { BizAppModule } from 'yg-widget/biz-app';
+>>>>>>> f0a283ac75e36be9990574ead55619a2257efedd
 // import { MyAppBaseModule } from 'bizapp/base/components/myapp-base.module';
 import { MySelectModule } from 'bizapp/base/components/myselect/myselect.module';
 import { MyChooseIconModule } from 'bizapp/base/components/areachoose/chooseIcon.module';
 // import { MyLoadingModule } from 'bizapp/base/components/myloading/myloading.module';
 import { MyReuseTabModule } from '../admin/reuse-tab/reuse-tab.module';
 
-const THIRDMODULES = [ CountdownModule];
+const THIRDMODULES = [ CountdownModule, MyAppModule, BizAppModule, MySelectModule, MyLoadingModule, MyChooseIconModule];
 // endregion
 
 
@@ -43,12 +47,6 @@ const DIRECTIVES = [];
         ...ABCMODULES,
         AlainACLModule,
         // third libs
-        AppBaseModule,
-        MyAppModule,
-        MySelectModule,
-        MyReuseTabModule.forRoot(),
-        MyLoadingModule,
-        MyChooseIconModule,
         ...THIRDMODULES
     ],
     declarations: [
@@ -67,13 +65,7 @@ const DIRECTIVES = [];
         ...ABCMODULES,
         // i18n
         TranslateModule,
-        // third libs
-        AppBaseModule,
-        MyAppModule,
-        MyChooseIconModule,
-        MyLoadingModule,
-        MyReuseTabModule,   
-        MySelectModule,
+        // third libs           
         ...THIRDMODULES,
         // your components
         ...COMPONENTS,
