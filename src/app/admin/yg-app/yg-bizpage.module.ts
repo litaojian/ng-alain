@@ -5,10 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { SharedModule } from '../../shared/shared.module';
-//import { BizPageModule } from 'yg-widget/my-app';
-import { HttpClientService } from 'yg-widget/my-app/services/httpclient.service';
-import { BizQueryComponent, BizQueryService } from 'yg-widget/my-app';
-import { BizFormComponent, BizFormService } from 'yg-widget/my-app';
+import { BizQueryComponent, BizQueryService,BizFormComponent, BizFormService } from 'yg-widget/biz-app';
+
+//import { BizQueryComponent, BizQueryService } from '@yg-widget/my-app';
+//import { BizFormComponent, BizFormService } from '@yg-widget/my-app';
 
 //import { HelloService } from './shared/hello.service';
 
@@ -28,8 +28,6 @@ const routes: Routes = [{
   ]
 }];
 
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -38,14 +36,11 @@ const routes: Routes = [{
     RouterModule.forChild(routes)
   ],
   declarations: [
-    BizQueryComponent,
-    BizFormComponent
   ],
   entryComponents:[
-
   ],
-  providers: [BizQueryService, BizFormService, HttpClientService]
+  providers: []
 })
 export class MyBizPageModule {
-
+  
 }

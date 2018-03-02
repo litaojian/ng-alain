@@ -12,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 // region: third libs
 import { CountdownModule } from 'ngx-countdown';
-//import { MyAppModule } from 'yg-widget/my-app/my-app.module';
+import { MyAppModule } from 'yg-widget/my-app/my-app.module';
 
 import { MyReuseTabModule } from '../admin/reuse-tab/reuse-tab.module';
 
@@ -37,7 +37,7 @@ const DIRECTIVES = [];
         ...ABCMODULES,
         AlainACLModule,
         // third libs
-        //MyAppModule,
+        MyAppModule,
         MyReuseTabModule.forRoot(),
         ...THIRDMODULES
     ],
@@ -58,7 +58,7 @@ const DIRECTIVES = [];
         // i18n
         TranslateModule,
         // third libs
-        //MyAppModule,
+        MyAppModule,
         MyReuseTabModule,
         ...THIRDMODULES,
         // your components

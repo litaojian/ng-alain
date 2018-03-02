@@ -14,6 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CountdownModule } from 'ngx-countdown';
 import { AppBaseModule } from 'bizapp/base/app-base.module';
 import { MyAppModule } from 'yg-widget/my-app/my-app.module';
+import { BizAppModule } from 'yg-widget/biz-app';
 // import { MyAppBaseModule } from 'bizapp/base/components/myapp-base.module';
 import { MySelectModule } from 'bizapp/base/components/myselect/myselect.module';
 import { MyChooseIconModule } from 'bizapp/base/components/areachoose/chooseIcon.module';
@@ -42,6 +43,7 @@ const DIRECTIVES = [];
         AlainACLModule,
         // third libs
         MyAppModule,
+        BizAppModule,
         MySelectModule,
         MyReuseTabModule.forRoot(),
         MyLoadingModule,
@@ -66,6 +68,7 @@ const DIRECTIVES = [];
         TranslateModule,
         // third libs
         MyAppModule,
+        BizAppModule,
         MyChooseIconModule,
         MyLoadingModule,
         MyReuseTabModule,   
