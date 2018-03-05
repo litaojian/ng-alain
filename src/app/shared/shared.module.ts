@@ -19,7 +19,10 @@ import { MySelectModule } from 'yg-widget/yg-select/myselect.module';
 import { HeaderSearchComponent } from '../vehicle/VehicleCommon/controls/v2/searchInput.component';
 
 
-const THIRDMODULES = [ CountdownModule, MyAppModule, BizAppModule, MySelectModule, MyLoadingModule];
+const THIRDMODULES = [ 
+                        CountdownModule, MyAppModule, BizAppModule, 
+                        MySelectModule, MyLoadingModule
+                     ];
 // endregion
 
 

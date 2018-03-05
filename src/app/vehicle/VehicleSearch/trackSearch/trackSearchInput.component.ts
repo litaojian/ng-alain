@@ -8,16 +8,16 @@ import { TrackSearchService } from '../trackSearch.service';
 import { tap, map, mergeMap, catchError } from 'rxjs/operators';
 declare var $:any;
 @Component({ 
-    selector: 'app-acl',
-    templateUrl: './trackSearch.component.html',
-    styleUrls: ['./trackSearch.component.css'],
+    selector: 'searchInput',
+    templateUrl: './trackSearchInput.component.html',
+    styleUrls: ['./trackSearchInput.component.css'],
     providers:[DatePipe]
 })
-export class trackSearchComponent {
+export class trackSearchInputComponent {
     expandForm = false;
     ifMoreSearch = false;
     isModalShow= false;
-    isModalShow_export=false;
+    isModalShow_put=false;
     ifErrorImg=false;
     pagination:any;
     showLp:any=true;
@@ -34,16 +34,13 @@ export class trackSearchComponent {
     search: any;
     search2: any;
     searchL:any;
-    searchtest:any;
+    searchInput2:any;
+    searchInput:any;
     Url=false;//是否存在tabelurl
     putout: any;
     numOne:any;
     indexNum:any;
-    countyList: any=[];//地市
-    kkList: any;//卡口
     currentModal;
-    exportType:any=[{"dmz": "1", "dmsm1": "数据列表"},{"dmz": "2", "dmsm1": "过车图片"}];
-    // searchType:any=[{"dmz": "1", "dmsm1": "精确查询"},{"dmz": "2", "dmsm1": "模糊查询"},{"dmz": "3", "dmsm1": "无号牌"}];
     constructor(
         private modalService: NzModalService,
         private DatePipe: DatePipe,
@@ -66,7 +63,7 @@ export class trackSearchComponent {
           }
           //导出
           this.putout={
-              type:'',
+              dcnr:'',
               num:''
           }
           this.putoutAll={};
@@ -74,33 +71,43 @@ export class trackSearchComponent {
           this.search2={
                
           };
+          this.searchInput2={
+               
+          }
+          this.searchInput=[];
         
-        }
+          }
 
-  ngOnInit() {     
-        
+  ngOnInit() {      
+          //接收传递的值
+          this.activeRoute.queryParams.subscribe(params => {
+            //   this.searchtest.hphm = params['hphm'];
+              if(params['hphm']!=undefined){
+                this.searchInput=[{
+                    hphm:params['hphm'],
+                    beginDate:params['kssj'],
+                    endDate:params['jssj']
+                }];
+                // this.searchInput2.hphm = params['hphm'];
+                // this.searchInput2.beginDate = params['kssj'];
+                // this.searchInput2.endDate = params['jssj'];
+                // this.searchInput.push(this.searchInput2);
+                this.searchInput2=$.extend({},this.pagination);
+                this.searchInput2.param=this.searchInput;
+                this.loading=true;
+                this.searchLists(this.searchInput2);
+              }else{
+                // this.searchtest.hphm = '';
+              }
+            
+          }); 
+          //  var newDate = new Date();
+          //  var newDate1=(newDate.getTime()-3*24*3600*1000);
+          //  var oneweekdate = new Date(newDate1);
+          //  this.search.kssj=this.DatePipe.transform(oneweekdate,'y-MM-dd HH:mm:ss');
+          //  this.search.jssj=this.DatePipe.transform(new Date(),'y-MM-dd HH:mm:ss');
     }
-  export(num){
-    if(num==1){
-       this.isModalShow_export=true;
-    }else{
-       if(this.data==[]){
-          this.msg.create('error','没有可以导出的数据');
-       }
-       this.putoutAll=$.extend({}, this.search, this.putout);
-       this.TrackSearchService.exports(this.putoutAll).subscribe(res =>{
-            var filename = res.file.replace("\"","").replace("\"","");
-            this.isModalShow_export=false;
-            // window.location.href="analysis/api/analysis/track/export?file="+filename;
-        });
-    }
-    
-    
-    
-  }
-  handleCancel(e){
-    this.isModalShow_export=e;
-  }
+isVisible = false;
  //tabs切换
 private showListTypes(type){
     if(type=='list'){
@@ -110,7 +117,7 @@ private showListTypes(type){
     }
 }
  //获取列表数据
-private getSearchList(parmes){
+  private getSearchList(parmes){
     console.log(parmes);
     this.search2=[];
     for(let i=0;i<parmes.regionalparam.length;i++){

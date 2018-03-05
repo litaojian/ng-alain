@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CounterComponent }  from '../v2/mytime.component';
 import { MyDatePickerComponent }  from '../v2/mydatepicker.component';
 import { ModalComponent }  from '../v2/mymodal.component';
-import { HeaderSearchComponent }  from '../v2/searchInput.component';
+// import { HeaderSearchComponent }  from '../v2/searchInput.component';
 @NgModule({
     imports: [
         CommonModule, 
@@ -18,14 +18,14 @@ import { HeaderSearchComponent }  from '../v2/searchInput.component';
     exports:[
         MyDatePickerComponent,
         CounterComponent,
-        ModalComponent,
-        HeaderSearchComponent
+        ModalComponent
+        // HeaderSearchComponent
     ],
     declarations: [
         MyDatePickerComponent,
         CounterComponent,
-        ModalComponent,
-        HeaderSearchComponent
+        ModalComponent
+        // HeaderSearchComponent
     ],
     // entryComponents: [
     //     NzModalCustomizeComponent

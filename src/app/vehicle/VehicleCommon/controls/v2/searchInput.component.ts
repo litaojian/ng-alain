@@ -72,6 +72,6 @@ export class HeaderSearchComponent implements AfterViewInit {
            this.msg.create('error','查询内容不能为空');
            return;
         }
-        this.router.navigate(['/trackSearch/list'],{queryParams:{'hphm':this.q,'kssj': this.kssj,'jssj':this.jssj}});//传递参数
+        this.router.navigate(['/trackSearch/input'],{queryParams:{'hphm':this.q,'kssj': this.kssj,'jssj':this.jssj}});//传递参数
     }
 }
