@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Injector } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
@@ -14,6 +14,7 @@ declare var $:any;
     providers:[DatePipe]
 })
 export class trackSearchComponent {
+    showSearchList:any=true;
     expandForm = false;
     ifMoreSearch = false;
     isModalShow= false;
@@ -44,14 +45,27 @@ export class trackSearchComponent {
     currentModal;
     exportType:any=[{"dmz": "1", "dmsm1": "数据列表"},{"dmz": "2", "dmsm1": "过车图片"}];
     // searchType:any=[{"dmz": "1", "dmsm1": "精确查询"},{"dmz": "2", "dmsm1": "模糊查询"},{"dmz": "3", "dmsm1": "无号牌"}];
+    modalService: NzModalService;
+    DatePipe: DatePipe;
+    TrackSearchService: TrackSearchService;
+    msg: NzMessageService;
+    activeRoute: ActivatedRoute;
+    router: Router;
     constructor(
-        private modalService: NzModalService,
-        private DatePipe: DatePipe,
-        private TrackSearchService: TrackSearchService,
-        public msg: NzMessageService,
-        public activeRoute: ActivatedRoute,
-        public router: Router
+        injector:Injector
+        // private modalService: NzModalService,
+        // private DatePipe: DatePipe,
+        // private TrackSearchService: TrackSearchService,
+        // public msg: NzMessageService,
+        // public activeRoute: ActivatedRoute,
+        // public router: Router
         ) {
+        this.modalService = injector.get(NzModalService);
+        this.DatePipe = injector.get(DatePipe);
+        this.TrackSearchService = injector.get(TrackSearchService);
+        this.msg = injector.get(NzMessageService);
+        this.activeRoute = injector.get(ActivatedRoute);
+        this.router = injector.get(Router);
         //保存添加查询参数
         this.search = {
                 hphm:'',
@@ -84,13 +98,14 @@ export class trackSearchComponent {
     if(num==1){
        this.isModalShow_export=true;
     }else{
-       if(this.data==[]){
-          this.msg.create('error','没有可以导出的数据');
-       }
+      //  if(this.data==[]){
+      //     this.msg.create('error','没有可以导出的数据');
+      //     return;
+      //  }
+       this.isModalShow_export=false;
        this.putoutAll=$.extend({}, this.search, this.putout);
        this.TrackSearchService.exports(this.putoutAll).subscribe(res =>{
             var filename = res.file.replace("\"","").replace("\"","");
-            this.isModalShow_export=false;
             // window.location.href="analysis/api/analysis/track/export?file="+filename;
         });
     }
@@ -99,10 +114,10 @@ export class trackSearchComponent {
     
   }
   handleCancel(e){
-    this.isModalShow_export=e;
+    this.isModalShow_export=false;
   }
  //tabs切换
-private showListTypes(type){
+showListTypes(type){
     if(type=='list'){
        this.showLp=true;
     }else{
@@ -110,7 +125,7 @@ private showListTypes(type){
     }
 }
  //获取列表数据
-private getSearchList(parmes){
+getSearchList(parmes){
     console.log(parmes);
     this.search2=[];
     for(let i=0;i<parmes.regionalparam.length;i++){
@@ -149,7 +164,7 @@ errorImg(){
   this.ifErrorImg=true;
 }
 //列表页数改变
-private indexChange(e){
+indexChange(e){
     this.search.pageIndex=e;
     this.searchLists(this.search);
  }

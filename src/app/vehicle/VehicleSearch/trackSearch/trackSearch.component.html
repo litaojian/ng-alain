@@ -1,7 +1,7 @@
 
  <!--点击弹出条件填写框-->
-<my-tab [typeName]="'searchMore'" [VehicleType]="'search'" (selectListBack)="getSearchList($event)"></my-tab>
-<nz-tabset [nzTabBarExtraTemplate]="tabBarExtraContent">
+<my-tab *ngIf="showSearchList" [typeName]="'searchMore'" [VehicleType]="'search'" (selectListBack)="getSearchList($event)"></my-tab>
+<nz-tabset [nzTabBarExtraTemplate]="tabBarExtraContent" [ngStyle]="{'margin-top':showSearchList === true ? '0px' : '130px' }">
             <nz-tab (nzClick)="showListTypes('list')">
                 <ng-template #nzTabHeading>
                    <!--<i [ngClass]="'anticon anticon-exception'"></i>-->
@@ -206,30 +206,3 @@
            </div>
       </ng-template>
 </nz-modal>
-<!--<my-modal [isModal]="isModalShow_put" (initRows)=hasChange($event)>
-      <div class="myModal-title">
-          <span>导出数据</span>
-      </div>
-      <div class="myModal-content">
-           <div nz-col [nzSpan]="24" class="mb-md">
-                <div nz-form-item class="d-flex" style="margin-bottom:0px">
-                    <div nz-form-label><label for="dcnr">导出内容：</label></div>
-                    <div nz-form-control class="flex-1">
-                         
-                    </div>
-                </div>
-         </div>
-        <div nz-col [nzSpan]="24" class="mb-md">
-                <div nz-form-item class="d-flex" style="margin-bottom:0px">
-                    <div nz-form-label><label for="dcsl">导出数量：</label></div>
-                    <div nz-form-control class="flex-1">
-                         <nz-input [(ngModel)]="putout.num" [nzPlaceHolder]="'导出数量'" name="num"></nz-input>
-                    </div>
-                </div>
-            </div>
-        <p>1.导出数据最多只能导出2000条； 2.导出图片</p>
-      </div>
-       <div class="myModal-footer">
-          <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="exportData()">导出</button>
-      </div>
-</my-modal>-->
