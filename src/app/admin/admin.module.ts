@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '@shared/shared.module';
@@ -12,6 +12,7 @@ import { Exception500Component } from './exception/500.component';
 
 import { CanActivateMenusProvide } from './services/can-activate.menus.provide';
 import { MyDataService } from './services/my.data.service';
+import { ReuseTabService } from '@delon/abc';
 
 @NgModule({
   imports: [
@@ -34,4 +35,6 @@ import { MyDataService } from './services/my.data.service';
     CanActivateMenusProvide
   ]
 })
-export class AdminModule { }
+export class AdminModule {
+  
+}

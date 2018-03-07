@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from '../../shared/shared.module';
-import { HttpClientService } from 'yg-widget';
+import { SharedModule } from '../shared/shared.module';
 import { BizQueryComponent, BizQueryService,BizFormComponent, BizFormService } from 'yg-widget/biz-app';
 
 const routes: Routes = [{

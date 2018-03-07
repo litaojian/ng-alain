@@ -6,13 +6,14 @@ import { ACLService } from '@delon/acl';
 import { zip } from 'rxjs/observable/zip';
 import { I18NService } from '../../core/i18n/i18n.service';
 import { TranslateService } from '@ngx-translate/core';
+import { BaseStartupService } from 'yg-widget/base/base-startup.service';
 
 /**
  * 用于应用启动时
  * 一般用来获取应用所需要的基础数据等
  */
 @Injectable()
-export class StartupService {
+export class StartupService extends BaseStartupService {
     constructor(
         private menuService: MenuService,
         private translate: TranslateService,
@@ -20,8 +21,9 @@ export class StartupService {
         private settingService: SettingsService,
         private aclService: ACLService,
         private titleService: TitleService,
-        private httpClient: HttpClient,
-        private injector: Injector) { }
+        protected injector: Injector) { 
+            super(injector);
+        }
 
     load(): Promise<any> {
         // only works with promises
@@ -47,6 +49,8 @@ export class StartupService {
                 //this.menuService.add(res.menu);
                 // 设置页面标题的后缀
                 this.titleService.suffix = res.app.name;
+                //
+                this.appConfig.setServerURL(res.SERVER_URL);
 
                 resolve(res);
             }, (err: HttpErrorResponse) => {
