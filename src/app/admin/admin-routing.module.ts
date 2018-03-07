@@ -37,7 +37,7 @@ const routes: Routes = [
             { path: 'frequent', loadChildren: '../vehicle/VehicleFrequent/frequent.module#FrequentModule'},
             { path: 'first', loadChildren: '../vehicle/VehicleFirst/first.module#FirstModule'},
             { path: 'peer', loadChildren: '../vehicle/VehiclePeer/peer.module#PeerModule'},
-            { path: 'page', loadChildren: './yg-app/yg-bizpage.module#MyBizPageModule'}
+            { path: 'page', loadChildren: './yg-bizpage.module#MyBizPageModule'}
         ]
     },
     // // 全屏布局y

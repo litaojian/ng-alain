@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 import { Test1Component } from './test1.component';
-
+import { TestRecService } from '../testRec2/testRec.service';
 
 
 const routes: Routes = [{
@@ -29,6 +29,6 @@ const routes: Routes = [{
   declarations: [
     Test1Component
   ],
-  providers: []
+  providers: [TestRecService]
 })
 export class ZorroModule { }

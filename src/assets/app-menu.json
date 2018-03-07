@@ -1,99 +1,103 @@
 ﻿{
-    "menu": [
-          {
-            "text": "涉车模块",
-            "group": true,
-            "children": [{
-                    "text": "轨迹查询",
+    "menu": [{
+        "text": "涉车模块",
+        "group": true,
+        "children": [{
+                "text": "轨迹查询",
+                "translate": "",
+                "link": "/trackSearch/list",
+                "icon": "icon-compass"
+            },
+            {
+                "text": "区域碰撞",
+                "translate": "",
+                "link": "/regional/list",
+                "icon": "icon-compass"
+            },
+            {
+                "text": "同行车分析",
+                "translate": "",
+                "link": "/peer/list",
+                "icon": "icon-compass"
+            },
+            {
+                "text": "首次出现车辆",
+                "translate": "",
+                "link": "/first/list",
+                "icon": "icon-compass"
+            },
+            {
+                "text": "频繁出入分析",
+                "translate": "",
+                "link": "/frequent/list",
+                "icon": "icon-compass"
+            }
+        ]
+    }, {
+        "text": "More",
+        "translate": "more",
+        "group": true,
+        "children": [{
+                "text": "系统权限",
+                "translate": "",
+                "link": "/logics",
+                "icon": "icon-grid",
+                "children": [{
+                        "text": "用户管理",
+                        "link": "/page/admin/user/list",
+                        "acl": "admin"
+                    },
+                    {
+                        "text": "角色管理",
+                        "link": "/page/admin/role/list",
+                        "acl": "admin"
+                    },
+                    {
+                        "text": "菜单管理",
+                        "link": "/page/admin/menu/list",
+                        "acl": "admin"
+                    },
+                    {
+                        "text": "权限管理",
+                        "link": "/page/admin/permission/list",
+                        "acl": "admin"
+                    }
+                ]
+            },
+            {
+                "text": "示例",
+                "translate": "",
+                "link": "/zorro/index",
+                "icon": "icon-note",
+                "children": [{
+                    "text": "搜车",
                     "translate": "",
-                    "link": "/trackSearch/list",
-                    "icon": "icon-compass"
-                },
-                {
-                    "text": "区域碰撞",
-                    "translate": "",
-                    "link": "/regional/list",
-                    "icon": "icon-compass"
-                },
-                {
-                    "text": "同行车分析",
-                    "translate": "",
-                    "link": "/peer/list",
-                    "icon": "icon-compass"
-                },
-                {
-                    "text": "首次出现车辆",
-                    "translate": "",
-                    "link": "/first/list",
-                    "icon": "icon-compass"
-                },
-                {
-                    "text": "频繁出入分析",
-                    "translate": "",
-                    "link": "/frequent/list",
-                    "icon": "icon-compass"
-                }
-            ]
-        }, {
-            "text": "More",
-            "translate": "more",
-            "group": true,
-            "children": [{
-                    "text": "系统权限",
-                    "translate": "",
-                    "link": "/logics",
-                    "icon": "icon-grid",
-                    "children": [{
-                            "text": "用户管理",
-                            "link": "/page/admin/user/list",
-                            "acl": "admin"
-                        },
-                        {
-                            "text": "角色管理",
-                            "link": "/page/admin/role/list",
-                            "acl": "admin"
-                        },
-                        {
-                            "text": "菜单管理",
-                            "link": "/page/admin/menu/list",
-                            "acl": "admin"
-                        },
-                        {
-                            "text": "权限管理",
-                            "link": "/page/admin/permission/list",
-                            "acl": "admin"
-                        }
-                    ]
-                },
-                {
-                    "text": "示例",
+                    "link": "/vehicle/search",
+                    "icon": "icon-note"
+                }, {
+                    "text": "ZORRO示例",
                     "translate": "",
                     "link": "/zorro/index",
-                    "icon": "icon-note",
-                    "children": [{
-                        "text": "搜车",
-                        "translate": "",
-                        "link": "/vehicle/search",
-                        "icon": "icon-note"
-                    }, {
-                        "text": "ZORRO示例",
-                        "translate": "",
-                        "link": "/zorro/index",
-                        "icon": "icon-note"
-                    }, {
-                        "text": "简单示例",
-                        "translate": "",
-                        "link": "/admin/simple",
-                        "icon": "icon-note"
-                    }]
-                },
-                {
-                    "text": "CRUD示例",
-                    "translate": "",
-                    "link": "/testRec/index",
                     "icon": "icon-note"
-                }
-            ]
-        }
-    ]
+                }, {
+                    "text": "简单示例",
+                    "translate": "",
+                    "link": "/admin/simple",
+                    "icon": "icon-note"
+                }]
+            },
+            {
+                "text": "CRUD示例",
+                "translate": "",
+                "link": "/testRec/index",
+                "icon": "icon-note"
+            },
+            {
+                "text": "TestRec示例",
+                "translate": "",
+                "link": "/page/demo/testRec/list",
+                "icon": "icon-note"
+            }
+        ]
+    }]
 }

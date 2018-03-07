@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
-import { YgSharedModule } from '../../shared/yg.shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 import { TestRecService } from './testRec.service';
 import { TestRecListComponent, TestRecDetailComponent } from './testRec.component';
@@ -24,7 +24,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    YgSharedModule
+    SharedModule
   ],
   declarations: [
     TestRecListComponent,
