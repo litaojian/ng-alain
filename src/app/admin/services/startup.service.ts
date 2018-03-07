@@ -50,7 +50,7 @@ export class StartupService extends BaseStartupService {
                 // 设置页面标题的后缀
                 this.titleService.suffix = res.app.name;
                 //
-                this.appConfig.setServerURL(res.SERVER_URL);
+                this.appConfig.setServerURL(res.SERVER_URL || "remote/api/") ;
 
                 resolve(res);
             }, (err: HttpErrorResponse) => {
