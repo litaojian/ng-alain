@@ -27,6 +27,7 @@ export class Test2Component implements OnInit, OnDestroy {
 	) {
 		this.reuseTabService = injector.get(ReuseTabService);
 		let testRecService = injector.get(TestRecService);
+		console.log("Test2Component..................");
 	}
 
 	ngOnInit() {
@@ -44,7 +45,11 @@ export class Test2Component implements OnInit, OnDestroy {
 			this.selectedOption = this.options[ 0 ];
 		  }, 100);
 		  
-		this.reuseTabService.title = "Test1";
+		//this.reuseTabService.title = "Test1";
+		this.reuseTabService.title = "Test2";
+		console.log(this.reuseTabService.title);
+		
+		
 	}
 
 	onQuery(): void {
