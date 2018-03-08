@@ -91,9 +91,9 @@ export class TabpaneComponent {
           console.log(this.search2);
       }else{  
          this.search = {
-                kssj:'2016-08-01 14:42:24',
-                jssj:'2016-08-10 14:42:30',
-                hphm:'湘A5351N12',
+                kssj:'2017-11-02 14:42:24',
+                jssj:'2017-11-22 14:42:30',
+                hphm:'湘A5351N',
                 hpzl:'',
                 times:'',
                 fxkssj:'05:00',
@@ -142,14 +142,14 @@ private handleCancel(e){
                          type:'search,area,peer,first,frequent',
                          name:this.search.jssj
                        },
-             "号牌号码":{
-                         type:'search,area,peer',
-                         name:this.search.hphm
-                       },
-             "号牌种类":{
-                         type:'search,area,peer,frequent',
-                         name:this.search.hpzl
-                       },
+            //  "号牌号码":{
+            //              type:'search,area,peer',
+            //              name:this.search.hphm
+            //            },
+            //  "号牌种类":{
+            //              type:'search,area,peer,frequent',
+            //              name:this.search.hpzl
+            //            },
              "开始时段":{
                          type:'frequent',
                          name:this.search.fxkssj

@@ -82,6 +82,9 @@
           
       </div>
 </my-modal>
+<input type="file" (change)="fileChange($event)" multiple>
+<img [src]="imgUrl" alt="">
+<button (click)="showImg()">识别</button>
  <!--列表展示-->
  <nz-table id="searchList" #nzTable [nzPageSize]="pagination.pageSize" [nzPageIndex]="pagination.pageIndex" nzShowQuickJumper nzShowTotal [nzAjaxData]="data" [nzTotal]="dataTotal" (nzPageIndexChange)="indexChange($event)">
                     <thead nz-thead>

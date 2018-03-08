@@ -19,6 +19,10 @@ export class FirstService {
 	   return this.http
             .post('analysis/api/analysis/regional/touch/detail',body);	  
 	}
+	showImages(body:any):any{
+	   return this.http
+            .post('images/api/recog/',body);	  
+	}
 	areaByOneDel(body:any):any{
 	   return this.http
             .post('analysis/api/analysis/track/detail',body);	  

@@ -32,6 +32,11 @@
         "pathRewrite": { "": "" },
         "secure": false
     },
+    "/images/api": {
+        "target": "http://61.183.199.174:54386",
+        "pathRewrite": { "^/images/api": "" },
+        "secure": false
+    },
     "/remote/api/service/vehicle": {
         "target": "http://192.168.2.176:8081/work",
         "pathRewrite": { "": "" },
