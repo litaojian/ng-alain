@@ -15,7 +15,8 @@ const routes: Routes = [
         RouterModule.forChild(routes)
     ],
     declarations: [
-        SearchComponent
+        SearchComponent,
+        QueryDialogComponent
     ],
     entryComponents:[
         QueryDialogComponent
