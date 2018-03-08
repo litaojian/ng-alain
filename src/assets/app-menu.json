@@ -72,7 +72,7 @@
                 "children": [{
                     "text": "搜车",
                     "translate": "",
-                    "link": "/vehicle/search",
+                    "link": "/vehicle/search/index",
                     "icon": "icon-note"
                 }, {
                     "text": "ZORRO示例",

@@ -30,6 +30,7 @@ const routes: Routes = [
             { path: 'dashboard', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
             { path: 'dashboard/monitor', component: DashboardMonitorComponent, data: { translate: 'dashboard_monitor' } },
             { path: 'admin/simple', component: SimpleTableComponent, data: { title:"列表" } },
+            { path: 'vehicle/search', loadChildren: '../demo/search/search.module#VehicleSearchModule'},            
             { path: 'zorro', loadChildren: '../demo/zorro/zorro.module#ZorroModule'},
             { path: 'test2', loadChildren: '../demo/simple/test2.module#Test2Module'},
             { path: 'testRec', loadChildren: '../demo/testRec2/testRec.module#TestRecModule'},            
