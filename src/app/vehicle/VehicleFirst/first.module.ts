@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
+import { FileUploadModule } from 'ng2-file-upload';
 import { AppBaseModule } from '../VehicleCommon/controls/v2/my-base.module';
 import { FirstComponent } from './first/first.component';
 import { FirstService } from './first.service';
@@ -15,6 +16,7 @@ const routes: Routes = [
         SharedModule,
         AppBaseModule,
         CommonModule,
+        FileUploadModule,
         RouterModule.forChild(routes)
     ],
     providers: [FirstService],

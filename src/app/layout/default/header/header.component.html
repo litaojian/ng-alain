@@ -47,6 +47,12 @@
         </li>-->
         <!-- Settings -->
         <li class="hidden-xs">
+            <div class="item upLoadImg">
+                   <i class="anticon anticon-upload" (click)="showImgModal()"></i>
+                   <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)" name="uploadFile"/>
+            </div>
+        </li>
+        <li class="hidden-xs">
             <nz-dropdown nzTrigger="click" nzPlacement="bottomRight">
                 <div class="item" nz-dropdown>
                     <i class="anticon anticon-setting"></i>
@@ -72,3 +78,19 @@
         </li>
     </ul>
 </div>
+<nz-modal [nzVisible]="showImg" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel($event)">
+      <ng-template #modalTitle>
+        上传图片
+      </ng-template>
+      <ng-template #modalContent>
+          <img [src]="imgUrl" alt="" class="loadImg" style="width:500px">
+      </ng-template>
+      <ng-template #modalFooter>
+        <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="handleCancel($event)">
+          返 回
+        </button>
+        <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk($event)" [nzLoading]="isConfirmLoading">
+          上传
+        </button>
+      </ng-template>
+</nz-modal>

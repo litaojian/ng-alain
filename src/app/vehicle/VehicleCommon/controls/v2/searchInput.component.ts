@@ -2,21 +2,32 @@ import { Component, HostBinding, ViewChild, Input, OnInit, ElementRef, AfterView
 import { Router, NavigationExtras,ActivatedRoute } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
 import { DatePipe } from '@angular/common';
+import { FileUploader } from 'ng2-file-upload';
 declare var $:any;
 @Component({
     selector: 'search-input',
     template: `
-    <nz-input nzPlaceHolder='请输入号牌号码' [(ngModel)]="q"
+      <nz-input nzPlaceHolder='请输入号牌号码' [(ngModel)]="q"
         (nzFocus)="qFocus()" (nzBlur)="qBlur()" (keyup)="enterEvent($event)">
         <ng-template #prefix>
             <i class="anticon anticon-search" (click)="searchData()"></i>
         </ng-template>
-    </nz-input>
+      </nz-input>
+      
     `,
      providers:[DatePipe]
 })
 export class HeaderSearchComponent implements AfterViewInit {
-
+    //  <nz-input nzPlaceHolder='请输入号牌号码' [(ngModel)]="q"
+    //     (nzFocus)="qFocus()" (nzBlur)="qBlur()" (keyup)="enterEvent($event)">
+    //     <ng-template #prefix>
+    //         <i class="anticon anticon-search" (click)="searchData()"></i>
+    //     </ng-template>
+    //     <ng-template #addOnAfter>
+    //        <i class="anticon anticon-setting"></i>
+    //        <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)" />
+    //     </ng-template>
+    // </nz-input>
     q: string;
     kssj:any;
     jssj:any;

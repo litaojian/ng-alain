@@ -7,6 +7,7 @@ import { NgZorroAntdExtraModule } from 'ng-zorro-antd-extra';
 import { AlainThemeModule } from '@delon/theme';
 import { AlainACLModule } from '@delon/acl';
 import { ZORROMODULES, ABCMODULES } from '../delon.module';
+import { FileUploadModule } from 'ng2-file-upload';
 // i18n
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -21,7 +22,7 @@ import { HeaderSearchComponent } from '../vehicle/VehicleCommon/controls/v2/sear
 
 const THIRDMODULES = [ 
                         CountdownModule, MyAppModule, BizAppModule, 
-                        MySelectModule, MyLoadingModule
+                        MySelectModule, MyLoadingModule,FileUploadModule
                      ];
 // endregion
 
