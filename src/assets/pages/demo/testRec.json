@@ -1,11 +1,69 @@
 {
     "title": "TestRec",
+    "restAPI": "/api/rest/testRec",
+    "idField": "testrecid",
+    "actions": {},
     "queryParams": { "filter": "all" },
-    "table": {
-        "dataUrl": "demo/api/rest/testRec",
+    "queryForm": {
+        "debug": false,
+        "properties": {
+            "testdate": {
+                "type": "string",
+                "title": "日期",
+                "placeholder": "请选择日期范围",
+                "widget": {
+                    "id": "date-range",
+                    "format": "yyyy-mm-dd",
+                    "start": "开始日期",
+                    "end": "结束日期",
+                    "style": {
+                        "width": "180px"
+                    }
+                }
+            },
+            "testname": {
+                "type": "string",
+                "title": "名称",
+                "widget": {
+                    "placeholder": "请输入名称"
+                }
+            },
+            "testtype": {
+                "type": "string",
+                "title": "分类",
+                "widget": {
+                    "id": "select",
+                    "data": [
+                        { "value": "DRAFT", "label": "DRAFT" },
+                        { "value": "2", "label": "分类2" },
+                        { "value": "3", "label": "分类3" }
+                    ],
+                    "placeholder": "请选择分类",
+                    "style": {
+                        "width": "120px"
+                    }
+                }
+            }
+        },
+        "required": ["name"],
+        "button": {
+            "items": [{
+                    "label": "查询",
+                    "id": "query",
+                    "submit": true
+                },
+                {
+                    "label": "新增",
+                    "id": "add"
+                }
+            ]
+        }
+    },
+    "dataTable": {
         "extraParams": {},
         "showTotal": true,
-        "resReName": { "list": "rows" },
+        "pageSize": 15,
+        "resReName": { "list": "rows", "total": "total" },
         "columns": [
             { "index": "testrecid", "title": "编号", "type": "string" },
             { "index": "testname", "title": "名称", "type": "string" },
@@ -23,6 +81,7 @@
 
             },
             { "index": "description", "title": "描述", "type": "string" },
+            { "index": "testdate", "title": "日期", "type": "date", "dateFormat": "YYYY-MM-DD" },
             {
                 "index": "teststatus",
                 "title": "类型",
@@ -46,14 +105,11 @@
                 "title": "操作区",
                 "buttons": [{
                         "text": "删除",
-                        "type": "del",
-                        "click": "(record: any) => this.message.success(`成功删除【${record.name}】`)"
+                        "click": "delete"
                     },
                     {
                         "text": "编辑",
-                        "type": "modal",
-                        "component": "DemoModalComponent",
-                        "click": "(record: any, modal: any) => this.message.success(`重新加载页面，回传值：${JSON.stringify(modal)}`)"
+                        "click": "edit"
                     },
                     {
                         "text": "更多",
@@ -71,5 +127,59 @@
             }
 
         ]
+    },
+    "mainForm": {
+        "properties": {
+            "testname": {
+                "type": "string",
+                "title": "名称",
+                "widget": {
+                    "placeholder": "请输入名称"
+                }
+            },
+            "testdesc": {
+                "type": "string",
+                "title": "描述",
+                "widget": {
+                    "placeholder": "请输入描述"
+                }
+            },
+            "testage": {
+                "type": "number",
+                "title": "年龄",
+                "default": 10
+            },
+            "testdate": {
+                "type": "number",
+                "title": "日期",
+                "widget": {
+                    "id": "date",
+                    "format": "YYYY-MM-DD",
+                    "placeholder": "请输入日期"
+                }
+            },
+            "testype": {
+                "type": "string",
+                "title": "类型",
+                "widget": {
+                    "id": "select2",
+                    "url": "docType",
+                    "placeholder": "请选择类型"
+                }
+            }
+        },
+        "required": ["name"],
+        "button": {
+            "items": [{
+                    "label": "保存",
+                    "id": "save",
+                    "submit": true
+                },
+                {
+                    "label": "返回",
+                    "id": "backto"
+                }
+            ]
+        }
     }
 }

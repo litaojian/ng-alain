@@ -43,7 +43,7 @@ const DIRECTIVES = [];
         ...ABCMODULES,
         AlainACLModule,
         // third libs
-        ...THIRDMODULES
+        ...THIRDMODULES        
     ],
     declarations: [
         // your components

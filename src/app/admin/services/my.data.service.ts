@@ -5,10 +5,13 @@ import { MenuService, SettingsService, TitleService } from '@delon/theme';
 import { ITokenService, DA_SERVICE_TOKEN } from '@delon/auth';
 import { Observable } from 'rxjs/Observable';
 import { tap, map, mergeMap, catchError } from 'rxjs/operators';
+import { AppConfigService } from 'yg-widget/bizapp.config';
+
 @Injectable()
 export class MyDataService {
         
     _httpClient:_HttpClient;
+    appConfig:AppConfigService = new AppConfigService();
 
     constructor(
         _injector: Injector,
@@ -26,8 +29,8 @@ export class MyDataService {
     }
 
     doLoginAction(body): Observable<any>{
-
-        let url = "remote/api/login/userPassword"
+        
+        let url = this.appConfig.getApiServerUrl() +  "login/userPassword"
         let params = {};        
         let options = {};
         

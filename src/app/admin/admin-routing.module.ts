@@ -26,18 +26,19 @@ const routes: Routes = [
         component: LayoutDefaultComponent,
         canActivate: [ CanActivateMenusProvide ],
         children: [
-            { path: '', redirectTo: 'page/demo/testRec', pathMatch: 'full' },
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
             { path: 'dashboard/monitor', component: DashboardMonitorComponent, data: { translate: 'dashboard_monitor' } },
             { path: 'admin/simple', component: SimpleTableComponent, data: { title:"列表" } },
             { path: 'zorro', loadChildren: '../demo/zorro/zorro.module#ZorroModule'},
+            { path: 'test2', loadChildren: '../demo/simple/test2.module#Test2Module'},
             { path: 'testRec', loadChildren: '../demo/testRec2/testRec.module#TestRecModule'},            
             { path: 'trackSearch', loadChildren: '../vehicle/VehicleSearch/trackSearch.module#TrackModule'},
             { path: 'regional', loadChildren: '../vehicle/VehicleArea/regional.module#RegionalModule'},
             { path: 'frequent', loadChildren: '../vehicle/VehicleFrequent/frequent.module#FrequentModule'},
             { path: 'first', loadChildren: '../vehicle/VehicleFirst/first.module#FirstModule'},
             { path: 'peer', loadChildren: '../vehicle/VehiclePeer/peer.module#PeerModule'},
-            { path: 'page', loadChildren: './yg-app/yg-bizpage.module#MyBizPageModule'}
+            { path: 'page', loadChildren: './yg-bizpage.module#MyBizPageModule'}
         ]
     },
     // // 全屏布局y
