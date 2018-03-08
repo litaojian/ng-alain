@@ -1,0 +1,12 @@
+.upLoadImg{
+    position: relative;
+}
+.upLoadImg i{
+    cursor: pointer;
+}
+.upLoadImg input{
+    position: absolute;
+    left: 0px;
+    opacity: 0;
+    filter:alpha(opacity=0);
+}
