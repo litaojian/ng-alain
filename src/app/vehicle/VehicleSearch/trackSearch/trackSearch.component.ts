@@ -96,18 +96,26 @@ export class trackSearchComponent {
     }
   export(num){
     if(num==1){
-       this.isModalShow_export=true;
+       if(this.data.length>0){
+          this.isModalShow_export=true;
+       }else{
+           this.msg.create('error', '无数据导出');
+           return;
+       }
+       
     }else{
-      //  if(this.data==[]){
-      //     this.msg.create('error','没有可以导出的数据');
-      //     return;
-      //  }
+       if(this.data==[]){
+          this.msg.create('error','没有可以导出的数据');
+          return;
+       }
        this.isModalShow_export=false;
        this.putoutAll=$.extend({}, this.search, this.putout);
-       this.TrackSearchService.exports(this.putoutAll).subscribe(res =>{
-            var filename = res.file.replace("\"","").replace("\"","");
-            // window.location.href="analysis/api/analysis/track/export?file="+filename;
-        });
+       this.search.param=JSON.stringify(this.search.param); 
+       this.search.param=encodeURI(this.search.param); 
+       window.location.href="analysis/api/analysis/track/export?param="+this.search.param+'&num='+this.putout.num+'&type='+this.putout.type;
+    //    this.TrackSearchService.exports(this.putoutAll).subscribe(res =>{
+    //         var filename = res.file.replace("\"","").replace("\"","");
+    //     });
     }
     
     
