@@ -25,10 +25,10 @@ const routes: Routes = [
         path: '',
         component: LayoutDefaultComponent,
         canActivate: [ CanActivateMenusProvide ],
-        children: [
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+        children: [            
+            { path: '', redirectTo: 'dashboard/monitor', pathMatch: 'full' }, 
             { path: 'dashboard', redirectTo: 'dashboard/monitor', pathMatch: 'full' },
-            { path: 'dashboard/monitor', component: DashboardMonitorComponent, data: { translate: 'dashboard_monitor' } },
+            { path: 'dashboard/monitor', component: DashboardMonitorComponent, data: { title:"首页", translate: 'dashboard_monitor' } },
             { path: 'admin/simple', component: SimpleTableComponent, data: { title:"列表" } },
             { path: 'vehicle/search', loadChildren: '../demo/search/search.module#VehicleSearchModule'},            
             { path: 'zorro', loadChildren: '../demo/zorro/zorro.module#ZorroModule'},
