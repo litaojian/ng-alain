@@ -46,6 +46,20 @@
                         </div>
                     </div>
                 </div>
+                <div nz-col nzXs="24" nzSm="24" nzMd="4" nzLg="4" nzXl="4" class="pdr5">
+                    <div nz-form-item>
+                        <div nz-form-control>
+                            <nz-input nzType="search" (nzOnSearch)="vehicleSearchClick($event)" [nzSize]="'large'" [nzPlaceHolder]="'车牌号码'"></nz-input>
+                        </div>
+                    </div>
+                </div>
+                <div nz-col nzXs="24" nzSm="24" nzMd="4" nzLg="4" nzXl="4" class="pdr5">
+                    <div nz-form-item>
+                        <div nz-form-control>
+                            <nz-input nzType="search" (nzOnSearch)="vehicleSearchClick($event)" [nzSize]="'large'" [nzPlaceHolder]="'品牌'"></nz-input>
+                        </div>
+                    </div>
+                </div>
                 <div nz-col nzXs="24" nzSm="24" nzMd="8" nzLg="8" nzXl="4" class="pdr5">
                     <div nz-form-item>
                         <div nz-form-control>
@@ -58,10 +72,15 @@
                         </div>
                     </div>
                 </div>
-                <div nz-col nzXs="24" nzSm="24" nzMd="8" nzLg="8" nzXl="4">
-                    <div nz-form-item>
-                        <div nz-form-control>
-                            <nz-input nzType="search" (nzOnSearch)="vehicleSearchClick($event)" [nzSize]="'large'" [nzPlaceHolder]="'车辆特征'"></nz-input>
+            </standard-form-row>
+            <standard-form-row [title]="'分类标签'" block style="padding-bottom: 11px">
+                <div nz-row [nzGutter]="24">
+                    <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
+                        <div nz-form-item>
+                            <div nz-form-control>
+                                <a class="alink" href="javascript:void(0);">涉毒</a> <a class="alink" href="javascript:void(0);">涉恐</a> <a class="alink" href="javascript:void(0);">近3天</a> <a class="alink" href="javascript:void(0);">近7天</a> <a class="alink"
+                                    href="javascript:void(0);">首次出现</a> <a class="alink" href="javascript:void(0);">昼伏夜出</a> <a class="alink" href="javascript:void(0);">朝九晚五</a>
+                            </div>
                         </div>
                     </div>
                 </div>

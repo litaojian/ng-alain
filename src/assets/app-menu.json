@@ -31,6 +31,18 @@
                 "translate": "",
                 "link": "/frequent/list",
                 "icon": "icon-compass"
+            },
+            {
+                "text": "关联分析",
+                "translate": "",
+                "link": "/vehicle/search/index",
+                "icon": "icon-compass"
+            },
+            {
+                "text": "车辆标签",
+                "translate": "",
+                "link": "/vehicle/search/index",
+                "icon": "icon-compass"
             }
         ]
     }, {
@@ -70,34 +82,35 @@
                 "link": "/zorro/index",
                 "icon": "icon-note",
                 "children": [{
-                    "text": "搜车",
-                    "translate": "",
-                    "link": "/vehicle/search/index",
-                    "icon": "icon-note"
-                }, {
-                    "text": "ZORRO示例",
-                    "translate": "",
-                    "link": "/zorro/index",
-                    "icon": "icon-note"
-                }, {
-                    "text": "简单示例",
-                    "translate": "",
-                    "link": "/admin/simple",
-                    "icon": "icon-note"
-                }]
-            },
-            {
-                "text": "CRUD示例",
-                "translate": "",
-                "link": "/testRec/index",
-                "icon": "icon-note"
-            },
-            {
-                "text": "TestRec示例",
-                "translate": "",
-                "link": "/page/demo/testRec/list",
-                "icon": "icon-note"
+                        "text": "搜车",
+                        "translate": "",
+                        "link": "/vehicle/search/index",
+                        "icon": "icon-note"
+                    }, {
+                        "text": "ZORRO示例",
+                        "translate": "",
+                        "link": "/zorro/index",
+                        "icon": "icon-note"
+                    }, {
+                        "text": "简单示例",
+                        "translate": "",
+                        "link": "/admin/simple",
+                        "icon": "icon-note"
+                    },
+                    {
+                        "text": "CRUD示例",
+                        "translate": "",
+                        "link": "/testRec/index",
+                        "icon": "icon-note"
+                    }, {
+                        "text": "TestRec示例",
+                        "translate": "",
+                        "link": "/page/demo/testRec/list",
+                        "icon": "icon-note"
+                    }
+                ]
             }
+
         ]
     }]
 }
