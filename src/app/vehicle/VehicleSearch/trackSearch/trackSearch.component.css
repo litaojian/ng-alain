@@ -28,3 +28,29 @@
  :host ::ng-deep .ant-collapse > .ant-collapse-item > .ant-collapse-header{
        text-align: left;
  }
+.alink {
+        margin: 2px 8px;
+    } 
+.pdr5 {
+      padding-right: 5px;
+}
+:host ::ng-deep .ant-card-meta-title {
+        margin-bottom: 4px;
+    }
+:host ::ng-deep nz-list nz-card {
+      margin-bottom: 0 !important;
+}
+:host ::ng-deep .card-item-content {
+      display: flex;
+      margin-top: 16px;
+      margin-bottom: -4px;
+      line-height: 20px;
+      height: 20px;
+      justify-content: space-between;
+}
+:host ::ng-deep .ant-card-body{
+       padding: 10px;
+}
+:host ::ng-deep .ant-card-bordered{
+       border:0px;
+}

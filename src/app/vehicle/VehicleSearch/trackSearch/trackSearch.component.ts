@@ -93,7 +93,18 @@ export class trackSearchComponent {
 
   ngOnInit() {     
         
-    }
+}
+  // region: cateogry
+  categories = [
+        { id: 0, text: '全部', value: false },
+        { id: 1, text: '长沙', value: false },
+        { id: 2, text: '株州', value: false },
+        { id: 3, text: '衡阳', value: false },
+        { id: 4, text: '张家界', value: false },
+        { id: 5, text: '郴州', value: false },
+        { id: 6, text: '怀化', value: false },
+        { id: 7, text: '湘西州', value: false }
+    ];
   export(num){
     if(num==1){
        if(this.data.length>0){
