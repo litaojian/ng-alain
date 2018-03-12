@@ -1,9 +1,0 @@
-{
-    "pageTitle": "系统用户",
-    "basePagePath": "/page/admin/user",
-    "listTemplateUrl": "userList.html",
-    "formTemplateUrl": "userForm.html",
-    "dataApiUrl": "/api/rest/sysUser",
-    "idField": "userId",
-    "remarks": ""
-}

@@ -1,9 +1,0 @@
-{
-    "pageTitle": "欢迎页",
-    "basePagePath": "/page/admin/index",
-    "listTemplateUrl": "index.html",
-    "formTemplateUrl": "helloForm.html",
-    "dataApiUrl": "/api/rest/sysUser",
-    "idField": "userId",
-    "remarks": ""
-}

@@ -1,9 +1,0 @@
-{
-    "pageTitle": "Task",
-    "basePagePath": "/page/wr/task",
-    "listTemplateUrl": "task.html",
-    "formTemplateUrl": "taskForm.html",
-    "dataApiUrl": "/api/rest/ztTask",
-    "idField": "taskId",
-    "remarks": ""
-}

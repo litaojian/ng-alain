@@ -1,9 +1,0 @@
-{
-    "pageTitle": "系统菜单",
-    "basePagePath": "/page/admin/menu",
-    "listTemplateUrl": "menuList.html",
-    "formTemplateUrl": "menuForm.html",
-    "dataApiUrl": "/api/rest/sysMenu",
-    "idField": "menuid",
-    "remarks": ""
-}
