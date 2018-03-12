@@ -11,8 +11,9 @@ import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
 
 import { CanActivateMenusProvide } from './services/can-activate.menus.provide';
-import { MyDataService } from './services/my.data.service';
-import { ReuseTabService } from '@delon/abc';
+import { UserDataService } from './services/user.data.service';
+import { UserLoginService } from './services/user.login.service';
+
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { ReuseTabService } from '@delon/abc';
 
   ],
   providers:[
-    MyDataService,
+    UserLoginService,
+    UserDataService,
     CanActivateMenusProvide
   ]
 })

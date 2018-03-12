@@ -1,11 +1,12 @@
-import { SettingsService } from '@delon/theme';
-import { Component, OnDestroy, Inject } from '@angular/core';
+import { Component, OnDestroy, Inject, Injector} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd';
+import { SettingsService } from '@delon/theme';
 import { SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN } from '@delon/auth';
-import { environment } from '@env/environment';
-import { MyDataService } from '../../services/my.data.service';
+import { BaseDetailComponent } from 'yg-widget/my-app';
+import { UserLoginService } from '../../services/user.login.service';
+
 
 @Component({
     selector: 'passport-login',
@@ -13,7 +14,7 @@ import { MyDataService } from '../../services/my.data.service';
     styleUrls: [ './login.component.less' ],
     providers: [ SocialService ]
 })
-export class UserLoginComponent implements OnDestroy {
+export class UserLoginComponent extends BaseDetailComponent implements OnDestroy {
 
     form: FormGroup;
     error = '';
@@ -21,21 +22,23 @@ export class UserLoginComponent implements OnDestroy {
     loading = false;
 
     constructor(
-        private myDataService:MyDataService,
-        private activatedRoute: ActivatedRoute,    
+        _injector: Injector,
+        private userLoginService:UserLoginService,
         fb: FormBuilder,
-        private router: Router,
         public msg: NzMessageService,
         private settingsService: SettingsService,
         private socialService: SocialService,
         @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService) {
-        this.form = fb.group({
-            userName: ["user1", [Validators.required, Validators.minLength(5)]],
-            password: ["123456", Validators.required],
-            mobile: [null, [Validators.required, Validators.pattern(/^1\d{10}$/)]],
-            captcha: [null, [Validators.required]],
-            remember: [true]
-        });
+                     
+            super(_injector, userLoginService)
+            //
+            this.form = fb.group({
+                userName: ["user1", [Validators.required, Validators.minLength(5)]],
+                password: ["123456", Validators.required],
+                mobile: [null, [Validators.required, Validators.pattern(/^1\d{10}$/)]],
+                captcha: [null, [Validators.required]],
+                remember: [true]
+            });
     }
 
     // region: fields
@@ -119,7 +122,7 @@ export class UserLoginComponent implements OnDestroy {
         let options = {};
         
         
-        this.myDataService.doLoginAction(params)
+        this.userLoginService.doLoginAction(params)
             .subscribe((result: any) => {
                 console.log("login result:" + JSON.stringify(result));
 
@@ -144,10 +147,11 @@ export class UserLoginComponent implements OnDestroy {
     open(type: string, openType: SocialOpenType = 'href') {
         let url = ``;
         let callback = ``;
-        if (environment.production)
+        if (this.userLoginService.getIsTest())
             callback = 'https://cipchk.github.io/ng-alain/callback/' + type;
         else
             callback = 'http://localhost:4200/callback/' + type;
+
         switch (type) {
             case 'auth0':
                 url = `//cipchk.auth0.com/login?client=8gcNydIDzGBYxzqV0Vm1CX_RXH-wsWo5&redirect_uri=${decodeURIComponent(callback)}`;
