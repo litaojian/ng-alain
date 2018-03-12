@@ -14,16 +14,19 @@ export class UserLoginService extends BaseDataService {
         _injector: Injector
     ) { 
         super(_injector);
+        //
+        console.log("UserLoginService init .......");
+
     }
 
     
     doLoginAction(body): Observable<any>{
         
-        let url = "login/userPassword"
+        let url = "/api/login/userPassword"
         let params = {};        
         let options = {};
         
-        return this.httpService.post(url, body, params, options)
+        return this.httpService.ajaxPost(url, params)
             .map((result:any) => {             
                 if (result["userToken"] != null && result["resultCode"] == 0){
                     // 登录成功后,跳转回原URL

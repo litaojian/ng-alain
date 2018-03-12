@@ -39,6 +39,8 @@ export class UserLoginComponent extends BaseDetailComponent implements OnDestroy
                 captcha: [null, [Validators.required]],
                 remember: [true]
             });
+            //
+            this.activatedRoute.snapshot.data.title = "用户登录";
     }
 
     // region: fields
