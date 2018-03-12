@@ -34,7 +34,7 @@
 .pdr5 {
       padding-right: 5px;
 }
-:host ::ng-deep .ant-card-meta-title {
+/*:host ::ng-deep .ant-card-meta-title {
         margin-bottom: 4px;
     }
 :host ::ng-deep nz-list nz-card {
@@ -47,7 +47,7 @@
       line-height: 20px;
       height: 20px;
       justify-content: space-between;
-}
+}*/
 :host ::ng-deep .ant-card-body{
        padding: 10px;
 }
