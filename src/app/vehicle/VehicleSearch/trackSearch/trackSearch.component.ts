@@ -44,6 +44,7 @@ export class trackSearchComponent {
     kkList: any;//卡口
     currentModal;
     exportType:any=[{"dmz": "1", "dmsm1": "数据列表"},{"dmz": "2", "dmsm1": "过车图片"}];
+    ifhphm:any=[{"dmz": "1", "dmsm1": "无号牌"},{"dmz": "2", "dmsm1": "有号牌"}];
     // searchType:any=[{"dmz": "1", "dmsm1": "精确查询"},{"dmz": "2", "dmsm1": "模糊查询"},{"dmz": "3", "dmsm1": "无号牌"}];
     modalService: NzModalService;
     DatePipe: DatePipe;
@@ -51,6 +52,8 @@ export class trackSearchComponent {
     msg: NzMessageService;
     activeRoute: ActivatedRoute;
     router: Router;
+    _dateRange = [new Date(),new Date(Date.now() + 3600 * 24 * 5 * 1000)]; 
+    // _mydateRange = [null, null]; 
     constructor(
         injector:Injector
         // private modalService: NzModalService,
@@ -66,6 +69,7 @@ export class trackSearchComponent {
         this.msg = injector.get(NzMessageService);
         this.activeRoute = injector.get(ActivatedRoute);
         this.router = injector.get(Router);
+       
         //保存添加查询参数
         this.search = {
                 hphm:'',
@@ -91,9 +95,100 @@ export class trackSearchComponent {
         
         }
 
-  ngOnInit() {     
+  ngOnInit() { 
+    //   this._dateRange[0]=this.setTime(new Date());
+    //   this._dateRange[1]=this.setTime(new Date(Date.now() + 3600 * 24 * 5 * 1000));
+    //   this.tranLateTime(new Date(),new Date(Date.now() + 3600 * 24 * 5 * 1000))
         
-}
+  }
+//   tranLateTime(firstTime,lastTime){
+//      this.setTime(firstTime);
+//      this.setTime(lastTime);
+//   }
+  setTime(mytime){
+      var myFullYear=mytime.getFullYear();
+      var myMonth=mytime.getMonth() + 1;
+      var myDate=mytime.getDate();
+      var myHours=mytime.getHours();
+      var myMinutes=mytime.getMinutes();
+      var mySeconds=mytime.getSeconds();
+      if(myMonth<10){
+          myMonth='0'+myMonth;
+      }
+      if(myDate<10){
+          myDate='0'+myDate;
+      }
+      if(myHours<10){
+          myHours='0'+myHours;
+      }
+      if(myMinutes<10){
+          myMinutes='0'+myMinutes;
+      }
+      if(mySeconds<10){
+          mySeconds='0'+mySeconds;
+      }
+    //   debugger;
+      var myEndData=myFullYear+ '-' + myMonth + '-' + myDate + ' ' + myHours + ':' + myMinutes + ':' + mySeconds;
+      return myEndData;
+  }
+   //下面是最新版轨迹查询的数据
+   myTime:any;
+   typeNames:any;
+   myNewSearch:any={
+       param:[],
+       pageSize:10,
+       pageIndex:1
+   }
+    //   _dateRange = [new Date(), new Date(Date.now() + 3600 * 24 * 5 * 1000)];
+//    _dateRange = ['2017-11-02 14:42:24', '2017-11-22 14:42:30'];
+   newSearch:any={
+         hphm:'',
+         beginDate:'',
+         endDate:'',
+         kkbh:'',
+         hpzl:''
+   }
+   selectDay(num){
+        this._dateRange = [new Date(),new Date(Date.now() + 3600 * 24  * 1000* num)]; 
+   }
+    //保存子组件返回的卡口数据
+    private getKkou(e){
+        if(e.kkListBh!=undefined&&e.kkList!=undefined){
+            console.log(e.kkListBh.join(","));
+            this.newSearch.gateIds=e.kkListBh.join(",");
+            this.newSearch.kkmc=e.kkList;
+        }
+        
+    }
+    carType(typeName){
+       if(typeName!=undefined){
+          this.searchList();
+           this.typeNames=typeName;
+       }      
+    }
+    searchList(){
+        this.loading=true;
+        this.myNewSearch.param=[];
+        console.log(this._dateRange);
+        // this.newSearch.beginDate=this.setTime(this._dateRange[0]);
+        // this.newSearch.endDate=this.setTime(this._dateRange[1]);
+        this.newSearch.beginDate="2017-11-02 14:42:24";
+        this.newSearch.endDate='2017-11-22 14:42:30';
+        // this.myNewSearch=$.extend({},this.pagination);
+        this.myNewSearch.param.push(this.newSearch);
+        this.TrackSearchService.newGetData(this.myNewSearch).subscribe(data => { 
+            if(data.resultCode!=0){
+                this.msg.create('error', data.resultMsg);
+                this.loading=false;
+                return;
+            }else{
+                this.data=data.rows;
+                this.datanums=data.total;
+                this.loading=false;
+            }
+            console.log(data);    
+        });
+    }
   // region: cateogry
   categories = [
         { id: 0, text: '全部', value: false },
@@ -105,6 +200,14 @@ export class trackSearchComponent {
         { id: 6, text: '怀化', value: false },
         { id: 7, text: '湘西州', value: false }
     ];
+    changeCategory(status: boolean, idx: number) {
+        if (idx === 0) {
+            this.categories.map(i => i.value = status);
+        } else {
+            this.categories[idx].value = status;
+        }
+        // this.getData();
+    }
   export(num){
     if(num==1){
        if(this.data.length>0){
@@ -184,7 +287,10 @@ errorImg(){
 }
 //列表页数改变
 indexChange(e){
-    this.search.pageIndex=e;
-    this.searchLists(this.search);
+    this.myNewSearch.pageIndex=e;
+    this.searchList();
+    // this.search.pageIndex=e;
+    // this.searchLists(this.search);
  }
+
 }

@@ -12,6 +12,11 @@ export class TrackSearchService {
             .post('analysis/api/analysis/track/agr/get',body);
 	  
 	}
+	newGetData(body:any):any{
+	   return this.http
+            .post('analysis/api/analysis/track/agr/get',body);
+	  
+	}
     exports(body:any):any{
 	   return this.http
             .post('analysis/api/analysis/track/export',body);	  

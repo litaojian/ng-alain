@@ -24,7 +24,8 @@ import { CardetailModalComponent} from '../VehicleCommon/commom/car-detail-modal
         TabpaneComponent,
         TabPaneoneComponent,
         RecentCarModalComponent,
-        CardetailModalComponent
+        CardetailModalComponent,
+        MyChooseIconModule
     ],
     entryComponents:[RecentCarModalComponent,CardetailModalComponent]
 })
