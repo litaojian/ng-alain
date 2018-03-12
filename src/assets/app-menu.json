@@ -15,24 +15,6 @@
                 "icon": "icon-compass"
             },
             {
-                "text": "同行车分析",
-                "translate": "",
-                "link": "/peer/list",
-                "icon": "icon-compass"
-            },
-            {
-                "text": "首次出现车辆",
-                "translate": "",
-                "link": "/first/list",
-                "icon": "icon-compass"
-            },
-            {
-                "text": "频繁出入分析",
-                "translate": "",
-                "link": "/frequent/list",
-                "icon": "icon-compass"
-            },
-            {
                 "text": "关联分析",
                 "translate": "",
                 "link": "/vehicle/search/index",
