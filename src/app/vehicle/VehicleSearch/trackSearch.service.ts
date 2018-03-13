@@ -17,6 +17,20 @@ export class TrackSearchService {
             .post('analysis/api/analysis/track/agr/get',body);
 	  
 	}
+	newGetDetail(body:any,url:any):any{
+	   return this.http
+            .post(url,body);
+	  
+	}
+	getFirstList(body:any):any{
+	   return this.http
+            .post('analysis/api/analysis/first/appear/list',body);
+	  
+	}
+	detailByOne(body:any):any{
+	   return this.http
+            .post('analysis/api/analysis/track/detail',body);	  
+	}
     exports(body:any):any{
 	   return this.http
             .post('analysis/api/analysis/track/export',body);	  

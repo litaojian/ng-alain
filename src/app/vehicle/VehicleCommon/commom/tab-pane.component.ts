@@ -173,9 +173,7 @@ private handleCancel(e){
         }
         if(k!==2){
             for(let i in this.searchValid){
-                // alert(this.searchValid[i].type.indexOf(this.VehicleType));
                 if(this.searchValid[i].type.indexOf(this.VehicleType)>=0){
-                    // alert(this.searchValid[i].name);
                     if(this.searchValid[i].name==''||this.searchValid[i].name==undefined){
                             this.msg.create('error', i+'不能为空');
                             return;

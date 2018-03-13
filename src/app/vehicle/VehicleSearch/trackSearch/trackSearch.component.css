@@ -54,3 +54,10 @@
 :host ::ng-deep .ant-card-bordered{
        border:0px;
 }
+#caozuo{
+      color:#108ee9;
+      cursor:pointer
+}
+#caozuo span{
+      padding-right: 10px;
+}

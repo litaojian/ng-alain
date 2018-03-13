@@ -71,8 +71,9 @@
                                 <a class="alink" href="javascript:void(0);" (click)="carType('涉毒')">涉毒</a> 
                                 <a class="alink" href="javascript:void(0);" (click)="carType('涉恐')">涉恐</a> 
                                 <a class="alink" href="javascript:void(0);" (click)="carType('首次出现')">首次出现</a> 
-                                <a class="alink" href="javascript:void(0);" (click)="carType('同行车分析')">同行车分析</a> 
-                                <a class="alink" href="javascript:void(0);" (click)="carType('频繁出入分析')">频繁出入分析</a>
+                                <a class="alink" href="javascript:void(0);" (click)="carType('昼伏夜出')">昼伏夜出</a> 
+                                <a class="alink" href="javascript:void(0);" (click)="carType('朝九晚五')">朝九晚五</a>
+                                <a class="alink" href="javascript:void(0);" (click)="carType('重点人员')">重点人员</a>
                             </div>
                         </div>
                  </div>
@@ -105,7 +106,8 @@
                 <tr>
                     <th nz-th [nzWidth]="'100px'"><span>号牌号码</span></th>
                     <th nz-th [nzWidth]="'100px'"><span>号牌种类</span></th>
-                    <th nz-th [nzWidth]="'150px'"><span>过车时间</span></th>
+                    <th nz-th [nzWidth]="'150px'"><span>最后过车时间</span></th>
+                    <th nz-th [nzWidth]="'150px'"><span>最后经过地点</span></th>
                     <th nz-th [nzWidth]="'150px'"><span>分类标签</span></th>
                     <!--<th nz-th [nzWidth]="'350px'"><span>卡口名称</span></th>
                     <th nz-th [nzWidth]="'150px'"><span>行驶方向</span></th>
@@ -120,18 +122,23 @@
                     <td nz-td>{{data.hphm}}</td>
                     <td nz-td>{{data.hpzlmc}}</td>
                     <td nz-td>{{data.gcsj}}</td>
+                    <td nz-td></td>
                     <td nz-td>{{typeNames}}</td>
                     <!--<td nz-td title="{{data.kdmc}}">{{data.kdmc}}</td>
                     <td nz-td>{{data.xsfx}}</td>
                     <td nz-td>{{data.clsu}}</td>
                     <td nz-td>{{data.cllx}}</td>-->
-                    <td nz-td style="color:#108ee9;cursor:pointer" (click)="carDetailMore(title, content,footer,800,data)">详情</td>
+                    <td nz-td id="caozuo">
+                        <span (click)="carDetail(data,'peer')">同行车分析</span>
+                        <span (click)="carDetail(data,'frequent')">频繁出入分析</span>
+                        <span (click)="carDetail(data,'trackSearch')">详情</span>
+                    </td>
                </tr>
             </tbody>
             <div nz-row [nzGutter]="24" class="showCarPhoto" *ngIf="showLp==false">
                     <div nz-col [nzSpan]="6" *ngFor="let item of data">
-                        <img src="{{item.tp1}}" alt="" (error)="errorImg()" *ngIf="ifErrorImg==false" title="{{item.kkbh}}" (click)="carDetailMore(title, content,footer,800,data)">
-                        <img src="../../../../assets/img/error.jpg" alt=""  *ngIf="ifErrorImg==true" title="{{item.kkbh}}" (click)="carDetailMore(title, content,footer,800,data)">
+                        <img src="{{item.tp1}}" alt="" (error)="errorImg()" *ngIf="ifErrorImg==false" title="{{item.kkbh}}" (click)="carDetail(data)">
+                        <img src="../../../../assets/img/error.jpg" alt=""  *ngIf="ifErrorImg==true" title="{{item.kkbh}}" (click)="carDetail(data)">
                         <dl>
                                 <dt></dt>
                                 <dd>{{item.hphm}}  {{item.hpzl}}</dd>
@@ -143,13 +150,15 @@
             </div>
 </nz-table>
 <my-loading *ngIf="loading"></my-loading>
-<!--显示详情-->
-<nz-modal [nzContent]="modalContent">
-    <ng-template #title>
-      <span>过车图片展示</span>
-    </ng-template>
-    <ng-template #content>
-      <div>
+<!--显示单个详情isModalShow_detailOne-->
+<nz-modal [nzVisible]="isModalShow_detailOne" [nzTitle]="detailOneModalTitle" [nzContent]="detailOneModalContent" [nzFooter]="detailOneModalFooter" (nzOnCancel)="detailCancel($event)" [nzZIndex]="200" [nzWidth]="1000">
+      <ng-template #detailOneModalTitle>
+           <div class="myModal-title">
+               <span>过车图片展示</span>
+            </div>
+      </ng-template>
+      <ng-template #detailOneModalContent>
+           <div>
          <div nz-row class="showCarDetailImg">
             <div nz-col [nzSpan]="8" style="text-align:center">
                 <nz-popover>
@@ -250,11 +259,13 @@
             </nz-collapse>
         </nz-collapseset>
       </div>
-    </ng-template>
-    <ng-template #footer>
-      <div>
-      </div>
-    </ng-template>
+      </ng-template>
+      <ng-template #detailOneModalFooter>
+           <!--<div class="myModal-footer">
+              <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="export(2)">导出</button>
+           </div>-->
+      </ng-template>
+      
 </nz-modal>
 <!--导出数据isModalShow_export-->
 <nz-modal [nzVisible]="isModalShow_export" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel($event)" [nzZIndex]="100">
@@ -289,4 +300,201 @@
               <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="export(2)">导出</button>
            </div>
       </ng-template>
+</nz-modal>
+<!--轨迹查询isModalShow_detail-->
+<nz-modal [nzVisible]="isModalShow_detail" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="detailCancel($event)" [nzZIndex]="100" [nzWidth]="1000">
+      <ng-template #modalTitle>
+           <div class="myModal-title">
+                <span *ngIf="isModalShow_frequent">关于{{carName}}的轨迹信息</span>
+                <span *ngIf="!isModalShow_frequent">关于{{carName}}的频繁出入信息</span>
+            </div>
+      </ng-template>
+      <ng-template #modalContent>
+         <div class="myModal-content">
+                <div nz-row [nzGutter]="24">
+                        <div nz-col [nzSpan]="12" class="mb-md" *ngIf="isModalShow_frequent">
+                                <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                                    <div nz-form-label><label for="kkname">次数大于：</label></div>
+                                    <div nz-form-control class="flex-1">
+                                        <nz-input [(ngModel)]="totalSearch.times" [nzPlaceHolder]="'次数大于'" name="times"></nz-input>
+                                    </div>
+                                    <span style="padding-left:5px;padding-right:5px;opacity:0">--</span>
+                                    <div nz-form-control class="flex-1">
+                                        <nz-select2 [dataSource]="peerTimes" [(ngModel)]="totalSearch.minutes" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'同行间隔时间'"></nz-select2>
+                                                            
+                                    </div>
+                                     <button nz-button [nzType]="'primary'" (click)="detailSearch()" style="margin-left:10px">查询</button>
+                                </div>
+                        </div>
+                </div>
+                <nz-tabset>
+                            <nz-tab (nzClick)="showListTypes('list')">
+                                <ng-template #nzTabHeading>
+                                <!--<i [ngClass]="'anticon anticon-exception'"></i>-->
+                                列表展示
+                                </ng-template>
+                            </nz-tab>
+                            <nz-tab (nzClick)="showListTypes('photo')">
+                                <ng-template #nzTabHeading>
+                                <!--<i [ngClass]="'anticon anticon-picture'"></i>-->
+                                图表展示
+                                </ng-template>
+                            </nz-tab>
+                </nz-tabset>
+                <nz-table #nzTable id="searchList" [nzPageSize]="paginationDetail.pageSize" [nzPageIndex]="paginationDetail.pageIndex" [nzAjaxData]="dataDetail" nzShowQuickJumper nzShowTotal [nzTotal]="dataDetailnums" (nzPageIndexChange)="detailIndexChange($event,'track')">
+                            <thead nz-thead *ngIf="showLp==true">
+                            <tr>
+                                <th nz-th [nzWidth]="'50px'"><span></span></th>
+                                <th nz-th [nzWidth]="'100px'"><span>号牌号码</span></th>
+                                <th nz-th [nzWidth]="'80px'"><span>号牌颜色</span></th>
+                                <th nz-th [nzWidth]="'80px'"><span>号牌种类</span></th>
+                                <th nz-th [nzWidth]="'250px'"><span>经过卡口</span></th>
+                                <th nz-th [nzWidth]="'100px'"><span>行驶方向</span></th>
+                                <th nz-th [nzWidth]="'100px'"><span>过车时间</span></th>
+                                <th nz-th [nzWidth]="'100px'"><span>过车图片</span></th>
+                            </tr>
+                            </thead>
+                        <tbody nz-tbody *ngIf="showLp==true">
+                            <tr nz-tbody-tr *ngFor="let data of dataDetail">
+                                <td nz-td>{{data.xh}}</td>
+                                <td nz-td class="colorLink" (click)="showDetailOne(data)">{{data.hphm}}</td>
+                                <td nz-td>{{data.hpysmc}}</td>
+                                <td nz-td>{{data.hpzlmc}}</td>
+                                <td nz-td title="{{data.kkmc}}">{{data.kkmc}}</td>
+                                <td nz-td>{{data.fxmc}}</td>
+                                <td nz-td>{{data.gcsj}}</td>
+                                <td nz-td>
+                                    <nz-popover>
+                                        <img src="{{data.tplj}}" alt="" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==false" class="smallImg">
+                                        <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true" class="smallImg">
+                                        <ng-template #nzTemplate>
+                                            <img src="{{data.tplj}}" alt="" *ngIf="ifErrorImg==false">
+                                            <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true">
+                                        </ng-template>
+                                    </nz-popover>
+                                </td>
+                        </tr>
+                        </tbody>
+                        <div nz-row [nzGutter]="24" class="showCarPhoto" *ngIf="showLp==false">
+                                <div nz-col [nzSpan]="6" *ngFor="let item of dataDetail">
+                                    <nz-popover>
+                                    <img src="{{item.tplj}}" alt="" (error)="errorImg()" *ngIf="ifErrorImg==false" class="middleImg">
+                                    <img src="../../../../assets/img/error.jpg" alt=""  *ngIf="ifErrorImg==true"  class="middleImg">
+                                        <ng-template #nzTemplate>
+                                            <img src="{{item.tplj}}" alt="" *ngIf="ifErrorImg==false">
+                                            <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true">
+                                        </ng-template>
+                                    </nz-popover>
+                                    <dl>
+                                            <dd><span>号牌号码：</span><span class="colorLink" (click)="showDetailOne(item)">{{item.hphm}}</span></dd>
+                                            <dd><span>号牌颜色：</span><span>{{item.hpysmc}}</span></dd>
+                                            <dd><span>过车时间：</span><span>{{item.gcsj}}</span></dd>
+                                            <dd><span>经过卡口：</span><span title="{{data.kkmc}}" class="overflowHide" style="width:154px">{{item.kkmc}}</span></dd>
+                                            <dd><span>所属区域：</span><span>{{item.citymc}}</span></dd>
+                                        
+                                    </dl>
+                                </div>
+                        </div>
+                </nz-table>
+            </div>
+      </ng-template>
+      <ng-template #modalFooter>
+           <div class="myModal-footer">
+              <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="export(2)">导出</button>
+           </div>
+      </ng-template>
+      <my-loading *ngIf="myloading"></my-loading>
+</nz-modal>
+
+<!--同行车查询isModalShow_peerDetail-->
+<nz-modal [nzVisible]="isModalShow_peerDetail" [nzTitle]="peerModalTitle" [nzContent]="peerModalContent" [nzFooter]="peerModalFooter" (nzOnCancel)="detailCancel($event)" [nzZIndex]="100" [nzWidth]="1300">
+      <ng-template #peerModalTitle>
+           <div class="myModal-title">
+                <span>关于{{carName}}同行车信息</span>
+            </div>
+      </ng-template>
+      <ng-template #peerModalContent>
+         <div class="myModal-content">
+            <div nz-row [nzGutter]="24">
+                    <div nz-col [nzSpan]="12" class="mb-md">
+                            <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                                <!--<span class="mustTime">*</span>-->
+                                <div nz-form-label><label for="kkname">过车时段：</label></div>
+                                <div nz-form-control class="flex-1">
+                                   <nz-timepicker [(ngModel)]="totalSearch.fxkssj" [nzFormat]="'HH:mm'"></nz-timepicker>
+                                    <!--<my-datepicker name="fxkssj" [(ngModel)]="totalSearch.fxkssj" [options]="{format:'hh:mm'}"></my-datepicker>-->
+                                </div>
+                                <span style="padding-left:5px;padding-right:5px;">--</span>
+                                <div nz-form-control class="flex-1">
+                                    <!--<my-datepicker name="fxjssj" [(ngModel)]="totalSearch.fxjssj" [options]="{format:'hh:mm'}"></my-datepicker>-->
+                                    <nz-timepicker [(ngModel)]="totalSearch.fxjssj" [nzFormat]="'HH:mm'"></nz-timepicker>
+                                </div>
+                                <div nz-form-label style="margin-left:10px"><label for="kkname">天数大于：</label></div>
+                                <div nz-form-control class="flex-1">
+                                    <nz-input [(ngModel)]="totalSearch.cxcs" [nzPlaceHolder]="'天数大于'" name="cxcs"></nz-input>
+                                </div>
+                                <button nz-button [nzType]="'primary'" (click)="detailSearch()" style="margin-left:10px">查询</button>
+                            </div>
+                    </div>
+            </div>
+          <nz-table #nzTable id="searchList" [nzPageSize]="paginationDetail.pageSize" [nzPageIndex]="paginationDetail.pageIndex" [nzAjaxData]="dataDetail" nzShowQuickJumper nzShowTotal [nzTotal]="dataDetailnums" (nzPageIndexChange)="detailIndexChange($event,'peer')">
+                    <thead nz-thead>
+                    <tr>
+                        <th nz-th [nzWidth]="'50px'">
+                            <span> 
+                               <label nz-checkbox [(ngModel)]="_checked" (ngModelChange)="ifAll($event)">
+                                    <span>显示全部</span>
+                              </label>
+                            </span>
+                        </th>
+                        <th nz-th [nzWidth]="'100px'"><span>间隔时间</span></th>
+                        <th nz-th [nzWidth]="'80px'"><span>经过卡口</span></th>
+                        <th nz-th [nzWidth]="'80px'"><span>目标车辆号牌</span></th>
+                        <th nz-th [nzWidth]="'100px'"><span>目标车辆过车时间</span></th>
+                        <th nz-th [nzWidth]="'100px'"><span>目标车辆图片</span></th>
+                        <th nz-th [nzWidth]="'80px'"><span>同行车辆号牌</span></th>
+                        <th nz-th [nzWidth]="'100px'"><span>同行车辆过车时间</span></th>
+                        <th nz-th [nzWidth]="'100px'"><span>同行车辆图片</span></th>
+                    </tr>
+                    </thead>
+                <tbody nz-tbody>
+                    <tr nz-tbody-tr *ngFor="let data of dataDetail">
+                        <td nz-td>{{data.xh}}</td>
+                        <td nz-td>间隔{{totalSearch.minutes}}分钟同行</td>
+                        <td nz-td>{{data.kkmc}}</td>
+                        <td nz-td>{{totalSearch.hphm}}</td>
+                        <td nz-td>{{data.mbgcsj}}</td>
+                        <td nz-td>
+                            <nz-popover>
+                                <img src="{{data.mbtplj}}" alt="" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==false" class="smallImg">
+                                <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true" class="smallImg">
+                                <ng-template #nzTemplate>
+                                    <img src="{{data.mbtplj}}" alt="" *ngIf="ifErrorImg==false">
+                                    <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true">
+                                </ng-template>
+                            </nz-popover>
+                        </td>
+                        <td nz-td>{{data.hphm}}</td>
+                        <td nz-td>{{data.gcsj}}</td>
+                        <td nz-td>
+                            <nz-popover>
+                                <img src="{{data.tplj}}" alt="" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==false" class="smallImg">
+                                <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true" class="smallImg">
+                                <ng-template #nzTemplate>
+                                    <img src="{{data.tplj}}" alt="" *ngIf="ifErrorImg==false">
+                                    <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true">
+                                </ng-template>
+                            </nz-popover>
+                        </td>
+                </tr>
+                </tbody>
+          </nz-table>
+      </div>
+      </ng-template>
+      <ng-template #peerModalFooter>
+           <!--<div class="myModal-footer">
+              <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="export(2)">导出</button>
+           </div>-->
+      </ng-template>
+      <my-loading *ngIf="myloading"></my-loading>
 </nz-modal>

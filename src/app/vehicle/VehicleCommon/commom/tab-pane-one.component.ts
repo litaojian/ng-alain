@@ -44,8 +44,8 @@ export class TabPaneoneComponent {
         ) {
             
              this.search = {
-                kssj:'2016-08-01 14:42:24',
-                jssj:'2016-08-10 14:42:30',
+                kssj:'2017-11-02 14:42:24',
+                jssj:'2017-11-22 14:42:30',
                 hphm:'湘A5351N',
                 hpzl:'',
                 times:'',
@@ -99,14 +99,14 @@ export class TabPaneoneComponent {
                          name:this.search.hssj
                        }
         }
-        for(let i in this.searchValid){
-            if(this.searchValid[i].type.indexOf(this.VehicleType)>=0){
-                if(this.searchValid[i].name==''||this.searchValid[i].name==undefined){
-                        this.msg.create('error', i+'不能为空');
-                        return;
-                }
-            };
-        }
+        // for(let i in this.searchValid){
+        //     if(this.searchValid[i].type.indexOf(this.VehicleType)>=0){
+        //         if(this.searchValid[i].name==''||this.searchValid[i].name==undefined){
+        //                 this.msg.create('error', i+'不能为空');
+        //                 return;
+        //         }
+        //     };
+        // }
         this.areaList=$.extend({},this.search);
         this.selectListBack.emit(this.areaList);
         

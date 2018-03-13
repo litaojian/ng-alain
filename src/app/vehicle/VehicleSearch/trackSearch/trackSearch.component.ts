@@ -19,20 +19,29 @@ export class trackSearchComponent {
     ifMoreSearch = false;
     isModalShow= false;
     isModalShow_export=false;
+    isModalShow_peerDetail=false;
+    isModalShow_detailOne=false;
+    isModalShow_detail=false;
+    isModalShow_frequent=false;
+    private showLp:any=true;//列表与图表的转换
     ifErrorImg=false;
     pagination:any;
-    showLp:any=true;
+    paginationDetail:any;
     tabColor:any=true;//tab主题切换
     datanums:any;
+    dataDetailnums:any;
     putoutAll:any;
     type:any;
     showSearch= true;
     _value: any[] = null;
     loading = false;  //加载
+    myloading=false//详情加载
     data: any[] = [];
+    dataDetail: any[] = [];
     dataOne: any[] = [];//点击列表接收弹出框数据
     list: any[] = [];//保存过车信息数据
     search: any;
+    firstSearch:any;
     search2: any;
     searchL:any;
     searchtest:any;
@@ -43,6 +52,14 @@ export class trackSearchComponent {
     countyList: any=[];//地市
     kkList: any;//卡口
     currentModal;
+    peerTimes:any=[
+                {"dmz": "5", "dmsm1": "5"},
+                {"dmz": "10", "dmsm1": "10"},
+                {"dmz": "15", "dmsm1": "15"},
+                {"dmz": "20", "dmsm1": "20"},
+                {"dmz": "25", "dmsm1": "25"},
+                {"dmz": "30", "dmsm1": "30"}
+            ];
     exportType:any=[{"dmz": "1", "dmsm1": "数据列表"},{"dmz": "2", "dmsm1": "过车图片"}];
     ifhphm:any=[{"dmz": "1", "dmsm1": "无号牌"},{"dmz": "2", "dmsm1": "有号牌"}];
     // searchType:any=[{"dmz": "1", "dmsm1": "精确查询"},{"dmz": "2", "dmsm1": "模糊查询"},{"dmz": "3", "dmsm1": "无号牌"}];
@@ -77,8 +94,12 @@ export class trackSearchComponent {
                 endDate:'',
                 kkbh:'',
                 hpzl:''
-             };
+        };
           this.pagination={
+                pageSize:10,
+                pageIndex:1
+          }
+          this.paginationDetail={
                 pageSize:10,
                 pageIndex:1
           }
@@ -131,9 +152,92 @@ export class trackSearchComponent {
       var myEndData=myFullYear+ '-' + myMonth + '-' + myDate + ' ' + myHours + ':' + myMinutes + ':' + mySeconds;
       return myEndData;
   }
+  //详情页面
+  carDetail(d,name){
+      this.dataDetail=[];
+      this.myloading=true;
+      this.myNewSearch.param[0].hphm=d.hphm;
+      this.myNewSearch.param[0].hpzl=d.hpzl;
+      this.totalSearch={
+              gckssj:this.myNewSearch.param[0].beginDate,
+              gcjssj:this.myNewSearch.param[0].endDate,
+              hphm:d.hphm,
+              hpzl:d.hpzl,
+              license:d.hphm,
+              licenseType:d.hpzl,
+              minutes:'5',
+              times:'',
+              fxkssj:'',
+              fxjssj:'',
+              cxcs:''
+     }
+     this.totalSearch=$.extend({},this.paginationDetail,this.totalSearch);
+      if(name=='peer'){
+         this.isModalShow_peerDetail=true;
+         this.searchUrl='analysis/api/analysis/peer/detail';    
+      }else if(name=='frequent'){
+         this.searchUrl='analysis/api/analysis/regional/touch/detail';
+         this.isModalShow_detail=true;
+         this.isModalShow_frequent=true;
+      }else if(name=='trackSearch'){
+         this.isModalShow_detail=true;
+         this.searchUrl='analysis/api/analysis/track/get';
+         this.totalSearch=this.myNewSearch;
+      }
+      this.carName=d.hphm;
+      this.carSearchDetail();
+  }
+  carSearchDetail(){
+      this.TrackSearchService.newGetDetail(this.totalSearch,this.searchUrl).subscribe(data => { 
+            if(data.resultCode!=0){
+                this.msg.create('error', data.resultMsg);
+                this.myloading=false;
+                return;
+            }else{
+                this.dataDetail=data.rows;
+                this.dataDetailnums=data.total;
+                this.myloading=false;
+            }
+      });
+  }
+  //详情里面的查询
+  detailSearch(){
+        this.carSearchDetail();
+  }
+  //页面跳转
+  detailIndexChange(e,type){
+     this.totalSearch.pageIndex=e;
+     this.carSearchDetail();
+  }
+  //单个详情
+  showDetailOne(car){
+      this.isModalShow_detailOne=true;
+      this.TrackSearchService.detailByOne({"hphm":car.hphm,"hpzl":car.hpzl,"gcsj":car.gcsj}).subscribe(data => { 
+            this.dataOne=data.rowData;
+            this.errorImg();
+     });
+  }
+  private ifAll(e){
+      if(e==true){
+          this.totalSearch.isAll='1';
+      }else{
+          this.totalSearch.isAll='0';
+      }
+      this.carSearchDetail();
+  }
+  detailCancel(){
+      this.isModalShow_detail=false;
+      this.isModalShow_peerDetail=false;
+      this.isModalShow_detailOne=false;
+  }
    //下面是最新版轨迹查询的数据
    myTime:any;
+   searchUrl:any;
    typeNames:any;
+   carName:any;
+   totalSearch:any={
+       
+   }
    myNewSearch:any={
        param:[],
        pageSize:10,
@@ -143,8 +247,8 @@ export class trackSearchComponent {
 //    _dateRange = ['2017-11-02 14:42:24', '2017-11-22 14:42:30'];
    newSearch:any={
          hphm:'',
-         beginDate:'',
-         endDate:'',
+         beginDate:'2017-11-02 14:42:24',
+         endDate:'2017-11-22 14:42:30',
          kkbh:'',
          hpzl:''
    }
@@ -162,10 +266,33 @@ export class trackSearchComponent {
     }
     carType(typeName){
        if(typeName!=undefined){
-          this.searchList();
-           this.typeNames=typeName;
+           this.firstTime(typeName);
        }      
     }
+    //首次出现
+    firstTime(typeName){
+         this.firstSearch = {
+                ksfxsj:this.newSearch.beginDate,
+                jsfxsj:this.newSearch.endDate,
+                fxfw:this.newSearch.gateIds,
+                hssj:'5'
+          };
+         this.loading=true;
+         this.TrackSearchService.getFirstList(this.firstSearch).subscribe(data => { 
+            if(data.resultCode!=0){
+                this.msg.create('error', data.resultMsg);
+                this.loading=false;
+                return;
+            }else{
+                this.data=data.rows;
+                this.datanums=data.total;
+                this.typeNames=typeName;
+                this.loading=false;
+            }
+            console.log(data);    
+        });
+    }
+    //过车查询
     searchList(){
         this.loading=true;
         this.myNewSearch.param=[];
@@ -174,7 +301,7 @@ export class trackSearchComponent {
         // this.newSearch.endDate=this.setTime(this._dateRange[1]);
         this.newSearch.beginDate="2017-11-02 14:42:24";
         this.newSearch.endDate='2017-11-22 14:42:30';
-        // this.myNewSearch=$.extend({},this.pagination);
+        // this.myNewSearch=$.extend({},this.pagination);  
         this.myNewSearch.param.push(this.newSearch);
         this.TrackSearchService.newGetData(this.myNewSearch).subscribe(data => { 
             if(data.resultCode!=0){
