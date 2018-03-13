@@ -1,9 +1,0 @@
-{
-    "pageTitle": "待办事项",
-    "basePagePath": "/page/wr/todo",
-    "listTemplateUrl": "todo.html",
-    "formTemplateUrl": "todoForm.html",
-    "dataApiUrl": "/api/rest/workReport",
-    "idField": "todoId",
-    "remarks": ""
-}

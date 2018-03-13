@@ -1,9 +1,0 @@
-{
-    "pageTitle": "用户需求",
-    "basePagePath": "/page/wr/story",
-    "listTemplateUrl": "story.html",
-    "formTemplateUrl": "storyForm.html",
-    "dataApiUrl": "/api/rest/ztStory",
-    "idField": "storyId",
-    "remarks": ""
-}

@@ -5,12 +5,12 @@ import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { tap, map, mergeMap, catchError } from 'rxjs/operators';
 import { NzMessageService } from 'ng-zorro-antd';
 import { MenuService } from '@delon/theme';
-import { MyDataService } from './my.data.service';
+import { UserDataService } from './user.data.service';
 
 @Injectable()
 export class CanActivateMenusProvide implements CanActivate {
 
-    constructor(injector:Injector,private router: Router, private menuService:MenuService, private myDataService:MyDataService) {}
+    constructor(injector:Injector,private router: Router, private menuService:MenuService, private userDataService:UserDataService) {}
 
 
     checkLoginAndPermission(url: string): boolean | Observable<boolean> | Promise<boolean> {
@@ -32,7 +32,7 @@ export class CanActivateMenusProvide implements CanActivate {
 
             console.log("canActivate: 菜单数据未初始化.....");
 
-            return this.myDataService.loadSysMenu().pipe(
+            return this.userDataService.loadSysMenu().pipe(
                 mergeMap((data: any) => {
                     // 若一切都正常，则后续操作
                     //console.log("得到http的请求数据.....");

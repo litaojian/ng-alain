@@ -1,9 +1,0 @@
-{
-    "pageTitle": "系统登录",
-    "basePagePath": "/page/sso/login",
-    "formTemplateUrl": "login.html",
-    "userFunctionJS": "",
-    "dataApiUrl": "/api/data/login",
-    "idField": "loginId",
-    "remarks": ""
-}

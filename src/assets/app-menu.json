@@ -1,5 +1,20 @@
 ﻿{
     "menu": [{
+        "text": "主导航",
+        "group": true,
+        "children": [{
+            "text": "仪表盘",
+            "translate": "dashboard",
+            "link": "/dashboard",
+            "icon": "icon-speedometer"
+        }, {
+            "text": "快捷菜单",
+            "translate": "shortcut",
+            "icon": "icon-rocket",
+            "shortcut_root": true,
+            "children": []
+        }]
+    }, {
         "text": "涉车模块",
         "group": true,
         "children": [{
