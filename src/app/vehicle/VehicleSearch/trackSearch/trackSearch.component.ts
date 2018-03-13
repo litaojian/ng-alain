@@ -202,6 +202,7 @@ export class trackSearchComponent {
   }
   //详情里面的查询
   detailSearch(){
+        this.myloading=true;
         this.carSearchDetail();
   }
   //页面跳转
