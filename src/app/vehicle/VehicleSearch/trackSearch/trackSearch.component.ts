@@ -19,6 +19,7 @@ export class trackSearchComponent {
     ifMoreSearch = false;
     isModalShow= false;
     isModalShow_export=false;
+    isModalShow_peer=false;
     isModalShow_peerDetail=false;
     isModalShow_detailOne=false;
     isModalShow_detail=false;
@@ -30,6 +31,7 @@ export class trackSearchComponent {
     tabColor:any=true;//tab主题切换
     datanums:any;
     dataDetailnums:any;
+    dataDetailnumsMore:any;
     putoutAll:any;
     type:any;
     showSearch= true;
@@ -38,6 +40,7 @@ export class trackSearchComponent {
     myloading=false//详情加载
     data: any[] = [];
     dataDetail: any[] = [];
+    dataDetailMore: any[] = [];
     dataOne: any[] = [];//点击列表接收弹出框数据
     list: any[] = [];//保存过车信息数据
     search: any;
@@ -154,17 +157,22 @@ export class trackSearchComponent {
   }
   //详情页面
   carDetail(d,name){
-      this.dataDetail=[];
+    //   this.dataDetail=[];
       this.myloading=true;
       this.myNewSearch.param[0].hphm=d.hphm;
       this.myNewSearch.param[0].hpzl=d.hpzl;
       this.totalSearch={
+              beginDate:this.myNewSearch.param[0].beginDate,
+              endDate:this.myNewSearch.param[0].endDate,
+              ksrq:this.myNewSearch.param[0].beginDate,
+              jsrq:this.myNewSearch.param[0].endDate,
               gckssj:this.myNewSearch.param[0].beginDate,
               gcjssj:this.myNewSearch.param[0].endDate,
               hphm:d.hphm,
               hpzl:d.hpzl,
               license:d.hphm,
               licenseType:d.hpzl,
+              fxfw:"430100000001,430100000002",
               minutes:'5',
               times:'',
               fxkssj:'',
@@ -173,21 +181,33 @@ export class trackSearchComponent {
      }
      this.totalSearch=$.extend({},this.paginationDetail,this.totalSearch);
       if(name=='peer'){
+         this.isModalShow_peer=true;
+         this.searchUrl='analysis/api/analysis/peer/list';  
+         this.carSearchDetail();  
+      }else if(name=='peerDetail'){
+         this.searchUrl='analysis/api/analysis/peer/detail';
          this.isModalShow_peerDetail=true;
-         this.searchUrl='analysis/api/analysis/peer/detail';    
-      }else if(name=='frequent'){
+         this.carSearchDetailMore();
+       }else if(name=='frequent'){
+         this.searchUrl='analysis/api/analysis/frequent/list';
+         this.carSearchDetail();
+        //  this.isModalShow_detail=true;
+         this.isModalShow_frequent=true;
+      }else if(name=='frequentDetail'){
          this.searchUrl='analysis/api/analysis/regional/touch/detail';
          this.isModalShow_detail=true;
-         this.isModalShow_frequent=true;
-      }else if(name=='trackSearch'){
+         this.carSearchDetailMore();
+       }else if(name=='trackSearch'){
          this.isModalShow_detail=true;
          this.searchUrl='analysis/api/analysis/track/get';
          this.totalSearch=this.myNewSearch;
+         this.carSearchDetailMore();
       }
       this.carName=d.hphm;
-      this.carSearchDetail();
+      
   }
   carSearchDetail(){
+      this.dataDetail=[];
       this.TrackSearchService.newGetDetail(this.totalSearch,this.searchUrl).subscribe(data => { 
             if(data.resultCode!=0){
                 this.msg.create('error', data.resultMsg);
@@ -199,6 +219,20 @@ export class trackSearchComponent {
                 this.myloading=false;
             }
       });
+  }
+   carSearchDetailMore(){
+            this.dataDetailMore=[];
+            this.TrackSearchService.newGetDetailMore(this.totalSearch,this.searchUrl).subscribe(data => { 
+                if(data.resultCode!=0){
+                    this.msg.create('error', data.resultMsg);
+                    this.myloading=false;
+                    return;
+                }else{  
+                    this.dataDetailMore=data.rows;
+                    this.dataDetailnumsMore=data.total;
+                    this.myloading=false;
+                }
+            });
   }
   //详情里面的查询
   detailSearch(){
@@ -226,10 +260,19 @@ export class trackSearchComponent {
       }
       this.carSearchDetail();
   }
-  detailCancel(){
-      this.isModalShow_detail=false;
-      this.isModalShow_peerDetail=false;
-      this.isModalShow_detailOne=false;
+  detailCancel(e,type){   
+      this.totalSearch.pageIndex=1;
+      if(type=='peer'){
+         this.isModalShow_peer=false;
+      }else if(type=='peerDetail'){
+         this.isModalShow_peerDetail=false;
+      }else if(type=='frequent'){
+         this.isModalShow_frequent=false;
+      }else if(type=='detailOne'){
+        this.isModalShow_detailOne=false;
+      }else if(type=='track'){
+        this.isModalShow_detail=false;
+      }   
   }
    //下面是最新版轨迹查询的数据
    myTime:any;

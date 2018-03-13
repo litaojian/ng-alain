@@ -22,6 +22,11 @@ export class TrackSearchService {
             .post(url,body);
 	  
 	}
+	newGetDetailMore(body:any,url:any):any{
+	   return this.http
+            .post(url,body);
+	  
+	}
 	getFirstList(body:any):any{
 	   return this.http
             .post('analysis/api/analysis/first/appear/list',body);

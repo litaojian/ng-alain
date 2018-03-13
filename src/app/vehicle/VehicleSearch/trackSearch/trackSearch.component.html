@@ -151,7 +151,7 @@
 </nz-table>
 <my-loading *ngIf="loading"></my-loading>
 <!--显示单个详情isModalShow_detailOne-->
-<nz-modal [nzVisible]="isModalShow_detailOne" [nzTitle]="detailOneModalTitle" [nzContent]="detailOneModalContent" [nzFooter]="detailOneModalFooter" (nzOnCancel)="detailCancel($event)" [nzZIndex]="200" [nzWidth]="1000">
+<nz-modal [nzVisible]="isModalShow_detailOne" [nzTitle]="detailOneModalTitle" [nzContent]="detailOneModalContent" [nzFooter]="detailOneModalFooter" (nzOnCancel)="detailCancel($event,'detailOne')" [nzZIndex]="500" [nzWidth]="1000">
       <ng-template #detailOneModalTitle>
            <div class="myModal-title">
                <span>过车图片展示</span>
@@ -296,22 +296,21 @@
         </div>
       </ng-template>
       <ng-template #modalFooter>
-           <div class="myModal-footer">
+           <!--<div class="myModal-footer">
               <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="export(2)">导出</button>
-           </div>
+           </div>-->
       </ng-template>
 </nz-modal>
 <!--轨迹查询isModalShow_detail-->
-<nz-modal [nzVisible]="isModalShow_detail" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="detailCancel($event)" [nzZIndex]="100" [nzWidth]="1000">
+<nz-modal [nzVisible]="isModalShow_detail" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="detailCancel($event,'track')" [nzZIndex]="300" [nzWidth]="1000">
       <ng-template #modalTitle>
            <div class="myModal-title">
-                <span *ngIf="isModalShow_frequent">关于{{carName}}的轨迹信息</span>
-                <span *ngIf="!isModalShow_frequent">关于{{carName}}的频繁出入信息</span>
+                <span>过车详情</span>
             </div>
       </ng-template>
       <ng-template #modalContent>
          <div class="myModal-content">
-                <div nz-row [nzGutter]="24">
+                <!--<div nz-row [nzGutter]="24">
                         <div nz-col [nzSpan]="12" class="mb-md" *ngIf="isModalShow_frequent">
                                 <div nz-form-item class="d-flex" style="margin-bottom:0px">
                                     <div nz-form-label><label for="kkname">次数大于：</label></div>
@@ -326,7 +325,7 @@
                                      <button nz-button [nzType]="'primary'" (click)="detailSearch()" style="margin-left:10px">查询</button>
                                 </div>
                         </div>
-                </div>
+                </div>-->
                 <nz-tabset>
                             <nz-tab (nzClick)="showListTypes('list')">
                                 <ng-template #nzTabHeading>
@@ -341,7 +340,7 @@
                                 </ng-template>
                             </nz-tab>
                 </nz-tabset>
-                <nz-table #nzTable id="searchList" [nzPageSize]="paginationDetail.pageSize" [nzPageIndex]="paginationDetail.pageIndex" [nzAjaxData]="dataDetail" nzShowQuickJumper nzShowTotal [nzTotal]="dataDetailnums" (nzPageIndexChange)="detailIndexChange($event,'track')">
+                <nz-table #nzTable id="searchList" [nzPageSize]="paginationDetail.pageSize" [nzPageIndex]="paginationDetail.pageIndex" [nzAjaxData]="dataDetailMore" nzShowQuickJumper nzShowTotal [nzTotal]="dataDetailnumsMore" (nzPageIndexChange)="detailIndexChange($event,'track')" [nzLoading]="myloading">
                             <thead nz-thead *ngIf="showLp==true">
                             <tr>
                                 <th nz-th [nzWidth]="'50px'"><span></span></th>
@@ -355,7 +354,7 @@
                             </tr>
                             </thead>
                         <tbody nz-tbody *ngIf="showLp==true">
-                            <tr nz-tbody-tr *ngFor="let data of dataDetail">
+                            <tr nz-tbody-tr *ngFor="let data of dataDetailMore">
                                 <td nz-td>{{data.xh}}</td>
                                 <td nz-td class="colorLink" (click)="showDetailOne(data)">{{data.hphm}}</td>
                                 <td nz-td>{{data.hpysmc}}</td>
@@ -365,8 +364,8 @@
                                 <td nz-td>{{data.gcsj}}</td>
                                 <td nz-td>
                                     <nz-popover>
-                                        <img src="{{data.tplj}}" alt="" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==false" class="smallImg">
-                                        <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true" class="smallImg">
+                                        <img src="{{data.tplj}}" alt="" nz-popover (error)="errorImg()" *ngIf="ifErrorImg==false" class="smallImg" style="width:30px">
+                                        <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true" class="smallImg" style="width:30px">
                                         <ng-template #nzTemplate>
                                             <img src="{{data.tplj}}" alt="" *ngIf="ifErrorImg==false">
                                             <img src="../../../../assets/img/error.jpg" alt="" nz-popover *ngIf="ifErrorImg==true">
@@ -403,41 +402,19 @@
               <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="export(2)">导出</button>
            </div>
       </ng-template>
-      <my-loading *ngIf="myloading"></my-loading>
+      <!--<my-loading *ngIf="myloading"></my-loading>-->
 </nz-modal>
 
-<!--同行车查询isModalShow_peerDetail-->
-<nz-modal [nzVisible]="isModalShow_peerDetail" [nzTitle]="peerModalTitle" [nzContent]="peerModalContent" [nzFooter]="peerModalFooter" (nzOnCancel)="detailCancel($event)" [nzZIndex]="100" [nzWidth]="1300">
-      <ng-template #peerModalTitle>
+<!--同行车详情查询isModalShow_peerDetail-->
+<nz-modal [nzVisible]="isModalShow_peerDetail" [nzTitle]="peerDetailModalTitle" [nzContent]="peerDetailModalContent" [nzFooter]="peerDetailModalFooter" (nzOnCancel)="detailCancel($event,'peerDetail')" [nzZIndex]="300" [nzWidth]="1300">
+      <ng-template #peerDetailModalTitle>
            <div class="myModal-title">
                 <span>关于{{carName}}同行车信息</span>
             </div>
       </ng-template>
-      <ng-template #peerModalContent>
+      <ng-template #peerDetailModalContent>
          <div class="myModal-content">
-            <div nz-row [nzGutter]="24">
-                    <div nz-col [nzSpan]="12" class="mb-md">
-                            <div nz-form-item class="d-flex" style="margin-bottom:0px">
-                                <!--<span class="mustTime">*</span>-->
-                                <div nz-form-label><label for="kkname">过车时段：</label></div>
-                                <div nz-form-control class="flex-1">
-                                   <nz-timepicker [(ngModel)]="totalSearch.fxkssj" [nzFormat]="'HH:mm'"></nz-timepicker>
-                                    <!--<my-datepicker name="fxkssj" [(ngModel)]="totalSearch.fxkssj" [options]="{format:'hh:mm'}"></my-datepicker>-->
-                                </div>
-                                <span style="padding-left:5px;padding-right:5px;">--</span>
-                                <div nz-form-control class="flex-1">
-                                    <!--<my-datepicker name="fxjssj" [(ngModel)]="totalSearch.fxjssj" [options]="{format:'hh:mm'}"></my-datepicker>-->
-                                    <nz-timepicker [(ngModel)]="totalSearch.fxjssj" [nzFormat]="'HH:mm'"></nz-timepicker>
-                                </div>
-                                <div nz-form-label style="margin-left:10px"><label for="kkname">天数大于：</label></div>
-                                <div nz-form-control class="flex-1">
-                                    <nz-input [(ngModel)]="totalSearch.cxcs" [nzPlaceHolder]="'天数大于'" name="cxcs"></nz-input>
-                                </div>
-                                <button nz-button [nzType]="'primary'" (click)="detailSearch()" style="margin-left:10px">查询</button>
-                            </div>
-                    </div>
-            </div>
-          <nz-table #nzTable id="searchList" [nzPageSize]="paginationDetail.pageSize" [nzPageIndex]="paginationDetail.pageIndex" [nzAjaxData]="dataDetail" nzShowQuickJumper nzShowTotal [nzTotal]="dataDetailnums" (nzPageIndexChange)="detailIndexChange($event,'peer')">
+          <nz-table #nzTable id="searchList" [nzPageSize]="paginationDetail.pageSize" [nzPageIndex]="paginationDetail.pageIndex" [nzAjaxData]="dataDetailMore" nzShowQuickJumper nzShowTotal [nzTotal]="dataDetailnumsMore" (nzPageIndexChange)="detailIndexChange($event,'peer')">
                     <thead nz-thead>
                     <tr>
                         <th nz-th [nzWidth]="'50px'">
@@ -458,7 +435,7 @@
                     </tr>
                     </thead>
                 <tbody nz-tbody>
-                    <tr nz-tbody-tr *ngFor="let data of dataDetail">
+                    <tr nz-tbody-tr *ngFor="let data of dataDetailMore">
                         <td nz-td>{{data.xh}}</td>
                         <td nz-td>间隔{{totalSearch.minutes}}分钟同行</td>
                         <td nz-td>{{data.kkmc}}</td>
@@ -491,10 +468,130 @@
           </nz-table>
       </div>
       </ng-template>
+      <ng-template #peerDetailModalFooter>
+      </ng-template>
+      <!--<my-loading *ngIf="myloading"></my-loading>-->
+</nz-modal>
+
+
+
+
+
+<!--同行车查询isModalShow_peerDetail-->
+<nz-modal [nzVisible]="isModalShow_peer" [nzTitle]="peerModalTitle" [nzContent]="peerModalContent" [nzFooter]="peerModalFooter" (nzOnCancel)="detailCancel($event,'peer')" [nzZIndex]="100" [nzWidth]="1000">
+      <ng-template #peerModalTitle>
+           <div class="myModal-title">
+                <span>关于{{carName}}同行车信息</span>
+            </div>
+      </ng-template>
+      <ng-template #peerModalContent>
+         <div class="myModal-content">
+             <div nz-row [nzGutter]="24">
+                        <div nz-col [nzSpan]="12" class="mb-md">
+                                <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                                    <div nz-form-label><label for="kkname">同行次数大于：</label></div>
+                                    <div nz-form-control class="flex-1">
+                                        <nz-input [(ngModel)]="totalSearch.times" [nzPlaceHolder]="'次数大于'" name="times"></nz-input>
+                                    </div>
+                                    <span style="padding-left:5px;padding-right:5px;opacity:0">--</span>
+                                    <div nz-form-control class="flex-1">
+                                        <nz-select2 [dataSource]="peerTimes" [(ngModel)]="totalSearch.minutes" [fieldKey]="{text:'dmsm1',value:'dmz'}" [myPlaceHolder]="'同行间隔时间'"></nz-select2>
+                                                            
+                                    </div>
+                                     <button nz-button [nzType]="'primary'" (click)="detailSearch()" style="margin-left:10px">查询</button>
+                                </div>
+                        </div>
+                </div>
+         <nz-table id="searchList" #nzTable [nzPageSize]="paginationDetail.pageSize" [nzPageIndex]="paginationDetail.pageIndex" nzShowQuickJumper nzShowTotal [nzAjaxData]="dataDetail" [nzTotal]="dataDetailnums" (nzPageIndexChange)="detailIndexChange($event)" [nzLoading]="myloading">
+                    <thead nz-thead>
+                        <tr>
+                             <th nz-th [nzWidth]="'50px'"><span></span></th>
+                             <th nz-th [nzWidth]="'100px'"><span>号牌号码</span></th>
+                             <th nz-th [nzWidth]="'100px'"><span>号牌种类</span></th>
+                             <th nz-th [nzWidth]="'100px'"><span>号牌颜色</span></th>
+                             <th nz-th [nzWidth]="'100px'"><span>违法信息</span></th>
+                             <th nz-th [nzWidth]="'50px'"><span>同行次数</span></th>
+                             <th nz-th [nzWidth]="'50px'"><span>操作</span></th>
+                        </tr>
+                    </thead>
+                    <tbody nz-tbody>
+                        <tr nz-tbody-tr *ngFor="let peerFrequent of nzTable.data;let i=index">
+                            <td nz-td>{{peerFrequent.xh}}</td>
+                            <td nz-td>{{peerFrequent.hphm}}</td>
+                            <td nz-td>{{peerFrequent.hpzlmc}}</td>
+                            <td nz-td>{{peerFrequent.hpysmc}}</td>
+                            <td nz-td>{{peerFrequent.ts}}</td>
+                            <td nz-td>{{peerFrequent.cs}}</td>
+                            <td nz-td class="colorLink" (click)="carDetail(peerFrequent,'peerDetail')">明细</td>
+                        </tr>
+                    </tbody>
+      </nz-table>
+      </div>
+      </ng-template>
       <ng-template #peerModalFooter>
            <!--<div class="myModal-footer">
               <button nz-button type="submit" [nzType]="'primary'" [nzSize]="'large'" (click)="export(2)">导出</button>
            </div>-->
+      </ng-template>
+      <my-loading *ngIf="myloading"></my-loading>
+</nz-modal>
+
+<!--频繁车查询isModalShow_peerDetail-->
+<nz-modal [nzVisible]="isModalShow_frequent" [nzTitle]="frequentModalTitle" [nzContent]="frequentModalContent" [nzFooter]="frequentModalFooter" (nzOnCancel)="detailCancel($event,'frequent')" [nzZIndex]="100" [nzWidth]="1000">
+      <ng-template #frequentModalTitle>
+           <div class="myModal-title">
+                <span>关于{{carName}}频繁过车车信息</span>
+            </div>
+      </ng-template>
+      <ng-template #frequentModalContent>
+         <div class="myModal-content">
+             <div nz-row [nzGutter]="24">
+                    <div nz-col [nzSpan]="18" class="mb-md">
+                            <div nz-form-item class="d-flex" style="margin-bottom:0px">
+                                <div nz-form-label><label for="kkname">过车时段：</label></div>
+                                <div nz-form-control class="flex-1">
+                                   <nz-timepicker [(ngModel)]="totalSearch.fxkssj" [nzFormat]="'HH:mm'" [nzPlaceHolder]="'开始时间'"></nz-timepicker>
+                                </div>
+                                <div nz-form-control class="flex-1">
+                                    <nz-timepicker [(ngModel)]="totalSearch.fxjssj" [nzFormat]="'HH:mm'" [nzPlaceHolder]="'结束时间'"></nz-timepicker>
+                                </div>
+                                <div nz-form-label style="margin-left:10px"><label for="kkname">天数大于：</label></div>
+                                <div nz-form-control class="flex-1">
+                                    <nz-input [(ngModel)]="totalSearch.cxcs" [nzPlaceHolder]="'天数大于'" name="cxcs"></nz-input>
+                                </div>
+                                <button nz-button [nzType]="'primary'" (click)="detailSearch()" style="margin-left:10px">查询</button>
+                            </div>
+                    </div>
+            </div>
+         <nz-table id="searchList" #nzTable [nzPageSize]="paginationDetail.pageSize" [nzPageIndex]="paginationDetail.pageIndex" nzShowQuickJumper nzShowTotal [nzAjaxData]="dataDetail" [nzTotal]="dataDetailnums" (nzPageIndexChange)="detailIndexChange($event)" [nzLoading]="myloading">
+                    <thead nz-thead>
+                        <tr>
+                             <th nz-th [nzWidth]="'50px'"><span></span></th>
+                             <th nz-th [nzWidth]="'100px'"><span>号牌号码</span></th>
+                             <th nz-th [nzWidth]="'100px'"><span>号牌种类</span></th>
+                             <th nz-th [nzWidth]="'100px'"><span>号牌颜色</span></th>
+                             <th nz-th [nzWidth]="'50px'"><span>卡口数</span></th>
+                             <th nz-th [nzWidth]="'50px'"><span>天数</span></th>
+                             <th nz-th [nzWidth]="'50px'"><span>次数</span></th>
+                             <th nz-th [nzWidth]="'50px'"><span>操作</span></th>
+                        </tr>
+                    </thead>
+                    <tbody nz-tbody>
+                        <tr nz-tbody-tr *ngFor="let dataFrequent of nzTable.data;let i=index">
+                            <td nz-td>{{dataFrequent.xh}}</td>
+                            <td nz-td>{{dataFrequent.hphm}}</td>
+                            <td nz-td>{{dataFrequent.hpzlmc}}</td>
+                            <td nz-td>{{dataFrequent.hpysmc}}</td>
+                            <td nz-td>{{dataFrequent.kks}}</td>
+                            <td nz-td>{{dataFrequent.ts}}</td>
+                            <td nz-td>{{dataFrequent.cs}}</td>
+                            <td nz-td class="colorLink" (click)="carDetail(dataFrequent,'frequentDetail')">明细</td>
+                        </tr>
+                    </tbody>
+      </nz-table>
+      </div>
+      </ng-template>
+      <ng-template #frequentModalFooter>
       </ng-template>
       <my-loading *ngIf="myloading"></my-loading>
 </nz-modal>
