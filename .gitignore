@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+npm-debug***
 
 # dependencies
 /node_modules
