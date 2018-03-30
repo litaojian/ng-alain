@@ -1,8 +1,7 @@
-import { NzModalSubject, NzMessageService } from 'ng-zorro-antd';
+import { NzMessageService, NzModalRef } from 'ng-zorro-antd';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
-import { ModalHelper } from '@delon/theme';
 
 @Component({
     selector: 'app-extras-poi-edit',
@@ -13,26 +12,25 @@ export class ExtrasPoiEditComponent implements OnInit {
     cat: string[] = [ '美食', '美食,粤菜', '美食,粤菜,湛江菜' ];
 
     constructor(
-        private modalHelper: ModalHelper,
-        private subject: NzModalSubject,
+        private modal: NzModalRef,
         public msgSrv: NzMessageService,
         public http: _HttpClient) { }
 
     ngOnInit() {
         if (this.i.id > 0) {
-            this.http.get('./assets/pois.json').subscribe(res => this.i = res.data[0]);
+            this.http.get('./assets/pois.json').subscribe((res: any) => this.i = res.data[0]);
         }
     }
 
     save() {
         this.http.get('./assets/pois.json').subscribe(() => {
             this.msgSrv.success('保存成功，只是模拟，实际未变更');
-            this.subject.next('true');
+            this.modal.close(true);
             this.close();
         });
     }
 
     close() {
-        this.subject.destroy();
+        this.modal.destroy();
     }
 }

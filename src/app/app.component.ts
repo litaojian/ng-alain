@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { ThemesService, SettingsService, TitleService } from '@delon/theme';
-import { filter, map } from 'rxjs/operators';
+import { SettingsService, TitleService } from '@delon/theme';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -14,19 +14,14 @@ export class AppComponent implements OnInit {
   @HostBinding('class.aside-collapsed') get isCollapsed() { return this.settings.layout.collapsed; }
 
   constructor(
-    private theme: ThemesService,
     private settings: SettingsService,
     private router: Router,
     private titleSrv: TitleService) {
   }
 
   ngOnInit() {
-    this.router.events.pipe(
-            filter(evt => evt instanceof NavigationEnd),
-            map(() => this.router.url)
-        )
-        .subscribe(url => {
-            this.titleSrv.setTitleByUrl(url);
-        });
+    this.router.events
+        .pipe(filter(evt => evt instanceof NavigationEnd))
+        .subscribe(() => this.titleSrv.setTitle());
   }
 }

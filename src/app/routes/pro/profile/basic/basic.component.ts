@@ -13,7 +13,7 @@ export class ProProfileBaseComponent {
     basicNum = 0;
     amountNum = 0;
     goods = this.http.get('/profile/goods').pipe(
-        tap(list => {
+        tap((list: any[]) => {
             list.forEach(item => {
                 this.basicNum += Number(item.num);
                 this.amountNum += Number(item.amount);
@@ -21,7 +21,7 @@ export class ProProfileBaseComponent {
         })
     );
     goodsColumns: SimpleTableColumn[] = [
-        { title: '商品编号', index: 'id' },
+        { title: '商品编号', index: 'id', type: 'link', click: (item: any) => this.msg.success(`show ${item.id}`) },
         { title: '商品名称', index: 'name' },
         { title: '商品条码', index: 'barcode' },
         { title: '单价', index: 'price', type: 'currency' },
@@ -37,5 +37,5 @@ export class ProProfileBaseComponent {
         { title: '耗时', index: 'cost' }
     ];
 
-    constructor(private http: _HttpClient) {}
+    constructor(private http: _HttpClient, private msg: NzMessageService) {}
 }
