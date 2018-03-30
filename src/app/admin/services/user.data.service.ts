@@ -2,7 +2,7 @@ import { Injectable, Inject, Injector } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpEvent } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import { BaseDataService } from 'yg-widget/my-app';
+import { BaseDataService } from 'ngx-widget/my-app';
 
 @Injectable()
 export class UserDataService extends BaseDataService {

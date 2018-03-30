@@ -6,7 +6,7 @@ import { ACLService } from '@delon/acl';
 import { zip } from 'rxjs/observable/zip';
 import { I18NService } from '../../core/i18n/i18n.service';
 import { TranslateService } from '@ngx-translate/core';
-import { BaseStartupService } from 'yg-widget/base/base-startup.service';
+import { BaseStartupService } from 'ngx-widget/base/base-startup.service';
 
 /**
  * 用于应用启动时

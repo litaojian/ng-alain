@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd';
 import { SettingsService } from '@delon/theme';
 import { SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN } from '@delon/auth';
-import { BaseDetailComponent } from 'yg-widget/my-app';
+import { BaseDetailComponent } from 'ngx-widget/my-app';
 import { UserLoginService } from '../../services/user.login.service';
 
 

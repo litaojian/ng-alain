@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpEvent } from '@a
 
 import { Observable } from 'rxjs/Observable';
 import { tap, map, mergeMap, catchError } from 'rxjs/operators';
-import { BaseDataService } from 'yg-widget/my-app';
+import { BaseDataService } from 'ngx-widget/my-app';
 import { ITokenService, DA_SERVICE_TOKEN } from '@delon/auth';
 
 @Injectable()
@@ -20,13 +20,13 @@ export class UserLoginService extends BaseDataService {
     }
 
     
-    doLoginAction(body): Observable<any>{
+    doLoginAction(body): Observable<Object>{
         
         let url = "/api/login/userPassword"
         let params = {};        
         let options = {};
         
-        return this.httpService.ajaxPost(url, params)
+        return this.ajaxPost(url, params)
             .map((result:any) => {             
                 if (result["userToken"] != null && result["resultCode"] == 0){
                     // 登录成功后,跳转回原URL

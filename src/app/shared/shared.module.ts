@@ -13,10 +13,10 @@ import { TranslateModule } from '@ngx-translate/core';
 
 // region: third libs
 import { CountdownModule } from 'ngx-countdown';
-import { MyAppModule } from 'yg-widget/my-app/my-app.module';
-import { BizAppModule } from 'yg-widget/biz-app';
-import { MyLoadingModule } from 'yg-widget/yg-loading/myloading.module';
-import { MySelectModule } from 'yg-widget/yg-select/myselect.module';
+import { MyAppModule } from 'ngx-widget/my-app/my-app.module';
+import { BizAppModule } from 'ngx-widget/biz-app';
+import { MyLoadingModule } from 'ngx-widget/yg-loading/myloading.module';
+import { MySelectModule } from 'ngx-widget/yg-select/myselect.module';
 import { HeaderSearchComponent } from '../vehicle/VehicleCommon/controls/v2/searchInput.component';
 
 
