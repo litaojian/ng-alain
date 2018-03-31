@@ -50,7 +50,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
         CoreModule,
         SharedModule,
         LayoutModule,
-        RoutesModule,
+        AdminModule,
         // i18n
         TranslateModule.forRoot({
             loader: {
