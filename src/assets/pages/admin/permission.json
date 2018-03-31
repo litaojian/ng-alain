@@ -1,0 +1,146 @@
+{
+    "title": "角色权限",
+    "pageType": "TableView",
+    "restAPI": "/api/rest/sysRole",
+    "idField": "roleid",
+    "actions": {},
+    "queryParams": { "filter": "all" },
+    "queryForm": {
+        "debug": false,
+        "properties": {
+            "rolename": {
+                "type": "string",
+                "title": "角色名称",
+                "widget": {
+                    "placeholder": "请输入角色名称"
+                }
+            },
+            "roletype": {
+                "type": "string",
+                "title": "角色类别",
+                "widget": {
+                    "id": "select",
+                    "data": [
+                        { "value": "1", "label": "分类1" },
+                        { "value": "2", "label": "分类2" },
+                        { "value": "3", "label": "分类3" }
+                    ],
+                    "placeholder": "请选择分类",
+                    "style": {
+                        "width": "120px"
+                    }
+                }
+            }
+        },
+        "required": ["name"],
+        "button": {
+            "items": [{
+                    "label": "查询",
+                    "id": "query",
+                    "submit": true
+                },
+                {
+                    "label": "新增",
+                    "id": "add"
+                }
+            ]
+        }
+    },
+    "dataTable": {
+        "extraParams": {},
+        "showTotal": true,
+        "pageSize": 15,
+        "resReName": { "list": "rows", "total": "total" },
+        "columns": [
+            { "index": "role", "title": "编号", "type": "string" },
+            { "index": "rolename", "title": "角色名称", "type": "string" },
+            { "index": "roletype", "title": "类别", "type": "string" },
+            {
+                "index": "created",
+                "title": "输入时间",
+                "type": "date",
+                "filters": [{ "text": "昨天", "value": "male" }, { "text": "本周", "value": "2" }, { "text": "当月", "value": "3" }],
+                "filterMultiple": true,
+                "filter": "() => true",
+                "sorter": "(a, b) => true"
+
+            },
+            {
+                "title": "操作区",
+                "buttons": [{
+                        "text": "删除",
+                        "click": "delete"
+                    },
+                    {
+                        "text": "编辑",
+                        "click": "edit"
+                    },
+                    {
+                        "text": "关联用户",
+                        "type": "modal",
+                        "component": "BizDialogTreeComponent",
+                        "dialogUrl": "/admin/userTreeDialog",
+                        "size": "lg",
+                        "modalOptions": {
+                            "footer": false
+                        },
+                        "click": "dialogConfirm"
+                    },
+                    {
+                        "text": "菜单授权",
+                        "type": "modal",
+                        "component": "BizDialogTreeComponent",
+                        "dialogUrl": "/admin/menuTreeDialog",
+                        "size": "lg",
+                        "modalOptions": {
+                            "footer": false
+                        },
+                        "click": "dialogConfirm"
+                    }
+                ]
+            }
+
+        ]
+    },
+    "mainForm": {
+        "properties": {
+            "rolename": {
+                "type": "string",
+                "title": "角色名称",
+                "widget": {
+                    "placeholder": "请输入角色名称"
+                }
+            },
+            "role": {
+                "type": "string",
+                "title": "角色编号",
+                "widget": {
+                    "title": "角色编号",
+                    "placeholder": "请输入角色编号"
+                }
+            },
+            "roletype": {
+                "type": "string",
+                "title": "类型",
+                "widget": {
+                    "id": "select2",
+                    "url": "roleType",
+                    "placeholder": "请选择类型"
+                }
+            }
+        },
+        "required": ["rolename"],
+        "button": {
+            "items": [{
+                    "label": "保存",
+                    "id": "save",
+                    "submit": true
+                },
+                {
+                    "label": "返回",
+                    "id": "backto"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "title": "菜单选择",
+    "pageType": "TreeView",
+    "actions": {},
+    "navTree": {
+        "checkbox": true,
+        "dataUrl": "/api/data/tree/menuTree?url=void(0)"
+    }
+}

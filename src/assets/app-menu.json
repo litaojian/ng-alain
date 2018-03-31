@@ -63,7 +63,7 @@
                     },
                     {
                         "text": "菜单管理",
-                        "link": "/page/admin/menu/list",
+                        "link": "/page/admin/menu/tree",
                         "acl": "admin"
                     },
                     {

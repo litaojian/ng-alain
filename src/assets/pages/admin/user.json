@@ -1,0 +1,173 @@
+{
+    "title": "用户管理",
+    "pageType": "TreeView",
+    "restAPI": "/api/rest/sysUser",
+    "idField": "userid",
+    "actions": {},
+    "navTree": {
+        "dataUrl": "/api/data/tree/orgTree?url=void(0)"
+    },
+    "queryParams": { "filter": "queryUsersByParentId", "parentId": 0 },
+    "queryForm": {
+        "debug": false,
+        "properties": {
+            "username": {
+                "type": "string",
+                "title": "用户名称",
+                "widget": {
+                    "placeholder": "请输入用户名称"
+                }
+            }
+        },
+        "required": [""],
+        "button": {
+            "items": [{
+                    "label": "查询",
+                    "id": "query",
+                    "submit": true
+                },
+                {
+                    "label": "新增",
+                    "id": "add"
+                }
+            ]
+        }
+    },
+    "dataTable": {
+        "extraParams": {},
+        "showTotal": true,
+        "pageSize": 15,
+        "resReName": { "list": "rows", "total": "total" },
+        "columns": [
+            { "index": "username", "title": "用户名称", "type": "string" },
+            { "index": "loginid", "title": "登录帐号", "type": "string" },
+            { "index": "email", "title": "电邮", "type": "string" },
+            {
+                "index": "created",
+                "title": "输入时间",
+                "type": "date",
+                "filters": [{ "text": "昨天", "value": "male" }, { "text": "本周", "value": "2" }, { "text": "当月", "value": "3" }],
+                "filterMultiple": true,
+                "filter": "() => true",
+                "sorter": "(a, b) => true"
+
+            },
+            {
+                "title": "操作区",
+                "buttons": [{
+                        "text": "删除",
+                        "click": "delete"
+                    },
+                    {
+                        "text": "编辑",
+                        "click": "edit"
+                    },
+                    {
+                        "text": "分配角色",
+                        "click": "assignRoles"
+                    }
+                ]
+            }
+
+        ]
+    },
+    "mainForm": {
+        "model": {
+            "status": "Enabled",
+            "sex": "M"
+        },
+        "properties": {
+            "username": {
+                "type": "string",
+                "title": "用户名称",
+                "widget": {
+                    "placeholder": "请输入名称"
+                }
+            },
+            "loginid": {
+                "type": "string",
+                "title": "登录帐号",
+                "widget": {
+                    "placeholder": "请输入登录帐号"
+                }
+            },
+            "password": {
+                "type": "string",
+                "title": "登录密码",
+                "widget": {
+                    "type": "password",
+                    "placeholder": "请输入登录密码"
+                }
+            },
+            "remarks": {
+                "type": "string",
+                "title": "用户描述",
+                "widget": {
+                    "id": "textarea",
+                    "autosize": { "minRows": 2, "maxRows": 6 },
+                    "placeholder": "请输入关于部门的职责描述"
+                }
+            },
+            "parentid": {
+                "type": "string",
+                "title": "所属部门",
+                "widget": {
+                    "type": "hidden"
+                }
+            },
+            "sex": {
+                "type": "string",
+                "title": "性别",
+                "default": "M",
+                "widget": {
+                    "id": "select2",
+                    "url": "sexType",
+                    "placeholder": "请选择性别"
+                }
+            },
+            "photo": {
+                "type": "string",
+                "title": "头像",
+                "widget": {
+                    "id": "file",
+                    "size": 1024,
+                    "buttonText": "点击上传"
+                }
+            },
+            "roles": {
+                "type": "number",
+                "title": "角色",
+                "widget": {
+                    "id": "tag",
+                    "tags": [
+                        { "id": 1, "title": "管理员", "checked": true },
+                        { "id": 2, "title": "采购员" },
+                        { "id": 3, "title": "产品经理" }
+                    ]
+                }
+            },
+            "status": {
+                "type": "string",
+                "title": "类型",
+                "widget": {
+                    "id": "select2",
+                    "url": "userStatus",
+                    "placeholder": "请选择状态"
+                }
+            }
+        },
+        "required": ["username", "loginid"],
+        "button": {
+            "items": [{
+                    "label": "保存",
+                    "id": "save",
+                    "submit": true
+                },
+                {
+                    "label": "返回",
+                    "id": "backto"
+                }
+            ]
+        }
+    }
+}

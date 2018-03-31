@@ -4,10 +4,14 @@
         "pathRewrite": { "": "" },
         "secure": false
     },
-
-    "/demo/api": {
-        "target": "http://139.159.235.146/demo",
-        "pathRewrite": { "^/demo": "/mock" },
+    "/local/api": {
+        "target": "http://localhost:8080/demo",
+        "pathRewrite": { "^/local": "" },
+        "secure": false
+    },
+    "/mock/api": {
+        "target": "http://localhost:8080/demo",
+        "pathRewrite": { "": "" },
         "secure": false
     },
 
