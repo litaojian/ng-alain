@@ -31,8 +31,9 @@ export class StartupService extends BaseStartupService {
         return new Promise((resolve, reject) => {
             zip(
                 this.httpClient.get(`assets/i18n/${this.i18n.defaultLang}.json`),
-                this.httpClient.get('assets/app-data.json')
-            ).subscribe(([langData, appData]) => {
+                this.httpClient.get('assets/app-data.json'),
+                this.httpClient.get('assets/app-config.json')
+            ).subscribe(([langData, appData, appConfig]) => {
                 // setting language data
                 this.translate.setTranslation(this.i18n.defaultLang, langData);
                 this.translate.setDefaultLang(this.i18n.defaultLang);
@@ -50,7 +51,7 @@ export class StartupService extends BaseStartupService {
                 // 设置页面标题的后缀
                 this.titleService.suffix = res.app.name;
                 //
-                this.appConfig.setServerURL(res.SERVER_URL || "remote/api/") ;
+                this.processConfigData(appConfig);
 
                 resolve(res);
             }, (err: HttpErrorResponse) => {
@@ -58,4 +59,16 @@ export class StartupService extends BaseStartupService {
             });
         });
     }
+
+    processConfigData(configData:any){
+        //debugger;
+        // application data
+        const res: any = configData;
+        // 应用信息：包括站点名、描述、年份
+        this.appConfig.setApp(res.app);
+        this.appConfig.setServerURL(res.SERVER_URL);
+
+        
+    }
+
 }
