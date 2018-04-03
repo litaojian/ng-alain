@@ -27,19 +27,19 @@
                 "text": "区域碰撞",
                 "translate": "",
                 "link": "/regional/list",
-                "icon": "icon-compass"
+                "icon": "icon-book-open"
             },
             {
                 "text": "关联分析",
                 "translate": "",
                 "link": "/vehicle/search/index",
-                "icon": "icon-compass"
+                "icon": "icon-map"
             },
             {
                 "text": "车辆标签",
                 "translate": "",
                 "link": "/vehicle/search/index",
-                "icon": "icon-compass"
+                "icon": "icon-fire"
             }
         ]
     }, {
@@ -53,7 +53,7 @@
                 "icon": "icon-grid",
                 "children": [{
                         "text": "用户管理",
-                        "link": "/page/admin/user/list",
+                        "link": "/page/admin/user/tree",
                         "acl": "admin"
                     },
                     {

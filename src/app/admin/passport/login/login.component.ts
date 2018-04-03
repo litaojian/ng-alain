@@ -140,7 +140,8 @@ export class UserLoginComponent extends BaseDetailComponent implements OnDestroy
                     this.router.navigate([redirectUrl]);
                 }else{
                     this.error = errmsg;
-                }               
+                }  
+                this.loading = false;             
             });
         
     }

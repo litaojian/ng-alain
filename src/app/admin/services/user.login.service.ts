@@ -20,10 +20,9 @@ export class UserLoginService extends BaseDataService {
     }
 
     
-    doLoginAction(body): Observable<Object>{
+    doLoginAction(params): Observable<Object>{
         
-        let url = "/api/login/userPassword"
-        let params = {};        
+        let url = "/api/login/userPassword"     
         let options = {};
         
         return this.ajaxPost(url, params)

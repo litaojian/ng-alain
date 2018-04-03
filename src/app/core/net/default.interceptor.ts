@@ -16,7 +16,9 @@ import { environment } from '@env/environment';
  */
 @Injectable()
 export class DefaultInterceptor implements HttpInterceptor {
-    constructor(private injector: Injector) {}
+    constructor(private injector: Injector) {
+        console.log('DefaultInterceptor init ...................');
+    }
 
     get msg(): NzMessageService {
         return this.injector.get(NzMessageService);

@@ -11,18 +11,19 @@ export class UserDataService extends BaseDataService {
         _injector: Injector
     ) { 
         super(_injector);
+        console.log("UserDataService init .............");
     }
 
     loadSysMenu():Observable<any>{
-        let url = "assets/app-menu.json";
+        let url = "/api/data/json/app-menu";
         //url = "assets/app-data.json";
         let body = null;
         let params = {};      
         let options = {};
-        return this.httpService.get(url, params).map((result:any) => { 
+        return this.ajaxGet(url, params).map((result:any) => { 
            return result;
         }).catch(
-            error => this.httpService.handleError(url,error)
+            (error):any => {debugger; this.httpService.handleError(url,error)}
         );            
     }
     
